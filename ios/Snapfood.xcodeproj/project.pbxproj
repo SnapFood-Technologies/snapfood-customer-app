@@ -1,0 +1,1757 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00E356F31AD99517003FC87E /* SnapfoodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SnapfoodTests.m */; };
+		0533B9A507704A6998BE411B /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 390F8E15AA7442659F280D88 /* plus.png */; };
+		075B003684624FD5A1621DC8 /* icon-call-outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = A4664EAF42F04062B9745F32 /* icon-call-outgoing.png */; };
+		078EB045DA43406DAF8C4DA1 /* time-new-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 807C8E62D48943C7A407A723 /* time-new-small.png */; };
+		097F96A640DB4E53A34504B7 /* Yellix-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA983AA89A84443D8FC22401 /* Yellix-MediumItalic.ttf */; };
+		0C6C0813B9DD417FBFAA1A13 /* distance.png in Resources */ = {isa = PBXBuildFile; fileRef = F322937CF1F642899FC5E8D7 /* distance.png */; };
+		0EC06C59FF91425DB5230D6F /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 86E3B1AC61124710910505EE /* share.png */; };
+		0F109859EC0C4BF297E3479F /* noblog.png in Resources */ = {isa = PBXBuildFile; fileRef = D920AABEE9B04A1E97521420 /* noblog.png */; };
+		13AC76ADA9B7476FBDC801AA /* icon-add-chat.png in Resources */ = {isa = PBXBuildFile; fileRef = CC1961BD8D184D97BFA7ADAA /* icon-add-chat.png */; };
+		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
+		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		13CA9167D1A44C468EA7B7E4 /* auth_background.png in Resources */ = {isa = PBXBuildFile; fileRef = C025375F876E46ADAEE76B89 /* auth_background.png */; };
+		1A564430336D4E9CA5700BF3 /* Yellix-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6D69B8FED4F4B8524DB38 /* Yellix-Black.ttf */; };
+		1C29EE517B364409970676BE /* cmimi.png in Resources */ = {isa = PBXBuildFile; fileRef = 121DD0A6AE444AB891E01D9D /* cmimi.png */; };
+		24FA058E4A014EF9B733CFF6 /* attach.png in Resources */ = {isa = PBXBuildFile; fileRef = AF39EF01BD4841329EEBD4FA /* attach.png */; };
+		25418C84561145E49CCD8D93 /* SanFranciscoDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 81E2670537FD4C03BF9A029C /* SanFranciscoDisplay-Bold.otf */; };
+		265672B7FBE84BDFB024102A /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B8B1C7B4AEE4DEE98A9C277 /* minus.png */; };
+		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2DCD954D1E0B4F2C00145EB5 /* SnapfoodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SnapfoodTests.m */; };
+		2DD10591435B4FAD9350E6C3 /* white_info.png in Resources */ = {isa = PBXBuildFile; fileRef = A397E0DFC84448CA9262A315 /* white_info.png */; };
+		322E7F10A37B4FD999D0EF62 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 3361F8CD3094487F880F558C /* star.png */; };
+		333650192DBE459A9E01A63B /* Yellix-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC039A3A083646789CB26296 /* Yellix-LightItalic.ttf */; };
+		39B15D856068430FA10054A0 /* SanFranciscoDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 233C30F72DA244C7A2108AE7 /* SanFranciscoDisplay-Regular.otf */; };
+		39C368726A1944E2B8F8C879 /* logoop.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2F7B67521C4BC693AAE2BD /* logoop.png */; };
+		3AC639EA3A2947D692C3995C /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 9814CB2F63E74EAD9396565C /* filter.png */; };
+		3B8B742B3FCF447CB85E952C /* rotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E610FB108E84D398FA03289 /* rotate.png */; };
+		42C016771DB144C98C47B411 /* nopromo.png in Resources */ = {isa = PBXBuildFile; fileRef = 350FADFC23804EA1A3DB29A3 /* nopromo.png */; };
+		438AF2A61DC844719A970B93 /* fontello.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45663C79C86448B5ABBDA6CA /* fontello.ttf */; };
+		4ECAAB8BFC3D46F982B43994 /* Yellix-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7152BBF4264E588540FE1B /* Yellix-SemiBold.ttf */; };
+		4F07286F820B48A289CABCDD /* Yellix-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A8614E5A14EE45DB8C9E9AB6 /* Yellix-BoldItalic.ttf */; };
+		5132EDC0EDC041899531C2D9 /* Yellix-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99BB31647F33469D833DED62 /* Yellix-ExtraBold.ttf */; };
+		51BEABC6983246928AEB1CB3 /* white_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 0595E0569B3F4CF3983696B3 /* white_share.png */; };
+		52510739BE674D71B3EA8DA2 /* Yellix-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FEB121565C894083BA82CDCF /* Yellix-ExtraBoldItalic.ttf */; };
+		584381B565E74F22853A4FD3 /* black_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F3BEDFAA0D420195A4B5D4 /* black_share.png */; };
+		5951F9A684BD4E9DA443D06A /* arrow_faceup.png in Resources */ = {isa = PBXBuildFile; fileRef = 8749AF3AF6784553BA32CD39 /* arrow_faceup.png */; };
+		5C7997F9F4314C73AF772935 /* ope_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED21783A98B4B069262CBAA /* ope_menu.png */; };
+		5D1F07C7A37F4E9D8A9419B1 /* review.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA6127329004218B7BA8572 /* review.png */; };
+		674382A818844670A12F7A1B /* auth_phone_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6320C38BFD904A3787C35295 /* auth_phone_icon.png */; };
+		68BA8ED500234D579BD51895 /* ios_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 77107EF17486445DAA92251C /* ios_icon.png */; };
+		69034020263B4764B9D35CEB /* location_small.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8A494D1617485AB62D3B27 /* location_small.png */; };
+		6905F3424C814F9482CB8F40 /* Yellix-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2B28F6C31174316A36C1D12 /* Yellix-Regular.ttf */; };
+		6C63A35676CB4FF381267031 /* icon-add-call.png in Resources */ = {isa = PBXBuildFile; fileRef = E51BC32DC1DB4FA78DDB2000 /* icon-add-call.png */; };
+		6E46DCC058224FB5B673B1AF /* motor_small.png in Resources */ = {isa = PBXBuildFile; fileRef = DABC017A38D241D3AF8218C0 /* motor_small.png */; };
+		6F7B63FBF787451C952806A5 /* checkout_cart.png in Resources */ = {isa = PBXBuildFile; fileRef = ED0144B0D89147A3A2E6F971 /* checkout_cart.png */; };
+		6F9BDA89A1344BBF848C022C /* auth_envelope_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A09557CB9C734B24AAE5CF70 /* auth_envelope_icon.png */; };
+		76835305B76442BC8607BAE1 /* Yellix-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3859016601BD46A0B8F834D1 /* Yellix-Light.ttf */; };
+		7B4E828B25A24C4DA79A8C9C /* Yellix-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C60D3970B10E4BB9B0491E5A /* Yellix-BlackItalic.ttf */; };
+		7FB9FDCF875A4ADBB75C9E21 /* half_bckground.png in Resources */ = {isa = PBXBuildFile; fileRef = 971F2215C57246D286B418FA /* half_bckground.png */; };
+		8369898C51A14AB898DC7DA8 /* SanFranciscoDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C89970EECA7145D9985408B0 /* SanFranciscoDisplay-Medium.otf */; };
+		838E3204B4844BCCAF6BC9A4 /* SanFranciscoDisplay-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 79AFAC19BBE44EFB85BEDD06 /* SanFranciscoDisplay-Heavy.otf */; };
+		8A3AD546ED0B42A9969AF237 /* filled-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 1595B494A7714C78947BC769 /* filled-star.png */; };
+		8B186B803E16405EA70E8D22 /* icon-call-incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = E2CC8AACC8F744418985BB93 /* icon-call-incoming.png */; };
+		8CC702DB32514170A43FC6C0 /* no_res_near.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BAF6CB3CE37434382F4B8D5 /* no_res_near.png */; };
+		90A9FC7941005EFF8A6BD8B6 /* libPods-Snapfood.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0A44FF5C52A46F9D61105A3 /* libPods-Snapfood.a */; };
+		93CB4285B4944C49A0BD4B07 /* star_new_small.png in Resources */ = {isa = PBXBuildFile; fileRef = C8A68A2CB96A42AC9296AB5B /* star_new_small.png */; };
+		94BFF4B4AE14496EA365C6A2 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 56792704CD6C4E37AF82DB0A /* logo.png */; };
+		9A75BDEF78334350B73AD1ED /* x-close-ic.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FAB03697E44466A0C6F018 /* x-close-ic.png */; };
+		9EF8A19505A44E4686B55CCB /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A58461324AB74726889A958D /* icon.png */; };
+		A0C15A1BF4904E849E09AE76 /* SanFranciscoDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED606ED23CBC4C3D9568565E /* SanFranciscoDisplay-Semibold.otf */; };
+		A1DD7BCF056F47A385FE22C6 /* open_restaurant.png in Resources */ = {isa = PBXBuildFile; fileRef = E5F0FCC032BB457398054A8D /* open_restaurant.png */; };
+		A30EE25303E747388214777B /* unfilled-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E7474ECFAD44956AE028C81 /* unfilled-star.png */; };
+		A830CA6A33194338B97B9548 /* ChatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64ABA78AE5264478823015F9 /* ChatIcon.png */; };
+		A90D1865CFBA41BC9A4BB562 /* dergesa.png in Resources */ = {isa = PBXBuildFile; fileRef = 7551F2242DC142FA8C407C3C /* dergesa.png */; };
+		AB8CFA08242124CA00A84798 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB8CFA07242124CA00A84798 /* GoogleService-Info.plist */; };
+		B3F99328FD91489AB234D4EF /* ora.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3E852704994585BF678DFF /* ora.png */; };
+		B54B5307190C438AAADF0F84 /* Yellix-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EAB436E29134C178BB4B9F2 /* Yellix-Bold.ttf */; };
+		BB150DC0F2CD4D7B8B7D280C /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E9F5CBD5864A4789D00181 /* camera.png */; };
+		BC3CEE1BECCC476E8DB4DEAD /* auth_lock_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 452C2047B85B4023B001024A /* auth_lock_icon.png */; };
+		C1F5C05D32B24A9292FED25E /* Yellix-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A68650A8FDA944A4B7702B10 /* Yellix-Medium.ttf */; };
+		C21B6CEA277443ADB015FA92 /* Yellix-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD4042C0B0B647DC84D4862D /* Yellix-Thin.ttf */; };
+		C68FFFB0F1AD43BEA53A2EF9 /* sort_popular.png in Resources */ = {isa = PBXBuildFile; fileRef = 03A4EBC90283463CB7272293 /* sort_popular.png */; };
+		C7BD35F0D7534764A92AA2A7 /* auth_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 97CCFEBF8CC24F949EDDC24F /* auth_facebook.png */; };
+		C9F8CDAAC2A84BEB9AB4878E /* logo_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 168733BC6BFC4B6688188894 /* logo_white.png */; };
+		CA79396BA62044B09BA42337 /* SanFranciscoDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 310D0A6E0F0A4108955217A2 /* SanFranciscoDisplay-Light.otf */; };
+		CC68B14DE19D435FA96353BA /* icon-more-vertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 3037D100399A43E7A2CE8908 /* icon-more-vertical.png */; };
+		CEF63441C3094A9BB0C5D858 /* closed-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 07C00382182941B98A507A89 /* closed-small.png */; };
+		CEFC06344A07BD818DF76D47 /* libPods-Snapfood-SnapfoodTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD40CB65D2B62306B344E86C /* libPods-Snapfood-SnapfoodTests.a */; };
+		D03EFB26410642499DA3B4F8 /* white_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3E3EC170A24022B395B29C /* white_back.png */; };
+		D38307B549B84777A4B49BFF /* sort_name.png in Resources */ = {isa = PBXBuildFile; fileRef = FB92254A286C45679BF6F832 /* sort_name.png */; };
+		D5EA7EA127CAC8330070959C /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EA7EA027CAC8330070959C /* ShareViewController.swift */; };
+		D5EA7EA427CAC8330070959C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5EA7EA227CAC8330070959C /* MainInterface.storyboard */; };
+		D5EA7EA827CAC8330070959C /* ShareMenu.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D5EA7E9E27CAC8330070959C /* ShareMenu.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D8FF537CBFC34C96B7674495 /* hand.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD426F87B4B4BDA9F23C575 /* hand.png */; };
+		DF6A098E11F844749B45341D /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A308307B0EA49BB98F8C22C /* splash.png */; };
+		E96378BB2ACC498BA06AE2B7 /* new-l-small.png in Resources */ = {isa = PBXBuildFile; fileRef = C70FF1D032A5462B8D7F4509 /* new-l-small.png */; };
+		EDA318E919624BE1BEBF8358 /* auth_user_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D5F4D6A272441BBCDC8FA9 /* auth_user_icon.png */; };
+		EE50E98BC96E4EA6A24DFC60 /* nofavorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 72136B798A964EA5906DF4C2 /* nofavorite.png */; };
+		EFA20E3339C843E79768DA10 /* sort_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CAA9AB246D44A7A802136FB /* sort_location.png */; };
+		F55C15A026E398EC00C71753 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55C159F26E398EC00C71753 /* File.swift */; };
+		F55C161426E39AAA00C71753 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55C159F26E398EC00C71753 /* File.swift */; };
+		F55C161926E39AB100C71753 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55C159F26E398EC00C71753 /* File.swift */; };
+		F55C161A26E39AB200C71753 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55C159F26E398EC00C71753 /* File.swift */; };
+		F6F1334EB7D148438D644DB3 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1F14D24DB6468EABF56700 /* info.png */; };
+		FB6A205169F04FD383680B59 /* icon-call-missed.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C250BB4BCD4926AB48C3A5 /* icon-call-missed.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = Snapfood;
+		};
+		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
+			remoteInfo = "Snapfood-tvOS";
+		};
+		D5EA7EA627CAC8330070959C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5EA7E9D27CAC8330070959C;
+			remoteInfo = ShareMenu;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D5EA7EA927CAC8330070959C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D5EA7EA827CAC8330070959C /* ShareMenu.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		00E356EE1AD99517003FC87E /* SnapfoodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnapfoodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* SnapfoodTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnapfoodTests.m; sourceTree = "<group>"; };
+		03A4EBC90283463CB7272293 /* sort_popular.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = sort_popular.png; path = ../src/common/assets/images/restaurant/sort_popular.png; sourceTree = "<group>"; };
+		0595E0569B3F4CF3983696B3 /* white_share.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = white_share.png; path = ../src/common/assets/images/restaurant/white_share.png; sourceTree = "<group>"; };
+		07C00382182941B98A507A89 /* closed-small.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "closed-small.png"; path = "../src/common/assets/images/restaurant/closed-small.png"; sourceTree = "<group>"; };
+		08A94821050CA3B2A78B3888 /* Pods-Snapfood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snapfood.debug.xcconfig"; path = "Target Support Files/Pods-Snapfood/Pods-Snapfood.debug.xcconfig"; sourceTree = "<group>"; };
+		0A3E3EC170A24022B395B29C /* white_back.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = white_back.png; path = ../src/common/assets/images/restaurant/white_back.png; sourceTree = "<group>"; };
+		0ED21783A98B4B069262CBAA /* ope_menu.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ope_menu.png; path = ../src/common/assets/images/restaurant/ope_menu.png; sourceTree = "<group>"; };
+		121DD0A6AE444AB891E01D9D /* cmimi.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = cmimi.png; path = ../src/common/assets/images/restaurant/cmimi.png; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* Snapfood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snapfood.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Snapfood/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Snapfood/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Snapfood/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Snapfood/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Snapfood/main.m; sourceTree = "<group>"; };
+		1595B494A7714C78947BC769 /* filled-star.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "filled-star.png"; path = "../src/common/assets/images/chat/filled-star.png"; sourceTree = "<group>"; };
+		168733BC6BFC4B6688188894 /* logo_white.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = logo_white.png; path = ../src/common/assets/images/logo_white.png; sourceTree = "<group>"; };
+		1A308307B0EA49BB98F8C22C /* splash.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = splash.png; path = ../src/common/assets/images/splash.png; sourceTree = "<group>"; };
+		1BAF6CB3CE37434382F4B8D5 /* no_res_near.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = no_res_near.png; path = ../src/common/assets/images/restaurant/no_res_near.png; sourceTree = "<group>"; };
+		22F3BEDFAA0D420195A4B5D4 /* black_share.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = black_share.png; path = ../src/common/assets/images/restaurant/black_share.png; sourceTree = "<group>"; };
+		233C30F72DA244C7A2108AE7 /* SanFranciscoDisplay-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SanFranciscoDisplay-Regular.otf"; path = "../src/theme/fonts/SanFranciscoDisplay-Regular.otf"; sourceTree = "<group>"; };
+		2B8B1C7B4AEE4DEE98A9C277 /* minus.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = minus.png; path = ../src/common/assets/images/restaurant/minus.png; sourceTree = "<group>"; };
+		2C3E852704994585BF678DFF /* ora.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ora.png; path = ../src/common/assets/images/restaurant/ora.png; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* Snapfood-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snapfood-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* Snapfood-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Snapfood-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E610FB108E84D398FA03289 /* rotate.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rotate.png; path = ../src/common/assets/images/restaurant/rotate.png; sourceTree = "<group>"; };
+		2F784AD2D094422A8E253E81 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		3037D100399A43E7A2CE8908 /* icon-more-vertical.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "icon-more-vertical.png"; path = "../src/common/assets/images/chat/icon-more-vertical.png"; sourceTree = "<group>"; };
+		310D0A6E0F0A4108955217A2 /* SanFranciscoDisplay-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SanFranciscoDisplay-Light.otf"; path = "../src/theme/fonts/SanFranciscoDisplay-Light.otf"; sourceTree = "<group>"; };
+		3361F8CD3094487F880F558C /* star.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = star.png; path = ../src/common/assets/images/restaurant/star.png; sourceTree = "<group>"; };
+		33C26F3CE84748FE96938079 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		350FADFC23804EA1A3DB29A3 /* nopromo.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = nopromo.png; path = ../src/common/assets/images/nopromo.png; sourceTree = "<group>"; };
+		3859016601BD46A0B8F834D1 /* Yellix-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Yellix-Light.ttf"; path = "../src/theme/fonts/Yellix-Light.ttf"; sourceTree = "<group>"; };
+		390F8E15AA7442659F280D88 /* plus.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = plus.png; path = ../src/common/assets/images/restaurant/plus.png; sourceTree = "<group>"; };
+		3A3081DCFA55496CB02BD67B /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		3AD426F87B4B4BDA9F23C575 /* hand.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = hand.png; path = ../src/common/assets/images/chat/hand.png; sourceTree = "<group>"; };
+		3DF6D69B8FED4F4B8524DB38 /* Yellix-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Yellix-Black.ttf"; path = "../src/theme/fonts/Yellix-Black.ttf"; sourceTree = "<group>"; };
+		3E7474ECFAD44956AE028C81 /* unfilled-star.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "unfilled-star.png"; path = "../src/common/assets/images/chat/unfilled-star.png"; sourceTree = "<group>"; };
+		452C2047B85B4023B001024A /* auth_lock_icon.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = auth_lock_icon.png; path = ../src/common/assets/images/auth/auth_lock_icon.png; sourceTree = "<group>"; };
+		45663C79C86448B5ABBDA6CA /* fontello.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = fontello.ttf; path = ../src/theme/fonts/fontello.ttf; sourceTree = "<group>"; };
+		4E7152BBF4264E588540FE1B /* Yellix-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Yellix-SemiBold.ttf"; path = "../src/theme/fonts/Yellix-SemiBold.ttf"; sourceTree = "<group>"; };
+		4EAB436E29134C178BB4B9F2 /* Yellix-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Yellix-Bold.ttf"; path = "../src/theme/fonts/Yellix-Bold.ttf"; sourceTree = "<group>"; };
+		56792704CD6C4E37AF82DB0A /* logo.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = logo.png; path = ../src/common/assets/images/logo.png; sourceTree = "<group>"; };
+		57C250BB4BCD4926AB48C3A5 /* icon-call-missed.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "icon-call-missed.png"; path = "../src/common/assets/images/chat/icon-call-missed.png"; sourceTree = "<group>"; };
+		5CAA9AB246D44A7A802136FB /* sort_location.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = sort_location.png; path = ../src/common/assets/images/restaurant/sort_location.png; sourceTree = "<group>"; };
+		5E1F14D24DB6468EABF56700 /* info.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = info.png; path = ../src/common/assets/images/restaurant/info.png; sourceTree = "<group>"; };
+		6320C38BFD904A3787C35295 /* auth_phone_icon.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = auth_phone_icon.png; path = ../src/common/assets/images/auth/auth_phone_icon.png; sourceTree = "<group>"; };
+		64ABA78AE5264478823015F9 /* ChatIcon.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ChatIcon.png; path = ../src/common/assets/images/chat/ChatIcon.png; sourceTree = "<group>"; };
+		72136B798A964EA5906DF4C2 /* nofavorite.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = nofavorite.png; path = ../src/common/assets/images/restaurant/nofavorite.png; sourceTree = "<group>"; };
+		7551F2242DC142FA8C407C3C /* dergesa.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = dergesa.png; path = ../src/common/assets/images/restaurant/dergesa.png; sourceTree = "<group>"; };
+		77107EF17486445DAA92251C /* ios_icon.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ios_icon.png; path = ../src/common/assets/images/ios_icon.png; sourceTree = "<group>"; };
+		79AFAC19BBE44EFB85BEDD06 /* SanFranciscoDisplay-Heavy.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SanFranciscoDisplay-Heavy.otf"; path = "../src/theme/fonts/SanFranciscoDisplay-Heavy.otf"; sourceTree = "<group>"; };
+		7C2F7B67521C4BC693AAE2BD /* logoop.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = logoop.png; path = ../src/common/assets/images/restaurant/logoop.png; sourceTree = "<group>"; };
+		7CBD74976D7F4D5E8338E7DD /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		7CBDC2B4518B42D9B97556C5 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		807C8E62D48943C7A407A723 /* time-new-small.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "time-new-small.png"; path = "../src/common/assets/images/restaurant/time-new-small.png"; sourceTree = "<group>"; };
+		81E2670537FD4C03BF9A029C /* SanFranciscoDisplay-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SanFranciscoDisplay-Bold.otf"; path = "../src/theme/fonts/SanFranciscoDisplay-Bold.otf"; sourceTree = "<group>"; };
+		86E3B1AC61124710910505EE /* share.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = share.png; path = ../src/common/assets/images/restaurant/share.png; sourceTree = "<group>"; };
+		8749AF3AF6784553BA32CD39 /* arrow_faceup.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = arrow_faceup.png; path = ../src/common/assets/images/restaurant/arrow_faceup.png; sourceTree = "<group>"; };
+		895FBDED3B1B49239AAEC7AD /* chat_inactive.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = chat_inactive.png; path = ../src/common/assets/images/chat/chat_inactive.png; sourceTree = "<group>"; };
+		8F11072C736F4728B451EA12 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		91FFC61DEABE479AA79A4A40 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		925CB10217784F3C94D56561 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		957ABCBB02FC4F45BA8F62A4 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		971F2215C57246D286B418FA /* half_bckground.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = half_bckground.png; path = ../src/common/assets/images/chat/half_bckground.png; sourceTree = "<group>"; };
+		9724FADEFE674F8F99EBE1B5 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		97B03AB7D131DFBABC862981 /* Pods-Snapfood-SnapfoodTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snapfood-SnapfoodTests.debug.xcconfig"; path = "Target Support Files/Pods-Snapfood-SnapfoodTests/Pods-Snapfood-SnapfoodTests.debug.xcconfig"; sourceTree = "<group>"; };
+		97CCFEBF8CC24F949EDDC24F /* auth_facebook.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = auth_facebook.png; path = ../src/common/assets/images/auth/auth_facebook.png; sourceTree = "<group>"; };
+		9814CB2F63E74EAD9396565C /* filter.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = filter.png; path = ../src/common/assets/images/restaurant/filter.png; sourceTree = "<group>"; };
+		99BB31647F33469D833DED62 /* Yellix-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Yellix-ExtraBold.ttf"; path = "../src/theme/fonts/Yellix-ExtraBold.ttf"; sourceTree = "<group>"; };
+		A09557CB9C734B24AAE5CF70 /* auth_envelope_icon.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = auth_envelope_icon.png; path = ../src/common/assets/images/auth/auth_envelope_icon.png; sourceTree = "<group>"; };
+		A2FAB03697E44466A0C6F018 /* x-close-ic.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "x-close-ic.png"; path = "../src/common/assets/images/chat/x-close-ic.png"; sourceTree = "<group>"; };
+		A397E0DFC84448CA9262A315 /* white_info.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = white_info.png; path = ../src/common/assets/images/restaurant/white_info.png; sourceTree = "<group>"; };
+		A4664EAF42F04062B9745F32 /* icon-call-outgoing.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "icon-call-outgoing.png"; path = "../src/common/assets/images/chat/icon-call-outgoing.png"; sourceTree = "<group>"; };
+		A58461324AB74726889A958D /* icon.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = icon.png; path = ../src/common/assets/images/icon.png; sourceTree = "<group>"; };
+		A68650A8FDA944A4B7702B10 /* Yellix-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Yellix-Medium.ttf"; path = "../src/theme/fonts/Yellix-Medium.ttf"; sourceTree = "<group>"; };
+		A8614E5A14EE45DB8C9E9AB6 /* Yellix-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Yellix-BoldItalic.ttf"; path = "../src/theme/fonts/Yellix-BoldItalic.ttf"; sourceTree = "<group>"; };
+		AA8A494D1617485AB62D3B27 /* location_small.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = location_small.png; path = ../src/common/assets/images/restaurant/location_small.png; sourceTree = "<group>"; };
+		AB8CFA07242124CA00A84798 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Snapfood/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AB8CFA09242135BE00A84798 /* Snapfood.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Snapfood.entitlements; path = Snapfood/Snapfood.entitlements; sourceTree = "<group>"; };
+		AD40CB65D2B62306B344E86C /* libPods-Snapfood-SnapfoodTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Snapfood-SnapfoodTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADA6127329004218B7BA8572 /* review.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = review.png; path = ../src/common/assets/images/restaurant/review.png; sourceTree = "<group>"; };
+		AE40D9E1A6B940E09091CA66 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		AF39EF01BD4841329EEBD4FA /* attach.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = attach.png; path = ../src/common/assets/images/chat/attach.png; sourceTree = "<group>"; };
+		C025375F876E46ADAEE76B89 /* auth_background.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = auth_background.png; path = ../src/common/assets/images/auth/auth_background.png; sourceTree = "<group>"; };
+		C60D3970B10E4BB9B0491E5A /* Yellix-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Yellix-BlackItalic.ttf"; path = "../src/theme/fonts/Yellix-BlackItalic.ttf"; sourceTree = "<group>"; };
+		C70FF1D032A5462B8D7F4509 /* new-l-small.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "new-l-small.png"; path = "../src/common/assets/images/restaurant/new-l-small.png"; sourceTree = "<group>"; };
+		C89970EECA7145D9985408B0 /* SanFranciscoDisplay-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SanFranciscoDisplay-Medium.otf"; path = "../src/theme/fonts/SanFranciscoDisplay-Medium.otf"; sourceTree = "<group>"; };
+		C8A68A2CB96A42AC9296AB5B /* star_new_small.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = star_new_small.png; path = ../src/common/assets/images/restaurant/star_new_small.png; sourceTree = "<group>"; };
+		CA983AA89A84443D8FC22401 /* Yellix-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Yellix-MediumItalic.ttf"; path = "../src/theme/fonts/Yellix-MediumItalic.ttf"; sourceTree = "<group>"; };
+		CC1961BD8D184D97BFA7ADAA /* icon-add-chat.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "icon-add-chat.png"; path = "../src/common/assets/images/chat/icon-add-chat.png"; sourceTree = "<group>"; };
+		D21B8160832F273AFF6AD1D9 /* Pods-Snapfood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snapfood.release.xcconfig"; path = "Target Support Files/Pods-Snapfood/Pods-Snapfood.release.xcconfig"; sourceTree = "<group>"; };
+		D5EA7E9E27CAC8330070959C /* ShareMenu.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareMenu.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5EA7EA027CAC8330070959C /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		D5EA7EA327CAC8330070959C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		D5EA7EA527CAC8330070959C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5EA7EAD27CAC9CC0070959C /* ShareMenu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareMenu.entitlements; sourceTree = "<group>"; };
+		D920AABEE9B04A1E97521420 /* noblog.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = noblog.png; path = ../src/common/assets/images/noblog.png; sourceTree = "<group>"; };
+		DABC017A38D241D3AF8218C0 /* motor_small.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = motor_small.png; path = ../src/common/assets/images/restaurant/motor_small.png; sourceTree = "<group>"; };
+		DB5B847A57A4490C86CE9BED /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		DD4042C0B0B647DC84D4862D /* Yellix-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Yellix-Thin.ttf"; path = "../src/theme/fonts/Yellix-Thin.ttf"; sourceTree = "<group>"; };
+		E06DFFF3FF904A30A130945F /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		E0A44FF5C52A46F9D61105A3 /* libPods-Snapfood.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Snapfood.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2B28F6C31174316A36C1D12 /* Yellix-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Yellix-Regular.ttf"; path = "../src/theme/fonts/Yellix-Regular.ttf"; sourceTree = "<group>"; };
+		E2CC8AACC8F744418985BB93 /* icon-call-incoming.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "icon-call-incoming.png"; path = "../src/common/assets/images/chat/icon-call-incoming.png"; sourceTree = "<group>"; };
+		E395EA78B1BD49459719917C /* cart.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = cart.png; path = ../src/common/assets/images/cart.png; sourceTree = "<group>"; };
+		E3D5F4D6A272441BBCDC8FA9 /* auth_user_icon.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = auth_user_icon.png; path = ../src/common/assets/images/auth/auth_user_icon.png; sourceTree = "<group>"; };
+		E4FA3523B5A39B89CB4E5C0C /* Pods-Snapfood-SnapfoodTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snapfood-SnapfoodTests.release.xcconfig"; path = "Target Support Files/Pods-Snapfood-SnapfoodTests/Pods-Snapfood-SnapfoodTests.release.xcconfig"; sourceTree = "<group>"; };
+		E51BC32DC1DB4FA78DDB2000 /* icon-add-call.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "icon-add-call.png"; path = "../src/common/assets/images/chat/icon-add-call.png"; sourceTree = "<group>"; };
+		E5F0FCC032BB457398054A8D /* open_restaurant.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = open_restaurant.png; path = ../src/common/assets/images/restaurant/open_restaurant.png; sourceTree = "<group>"; };
+		E6E9F5CBD5864A4789D00181 /* camera.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = camera.png; path = ../src/common/assets/images/chat/camera.png; sourceTree = "<group>"; };
+		E9716762A4AE4CF6878038D0 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		EC039A3A083646789CB26296 /* Yellix-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Yellix-LightItalic.ttf"; path = "../src/theme/fonts/Yellix-LightItalic.ttf"; sourceTree = "<group>"; };
+		ED0144B0D89147A3A2E6F971 /* checkout_cart.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = checkout_cart.png; path = ../src/common/assets/images/restaurant/checkout_cart.png; sourceTree = "<group>"; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		ED606ED23CBC4C3D9568565E /* SanFranciscoDisplay-Semibold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SanFranciscoDisplay-Semibold.otf"; path = "../src/theme/fonts/SanFranciscoDisplay-Semibold.otf"; sourceTree = "<group>"; };
+		F322937CF1F642899FC5E8D7 /* distance.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = distance.png; path = ../src/common/assets/images/restaurant/distance.png; sourceTree = "<group>"; };
+		F55C159E26E398EC00C71753 /* Snapfood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Snapfood-Bridging-Header.h"; sourceTree = "<group>"; };
+		F55C159F26E398EC00C71753 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		FB92254A286C45679BF6F832 /* sort_name.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = sort_name.png; path = ../src/common/assets/images/restaurant/sort_name.png; sourceTree = "<group>"; };
+		FDE11DEB3B994CA19665F946 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		FEB121565C894083BA82CDCF /* Yellix-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Yellix-ExtraBoldItalic.ttf"; path = "../src/theme/fonts/Yellix-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		FFA363DD033D4AD8B005A035 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00E356EB1AD99517003FC87E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEFC06344A07BD818DF76D47 /* libPods-Snapfood-SnapfoodTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90A9FC7941005EFF8A6BD8B6 /* libPods-Snapfood.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E4781E0B4A5D006451C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E48D1E0B4A5D006451C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EA7E9B27CAC8330070959C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00E356EF1AD99517003FC87E /* SnapfoodTests */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F21AD99517003FC87E /* SnapfoodTests.m */,
+				00E356F01AD99517003FC87E /* Supporting Files */,
+			);
+			path = SnapfoodTests;
+			sourceTree = "<group>";
+		};
+		00E356F01AD99517003FC87E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F11AD99517003FC87E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13B07FAE1A68108700A75B9A /* Snapfood */ = {
+			isa = PBXGroup;
+			children = (
+				AB8CFA09242135BE00A84798 /* Snapfood.entitlements */,
+				AB8CFA07242124CA00A84798 /* GoogleService-Info.plist */,
+				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
+				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				13B07FB61A68108700A75B9A /* Info.plist */,
+				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
+				13B07FB71A68108700A75B9A /* main.m */,
+				F55C159F26E398EC00C71753 /* File.swift */,
+				F55C159E26E398EC00C71753 /* Snapfood-Bridging-Header.h */,
+			);
+			name = Snapfood;
+			sourceTree = "<group>";
+		};
+		22A7BDDCDCC77C111270131B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				08A94821050CA3B2A78B3888 /* Pods-Snapfood.debug.xcconfig */,
+				D21B8160832F273AFF6AD1D9 /* Pods-Snapfood.release.xcconfig */,
+				97B03AB7D131DFBABC862981 /* Pods-Snapfood-SnapfoodTests.debug.xcconfig */,
+				E4FA3523B5A39B89CB4E5C0C /* Pods-Snapfood-SnapfoodTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
+				E0A44FF5C52A46F9D61105A3 /* libPods-Snapfood.a */,
+				AD40CB65D2B62306B344E86C /* libPods-Snapfood-SnapfoodTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		83CBB9F61A601CBA00E9B192 = {
+			isa = PBXGroup;
+			children = (
+				13B07FAE1A68108700A75B9A /* Snapfood */,
+				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				00E356EF1AD99517003FC87E /* SnapfoodTests */,
+				D5EA7E9F27CAC8330070959C /* ShareMenu */,
+				83CBBA001A601CBA00E9B192 /* Products */,
+				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				22A7BDDCDCC77C111270131B /* Pods */,
+				8ECC04246BD34EC282ECA868 /* Resources */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
+		};
+		83CBBA001A601CBA00E9B192 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13B07F961A680F5B00A75B9A /* Snapfood.app */,
+				00E356EE1AD99517003FC87E /* SnapfoodTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* Snapfood-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* Snapfood-tvOSTests.xctest */,
+				D5EA7E9E27CAC8330070959C /* ShareMenu.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8ECC04246BD34EC282ECA868 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E395EA78B1BD49459719917C /* cart.png */,
+				AF39EF01BD4841329EEBD4FA /* attach.png */,
+				E6E9F5CBD5864A4789D00181 /* camera.png */,
+				64ABA78AE5264478823015F9 /* ChatIcon.png */,
+				1595B494A7714C78947BC769 /* filled-star.png */,
+				971F2215C57246D286B418FA /* half_bckground.png */,
+				3AD426F87B4B4BDA9F23C575 /* hand.png */,
+				3E7474ECFAD44956AE028C81 /* unfilled-star.png */,
+				A2FAB03697E44466A0C6F018 /* x-close-ic.png */,
+				A58461324AB74726889A958D /* icon.png */,
+				77107EF17486445DAA92251C /* ios_icon.png */,
+				168733BC6BFC4B6688188894 /* logo_white.png */,
+				56792704CD6C4E37AF82DB0A /* logo.png */,
+				8749AF3AF6784553BA32CD39 /* arrow_faceup.png */,
+				ED0144B0D89147A3A2E6F971 /* checkout_cart.png */,
+				07C00382182941B98A507A89 /* closed-small.png */,
+				121DD0A6AE444AB891E01D9D /* cmimi.png */,
+				7551F2242DC142FA8C407C3C /* dergesa.png */,
+				F322937CF1F642899FC5E8D7 /* distance.png */,
+				9814CB2F63E74EAD9396565C /* filter.png */,
+				5E1F14D24DB6468EABF56700 /* info.png */,
+				AA8A494D1617485AB62D3B27 /* location_small.png */,
+				7C2F7B67521C4BC693AAE2BD /* logoop.png */,
+				2B8B1C7B4AEE4DEE98A9C277 /* minus.png */,
+				DABC017A38D241D3AF8218C0 /* motor_small.png */,
+				C70FF1D032A5462B8D7F4509 /* new-l-small.png */,
+				1BAF6CB3CE37434382F4B8D5 /* no_res_near.png */,
+				72136B798A964EA5906DF4C2 /* nofavorite.png */,
+				0ED21783A98B4B069262CBAA /* ope_menu.png */,
+				E5F0FCC032BB457398054A8D /* open_restaurant.png */,
+				2C3E852704994585BF678DFF /* ora.png */,
+				390F8E15AA7442659F280D88 /* plus.png */,
+				ADA6127329004218B7BA8572 /* review.png */,
+				2E610FB108E84D398FA03289 /* rotate.png */,
+				86E3B1AC61124710910505EE /* share.png */,
+				5CAA9AB246D44A7A802136FB /* sort_location.png */,
+				FB92254A286C45679BF6F832 /* sort_name.png */,
+				03A4EBC90283463CB7272293 /* sort_popular.png */,
+				C8A68A2CB96A42AC9296AB5B /* star_new_small.png */,
+				3361F8CD3094487F880F558C /* star.png */,
+				807C8E62D48943C7A407A723 /* time-new-small.png */,
+				0A3E3EC170A24022B395B29C /* white_back.png */,
+				A397E0DFC84448CA9262A315 /* white_info.png */,
+				0595E0569B3F4CF3983696B3 /* white_share.png */,
+				1A308307B0EA49BB98F8C22C /* splash.png */,
+				45663C79C86448B5ABBDA6CA /* fontello.ttf */,
+				81E2670537FD4C03BF9A029C /* SanFranciscoDisplay-Bold.otf */,
+				79AFAC19BBE44EFB85BEDD06 /* SanFranciscoDisplay-Heavy.otf */,
+				310D0A6E0F0A4108955217A2 /* SanFranciscoDisplay-Light.otf */,
+				C89970EECA7145D9985408B0 /* SanFranciscoDisplay-Medium.otf */,
+				233C30F72DA244C7A2108AE7 /* SanFranciscoDisplay-Regular.otf */,
+				ED606ED23CBC4C3D9568565E /* SanFranciscoDisplay-Semibold.otf */,
+				C025375F876E46ADAEE76B89 /* auth_background.png */,
+				A09557CB9C734B24AAE5CF70 /* auth_envelope_icon.png */,
+				97CCFEBF8CC24F949EDDC24F /* auth_facebook.png */,
+				452C2047B85B4023B001024A /* auth_lock_icon.png */,
+				6320C38BFD904A3787C35295 /* auth_phone_icon.png */,
+				E3D5F4D6A272441BBCDC8FA9 /* auth_user_icon.png */,
+				D920AABEE9B04A1E97521420 /* noblog.png */,
+				350FADFC23804EA1A3DB29A3 /* nopromo.png */,
+				22F3BEDFAA0D420195A4B5D4 /* black_share.png */,
+				E51BC32DC1DB4FA78DDB2000 /* icon-add-call.png */,
+				CC1961BD8D184D97BFA7ADAA /* icon-add-chat.png */,
+				E2CC8AACC8F744418985BB93 /* icon-call-incoming.png */,
+				57C250BB4BCD4926AB48C3A5 /* icon-call-missed.png */,
+				A4664EAF42F04062B9745F32 /* icon-call-outgoing.png */,
+				3037D100399A43E7A2CE8908 /* icon-more-vertical.png */,
+				895FBDED3B1B49239AAEC7AD /* chat_inactive.png */,
+				3DF6D69B8FED4F4B8524DB38 /* Yellix-Black.ttf */,
+				C60D3970B10E4BB9B0491E5A /* Yellix-BlackItalic.ttf */,
+				4EAB436E29134C178BB4B9F2 /* Yellix-Bold.ttf */,
+				A8614E5A14EE45DB8C9E9AB6 /* Yellix-BoldItalic.ttf */,
+				99BB31647F33469D833DED62 /* Yellix-ExtraBold.ttf */,
+				FEB121565C894083BA82CDCF /* Yellix-ExtraBoldItalic.ttf */,
+				3859016601BD46A0B8F834D1 /* Yellix-Light.ttf */,
+				EC039A3A083646789CB26296 /* Yellix-LightItalic.ttf */,
+				A68650A8FDA944A4B7702B10 /* Yellix-Medium.ttf */,
+				CA983AA89A84443D8FC22401 /* Yellix-MediumItalic.ttf */,
+				E2B28F6C31174316A36C1D12 /* Yellix-Regular.ttf */,
+				4E7152BBF4264E588540FE1B /* Yellix-SemiBold.ttf */,
+				DD4042C0B0B647DC84D4862D /* Yellix-Thin.ttf */,
+				FDE11DEB3B994CA19665F946 /* AntDesign.ttf */,
+				DB5B847A57A4490C86CE9BED /* Entypo.ttf */,
+				957ABCBB02FC4F45BA8F62A4 /* EvilIcons.ttf */,
+				7CBD74976D7F4D5E8338E7DD /* Feather.ttf */,
+				AE40D9E1A6B940E09091CA66 /* FontAwesome.ttf */,
+				FFA363DD033D4AD8B005A035 /* FontAwesome5_Brands.ttf */,
+				3A3081DCFA55496CB02BD67B /* FontAwesome5_Regular.ttf */,
+				E06DFFF3FF904A30A130945F /* FontAwesome5_Solid.ttf */,
+				91FFC61DEABE479AA79A4A40 /* Fontisto.ttf */,
+				925CB10217784F3C94D56561 /* Foundation.ttf */,
+				2F784AD2D094422A8E253E81 /* Ionicons.ttf */,
+				7CBDC2B4518B42D9B97556C5 /* MaterialCommunityIcons.ttf */,
+				33C26F3CE84748FE96938079 /* MaterialIcons.ttf */,
+				E9716762A4AE4CF6878038D0 /* Octicons.ttf */,
+				9724FADEFE674F8F99EBE1B5 /* SimpleLineIcons.ttf */,
+				8F11072C736F4728B451EA12 /* Zocial.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D5EA7E9F27CAC8330070959C /* ShareMenu */ = {
+			isa = PBXGroup;
+			children = (
+				D5EA7EAD27CAC9CC0070959C /* ShareMenu.entitlements */,
+				D5EA7EA027CAC8330070959C /* ShareViewController.swift */,
+				D5EA7EA227CAC8330070959C /* MainInterface.storyboard */,
+				D5EA7EA527CAC8330070959C /* Info.plist */,
+			);
+			path = ShareMenu;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00E356ED1AD99517003FC87E /* SnapfoodTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "SnapfoodTests" */;
+			buildPhases = (
+				6B5EE06A7A19614ED3DAEAFC /* [CP] Check Pods Manifest.lock */,
+				00E356EA1AD99517003FC87E /* Sources */,
+				00E356EB1AD99517003FC87E /* Frameworks */,
+				00E356EC1AD99517003FC87E /* Resources */,
+				37E30AFC7314F7C0E79F80A7 /* [CP] Embed Pods Frameworks */,
+				0007FA552D7895270AD0758A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00E356F51AD99517003FC87E /* PBXTargetDependency */,
+			);
+			name = SnapfoodTests;
+			productName = SnapfoodTests;
+			productReference = 00E356EE1AD99517003FC87E /* SnapfoodTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		13B07F861A680F5B00A75B9A /* Snapfood */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Snapfood" */;
+			buildPhases = (
+				E73F3C3B8A6AD92DCAAAD35F /* [CP] Check Pods Manifest.lock */,
+				FD10A7F022414F080027D42C /* Start Packager */,
+				13B07F871A680F5B00A75B9A /* Sources */,
+				13B07F8C1A680F5B00A75B9A /* Frameworks */,
+				13B07F8E1A680F5B00A75B9A /* Resources */,
+				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				D5EA7EA927CAC8330070959C /* Embed App Extensions */,
+				7895B82D327865ECB57D863D /* [CP] Embed Pods Frameworks */,
+				69378A7F2DDF0E5E72F06DFA /* [CP] Copy Pods Resources */,
+				94FBE96FCD9BE9435E9FD715 /* [CP-User] [RNFB] Core Configuration */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5EA7EA727CAC8330070959C /* PBXTargetDependency */,
+			);
+			name = Snapfood;
+			productName = Snapfood;
+			productReference = 13B07F961A680F5B00A75B9A /* Snapfood.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2D02E47A1E0B4A5D006451C7 /* Snapfood-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Snapfood-tvOS" */;
+			buildPhases = (
+				FD10A7F122414F3F0027D42C /* Start Packager */,
+				2D02E4771E0B4A5D006451C7 /* Sources */,
+				2D02E4781E0B4A5D006451C7 /* Frameworks */,
+				2D02E4791E0B4A5D006451C7 /* Resources */,
+				2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Snapfood-tvOS";
+			productName = "Snapfood-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* Snapfood-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2D02E48F1E0B4A5D006451C7 /* Snapfood-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Snapfood-tvOSTests" */;
+			buildPhases = (
+				2D02E48C1E0B4A5D006451C7 /* Sources */,
+				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
+				2D02E48E1E0B4A5D006451C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
+			);
+			name = "Snapfood-tvOSTests";
+			productName = "Snapfood-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* Snapfood-tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D5EA7E9D27CAC8330070959C /* ShareMenu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5EA7EAC27CAC8330070959C /* Build configuration list for PBXNativeTarget "ShareMenu" */;
+			buildPhases = (
+				D5EA7E9A27CAC8330070959C /* Sources */,
+				D5EA7E9B27CAC8330070959C /* Frameworks */,
+				D5EA7E9C27CAC8330070959C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareMenu;
+			productName = ShareMenu;
+			productReference = D5EA7E9E27CAC8330070959C /* ShareMenu.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83CBB9F71A601CBA00E9B192 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 940;
+				ORGANIZATIONNAME = Facebook;
+				TargetAttributes = {
+					00E356ED1AD99517003FC87E = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = K8W6T6FS26;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = K8W6T6FS26;
+						LastSwiftMigration = 1240;
+						ProvisioningStyle = Automatic;
+					};
+					2D02E47A1E0B4A5D006451C7 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					2D02E48F1E0B4A5D006451C7 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2D02E47A1E0B4A5D006451C7;
+					};
+					D5EA7E9D27CAC8330070959C = {
+						CreatedOnToolsVersion = 13.2.1;
+						DevelopmentTeam = K8W6T6FS26;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Snapfood" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+				Base,
+			);
+			mainGroup = 83CBB9F61A601CBA00E9B192;
+			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				13B07F861A680F5B00A75B9A /* Snapfood */,
+				00E356ED1AD99517003FC87E /* SnapfoodTests */,
+				2D02E47A1E0B4A5D006451C7 /* Snapfood-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* Snapfood-tvOSTests */,
+				D5EA7E9D27CAC8330070959C /* ShareMenu */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00E356EC1AD99517003FC87E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8E1A680F5B00A75B9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				24FA058E4A014EF9B733CFF6 /* attach.png in Resources */,
+				BB150DC0F2CD4D7B8B7D280C /* camera.png in Resources */,
+				A830CA6A33194338B97B9548 /* ChatIcon.png in Resources */,
+				8A3AD546ED0B42A9969AF237 /* filled-star.png in Resources */,
+				7FB9FDCF875A4ADBB75C9E21 /* half_bckground.png in Resources */,
+				D8FF537CBFC34C96B7674495 /* hand.png in Resources */,
+				A30EE25303E747388214777B /* unfilled-star.png in Resources */,
+				9A75BDEF78334350B73AD1ED /* x-close-ic.png in Resources */,
+				9EF8A19505A44E4686B55CCB /* icon.png in Resources */,
+				68BA8ED500234D579BD51895 /* ios_icon.png in Resources */,
+				C9F8CDAAC2A84BEB9AB4878E /* logo_white.png in Resources */,
+				94BFF4B4AE14496EA365C6A2 /* logo.png in Resources */,
+				5951F9A684BD4E9DA443D06A /* arrow_faceup.png in Resources */,
+				6F7B63FBF787451C952806A5 /* checkout_cart.png in Resources */,
+				CEF63441C3094A9BB0C5D858 /* closed-small.png in Resources */,
+				1C29EE517B364409970676BE /* cmimi.png in Resources */,
+				A90D1865CFBA41BC9A4BB562 /* dergesa.png in Resources */,
+				0C6C0813B9DD417FBFAA1A13 /* distance.png in Resources */,
+				3AC639EA3A2947D692C3995C /* filter.png in Resources */,
+				F6F1334EB7D148438D644DB3 /* info.png in Resources */,
+				69034020263B4764B9D35CEB /* location_small.png in Resources */,
+				39C368726A1944E2B8F8C879 /* logoop.png in Resources */,
+				265672B7FBE84BDFB024102A /* minus.png in Resources */,
+				6E46DCC058224FB5B673B1AF /* motor_small.png in Resources */,
+				E96378BB2ACC498BA06AE2B7 /* new-l-small.png in Resources */,
+				8CC702DB32514170A43FC6C0 /* no_res_near.png in Resources */,
+				EE50E98BC96E4EA6A24DFC60 /* nofavorite.png in Resources */,
+				5C7997F9F4314C73AF772935 /* ope_menu.png in Resources */,
+				A1DD7BCF056F47A385FE22C6 /* open_restaurant.png in Resources */,
+				B3F99328FD91489AB234D4EF /* ora.png in Resources */,
+				AB8CFA08242124CA00A84798 /* GoogleService-Info.plist in Resources */,
+				0533B9A507704A6998BE411B /* plus.png in Resources */,
+				5D1F07C7A37F4E9D8A9419B1 /* review.png in Resources */,
+				3B8B742B3FCF447CB85E952C /* rotate.png in Resources */,
+				0EC06C59FF91425DB5230D6F /* share.png in Resources */,
+				EFA20E3339C843E79768DA10 /* sort_location.png in Resources */,
+				D38307B549B84777A4B49BFF /* sort_name.png in Resources */,
+				C68FFFB0F1AD43BEA53A2EF9 /* sort_popular.png in Resources */,
+				93CB4285B4944C49A0BD4B07 /* star_new_small.png in Resources */,
+				322E7F10A37B4FD999D0EF62 /* star.png in Resources */,
+				078EB045DA43406DAF8C4DA1 /* time-new-small.png in Resources */,
+				D03EFB26410642499DA3B4F8 /* white_back.png in Resources */,
+				2DD10591435B4FAD9350E6C3 /* white_info.png in Resources */,
+				51BEABC6983246928AEB1CB3 /* white_share.png in Resources */,
+				DF6A098E11F844749B45341D /* splash.png in Resources */,
+				438AF2A61DC844719A970B93 /* fontello.ttf in Resources */,
+				25418C84561145E49CCD8D93 /* SanFranciscoDisplay-Bold.otf in Resources */,
+				838E3204B4844BCCAF6BC9A4 /* SanFranciscoDisplay-Heavy.otf in Resources */,
+				CA79396BA62044B09BA42337 /* SanFranciscoDisplay-Light.otf in Resources */,
+				8369898C51A14AB898DC7DA8 /* SanFranciscoDisplay-Medium.otf in Resources */,
+				39B15D856068430FA10054A0 /* SanFranciscoDisplay-Regular.otf in Resources */,
+				A0C15A1BF4904E849E09AE76 /* SanFranciscoDisplay-Semibold.otf in Resources */,
+				13CA9167D1A44C468EA7B7E4 /* auth_background.png in Resources */,
+				6F9BDA89A1344BBF848C022C /* auth_envelope_icon.png in Resources */,
+				C7BD35F0D7534764A92AA2A7 /* auth_facebook.png in Resources */,
+				BC3CEE1BECCC476E8DB4DEAD /* auth_lock_icon.png in Resources */,
+				674382A818844670A12F7A1B /* auth_phone_icon.png in Resources */,
+				EDA318E919624BE1BEBF8358 /* auth_user_icon.png in Resources */,
+				0F109859EC0C4BF297E3479F /* noblog.png in Resources */,
+				42C016771DB144C98C47B411 /* nopromo.png in Resources */,
+				584381B565E74F22853A4FD3 /* black_share.png in Resources */,
+				6C63A35676CB4FF381267031 /* icon-add-call.png in Resources */,
+				13AC76ADA9B7476FBDC801AA /* icon-add-chat.png in Resources */,
+				8B186B803E16405EA70E8D22 /* icon-call-incoming.png in Resources */,
+				FB6A205169F04FD383680B59 /* icon-call-missed.png in Resources */,
+				075B003684624FD5A1621DC8 /* icon-call-outgoing.png in Resources */,
+				CC68B14DE19D435FA96353BA /* icon-more-vertical.png in Resources */,
+				1A564430336D4E9CA5700BF3 /* Yellix-Black.ttf in Resources */,
+				7B4E828B25A24C4DA79A8C9C /* Yellix-BlackItalic.ttf in Resources */,
+				B54B5307190C438AAADF0F84 /* Yellix-Bold.ttf in Resources */,
+				4F07286F820B48A289CABCDD /* Yellix-BoldItalic.ttf in Resources */,
+				5132EDC0EDC041899531C2D9 /* Yellix-ExtraBold.ttf in Resources */,
+				52510739BE674D71B3EA8DA2 /* Yellix-ExtraBoldItalic.ttf in Resources */,
+				76835305B76442BC8607BAE1 /* Yellix-Light.ttf in Resources */,
+				333650192DBE459A9E01A63B /* Yellix-LightItalic.ttf in Resources */,
+				C1F5C05D32B24A9292FED25E /* Yellix-Medium.ttf in Resources */,
+				097F96A640DB4E53A34504B7 /* Yellix-MediumItalic.ttf in Resources */,
+				6905F3424C814F9482CB8F40 /* Yellix-Regular.ttf in Resources */,
+				4ECAAB8BFC3D46F982B43994 /* Yellix-SemiBold.ttf in Resources */,
+				C21B6CEA277443ADB015FA92 /* Yellix-Thin.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E4791E0B4A5D006451C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E48E1E0B4A5D006451C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EA7E9C27CAC8330070959C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5EA7EA427CAC8330070959C /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0007FA552D7895270AD0758A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snapfood-SnapfoodTests/Pods-Snapfood-SnapfoodTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Braintree/Braintree-UI-Localization.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Braintree/Braintree-Drop-In-Localization.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/BraintreeDropIn/Braintree-UIKit-Localization.bundle",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNImageCropPicker/QBImagePicker.bundle",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Stripe/Stripe.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripeCore/StripeCore.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripeFinancialConnections/StripeFinancialConnections.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripePaymentSheet/StripePaymentSheet.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripePayments/StripePayments.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripePayments/Stripe3DS2.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripePaymentsUI/StripePaymentsUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripeUICore/StripeUICore.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/TOCropViewController/TOCropViewControllerBundle.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Braintree-UI-Localization.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Braintree-Drop-In-Localization.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Braintree-UIKit-Localization.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripeCore.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripeFinancialConnections.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripePaymentSheet.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripePayments.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe3DS2.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripePaymentsUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripeUICore.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TOCropViewControllerBundle.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Snapfood-SnapfoodTests/Pods-Snapfood-SnapfoodTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native Code And Images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		37E30AFC7314F7C0E79F80A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snapfood-SnapfoodTests/Pods-Snapfood-SnapfoodTests-frameworks.sh",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraAIDenoiseExtension.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraCIExtension.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraCore.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraDav1dExtension.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraFDExtension.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraJNDExtension.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraRtcKit.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraSoundTouch.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraVideoSegmentationExtension.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agorafdkaac.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agoraffmpeg.framework",
+				"${PODS_ROOT}/Braintree/Frameworks/CardinalMobile.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAIDenoiseExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraCIExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraDav1dExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraFDExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraJNDExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraRtcKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSoundTouch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraVideoSegmentationExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agorafdkaac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agoraffmpeg.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CardinalMobile.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Snapfood-SnapfoodTests/Pods-Snapfood-SnapfoodTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69378A7F2DDF0E5E72F06DFA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snapfood/Pods-Snapfood-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Braintree/Braintree-UI-Localization.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Braintree/Braintree-Drop-In-Localization.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/BraintreeDropIn/Braintree-UIKit-Localization.bundle",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNImageCropPicker/QBImagePicker.bundle",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Stripe/Stripe.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripeCore/StripeCore.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripeFinancialConnections/StripeFinancialConnections.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripePaymentSheet/StripePaymentSheet.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripePayments/StripePayments.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripePayments/Stripe3DS2.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripePaymentsUI/StripePaymentsUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/StripeUICore/StripeUICore.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/TOCropViewController/TOCropViewControllerBundle.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Braintree-UI-Localization.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Braintree-Drop-In-Localization.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Braintree-UIKit-Localization.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripeCore.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripeFinancialConnections.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripePaymentSheet.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripePayments.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe3DS2.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripePaymentsUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StripeUICore.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TOCropViewControllerBundle.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Snapfood/Pods-Snapfood-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6B5EE06A7A19614ED3DAEAFC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Snapfood-SnapfoodTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7895B82D327865ECB57D863D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snapfood/Pods-Snapfood-frameworks.sh",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraAIDenoiseExtension.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraCIExtension.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraCore.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraDav1dExtension.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraFDExtension.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraJNDExtension.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraRtcKit.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraSoundTouch.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraVideoSegmentationExtension.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agorafdkaac.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agoraffmpeg.framework",
+				"${PODS_ROOT}/Braintree/Frameworks/CardinalMobile.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAIDenoiseExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraCIExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraDav1dExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraFDExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraJNDExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraRtcKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSoundTouch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraVideoSegmentationExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agorafdkaac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agoraffmpeg.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CardinalMobile.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Snapfood/Pods-Snapfood-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94FBE96FCD9BE9435E9FD715 /* [CP-User] [RNFB] Core Configuration */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "[CP-User] [RNFB] Core Configuration";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    _JSON_OUTPUT_BASE64=$(python -c 'import json,sys,base64;print(base64.b64encode(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"').read())['${_JSON_ROOT}'])))' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.app_data_collection_default_enabled\n  _APP_DATA_COLLECTION_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_data_collection_default_enabled\")\n  if [[ $_APP_DATA_COLLECTION_ENABLED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseDataCollectionDefaultEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_DATA_COLLECTION_ENABLED\")\")\n  fi\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.analytics_collection_deactivated\n  _ANALYTICS_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_collection_deactivated\")\n  if [[ $_ANALYTICS_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_DEACTIVATED\")\")\n  fi\n\n  # config.analytics_idfv_collection_enabled\n  _ANALYTICS_IDFV_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_idfv_collection_enabled\")\n  if [[ $_ANALYTICS_IDFV_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_IDFV_COLLECTION\")\")\n  fi\n\n  # config.analytics_default_allow_ad_personalization_signals\n  _ANALYTICS_PERSONALIZATION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_default_allow_ad_personalization_signals\")\n  if [[ $_ANALYTICS_PERSONALIZATION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_PERSONALIZATION\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_collection_deactivated\n  _PERF_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_collection_deactivated\")\n  if [[ $_PERF_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_deactivated\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_DEACTIVATED\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.in_app_messaging_auto_colllection_enabled\n  _FIAM_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"in_app_messaging_auto_collection_enabled\")\n  if [[ $_FIAM_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseInAppMessagingAutomaticDataCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_FIAM_AUTO_INIT\")\")\n  fi\n\n  # config.app_check_token_auto_refresh\n  _APP_CHECK_TOKEN_AUTO_REFRESH=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_check_token_auto_refresh\")\n  if [[ $_APP_CHECK_TOKEN_AUTO_REFRESH ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAppCheckTokenAutoRefreshEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_CHECK_TOKEN_AUTO_REFRESH\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
+		};
+		E73F3C3B8A6AD92DCAAAD35F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Snapfood-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD10A7F022414F080027D42C /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FD10A7F122414F3F0027D42C /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00E356EA1AD99517003FC87E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00E356F31AD99517003FC87E /* SnapfoodTests.m in Sources */,
+				F55C161426E39AAA00C71753 /* File.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F871A680F5B00A75B9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				F55C15A026E398EC00C71753 /* File.swift in Sources */,
+				13B07FC11A68108700A75B9A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E4771E0B4A5D006451C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
+				F55C161926E39AB100C71753 /* File.swift in Sources */,
+				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E48C1E0B4A5D006451C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DCD954D1E0B4F2C00145EB5 /* SnapfoodTests.m in Sources */,
+				F55C161A26E39AB200C71753 /* File.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EA7E9A27CAC8330070959C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5EA7EA127CAC8330070959C /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* Snapfood */;
+			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D02E47A1E0B4A5D006451C7 /* Snapfood-tvOS */;
+			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
+		};
+		D5EA7EA727CAC8330070959C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5EA7E9D27CAC8330070959C /* ShareMenu */;
+			targetProxy = D5EA7EA627CAC8330070959C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				13B07FB21A68108700A75B9A /* Base */,
+			);
+			name = LaunchScreen.xib;
+			path = Snapfood;
+			sourceTree = "<group>";
+		};
+		D5EA7EA227CAC8330070959C /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5EA7EA327CAC8330070959C /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00E356F61AD99517003FC87E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97B03AB7D131DFBABC862981 /* Pods-Snapfood-SnapfoodTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = K8W6T6FS26;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SnapfoodTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snapfood.app/Snapfood";
+			};
+			name = Debug;
+		};
+		00E356F71AD99517003FC87E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4FA3523B5A39B89CB4E5C0C /* Pods-Snapfood-SnapfoodTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = K8W6T6FS26;
+				INFOPLIST_FILE = SnapfoodTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snapfood.app/Snapfood";
+			};
+			name = Release;
+		};
+		13B07F941A680F5B00A75B9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08A94821050CA3B2A78B3888 /* Pods-Snapfood.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Snapfood/Snapfood.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 11;
+				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = K8W6T6FS26;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"$(inherited)",
+					"GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1",
+					"$(inherited)",
+					"SD_WEBP=1",
+					"$(inherited)",
+					"PB_FIELD_32BIT=1",
+					"PB_NO_PACKED_STRUCTS=1",
+					"PB_ENABLE_MALLOC=1",
+					"HAVE_GOOGLE_MAPS=1",
+				);
+				INFOPLIST_FILE = Snapfood/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.4.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.snapfood.al;
+				PRODUCT_NAME = Snapfood;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Snapfood-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		13B07F951A680F5B00A75B9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D21B8160832F273AFF6AD1D9 /* Pods-Snapfood.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Snapfood/Snapfood.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 11;
+				DEVELOPMENT_TEAM = K8W6T6FS26;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"$(inherited)",
+					"GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1",
+					"$(inherited)",
+					"SD_WEBP=1",
+					"$(inherited)",
+					"PB_FIELD_32BIT=1",
+					"PB_NO_PACKED_STRUCTS=1",
+					"PB_ENABLE_MALLOC=1",
+					"HAVE_GOOGLE_MAPS=1",
+				);
+				INFOPLIST_FILE = Snapfood/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.4.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.snapfood.al;
+				PRODUCT_NAME = Snapfood;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Snapfood-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		2D02E4971E0B4A5E006451C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Snapfood-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Snapfood-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		2D02E4981E0B4A5E006451C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Snapfood-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Snapfood-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
+		2D02E4991E0B4A5E006451C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Snapfood-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Snapfood-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snapfood-tvOS.app/Snapfood-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Debug;
+		};
+		2D02E49A1E0B4A5E006451C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Snapfood-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Snapfood-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snapfood-tvOS.app/Snapfood-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Release;
+		};
+		83CBBA201A601CBA00E9B192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		83CBBA211A601CBA00E9B192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D5EA7EAA27CAC8330070959C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ShareMenu/ShareMenu.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = K8W6T6FS26;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareMenu/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareMenu;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Facebook. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.snapfood.al.ShareMenu;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D5EA7EAB27CAC8330070959C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ShareMenu/ShareMenu.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = K8W6T6FS26;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareMenu/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareMenu;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Facebook. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.snapfood.al.ShareMenu;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "SnapfoodTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00E356F61AD99517003FC87E /* Debug */,
+				00E356F71AD99517003FC87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Snapfood" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13B07F941A680F5B00A75B9A /* Debug */,
+				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Snapfood-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D02E4971E0B4A5E006451C7 /* Debug */,
+				2D02E4981E0B4A5E006451C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Snapfood-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D02E4991E0B4A5E006451C7 /* Debug */,
+				2D02E49A1E0B4A5E006451C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Snapfood" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83CBBA201A601CBA00E9B192 /* Debug */,
+				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5EA7EAC27CAC8330070959C /* Build configuration list for PBXNativeTarget "ShareMenu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5EA7EAA27CAC8330070959C /* Debug */,
+				D5EA7EAB27CAC8330070959C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
+}

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Snapfood</string>
+    <string name="facebook_app_id">298466897411357</string>
+    <string name="fb_login_protocol_scheme">fb298466897411357</string>
+    <string name="default_notification_channel_id">SnapfoodAppNotificationChannel</string>
+</resources>

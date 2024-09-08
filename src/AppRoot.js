@@ -1,0 +1,632 @@
+import React from 'react';
+import { StatusBar, View, Platform, Linking, AppState } from 'react-native';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import BottomTabs from './routes/stack';
+import { setStorageKey, getStorageKey, KEYS } from './common/services/storage';
+import SplashScreen from 'react-native-splash-screen';
+import messaging from '@react-native-firebase/messaging';
+import dynamicLinks from '@react-native-firebase/dynamic-links';
+import { connect } from 'react-redux';
+import RNContacts from 'react-native-contacts';
+import ReceiveSharingIntent from 'react-native-receive-sharing-intent';
+import { getLoggedInUser, legacyLogin, setAsLoggedIn, setAsSeenOnboard, setUserNeedLogin } from './store/actions/auth';
+import * as RNLocalize from 'react-native-localize';
+import { getSearchParamFromURL, isEmpty } from '../src/common/services/utility';
+import {
+	closeRatingModal,
+	getAddresses,
+	getLastUnReviewedOrder,
+	setAddress,
+	setSafeAreaData,
+	loadAppLang,
+	addDefaultAddress,
+	goActiveScreenFromPush,
+	setInvitationRewards,
+	setShowContactsModal,
+	setShowInviteFriendModal,
+	setShowEarnInviteRemindModal,
+	setAskedContactsPerm,
+	setAskedInterests,
+	setSharingContent,
+	setRefferalCode,
+	setShowChangeCityModal,
+	checkLocationDiff,
+	getReferralsRewardsSetting,
+	getSystemSettings
+} from './store/actions/app';
+import { updateCartItems, setVendorCart } from './store/actions/shop';
+import { updateProfileDetails } from './store/actions/auth';
+import { getVendorDetail } from './store/actions/vendors';
+import { loadUserSetting } from './common/services/user';
+import {
+	PUSH_NOTIFICATION_NEW_BLOG,
+	PUSH_NOTIFICATION_NEW_VENDOR,
+	PUSH_NOTIFICATION_OPENED_EVENT,
+	PUSH_NOTIFICATION_RECEIVED_EVENT,
+	setupPushNotifications,
+} from './common/services/pushNotifications';
+import { EventRegister } from 'react-native-event-listeners';
+import apiFactory from './common/services/apiFactory';
+import { openRateAppModal, shouldOpenRateAppModal, updateOpenedAppCount } from './common/services/rate';
+import { addLog } from './common/services/debug_log';
+import branch from "react-native-branch";
+import RouteNames from './routes/names'
+import { Mixpanel } from 'mixpanel-react-native';
+const trackAutomaticEvents = false;
+export const mixpanel = new Mixpanel("12dfedc3c52bab4bc3fbae7a51c3da08", trackAutomaticEvents);
+mixpanel.init();
+
+class AppRoot extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			orderDetails: {},
+			loadedInfo: false,
+			messages: [],
+			appState: AppState.currentState,
+		};
+	}
+
+	_handleAppStateChange = (nextAppState) => {
+		try {
+			if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+				this.clearIOSBadge();
+			}
+			this.setState({ appState: nextAppState });
+		} catch (e) {
+			console.log('handle App State Change ', e);
+		}
+	};
+
+	getBrachIOHandler = async() => {
+		if (Platform.OS != 'ios') {
+			return;
+		}
+		branch.subscribe(({ error, params, uri }) => {
+		  if (error) {
+			console.error("Error from Branch: " + error);
+			return;
+		  }
+		  console.log(":params", params);
+		  if (params["~referring_link"]) {
+			// Alert.alert("oped", params["~referring_link"]);
+		  }
+		});
+		let lastParams = await branch.getLatestReferringParams(); // params from last open
+		let installParams = await branch.getFirstReferringParams(); // params from original install
+		if (lastParams["~referring_link"] && lastParams["code"]) {
+		  console.log("code1", lastParams["code"]);
+		  this.props.setRefferalCode({
+			refferalCode: lastParams["code"],
+		  });
+		}
+		if (installParams["~referring_link"] && installParams["code"]) {
+		  console.log("code2", installParams["code"]);
+		  this.props.setRefferalCode({
+			refferalCode: installParams["code"],
+		  });
+		} else {
+		  console.log("No", "not from link");
+		}
+	  }
+
+	async componentDidMount() {
+		await this.clearIOSBadge();
+		await this.loadLoginInfo();
+		RNLocalize.addEventListener('change', this.handleLocalizationChange);
+		AppState.addEventListener('change', this._handleAppStateChange);
+		AppState.addEventListener("change", this.getBrachIOHandler);
+		this.setupNotificationListener();
+		const wasOpenedByNotification = await setupPushNotifications();
+		if (wasOpenedByNotification) {
+			console.log('was Opened By Notification');
+		}
+
+		this.unsubscribe = messaging().onMessage(async (remoteMessage) => {
+			console.log('onMessage', remoteMessage);
+			if (remoteMessage && remoteMessage.data && remoteMessage.data.type != 'chat_notification') {
+				this.setIOSBadge(); // android badge is default
+				EventRegister.emit(PUSH_NOTIFICATION_RECEIVED_EVENT, remoteMessage);
+			}
+		});
+
+		messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+			if (this.unsubscribe) {
+				console.log('background unsubscribe on message');
+				this.unsubscribe();
+			}
+			this.setIOSBadge();
+			console.log('Message handled in the background!', remoteMessage);
+			EventRegister.emit(PUSH_NOTIFICATION_RECEIVED_EVENT, remoteMessage);
+		});
+		this.getBrachIOHandler();
+		dynamicLinks().onLink(this.handleDynamicLink);
+	}
+
+	setIOSBadge(isClear = false) {
+		if (Platform.OS === 'ios') {
+			if (isClear) {
+				PushNotificationIOS.setApplicationIconBadgeNumber(0);
+				return;
+			}
+			PushNotificationIOS.getApplicationIconBadgeNumber((badge) => {
+				PushNotificationIOS.setApplicationIconBadgeNumber(badge + 1);
+			});
+		}
+	}
+
+	componentWillUnmount() {
+		if (this.unsubscribe) {
+			console.log('app route unmount');
+			this.unsubscribe();
+		}
+		if (this.pushNotiListener) {
+			EventRegister.removeEventListener(this.pushNotiListener);
+		}
+		if (this.shareListener) {
+			this.shareListener.remove();
+		}
+		RNLocalize.removeEventListener('change', this.handleLocalizationChange);
+		AppState.removeEventListener('change', this._handleAppStateChange);
+	}
+
+	setupNotificationListener = () => {
+		this.pushNotiListener = EventRegister.addEventListener(
+			PUSH_NOTIFICATION_RECEIVED_EVENT,
+			async (notification) => {
+				this.onNotificationOpened(notification);
+			}
+		);
+	};
+
+	getRewardSettings = async () => {
+		try {
+			let res = await apiFactory.get(`invite-earn/get-rewards-setting`);
+			if (res.data) this.props.setInvitationRewards(res.data.rewards || []);
+		} catch (e) {
+			console.log('clearIOSBadge ', e);
+		}
+	};
+
+	clearIOSBadge = async () => {
+		if (Platform.OS == 'ios') {
+			try {
+				let res = await apiFactory.get(`users-clear-badge`);
+				if (res.data) await PushNotificationIOS.setApplicationIconBadgeNumber(0);
+			} catch (e) {
+				console.log('clearIOSBadge ', e);
+			}
+		}
+	};
+
+	goVendorProfile=(vendor_id)=>{
+		const { goActiveScreenFromPush, coordinates, setVendorCart } = this.props || {};
+		let { latitude, longitude } = coordinates;
+		getVendorDetail(vendor_id, latitude, longitude)
+			.then((data) => {
+				setVendorCart(data || {});
+				setTimeout(() => {
+					goActiveScreenFromPush({
+						isVendorVisible: true,
+						pushVendorId: vendor_id,
+					});
+				}, 500);
+			})
+			.catch((error) => {
+				console.log('vendor_notification get Vendor err ', error);
+			});
+	}
+
+	onNotificationOpened = async (notification) => {
+		const data = notification?.data;
+		const { goActiveScreenFromPush, coordinates, setVendorCart } = this.props || {};
+		const { conversation_id, type, date_time, vendor_id, blog_id, invitation_id, notification_id, referral_id, split_id } = data || {};
+
+		const callbackByType = {
+			order_status_change: async () => {
+				await goActiveScreenFromPush({
+					isOrderSummVisible: true,
+					order: { id: data['order_id'], status: data['status'] },
+				});
+			},
+			user_category_change: async () => await goActiveScreenFromPush({ isWalletVisible: true }),
+			friend_request_notification: async () => await goActiveScreenFromPush({ isInvitationVisible: true }),
+			group_chat_invite_notification: async () => {
+				await goActiveScreenFromPush({
+					isChatVisible: true,
+					pushConversationId: conversation_id,
+					pushChatMsgTime: new Date().getTime(),
+				});
+			},
+			chat_notification: async () => {
+				if (Platform.OS == 'ios') {
+					PushNotificationIOS.getDeliveredNotifications((notifications) => {
+						// remove notification by conversation_id
+						console.log(notifications);
+						let deliveredNotificationIds = notifications
+							.filter(({ userInfo }) => userInfo?.type === type)
+							.map(({ identifier }) => identifier);
+						PushNotificationIOS.removeDeliveredNotifications(deliveredNotificationIds);
+					});
+				}
+
+				await goActiveScreenFromPush({
+					isChatVisible: true,
+					pushConversationId: conversation_id,
+					pushChatMsgTime: date_time,
+				});
+			},
+			vendor_notification: async () => {
+				this.goVendorProfile(vendor_id);
+			},
+			general_near_vendor_notification: async () => {
+				this.goVendorProfile(vendor_id);
+			},
+			general_near_user_notification : async ()=>{
+				if (this.props.isLoggedIn) {
+					await goActiveScreenFromPush({ isSnapfooderVisible: true, pushSnapfooderId: notification_id });
+				}
+			},
+
+			blog_notification: async () => await goActiveScreenFromPush({ isBlogVisible: true, pushBlogId: blog_id }),
+			incoming_call: async () => {
+				await goActiveScreenFromPush({ isIncomingCall: true, IncomingCallData: notification.data });
+			},
+			earn_invitation_notification: async () => {
+				await this.getRewardSettings();
+				await goActiveScreenFromPush({
+					isEarnInviteDetailsVisible: true,
+					push_earn_invitation_id: invitation_id,
+				});
+			},
+			referral_notification: async () => {
+				await goActiveScreenFromPush({ isReferralVisible: true, push_referral_id: referral_id });
+			},
+			general_referral_notification: async () => await goActiveScreenFromPush({ isGeneralReferralVisible: true }),
+			general_earn_notification: async () => {
+				await this.getRewardSettings();
+				await goActiveScreenFromPush({ isGeneralEarnVisible: true });
+			},
+			general_cashback_notification: async () => await goActiveScreenFromPush({ isGeneralCashbackVisible: true }),
+			general_story_notification: async () => await goActiveScreenFromPush({ isGeneralStoryVisible: true }),
+
+			general_student_verification_notification: async () => await goActiveScreenFromPush({ isGeneralStudentVerifyVisible: true }),
+
+			split_order_request_notification: async () => await goActiveScreenFromPush({ isCartSplitRequestVisible: true, push_cart_split_id: split_id }),
+            
+            from_superadmin_to_map: async () => await goActiveScreenFromPush({ screenNavigate: RouteNames.SnapfoodMapScreen }),
+            from_superadmin_to_promotions: async () => await goActiveScreenFromPush({ screenNavigate: RouteNames.PromotionsScreen }),
+            from_superadmin_to_promotion_calendar: async () => await goActiveScreenFromPush({ screenNavigate: RouteNames.PromosCalendarScreen }),
+            from_superadmin_to_student_acccess: async () => await goActiveScreenFromPush({ screenNavigate: RouteNames.StudentVerifyScreen }),
+            from_superadmin_to_favourites: async () => await goActiveScreenFromPush({ screenNavigate: RouteNames.FavouritesScreen }),
+            from_superadmin_to_payment_methods: async () => await goActiveScreenFromPush({ screenNavigate: RouteNames.PaymentMethodsScreen }),
+            from_superadmin_to_profile: async () => await goActiveScreenFromPush({ screenNavigate: RouteNames.ProfileStack }),
+            from_superadmin_to_friends: async () => await goActiveScreenFromPush({ screenNavigate: RouteNames.MyFriendsScreen }),
+        };
+		if (type && callbackByType[type]) {
+			try {
+				await callbackByType[type]();
+			} catch (error) {
+				console.log(type, error);
+			}
+		}
+	};
+
+	handleDynamicLink = async (link) => {
+		console.log('Dynamic link: ', link);
+		if (link.url) {
+			if (Platform.OS == 'ios') {
+				if (link.url.includes("snapfoodies.app.link")) {
+					branch.subscribe(({ error, params, uri }) => {
+					  if (error) {
+						console.error("Error from Branch: " + error);
+						return;
+					  }
+					  console.log(":params", params);
+					  if (params["~referring_link"]) {
+						// Alert.alert("oped", params["~referring_link"]);
+					  }
+					});
+					let lastParams = await branch.getLatestReferringParams(); // params from last open
+					let installParams = await branch.getFirstReferringParams(); // params from original install
+					if (lastParams["~referring_link"] && lastParams["code"]) {
+					  console.log("code3", lastParams["code"]);
+					  this.props.setRefferalCode({
+						refferalCode: lastParams["code"],
+					  });
+					}
+			  
+					if (installParams["~referring_link"] && installParams["code"]) {
+					  console.log("code4", installParams["code"]);
+					  this.props.setRefferalCode({
+						refferalCode: installParams["code"],
+					  });
+					} else {
+					  console.log("No", "not from link");
+					}
+				}
+			}
+			if (link.url.includes('snapfood.al/referral')) {
+				// link type is 'https://snapfood.al/referral?referral-code='
+				const refferal = getSearchParamFromURL(link.url, 'referralCode');
+				console.log('referral Code is:', refferal);
+				if (refferal) {
+					this.props.setRefferalCode({
+						refferalCode: refferal,
+					});
+				}
+			} else if (link.url.includes('snapfood.al/reward') && this.props.isLoggedIn) {
+				try {
+					const couponCode = getSearchParamFromURL(link.url, 'couponCode');
+					const restaurantId = getSearchParamFromURL(link.url, 'restaurantId');
+					if (!isEmpty(couponCode)) {
+						await this.props.goActiveScreenFromPush({ isGetPromoVisible: true, promo_code: couponCode })
+					}
+					else if (restaurantId != null) {
+						this.goVendorProfile(restaurantId);
+					}
+					else {
+						let res = await apiFactory.get(`invite-earn/get-referrals-setting`);
+						if (res.data && res.data.show_earn_invitation_module == true) {
+							await this.props.goActiveScreenFromPush({
+								isGeneralEarnVisible: true,
+							});
+						}
+					}
+				} catch (err) {
+					console.log(err);
+				}
+			}
+		}
+	};
+
+	handleLocalizationChange = async () => {
+		await this.props.loadAppLang().then();
+		this.forceUpdate();
+	};
+
+	appLoaded = () => {
+		updateOpenedAppCount();
+		this.setState({ loadedInfo: true }, () => {
+			SplashScreen.hide();
+		});
+	};
+
+	loadDimCarts = async () => {
+		try {
+			await this.props.setSafeAreaData();
+		} catch (e) {
+			console.log(e);
+		}
+		try {
+			const cartItems = await getStorageKey(KEYS.CART_ITEMS);
+			if (cartItems) {
+				this.props.updateCartItems(cartItems, false);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	loadSettings = async () => {
+		this.loadDimCarts();
+
+		try {
+			await this.props.loadAppLang();
+		} catch (e) {
+			console.log('loadAppLang err', e);
+		}
+
+		try {
+			const seenOnboard = await getStorageKey(KEYS.SEEN_ONBOARD);
+			if (seenOnboard == true) {
+				await this.props.setAsSeenOnboard();
+			}
+		} catch (e) {
+			console.log(e);
+		}
+
+		try {
+			const res = await RNContacts.checkPermission();
+			console.log('RNContacts.checkPermission ', res);
+			if (res == 'denied') {
+				await this.props.setShowContactsModal(true);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+
+		try {
+			await this.props.setShowInviteFriendModal(true);
+		} catch (e) {
+			console.log(e);
+		}
+		try {
+			await this.props.setShowEarnInviteRemindModal(true);
+		} catch (e) {
+			console.log(e);
+		}
+		try {
+			await this.props.getReferralsRewardsSetting();
+		} catch (e) {
+			console.log(e);
+		}
+		try {
+			await this.props.getSystemSettings();
+		} catch (e) {
+			console.log(e);
+		}
+
+		try {
+			if (Platform.OS == 'ios') {
+				const dynamicLink = await Linking.getInitialURL();
+				addLog('log-1', `ios Linking.getInitialURL : ${dynamicLink}`)
+				if (dynamicLink) {
+					await fetch(dynamicLink).then((initialUrl) => {
+						console.log(initialUrl);
+						addLog('log-2', `ios fetch(dynamicLink) : ${dynamicLink},  initialUrl : ${initialUrl}`)
+						this.handleDynamicLink(initialUrl);
+					});
+				}
+			} else {
+				const initialUrl = await dynamicLinks().getInitialLink();
+				addLog('log-3', `android dynamicLinks().getInitialLink : ${JSON.stringify(initialUrl)}`)
+				if (initialUrl) {
+					this.handleDynamicLink(initialUrl);
+				}
+			}
+		} catch (e) {
+			console.log(e);
+			try {
+				addLog('log-4', `ios getInitialURL Error Catch : ` + JSON.stringify(e))
+			} catch (error) { }
+		}
+	};
+
+	loadSharedContent = async () => {
+		// ShareMenu.getInitialShare(this.handleInitialShare);
+		// this.shareListener = ShareMenu.addNewShareListener(this.handleListenerShare);
+		this.shareListener = ReceiveSharingIntent.getReceivedFiles(
+			(files) => {
+				console.log(files);
+				var content = [];
+				var mimeType = '';
+				files.forEach((file) => {
+					if (file.filePath) {
+						content.push(file.filePath);
+						mimeType = 'image';
+					} else if (file.contentUri) {
+						content.push(file.contentUri);
+						mimeType = 'image';
+					} else if (file.text) {
+						content.push(file.text);
+						mimeType = 'text';
+					} else if (file.weblink) {
+						content.push(file.weblink);
+						mimeType = 'text';
+					}
+				});
+				this.props.setSharingContent({
+					sharedContent: content,
+					mimeType: mimeType,
+				});
+				//[{ filePath: null, text: null, weblink: null, mimeType: null, contentUri: null, fileName: null, extension: null }]
+			},
+			(error) => {
+				console.log(error);
+			},
+			'SnapfoodShareMenu'
+		);
+	};
+
+	loadLoginInfo = async () => {
+		let logged_user_data = null;
+		try {
+			let token = await getStorageKey(KEYS.TOKEN);
+			if (token) {
+				console.log('token', token);
+				if (!token.startsWith('Bearer')) {
+					token = `Bearer ${token}`;
+				}
+				logged_user_data = await this.props.legacyLogin(token);
+			}
+		} catch (e) {
+			console.log('loadLoginInfo error', e);
+		}
+
+		try {
+			const askedContacts = await getStorageKey(KEYS.ASKED_CONTACTS_PERMISSION);
+			if (askedContacts == true) {
+				await this.props.setAskedContactsPerm(true);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+
+		try {
+			const askedInterests = await getStorageKey(KEYS.ASKED_INTERESTS);
+			if (askedInterests == true) {
+				await this.props.setAskedInterests(true);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+
+		try {
+			await loadUserSetting(this.props, logged_user_data);
+		} catch (error) {
+			console.log('loadUserSetting error', error);
+		}
+
+		try {
+			await this.loadSettings();
+		} catch (error) {
+			console.log('loadSettings error', error);
+		}
+		try {
+			await this.loadSharedContent();
+		} catch (error) {
+			console.log('loadShared error', error);
+		}
+		this.appLoaded();
+	};
+
+	renderContent = () => {
+		const { loadedInfo } = this.state;
+		if (!loadedInfo) {
+			return null;
+		}
+		return <BottomTabs />;
+	};
+
+	render() {
+		return (
+			<View style={{ flex: 1 }}>
+				<StatusBar translucent={true} backgroundColor='transparent' barStyle='dark-content' />
+				{/* {!Config.isAndroid && <StatusBar barStyle={'dark-content'} />} */}
+				{this.renderContent()}
+			</View>
+		);
+	}
+}
+
+const mapStateToProps = ({ app }) => ({
+	isReviewModalVisible: app.isReviewModalVisible,
+	reviewModalData: app.reviewModalData,
+	coordinates: app.coordinates,
+	isLoggedIn: app.isLoggedIn,
+});
+
+export default connect(mapStateToProps, {
+	setAsSeenOnboard,
+	updateCartItems,
+	setVendorCart,
+
+	setSafeAreaData,
+	getLastUnReviewedOrder,
+	closeRatingModal,
+	legacyLogin,
+	loadAppLang,
+
+	setInvitationRewards,
+	setAsLoggedIn,
+	setUserNeedLogin,
+	getLoggedInUser,
+	setAddress,
+	getAddresses,
+	updateProfileDetails,
+	addDefaultAddress,
+	goActiveScreenFromPush,
+	setSharingContent,
+	setRefferalCode,
+	setShowContactsModal,
+	setShowInviteFriendModal,
+	setShowEarnInviteRemindModal,
+	setAskedContactsPerm,
+	setAskedInterests,
+	setShowChangeCityModal,
+	checkLocationDiff,
+	getReferralsRewardsSetting,
+	getSystemSettings
+})(AppRoot);

@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "82651546395",
+    "firebase_url": "https://snapfood-3f623.firebaseio.com",
+    "project_id": "snapfood-3f623",
+    "storage_bucket": "snapfood-3f623.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82651546395:android:e37dbff00c330cbc19c9be",
+        "android_client_info": {
+          "package_name": "com.snapfood.al"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82651546395-4r336st98l1570pb45idtp498fmnklcp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6WIwmdCzta_hs6AkUOm_iRe2aCJLgc60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82651546395-4r336st98l1570pb45idtp498fmnklcp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "82651546395-nnfoefr2g64e9h12a3e8jtsf3eduiira.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.snapfood.al"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82651546395:android:28fc806e0b0d069c19c9be",
+        "android_client_info": {
+          "package_name": "com.snapfood.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82651546395-4r336st98l1570pb45idtp498fmnklcp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6WIwmdCzta_hs6AkUOm_iRe2aCJLgc60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82651546395-4r336st98l1570pb45idtp498fmnklcp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "82651546395-nnfoefr2g64e9h12a3e8jtsf3eduiira.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.snapfood.al"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

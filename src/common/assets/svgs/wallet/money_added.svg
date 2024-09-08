@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="204" height="108" viewBox="0 0 204 108">
+  <g id="money_added" transform="translate(-87 -514.762)">
+    <g id="illustration" transform="translate(87 514.762)">
+      <ellipse id="Ellipse_5659" data-name="Ellipse 5659" cx="102" cy="16.613" rx="102" ry="16.613" transform="translate(0 74.774)" fill="#e6e6e6" opacity="0.45"/>
+      <rect id="Rectangle_941" data-name="Rectangle 941" width="99.881" height="72.92" rx="9.75" transform="translate(49.114)" fill="#c0ebec"/>
+      <rect id="Rectangle_942" data-name="Rectangle 942" width="99.881" height="83.485" rx="13.47" transform="translate(49.114 8.3)" fill="#50b7ed"/>
+      <path id="Path_10244" data-name="Path 10244" d="M217.835,129.36h16.781s9.236,43.008-20.452,53.412-11.187,38.372-11.187,38.372H186.825l-5.209-6.559v-19.7l-4.006-19.634,9.195-36.7,9.859-8.216Z" transform="translate(-129.919 -129.36)" fill="#222" opacity="0.08"/>
+      <rect id="Rectangle_943" data-name="Rectangle 943" width="45.763" height="24.136" rx="12.068" transform="translate(110.871 38.175)" fill="#222"/>
+      <circle id="Ellipse_5665" data-name="Ellipse 5665" cx="5.3" cy="5.3" r="5.3" transform="translate(116.933 44.845)" fill="#e6e6e6"/>
+    </g>
+    <circle id="Ellipse_5722" data-name="Ellipse 5722" cx="28" cy="28" r="28" transform="translate(120.85 559.889)" fill="#fff"/>
+    <path id="Path_11190" data-name="Path 11190" d="M30,2A28,28,0,1,0,58,30,28,28,0,0,0,30,2Zm8.4,30.8H32.8v5.6a2.8,2.8,0,1,1-5.6,0V32.8H21.6a2.8,2.8,0,1,1,0-5.6h5.6V21.6a2.8,2.8,0,1,1,5.6,0v5.6h5.6a2.8,2.8,0,1,1,0,5.6Z" transform="translate(118.85 557.889)"/>
+  </g>
+</svg>
