@@ -45,7 +45,7 @@ const PromotionsList = ({ type = PROMO_LIST_TYPE.all, navigation, language, setV
 		getActivePromotions(type)
 		getPromotions(type)
 		return () => {
-			console.log("Promotions screen unmount")
+			
 			_isMounted.current = false;
 		};
 	}, [type])
@@ -72,7 +72,7 @@ const PromotionsList = ({ type = PROMO_LIST_TYPE.all, navigation, language, setV
 			.catch(err => {
 				if (_isMounted.current == true) {
 					setLoadingCurrents(false)
-					console.log('err getActivePromotions', err)
+					
 				}
 			});
 	};
@@ -96,7 +96,7 @@ const PromotionsList = ({ type = PROMO_LIST_TYPE.all, navigation, language, setV
 			.catch(err => {
 				if (_isMounted.current == true) {
 					setLoadingPasts(false)
-					console.log('err getPromotions', err)
+					
 				}
 			});
 	};
@@ -109,7 +109,7 @@ const PromotionsList = ({ type = PROMO_LIST_TYPE.all, navigation, language, setV
 			}
 		})
 			.catch(err => {
-				console.log('err getPromotionUsers', err)
+				
 			});
 	};
 

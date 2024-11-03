@@ -31,14 +31,14 @@ class ConfirmIdentityScreen extends React.PureComponent {
         })
         .then(({data}) => { 
             this.setState({loading : false});
-			console.log('onConfirm', data) 
+			
             if(data.success == 1) {
                 this.props.navigation.navigate(RouteNames.PaymentMethodsScreen); 
             } 
         },
         (error) => {
             this.setState({loading : false});
-			console.log('onConfirm error', error)
+			
             const message =  error.message || translate('generic_error'); 
             alerts.error(translate('alerts.error'), message);
         });

@@ -6,7 +6,7 @@ import { isEmpty, getImageFullURL } from '../../../common/services/utility';
 import { translate } from '../../../common/services/translate';
 
 const SuggestedUserItem = ({ id, full_name, photo, invited, style, onViewProfile }) => {
-    console.log('SuggestedUserItem');
+    
     return (
         <View style={[Theme.styles.col_center, {justifyContent: 'flex-start', marginRight: 15, }]}> 
             <TouchableOpacity activeOpacity={0.9} style={[Theme.styles.col_center, styles.userItemView, style]} onPress={onViewProfile}>
@@ -45,7 +45,7 @@ function arePropsEqual(prevProps, nextProps) {
         (prevProps.id == nextProps.id && prevProps.full_name != nextProps.full_name) ||
         (prevProps.id == nextProps.id && prevProps.photo != nextProps.photo)
     ) {
-        console.log('SuggestedUserItem item equal : ', false)
+        
         return false;
     }
     return true;

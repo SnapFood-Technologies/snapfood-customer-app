@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Config from '../../config';
 import DeviceInfo from 'react-native-device-info';
-import { getStorageKey, KEYS, setStorageKey } from './storage';
+import { getStorageKey, KEYS } from './storage';
 import { getLanguage } from './translate';
 
 const manufacturer = DeviceInfo.getManufacturer();
@@ -31,6 +31,7 @@ factory.interceptors.request.use(
 		config.headers['Accept-Language'] = getLanguage();
 		try {
 			const token = await getStorageKey(KEYS.TOKEN);
+			
 			if (!config.headers.Authorization && token) {
 				config.headers.Authorization = `Bearer ${token}`;
 			}
@@ -48,7 +49,7 @@ factory.interceptors.response.use(
 	(response) => response,
 	(error) => {
 		if (error.response && error.response.status === 401) {
-			//  
+			//
 		}
 		return Promise.reject(error.response ? error.response.data : error);
 	}

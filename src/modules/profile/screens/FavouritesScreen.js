@@ -54,7 +54,7 @@ const FavouritesScreen = (props) => {
 			.catch(error => {
 				if (_isMounted.current == true) {
 					setVendorLoading(false)
-					console.log('getVendor Favourites', error)
+					
 				}
 			})
 	};
@@ -70,7 +70,7 @@ const FavouritesScreen = (props) => {
 			.catch(error => {
 				if (_isMounted.current == true) {
 					setItemsLoading(false)
-					console.log('getProductFavourites', error)
+					
 				}
 			})
 	};
@@ -101,7 +101,7 @@ const FavouritesScreen = (props) => {
 		})
 			.catch(error => {
 				if (_isMounted.current == true) {
-					console.log('getVendorDetail', error)
+					
 					alerts.error(translate('restaurant_details.we_are_sorry'), extractErrorMessage(error));
 				}
 			})

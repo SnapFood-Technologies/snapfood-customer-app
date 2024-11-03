@@ -41,7 +41,7 @@ const InviteScreen = (props) => {
 			getRefferalInfo();
 		});
 		return () => {
-			console.log("InviteEarn screen unmount")
+			
 			_isMounted.current = false;
 			try {
 				focusListener();
@@ -133,7 +133,7 @@ const InviteScreen = (props) => {
 				}
 			})
 			.catch(err => {
-				console.log('getRefferalInfo err ', err);
+				
 			});
 	}
 

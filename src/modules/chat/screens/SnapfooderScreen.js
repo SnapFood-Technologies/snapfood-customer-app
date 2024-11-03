@@ -55,7 +55,7 @@ class SnapfooderScreen extends React.Component {
         });
 
         if (this.state.user != null) {
-            console.log('this.state.user.id ', this.state.user.id)
+            
             this.getSnapfoodDetail(this.state.user.id, true)
             this.getSnapfooderGallery(this.state.user.id)
             this.checkFriend(this.state.user.id)
@@ -84,14 +84,14 @@ class SnapfooderScreen extends React.Component {
             }
         },
             (error) => {
-                console.log('getSnapfoodDetail ', error)
+                
                 const message = error.message || translate('generic_error');
                 if (this._isMounted == true) {
                     this.setState({
                         suggestedLoading: false,
                     });
                 }
-                console.log(message);
+                
             });
     }
 
@@ -113,7 +113,7 @@ class SnapfooderScreen extends React.Component {
                 })
             })
             .catch(err => {
-                console.log('loadGallery ', err);
+                
             });
     }
 
@@ -124,7 +124,7 @@ class SnapfooderScreen extends React.Component {
             user_id: this.props.user.id,
             friend_id: snapfooder_id
         }).then(({ data }) => {
-            console.log('check Friend', data.success)
+            
             if (this._isMounted == true) {
                 this.setState({
                     isFriend: data.success == true,
@@ -134,13 +134,13 @@ class SnapfooderScreen extends React.Component {
         },
             (error) => {
                 this.setState({ isCheckedFriend: true })
-                console.log(error);
+                
             });
     }
 
     onSendInvitation = async () => {
         this.setState({ isBirthdayModal: false })
-        console.log('onSendInvitation')
+        
         if (this.state.user == null) { return }
         await this.setState({ btnLoading: true });
         apiFactory.post(`users/friends/update`, {
@@ -267,7 +267,7 @@ class SnapfooderScreen extends React.Component {
         const partner = this.state.user;
         if (partner == null) { return }
         let found_channel = await findChannel(this.props.user.id, partner.id)
-        console.log('on enter ', found_channel)
+        
         if (found_channel != null) {
             this.props.navigation.navigate(RouteNames.MessagesScreen, { channelId: found_channel.id })
         }
@@ -395,7 +395,7 @@ class SnapfooderScreen extends React.Component {
     }
 
     navigateToMyContacts = () => {
-        console.log("my contacts was pressed")
+        
         this.props.navigation.navigate(RouteNames.MyContacts);
     };
 
@@ -458,7 +458,7 @@ class SnapfooderScreen extends React.Component {
 
     render() {
         const { user, isFriend, isInviteReceived, btnLoading, acceptLoading, declineLoading } = this.state
-        console.log('user invitation status ', user.invite_status)
+        
         return (
             <View style={styles.container}>
                 {this.renderTitleBar()}

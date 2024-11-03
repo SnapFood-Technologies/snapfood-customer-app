@@ -46,9 +46,9 @@ class ShareChatScreen extends React.Component {
 
     componentDidMount = () => {
         this._isMounted = true;
-        console.log(this.state.sharedContent)
+        
         this.removefocusListener = this.props.navigation.addListener('focus', () => {
-            console.log('focus listener : get new invites')
+            
             this.getNewInvites()
 
         });
@@ -68,7 +68,7 @@ class ShareChatScreen extends React.Component {
 
     componentDidUpdate = (prevProps, prevState) => {
         if (this.props.user.id != prevProps.user.id) {
-            console.log('componentDidUpdate : getChatChannelsListner')
+            
             this.getChatChannelsListner(this.props.user.id)
         }
     }
@@ -98,7 +98,7 @@ class ShareChatScreen extends React.Component {
 
     getChatChannelsListner = (user_id) => {
         if (this.chatchannel_listener) {
-            console.log('remove old chat channel listener')
+            
             this.chatchannel_listener()
         }
         this.setState({ isLoadingChat: true })
@@ -107,13 +107,13 @@ class ShareChatScreen extends React.Component {
             snapshots.forEach((doc) => {
                 tmp_channels.push(doc.data());
             });
-            // console.log(tmp_channels)
+            // 
             this.setState({ display_channels: tmp_channels, isLoadingChat: false })
             this.props.setAllChannels(tmp_channels)
         },
             (error) => {
                 this.setState({ isLoadingChat: false })
-                console.log('chat channel listener error', error)
+                
             });
     }
 

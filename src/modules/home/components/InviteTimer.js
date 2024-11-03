@@ -36,7 +36,7 @@ const InviteTimer = (props) => {
     }, []);
 
     const onClose = () => {
-        console.log('Invite Timer off')
+        
         clearInterval(_Timer.current);
         _Timer.current = null;
 

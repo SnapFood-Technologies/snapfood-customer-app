@@ -156,7 +156,7 @@ const MessagesHeader = ({ data, channel_id, user_id, style, isMuted, isOrderSupp
         return false;
     }
 
-    console.log('message header')
+    
 
     return (
         // <LinearGradient
@@ -289,7 +289,7 @@ function arePropsEqual(prevProps, nextProps) {
     if (prevProps.isMuted != nextProps.isMuted ||
         prevProps.user_id != nextProps.user_id ||
         prevProps.channel_id != nextProps.channel_id) {
-        console.log('MessagesHeader item equal : ', false)
+        
         return false;
     }
 

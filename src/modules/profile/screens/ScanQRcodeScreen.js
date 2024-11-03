@@ -35,7 +35,7 @@ const ScanQRcodeScreen = (props) => {
                         buttonNegative: 'Cancel',
                     }}
                     onBarCodeRead={({ data }) => {
-                        console.log('onBarCodeRead ', data)
+                        
                         if (data != null) {
                             const couponCode = getSearchParamFromURL(data, 'couponCode');
                             if (!isEmpty(couponCode)) {

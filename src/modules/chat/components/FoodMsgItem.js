@@ -10,7 +10,7 @@ import { isEmpty } from '../../../common/services/utility';
 const FoodMsgItem = (props) => {
     const { msg_id, data, onSelect, style } = props
 
-    console.log('data.image_thumbnail_path ', data.image_thumbnail_path)
+    
     return <View
         style={[Theme.styles.col_center, styles.container, style]}>
 

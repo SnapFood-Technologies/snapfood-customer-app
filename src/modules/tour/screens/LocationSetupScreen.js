@@ -50,7 +50,7 @@ class LocationSetupScreen extends React.Component {
 			const address = await getAddressByCoordinates(locationObj);
 			await this.setState({ coords: locationObj, address });
 		} catch (error) {
-			console.log('setAddressByCoordinates : ', error);
+			
 		}
 	};
 

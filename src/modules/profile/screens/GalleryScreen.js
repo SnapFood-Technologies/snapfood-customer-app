@@ -47,7 +47,7 @@ const GalleryScreen = (props) => {
 				updateGallery(tmp);
 			})
 			.catch(err => {
-				console.log('loadGallery ', err);
+				
 			});
 	}
 
@@ -78,7 +78,7 @@ const GalleryScreen = (props) => {
 				(error) => {
 					cpyGallery[index].loading = false;
 					updateGallery(cpyGallery);
-					console.log('uploadPhoto err ', error);
+					
 					const message = error.message || translate('generic_error');
 					alerts.error(translate('alerts.error'), message);
 				}
@@ -109,7 +109,7 @@ const GalleryScreen = (props) => {
 				(error) => {
 					cpyGallery[index].loading = false;
 					updateGallery(cpyGallery);
-					console.log('uploadPhoto err ', error);
+					
 					const message = error.message || translate('generic_error');
 					alerts.error(translate('alerts.error'), message);
 				}

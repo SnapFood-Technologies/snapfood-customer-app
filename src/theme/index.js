@@ -124,6 +124,7 @@ Theme.styles = {
 	row_center_start: { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' },
 	col_center_start: { flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' },
 	row_center_end: { flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' },
+	row_start_center: { flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start' },
 	col_center_end: { flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center' },
 	flex_between: { width: '100%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
 	w100: { width: '100%' },

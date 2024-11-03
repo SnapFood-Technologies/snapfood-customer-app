@@ -187,7 +187,7 @@ export const StoryListItem = (props) => {
 
 
 	function start(duration) {
-		console.log('------------------- image, is_captured ', content[current].image, content[current].is_captured)
+		
 		if (isMessageEntering) return;
 		setLoad(false);
 		progress.setValue(0);
@@ -203,7 +203,7 @@ export const StoryListItem = (props) => {
 
 		}
 
-		console.log('fined_duration ', fined_duration)
+		
 
 		Animated.timing(progress, {
 			toValue: 1,
@@ -312,18 +312,18 @@ export const StoryListItem = (props) => {
 		setIsMessageEntering(visibility);
 	}, [])
 	const onFocus = useCallback(() => {
-		console.log('on focus  ');
+		
 		setInputFocus(true)
 		progress.stopAnimation();
 	}, [progress, setInputFocus])
 	const onBlur = useCallback(() => {
-		console.log('on blur  ');
+		
 		setInputFocus(false)
 		startAnimation();
 	}, [startAnimation, setInputFocus])
 
 
-	console.log('content[current].image_thumb ', content[current].image_thumb)
+	
 	return (
 		<GestureRecognizer
 			onSwipeUp={(state) => onSwipeUp(state)}
@@ -347,7 +347,7 @@ export const StoryListItem = (props) => {
 								paused={videoPaused}
 								muted={videoPaused}
 								onLoad={(payload) => {
-									console.log('video load ', content[current].image, payload)
+									
 									if (props.storyUniqueIndex == props.currentPage) {
 										setVideoPaused(false);
 									}

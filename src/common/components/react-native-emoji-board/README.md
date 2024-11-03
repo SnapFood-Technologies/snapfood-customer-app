@@ -72,7 +72,7 @@ import EmojiBoard from 'react-native-emoji-board'
 const App: () => React$Node = () => {
     const [show, setShow] = useState(false);
     const onClick = emoji => {
-        console.log(emoji);
+        
     };
 
     return (

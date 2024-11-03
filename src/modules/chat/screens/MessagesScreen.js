@@ -17,9 +17,9 @@ import { useSafeArea } from 'react-native-safe-area-context';
 import { GiftedChat } from 'react-native-gifted-chat';
 import ImagePicker from 'react-native-image-crop-picker';
 import Spinner from 'react-native-loading-spinner-overlay';
-import GetLocation from 'react-native-get-location'
+import GetLocation from 'react-native-get-location';
 import { connect } from 'react-redux';
-import RNFS from "react-native-fs";
+import RNFS from 'react-native-fs';
 import { convertTimestamp2Date } from '../../../common/services/utility';
 import {
 	channel_collection,
@@ -31,7 +31,7 @@ import {
 	seenUnreadCntChannel,
 	deleteChannel,
 	exitGroupChannel,
-	setLike
+	setLike,
 } from '../../../common/services/chat';
 import { goActiveScreenFromPush, removeSharingContent } from '../../../store/actions/app';
 import { setMessagesByChannel } from '../../../store/actions/chat';
@@ -48,26 +48,23 @@ import MessagesHeader from '../components/MessagesHeader';
 import AudioInputView from '../components/AudioInputView';
 import { renderInputToolbar, renderComposer, renderSend } from '../components/InputToolbar';
 import { renderBubble, renderMessage } from '../components/MessageContainer';
-import {
-	checkLocationPermission,
-	requestLocationPermission,
-} from '../../../common/services/location';
+import { checkLocationPermission, requestLocationPermission } from '../../../common/services/location';
 import { ROLE_CUSTOMER, ROLE_RIDER } from '../../../config/constants';
 import { setStorageKey, KEYS } from '../../../common/services/storage';
-import SnackBar from 'react-native-snackbar-component'
+import SnackBar from 'react-native-snackbar-component';
 import Toast from 'react-native-toast-message';
 import apiFactory from '../../../common/services/apiFactory';
-import _ from "lodash"
-	const systemMsg = {
-		_id: 1,
-		text: '',
-		createdAt: new Date(),
-		system: true,
-	};
+import _ from 'lodash';
+const systemMsg = {
+	_id: 1,
+	text: '',
+	createdAt: new Date(),
+	system: true,
+};
 
 const PerPage = 12;
 const MessagesScreen = (props) => {
-	const { setMessagesByChannel, route, user,messages, chat_channels } = props;
+	const { setMessagesByChannel, route, user, messages, chat_channels } = props;
 	const channel = useMemo(() => {
 		return (chat_channels || []).find(({ id }) => id === route.params.channelId);
 	}, [route.params.channelId || '']);
@@ -126,7 +123,7 @@ const MessagesScreen = (props) => {
 	};
 	const onMount = async (callback) => {
 		clear();
-		if (!channel || (props.route.params.channelId !== channelData?.id)) {
+		if (!channel || props.route.params.channelId !== channelData?.id) {
 			let newChannel = await getChannelData(props.route.params.channelId);
 			setChannelData(newChannel);
 		}
@@ -137,10 +134,10 @@ const MessagesScreen = (props) => {
 	};
 
 	const isFromPushUpdated = () => {
-		if(isFromPush) return onMount(() => props.goActiveScreenFromPush({isChatVisible: false }))
-	}
+		if (isFromPush) return onMount(() => props.goActiveScreenFromPush({ isChatVisible: false }));
+	};
 
-// useEffect(onMount, []);
+	// useEffect(onMount, []);
 	useEffect(onMount, [route.params.channelId]);
 	useEffect(isFromPushUpdated, [isFromPush]);
 
@@ -157,32 +154,32 @@ const MessagesScreen = (props) => {
 				seenUnreadCntChannel(channelDataRef?.current, userId?.current);
 			}
 		};
-	}, [])
+	}, []);
 
 	const clearUnreadMessages = async (channel) => {
 		const haveMessagesToClear = (channel?.unread_cnt || {})[props.user.id] >= 1;
-		return await haveMessagesToClear && seenUnreadCntChannel(channel, props.user.id);
+		return (await haveMessagesToClear) && seenUnreadCntChannel(channel, props.user.id);
 	};
 
 	const loadChannelData = async () => {
 		await clearUnreadMessages(channelData);
-		await fromSharing && checkForShared(channelData);
+		(await fromSharing) && checkForShared(channelData);
 	};
 
 	const checkForShared = async (channel) => {
 		var sharedContent = props.sharedContent;
 		var sharedMimeType = props.sharedMimeType;
 		if (fromSharing == true) {
-			sharedContent.forEach(content => {
-				if (sharedMimeType.startsWith("image")) {
-					onSendNewImagesForShare(content, channel)
+			sharedContent.forEach((content) => {
+				if (sharedMimeType.startsWith('image')) {
+					onSendNewImagesForShare(content, channel);
 				} else {
-					onSendNewSharedMessage(content, channel)
+					onSendNewSharedMessage(content, channel);
 				}
 			});
-			await props.removeSharingContent()
+			await props.removeSharingContent();
 		}
-	}
+	};
 
 	const onSendNewSharedMessage = async (content, channel) => {
 		let newMsg = {
@@ -197,7 +194,7 @@ const MessagesScreen = (props) => {
 			},
 		};
 		await sendMessage(channel.id, props.user.id, newMsg);
-	}
+	};
 
 	const onSendNewImagesForShare = async (content, channel) => {
 		setImageUploading(true);
@@ -212,11 +209,11 @@ const MessagesScreen = (props) => {
 				phone: props.user.phone,
 				email: props.user.email,
 			},
-			images: [res.data.url]
+			images: [res.data.url],
 		};
 		await sendMessage(channel.id, props.user.id, newMsg);
 		setImageUploading(false);
-	}
+	};
 
 	const getMessageCollection = () => {
 		return channel_collection
@@ -224,17 +221,17 @@ const MessagesScreen = (props) => {
 			.collection('messages')
 			.orderBy('created_time', 'desc')
 			.limit(PerPage);
-	}
+	};
 
 	const messagesBySnapShots = (snapShots) => {
 		let msgs = [];
-		snapShots.docs.forEach(doc => {
+		snapShots.docs.forEach((doc) => {
 			const { createdAt: fbDate } = doc.data() || {};
-			console.log(fbDate);
+
 			if (doc.exists) msgs.push({ ...doc.data(), createdAt: convertTimestamp2Date(fbDate), fbDate });
 		});
 		return msgs;
-	}
+	};
 
 	let start = (messages || [])[messages?.length - 1]?.created_time;
 	const msgsString = JSON.stringify(messages || {});
@@ -261,8 +258,8 @@ const MessagesScreen = (props) => {
 				setHasMore(false);
 			});
 	}, [prevLoading, hasMore, messages.length || 0, start, msgsString]);
-	
-	const imagesString = JSON.stringify(images || {})
+
+	const imagesString = JSON.stringify(images || {});
 	const onSend = useCallback(
 		async (newMessages = []) => {
 			let isQuoted = false;
@@ -277,7 +274,7 @@ const MessagesScreen = (props) => {
 
 			if (images != null && images.length > 0) {
 				setImageUploading(true);
-				console.log('upload started ', images.length);
+
 				let imageUrls = [];
 				for (var i = 0; i < images.length; i++) {
 					if (images[i] != null && images[i].data != null) {
@@ -286,9 +283,7 @@ const MessagesScreen = (props) => {
 							if (res != null && res.data != null && res.data.success == true) {
 								imageUrls.push(res.data.url);
 							}
-						} catch (error) {
-							console.log('uploadImage ', error);
-						}
+						} catch (error) {}
 					}
 				}
 				setImages([]);
@@ -300,7 +295,6 @@ const MessagesScreen = (props) => {
 					});
 				}
 
-				console.log('upload done ', newMessages.length);
 				isImage = true;
 			}
 
@@ -320,11 +314,10 @@ const MessagesScreen = (props) => {
 			}
 			/////////////
 
-			console.log('sendMessage start ', newMessages.length);
 			for (var i = 0; i < newMessages.length; i++) {
 				await sendMessage(channelData.id, props.user.id, newMessages[i]);
 			}
-			console.log('sendMessage done ', newMessages.length);
+
 			setImageUploading(false);
 		},
 		[imagesString, quote_msg, channelData, props.user.id]
@@ -335,25 +328,20 @@ const MessagesScreen = (props) => {
 		try {
 			let hasPermission = await checkLocationPermission();
 			if (hasPermission) {
-				sendCurrentPosition()
+				sendCurrentPosition();
+			} else {
+				requestLocationPermission().catch(() => {
+					alerts.error(translate('attention'), translate('locationUnavailable'));
+				});
 			}
-			else {
-				requestLocationPermission()
-					.catch(() => {
-						alerts.error(translate('attention'), translate('locationUnavailable'));
-					});
-			}
-		}
-		catch (error) {
-			console.log('checkLocationPermission : ', error)
+		} catch (error) {
 			alerts.error(translate('attention'), translate('locationUnavailable'));
 		}
-
 	};
 
 	const sendCurrentPosition = async () => {
 		try {
-			const location = await GetLocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 15000, });
+			const location = await GetLocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 15000 });
 			if (location) {
 				let newMsg = {
 					user: {
@@ -363,12 +351,12 @@ const MessagesScreen = (props) => {
 						photo: props.user.photo,
 						phone: props.user.phone,
 						email: props.user.email,
-						role: ROLE_CUSTOMER
+						role: ROLE_CUSTOMER,
 					},
 					map: {
 						coords: {
 							latitude: location.latitude,
-							longitude: location.longitude
+							longitude: location.longitude,
 						},
 						type: 0, // 0 : my location, 1 : a location
 					},
@@ -380,8 +368,7 @@ const MessagesScreen = (props) => {
 			console.warn('onLater', code, message);
 			alerts.error(translate('attention'), translate('locationUnavailable'));
 		}
-	}
-
+	};
 
 	const goFindLocation = () => {
 		ShowShareModal(false);
@@ -393,7 +380,7 @@ const MessagesScreen = (props) => {
 
 	const onSelectEmoji = (emoji) => {
 		setShowEMoji(false);
-		setText(text => text.concat(emoji.code));
+		setText((text) => text.concat(emoji.code));
 		emojiData.current = emoji;
 	};
 
@@ -410,27 +397,26 @@ const MessagesScreen = (props) => {
 			multiple: true,
 			cropping: false,
 			includeBase64: true,
-		}).then((images) => {
-			setImages(prevData => ([...prevData, ...images]));
 		})
-			.catch(error => {
-				console.log('image picker ', error);
-			});
+			.then((images) => {
+				setImages((prevData) => [...prevData, ...images]);
+			})
+			.catch((error) => {});
 	};
 	const onCapture = () => {
 		ImagePicker.openCamera({
 			cropping: false,
 			includeBase64: true,
-		}).then((image) => {
-			setImages([image]);
 		})
-			.catch(error => {
-				console.log('image picker ', error);
-			});
+			.then((image) => {
+				setImages([image]);
+			})
+			.catch((error) => {});
 	};
 
 	const goApplicationSetting = useCallback(() => {
-		alerts.confirmation(translate('attention'), translate('audioUnavailable'), 'Settings', translate('cancel'))
+		alerts
+			.confirmation(translate('attention'), translate('audioUnavailable'), 'Settings', translate('cancel'))
 			.then(
 				() => {
 					if (Platform.OS === 'android') {
@@ -443,14 +429,13 @@ const MessagesScreen = (props) => {
 					alerts.error(translate('attention'), translate('audioUnavailable'));
 				}
 			);
-	},[])
-	const onChatRecord = useCallback(() => onRecord(setRecording,goApplicationSetting),[isRecording])
+	}, []);
+	const onChatRecord = useCallback(() => onRecord(setRecording, goApplicationSetting), [isRecording]);
 
 	const onSendAudio = async (currentTime, fileSize, base64) => {
 		try {
 			let res = await uploadImage(base64);
 			if (res != null && res.data != null && res.data.success == true) {
-				console.log('audio url ', res.data.url);
 				let newMsg = {
 					user: {
 						_id: props.user.id,
@@ -459,7 +444,7 @@ const MessagesScreen = (props) => {
 						photo: props.user.photo,
 						phone: props.user.phone,
 						email: props.user.email,
-						role: ROLE_CUSTOMER
+						role: ROLE_CUSTOMER,
 					},
 					audio: {
 						url: res.data.url,
@@ -471,12 +456,9 @@ const MessagesScreen = (props) => {
 				};
 				onSend([newMsg]);
 			}
-		} catch (error) {
-			console.log('onSendAudio error', error);
-		}
+		} catch (error) {}
 		setRecording(false);
 	};
-
 
 	const onDeleteGroup = async () => {
 		let ret = await deleteChannel(channelData.id);
@@ -517,92 +499,89 @@ const MessagesScreen = (props) => {
 		setImages(tmp_imgs.length == 0 ? [] : tmp_imgs);
 	};
 
-	const onLongPressMessage = (currentMessage) => {
-	};
+	const onLongPressMessage = (currentMessage) => {};
 
-	const onPressMsg =  async (currentMessage) => {
-			Keyboard.dismiss();
-			if (
-				currentMessage &&
-				currentMessage.text &&
-				currentMessage.user?._id != props.user.id &&
-				currentMessage.invitation_code != null
-			) {
-				try {
-					let res = await apiFactory.post('/invite-earn/earninvitation', {
-						invitation_code: currentMessage.invitation_code,
-					});
+	const onPressMsg = async (currentMessage) => {
+		Keyboard.dismiss();
+		if (
+			currentMessage &&
+			currentMessage.text &&
+			currentMessage.user?._id != props.user.id &&
+			currentMessage.invitation_code != null
+		) {
+			try {
+				let res = await apiFactory.post('/invite-earn/earninvitation', {
+					invitation_code: currentMessage.invitation_code,
+				});
 
-					if (res.data && res.data.invition) {
-						let invition_data = res.data.invition;
-						if (invition_data.is_used == 0 && invition_data.is_expired != 1) {
-							Clipboard.setString(currentMessage.invitation_code);
-							await setStorageKey(KEYS.INVITE_CODE, currentMessage.invitation_code);
-							if (props.hometab_navigation != null) {
-								props.hometab_navigation.jumpTo(RouteNames.HomeStack);
-							}
-							Toast.show({
-								type: 'showInfoToast',
-								visibilityTime: 5000,
-								position: 'top',
-								topOffset: 42,
-								text1: translate('code_complete'),
-							});
-							props.navigation.navigate(RouteNames.BottomTabs);
-						} else if (invition_data.is_used == 0 && invition_data.is_expired == 1) {
-							Toast.show({
-								type: 'showInfoToast',
-								visibilityTime: 5000,
-								position: 'top',
-								topOffset: 42,
-								text1: translate('invitation_earn.invitation_expired'),
-							});
-						} else if (invition_data.is_used == 1) {
-							Toast.show({
-								type: 'showInfoToast',
-								visibilityTime: 5000,
-								position: 'top',
-								topOffset: 42,
-								text1: translate('invitation_earn.invitation_used'),
-							});
-						} else if (invition_data.is_used == 2) {
-							Toast.show({
-								type: 'showInfoToast',
-								visibilityTime: 5000,
-								position: 'top',
-								topOffset: 42,
-								text1: translate('invitation_earn.invitation_using'),
-							});
+				if (res.data && res.data.invition) {
+					let invition_data = res.data.invition;
+					if (invition_data.is_used == 0 && invition_data.is_expired != 1) {
+						Clipboard.setString(currentMessage.invitation_code);
+						await setStorageKey(KEYS.INVITE_CODE, currentMessage.invitation_code);
+						if (props.hometab_navigation != null) {
+							props.hometab_navigation.jumpTo(RouteNames.HomeStack);
 						}
+						Toast.show({
+							type: 'showInfoToast',
+							visibilityTime: 5000,
+							position: 'top',
+							topOffset: 42,
+							text1: translate('code_complete'),
+						});
+						props.navigation.navigate(RouteNames.BottomTabs);
+					} else if (invition_data.is_used == 0 && invition_data.is_expired == 1) {
+						Toast.show({
+							type: 'showInfoToast',
+							visibilityTime: 5000,
+							position: 'top',
+							topOffset: 42,
+							text1: translate('invitation_earn.invitation_expired'),
+						});
+					} else if (invition_data.is_used == 1) {
+						Toast.show({
+							type: 'showInfoToast',
+							visibilityTime: 5000,
+							position: 'top',
+							topOffset: 42,
+							text1: translate('invitation_earn.invitation_used'),
+						});
+					} else if (invition_data.is_used == 2) {
+						Toast.show({
+							type: 'showInfoToast',
+							visibilityTime: 5000,
+							position: 'top',
+							topOffset: 42,
+							text1: translate('invitation_earn.invitation_using'),
+						});
 					}
-					return;
-				} catch (error) {
-					console.log(error);
 				}
-			}
-
-			if (
-				currentMessage &&
-				currentMessage.map &&
-				currentMessage.map.coords &&
-				currentMessage.map.coords.latitude &&
-				currentMessage.map.coords.longitude
-			) {
-				props.navigation.navigate(RouteNames.LocationMsgScreen, { coords: currentMessage.map.coords });
-			}
-
-			if (
-				channelData != null &&
-				channelData.channel_type != 'single' &&
-				currentMessage &&
-				currentMessage.text &&
-				currentMessage.likes &&
-				currentMessage.likes.length > 0
-			) {
-				setMsgInfo(currentMessage);
-				setShowMsgInfo(true);
-			}
+				return;
+			} catch (error) {}
 		}
+
+		if (
+			currentMessage &&
+			currentMessage.map &&
+			currentMessage.map.coords &&
+			currentMessage.map.coords.latitude &&
+			currentMessage.map.coords.longitude
+		) {
+			props.navigation.navigate(RouteNames.LocationMsgScreen, { coords: currentMessage.map.coords });
+		}
+
+		if (
+			channelData != null &&
+			channelData.channel_type != 'single' &&
+			currentMessage &&
+			currentMessage.text &&
+			currentMessage.likes &&
+			currentMessage.likes.length > 0
+		) {
+			setMsgInfo(currentMessage);
+			setShowMsgInfo(true);
+		}
+	};
 
 	const onDoublePress = useCallback(
 		(currentMessage) => {
@@ -615,7 +594,7 @@ const MessagesScreen = (props) => {
 		[props.user.id, channelData, onLikeSuccess]
 	);
 
-	const onShowGalleryMsgs = (images,replyMessage) => {
+	const onShowGalleryMsgs = (images, replyMessage) => {
 		if (images.length > 0) {
 			let tmp = [];
 			images.map((image) => {
@@ -675,9 +654,8 @@ const MessagesScreen = (props) => {
 	);
 
 	const onCopyPress = (onCopyChanged) => {
-		console.log("on Copy changed", onCopyChanged);
 		setShowSnackBar(onCopyChanged);
-	}
+	};
 
 	const onGoBack = async () => {
 		if (fromSharing == true) {
@@ -685,7 +663,7 @@ const MessagesScreen = (props) => {
 		} else {
 			props.navigation.goBack();
 		}
-	}
+	};
 
 	const renderEmptyInputToolbar = () => (
 		<Text style={styles.noMemberTxt}>{translate('social.chat.no_longer_member')}</Text>
@@ -710,21 +688,22 @@ const MessagesScreen = (props) => {
 
 			return renderInputToolbar(giftchat_props, quote_msg, images, null, onCancelQuote, onRemoveImage, () => {});
 		},
-		[channelData, JSON.stringify(props.user), quote_msg,imagesString,onSend, isRecording]
+		[channelData, JSON.stringify(props.user), quote_msg, imagesString, onSend, isRecording]
 	);
 
 	const msgs = messages.length == 0 ? [systemMsg] : messages;
 	// 'reply_type':"story"
-	// console.log(msgs.filter((msg)=>msg.text == 'Ckemi'));
+	//
 	const closeImageGalleryModal = () => {
 		ShowGalleryModal(false);
 		setModalImages([]);
 		setReplyText('');
 	};
-	const renderChatMessage = useCallback(renderMessage,[])
-	const renderChatComposer = useCallback((props) =>
-						renderComposer(props, true, onPressEmoji, onPressLocation, onImageUpload, onCapture)
-					,[])
+	const renderChatMessage = useCallback(renderMessage, []);
+	const renderChatComposer = useCallback(
+		(props) => renderComposer(props, true, onPressEmoji, onPressLocation, onImageUpload, onCapture),
+		[]
+	);
 
 	const renderChatBubble = useCallback(
 		(props) =>
@@ -740,7 +719,7 @@ const MessagesScreen = (props) => {
 				onCopyPress
 			),
 		[channelData, onDoublePress, onLikeChange, onPopupPress]
-	);			
+	);
 
 	return (
 		<View style={styles.container}>
@@ -917,14 +896,11 @@ const MessagesScreen = (props) => {
 };
 
 const onRecord = (setRecording, goApplicationSetting) => {
-	console.log('onRecord');
 	if (Platform.OS === 'android') {
 		PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO)
 			.then((res) => {
-				console.log('check ', res);
 				if (res != true) {
 					PermissionsAndroid.requestMultiple([PermissionsAndroid.PERMISSIONS.RECORD_AUDIO]).then((result) => {
-						console.log('requestMultiple ', result);
 						if (result['android.permission.RECORD_AUDIO'] == 'granted') {
 							setRecording(true);
 						} else {
@@ -936,7 +912,6 @@ const onRecord = (setRecording, goApplicationSetting) => {
 				}
 			})
 			.catch((error) => {
-				console.log('RECORD_AUDIO PERMISSION CHECK ', error);
 				goApplicationSetting();
 			});
 	} else {
@@ -998,7 +973,7 @@ const CustomGiftedChat = (props) => {
 			{
 				pattern: /#(\w+)/,
 				style: linkStyle,
-				onPress: (tag) => console.log(`Pressed on hashtag: ${tag}`),
+				onPress: (tag) => {},
 			},
 			{
 				pattern: /kod: \w+/g,
@@ -1065,17 +1040,16 @@ const getListViewProps = (prevLoading, loadPrevMessage) => ({
 		</View>
 	),
 	onScroll: ({ nativeEvent }) => {
-		if (isCloseToTop(nativeEvent)) console.log('is close to top');
-		if (isCloseToBottom(nativeEvent)) loadPrevMessage();
+		if (isCloseToTop(nativeEvent)) if (isCloseToBottom(nativeEvent)) loadPrevMessage();
 	},
 	keyboardShouldPersistTaps: 'handled',
 });
 
 const ChatLoading = () => (
-		<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-			<ActivityIndicator size='large' color={Theme.colors.cyan2} style={{ paddingVertical: 12 }} />
-		</View>
-	);
+	<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+		<ActivityIndicator size='large' color={Theme.colors.cyan2} style={{ paddingVertical: 12 }} />
+	</View>
+);
 
 const styles = StyleSheet.create({
 	container: {
@@ -1127,9 +1101,9 @@ const styles = StyleSheet.create({
 	},
 });
 
-const mapStateToProps = ({ app, chat },props) => {
+const mapStateToProps = ({ app, chat }, props) => {
 	const messagesKey = `${props.route.params?.channelId}${app.user?.id}`;
-	console.log('messagesKey', messagesKey);
+
 	return {
 		coordinates: app.coordinates,
 		user: app.user,
@@ -1141,7 +1115,6 @@ const mapStateToProps = ({ app, chat },props) => {
 		chat_channels: chat.chat_channels,
 	};
 };
-
 
 export default connect(mapStateToProps, {
 	goActiveScreenFromPush,

@@ -48,7 +48,7 @@ const CategoryTabBar = ({
     // set default method for remove
     const clickRemove = () => {
         if (typeof onRemove !== 'function') {
-            console.log('missing remove callback');
+            
         } else {
             onRemove();
         }

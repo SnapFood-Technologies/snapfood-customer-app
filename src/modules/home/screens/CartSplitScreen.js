@@ -30,7 +30,7 @@ const CartSplitScreen = (props) => {
         })
             .catch(err => {
                 setLoading(false);
-                console.log('getFriends', err)
+                
             })
     }, [])
 

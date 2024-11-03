@@ -90,7 +90,7 @@ class GiftUserPickScreen extends React.Component {
 				return;
 			}
 		} catch (error) {
-			console.log(error);
+			
 			this.setState({ address_loading: false });
 		}
 
@@ -116,7 +116,7 @@ class GiftUserPickScreen extends React.Component {
 			})
 			.catch((err) => {
 				this.setState({ friend_loaded: true });
-				console.log('getFriends', err);
+				
 			});
 	};
 

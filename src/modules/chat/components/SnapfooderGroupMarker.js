@@ -46,7 +46,7 @@ function arePropsEqual(prevProps, nextProps) {
         prevProps.longitude != nextProps.longitude ||
         prevProps.count != nextProps.count
     ) {
-        console.log('SnapfooderGroupMarker item equal : ', false)
+        
         return false;
     }
     return true;

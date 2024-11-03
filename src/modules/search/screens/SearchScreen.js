@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, ScrollView, Keyboard, TouchableOpacity, View, Text, AsyncStorage, Dimensions } from 'react-native';
+import { FlatList, ScrollView, Keyboard, TouchableOpacity, View, Text, Dimensions } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FastImage from 'react-native-fast-image';
 import { connect } from 'react-redux';
@@ -17,8 +17,8 @@ import VendorItem from '../../../common/components/vendors/VendorItem';
 import VendorFoodItem from '../../../common/components/vendors/VendorFoodItem';
 import StartItem from '../components/StartItem';
 import PopularItem from '../components/PopularItem';
-import { setVendorCart, } from '../../../store/actions/shop';
-import { setTmpFood, } from '../../../store/actions/app';
+import { setVendorCart } from '../../../store/actions/shop';
+import { setTmpFood } from '../../../store/actions/app';
 import { AuthInput, RoundIconBtn } from '../../../common/components';
 import BlockSpinner from '../../../common/components/BlockSpinner';
 import Theme from '../../../theme';
@@ -27,6 +27,7 @@ import { height } from 'react-native-dimension';
 import { getTweakSearch } from '../../../common/services/utility';
 import { OrderType_Delivery } from '../../../config/constants';
 import VendorSearchItem from '../../../common/components/vendors/VendorSearchItem';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const windowHeight = Dimensions.get('window').height;
 const IS_LOADING_CATEGORIES = 'isLoadingCategories';
@@ -67,18 +68,18 @@ class SearchScreen extends React.Component {
 				arr.push(`${item.keyFilter}=1`);
 			}
 		});
-		apiFactory.get(`vendors?` + arr.join('&')).then(({ data }) => {
-			this.setState({ restaurants: data.vendors.data });
-		})
-			.catch((error) => {
-			});
+		apiFactory
+			.get(`vendors?` + arr.join('&'))
+			.then(({ data }) => {
+				this.setState({ restaurants: data.vendors.data });
+			})
+			.catch((error) => {});
 		apiFactory
 			.get(`products?` + arr.join('&'))
 			.then(({ data }) => {
 				this.setState({ foodItems: data.products.data });
 			})
-			.catch((error) => {
-			});
+			.catch((error) => {});
 		this.RBSheet.close();
 	});
 
@@ -146,7 +147,7 @@ class SearchScreen extends React.Component {
 			is_loading_items: null,
 			selectedRestaurant: {},
 			restaurantSelected: false,
-			searched: false
+			searched: false,
 		};
 	}
 
@@ -169,19 +170,14 @@ class SearchScreen extends React.Component {
 
 				this.setState({ recents: filtered });
 			}
-		} catch (error) {
-			console.log("get recents throw error");
-			console.log(error);
-		}
+		} catch (error) {}
 	};
 
 	clearAllRecents = async () => {
 		try {
 			await AsyncStorage.removeItem('recents');
 			this.setState({ recents: [] });
-		} catch (err) {
-			console.log('clearAllRecents ', err);
-		}
+		} catch (err) {}
 	};
 
 	removeRecentItem = async (text) => {
@@ -194,9 +190,7 @@ class SearchScreen extends React.Component {
 				await AsyncStorage.setItem('recents', JSON.stringify(filtered));
 				this.setState({ recents: filtered });
 			}
-		} catch (err) {
-			console.log('clearAllRecents ', err);
-		}
+		} catch (err) {}
 	};
 
 	getCategories = async () => {
@@ -219,7 +213,7 @@ class SearchScreen extends React.Component {
 
 	search = (text) => {
 		if (text.length > 2) {
-			this.setState({ text: text, searched: true, });
+			this.setState({ text: text, searched: true });
 			this.getRestaurants(text);
 			this.getItems(text);
 			if (text) {
@@ -236,7 +230,7 @@ class SearchScreen extends React.Component {
 			this.setState({ restaurants: [] });
 		}
 
-		Keyboard.dismiss()
+		Keyboard.dismiss();
 	};
 
 	getSearchSuggestions = async (keyword) => {
@@ -245,10 +239,8 @@ class SearchScreen extends React.Component {
 			let search_key = getTweakSearch(keyword);
 			apiFactory.get(`/search/keywords-suggestions?search=${search_key}`).then(({ data }) => {
 				this.setState({ suggested: data['suggestions'] || [] });
-				console.log(data['suggestions'])
 			});
-		}
-		else {
+		} else {
 			this.setState({ text: keyword, suggested: [], searched: false });
 		}
 	};
@@ -284,14 +276,20 @@ class SearchScreen extends React.Component {
 	renderSearchView = () => {
 		const { suggested, text } = this.state;
 		return (
-			<View style={[Theme.styles.row_center, { width: '100%', height: 50, marginBottom: 6, paddingHorizontal: 20 }]}>
+			<View
+				style={[Theme.styles.row_center, { width: '100%', height: 50, marginBottom: 6, paddingHorizontal: 20 }]}
+			>
 				<AutoCompleteInput
 					placeholder={translate('search.search_vendors_on_search')}
 					underlineColorAndroid={'transparent'}
 					autoCapitalize={'none'}
 					returnKeyType={'done'}
 					isSearch={true}
-					data={(suggested.length == 1 && suggested[0].keyword.toLowerCase() == text.toLowerCase()) ? [] : suggested}
+					data={
+						suggested.length == 1 && suggested[0].keyword.toLowerCase() == text.toLowerCase()
+							? []
+							: suggested
+					}
 					value={text}
 					onChangeText={(t) => this.getSearchSuggestions(t)}
 					onSelectedText={(text) => {
@@ -302,10 +300,9 @@ class SearchScreen extends React.Component {
 					style={{ width: width(100) - 100 }}
 					onBlur={() => {
 						this.search(this.state.text);
-						this.setState({ suggested: [] })
+						this.setState({ suggested: [] });
 					}}
-					onSubmitEditing={() => {
-					}}
+					onSubmitEditing={() => {}}
 				/>
 				<RoundIconBtn
 					style={{ position: 'absolute', top: 0, right: 20, width: 49, height: 49 }}
@@ -357,8 +354,15 @@ class SearchScreen extends React.Component {
 						},
 					}}
 				>
-					<View onPress={() => { }} style={{ height: '100%' }}>
-						<View style={{ flexDirection: 'column', borderTopLeftRadius: 15, borderTopRightRadius: 15, backgroundColor: '#fff' }}>
+					<View onPress={() => {}} style={{ height: '100%' }}>
+						<View
+							style={{
+								flexDirection: 'column',
+								borderTopLeftRadius: 15,
+								borderTopRightRadius: 15,
+								backgroundColor: '#fff',
+							}}
+						>
 							<View style={{ flexDirection: 'row' }}>
 								<TouchableOpacity
 									onPress={() => this.RBSheet.close()}
@@ -381,7 +385,7 @@ class SearchScreen extends React.Component {
 							</View>
 							<FlatList
 								data={filters}
-								style={{ marginTop: 30, }}
+								style={{ marginTop: 30 }}
 								keyExtractor={(item, index) => index}
 								renderItem={({ item, index }) => {
 									return (
@@ -435,14 +439,21 @@ class SearchScreen extends React.Component {
 									marginBottom: 8,
 								}}
 							>
-								<Text style={{ color: '#fff', fontSize: 18, lineHeight: 22, fontFamily: Theme.fonts.bold }}>
+								<Text
+									style={{
+										color: '#fff',
+										fontSize: 18,
+										lineHeight: 22,
+										fontFamily: Theme.fonts.bold,
+									}}
+								>
 									{translate('search.applyFilters')}
 								</Text>
 							</TouchableOpacity>
 						</View>
 					</View>
 				</RBSheet>
-				<View style={{ flex: 1, marginTop: 108, }}>
+				<View style={{ flex: 1, marginTop: 108 }}>
 					{this.state.searched && (
 						<View
 							style={{
@@ -481,223 +492,237 @@ class SearchScreen extends React.Component {
 							</View>
 						</View>
 					)}
-					{
-						!this.state.searched ?
-							(
-								<FlatList
-									style={{ flex: 1, paddingHorizontal: 20 }}
-									data={filteredRecents.reverse()}
-									keyExtractor={(item) => item}
-									keyboardShouldPersistTaps='never'
-									renderItem={({ item }) => {
-										return (
-											<StartItem
-												title={item}
-												cat='recents'
-												onPress={() => this.search(item)}
-												onRemove={(text) => this.removeRecentItem(text)}
+					{!this.state.searched ? (
+						<FlatList
+							style={{ flex: 1, paddingHorizontal: 20 }}
+							data={filteredRecents.reverse()}
+							keyExtractor={(item) => item}
+							keyboardShouldPersistTaps='never'
+							renderItem={({ item }) => {
+								return (
+									<StartItem
+										title={item}
+										cat='recents'
+										onPress={() => this.search(item)}
+										onRemove={(text) => this.removeRecentItem(text)}
+									/>
+								);
+							}}
+							ListHeaderComponent={() => (
+								<View style={[Theme.styles.row_center]}>
+									<Text style={[styles.subjectTitle, { flex: 1 }]}>
+										{translate('search.recents')}
+									</Text>
+									<TouchableOpacity onPress={this.clearAllRecents}>
+										<Text style={styles.clearallBtn}>{translate('search.clear_all')}</Text>
+									</TouchableOpacity>
+								</View>
+							)}
+							ListFooterComponent={() => (
+								<>
+									<View style={{ height: 50 }}>
+										<Text style={styles.subjectTitle}>{translate('search.popular')}</Text>
+									</View>
+									<View style={styles.popularSearches}>
+										{popularSearches.map((item, index) => (
+											<PopularItem key={index} title={item} onPress={() => this.search(item)} />
+										))}
+									</View>
+								</>
+							)}
+						/>
+					) : selectedRestaurant ? (
+						<FlatList
+							style={{ flex: 1, paddingHorizontal: 20 }}
+							data={restaurants}
+							keyExtractor={(item) => item.id.toString()}
+							renderItem={({ item, index }) => {
+								return (
+									<View key={item.id}>
+										<VendorItem
+											data={{
+												...item,
+												selected_order_method: OrderType_Delivery,
+											}}
+											vendor_id={item.id}
+											isFav={item.isFav}
+											is_open={item.is_open}
+											style={{ width: '100%', marginBottom: 12 }}
+											onFavChange={this.onFavChange}
+											onSelect={() => {
+												this.showSimilar(item);
+											}}
+										/>
+										{restaurants.length != index + 1 && (
+											<View
+												style={{
+													width: '100%',
+													height: 4,
+													marginBottom: 12,
+													backgroundColor: Theme.colors.gray6,
+												}}
 											/>
-										);
-									}}
-									ListHeaderComponent={() => (
-										<View style={[Theme.styles.row_center]}>
-											<Text style={[styles.subjectTitle, { flex: 1 }]}>{translate('search.recents')}</Text>
-											<TouchableOpacity onPress={this.clearAllRecents}>
-												<Text style={styles.clearallBtn}>{translate('search.clear_all')}</Text>
-											</TouchableOpacity>
-										</View>
-									)}
-									ListFooterComponent={() => (
-										<>
-											<View style={{ height: 50 }}>
-												<Text style={styles.subjectTitle}>{translate('search.popular')}</Text>
-											</View>
-											<View style={styles.popularSearches}>
-												{popularSearches.map((item, index) => (
-													<PopularItem key={index} title={item} onPress={() => this.search(item)} />
-												))}
-											</View>
-										</>
-									)}
-								/>
-							) :
-							(
-								selectedRestaurant ?
-									<FlatList
-										style={{ flex: 1, paddingHorizontal: 20 }}
-										data={restaurants}
-										keyExtractor={(item) => item.id.toString()}
-										renderItem={({ item, index }) => {
-											return (
-												<View key={item.id}>
-													<VendorItem
-														data={{
-															...item,
-															selected_order_method: OrderType_Delivery
-														}}
-														vendor_id={item.id}
-														isFav={item.isFav}
-														is_open={item.is_open}
-														style={{ width: '100%', marginBottom: 12 }}
-														onFavChange={this.onFavChange}
-														onSelect={() => {
-															this.showSimilar(item);
-														}}
-													/>
-													{restaurants.length != (index + 1) && (
-														<View style={{ width: '100%', height: 4, marginBottom: 12, backgroundColor: Theme.colors.gray6, }} />
-													)}
-												</View>
-											);
-										}}
-										ListEmptyComponent={() => (
-											this.state.is_loading_restaurants == false ?
-												<View
-													style={{
-														height: windowHeight / 1.5,
-														justifyContent: 'center',
-														alignItems: 'center',
-													}}
-												>
-													<View>
-														<FastImage
-															source={require('../../../common/assets/images/search.png')}
-															style={{
-																marginBottom: 30,
-																width: 40,
-																height: 40,
-																resizeMode: 'contain',
-															}}
-														/>
-													</View>
-													<Text
-														style={{
-															fontSize: 17,
-															color: '#7E7E7E',
-															fontFamily: Theme.fonts.medium,
-														}}
-													>
-														{translate('search.not_found_part_one')}
-													</Text>
-													<Text
-														style={{
-															color: '#25252D',
-															fontSize: 17,
-															fontFamily: Theme.fonts.medium,
-															marginTop: 3,
-														}}
-													>
-														{"'" + text + "'"}
-													</Text>
-													<Text
-														style={{
-															fontSize: 17,
-															color: '#7E7E7E',
-															fontFamily: Theme.fonts.medium,
-															marginTop: 12,
-														}}
-													>
-														{translate('search.not_found_part_two')}
-													</Text>
-												</View>
-												: null
 										)}
-									/>
-									:
-									<FlatList
-										style={{ flex: 1, paddingHorizontal: 20 }}
-										data={foodItems}
-										keyExtractor={(item) => item.id.toString()}
-										renderItem={({ item, index }) => {
-											return (
-												<View style={[Theme.styles.col_center, { width: '100%' }]}>
-													{
-														(item.vendor != null) &&
-														(index == 0 || (index > 0 && (item.vendor_id != foodItems[index - 1].vendor_id))) &&
-														< VendorSearchItem
-															data={{
-																...item.vendor,
-																selected_order_method: OrderType_Delivery
-															}}
-															vendor_id={item.vendor_id}
-															style={{ width: '100%', marginBottom: 12 }}
-															onSelect={() => {
-																this.goToRestaurantDetails(item.vendor);
-															}}
-														/>
-													}
-													<VendorFoodItem
-														data={item}
-														food_id={item.id}
-														isFav={item.isFav}
-														onSelect={(data) => {
-															this.props.setTmpFood(data);
-															this.props.rootStackNav.navigate(RouteNames.FoodScreen);
-															// this.goToRestaurantDetails(data.vendor);
-														}}
-														onFavChange={this.onProductFavChange}
-													/>
-												</View>
-
-											);
+									</View>
+								);
+							}}
+							ListEmptyComponent={() =>
+								this.state.is_loading_restaurants == false ? (
+									<View
+										style={{
+											height: windowHeight / 1.5,
+											justifyContent: 'center',
+											alignItems: 'center',
 										}}
-										ListEmptyComponent={() =>
-											this.state.is_loading_items == false ?
-												<View
-													style={{
-														height: windowHeight / 1.5,
-														justifyContent: 'center',
-														alignItems: 'center',
+									>
+										<View>
+											<FastImage
+												source={require('../../../common/assets/images/search.png')}
+												style={{
+													marginBottom: 30,
+													width: 40,
+													height: 40,
+													resizeMode: 'contain',
+												}}
+											/>
+										</View>
+										<Text
+											style={{
+												fontSize: 17,
+												color: '#7E7E7E',
+												fontFamily: Theme.fonts.medium,
+											}}
+										>
+											{translate('search.not_found_part_one')}
+										</Text>
+										<Text
+											style={{
+												color: '#25252D',
+												fontSize: 17,
+												fontFamily: Theme.fonts.medium,
+												marginTop: 3,
+											}}
+										>
+											{"'" + text + "'"}
+										</Text>
+										<Text
+											style={{
+												fontSize: 17,
+												color: '#7E7E7E',
+												fontFamily: Theme.fonts.medium,
+												marginTop: 12,
+											}}
+										>
+											{translate('search.not_found_part_two')}
+										</Text>
+									</View>
+								) : null
+							}
+						/>
+					) : (
+						<FlatList
+							style={{ flex: 1, paddingHorizontal: 20 }}
+							data={foodItems}
+							keyExtractor={(item) => item.id.toString()}
+							renderItem={({ item, index }) => {
+								return (
+									<View style={[Theme.styles.col_center, { width: '100%' }]}>
+										{item.vendor != null &&
+											(index == 0 ||
+												(index > 0 && item.vendor_id != foodItems[index - 1].vendor_id)) && (
+												<VendorSearchItem
+													data={{
+														...item.vendor,
+														selected_order_method: OrderType_Delivery,
 													}}
-												>
-													<View>
-														<FastImage
-															source={require('../../../common/assets/images/search.png')}
-															style={{
-																marginBottom: 30,
-																width: 40,
-																height: 40,
-																resizeMode: 'contain',
-															}}
-														/>
-													</View>
-													<Text
-														style={{
-															fontSize: 17,
-															color: '#7E7E7E',
-															fontFamily: Theme.fonts.medium,
-														}}
-													>
-														{translate('search.not_found_part_one')}
-													</Text>
-													<Text
-														style={{
-															color: '#25252D',
-															fontSize: 17,
-															fontFamily: Theme.fonts.medium,
-															marginTop: 3,
-														}}
-													>
-														{"'" + text + "'"}
-													</Text>
-													<Text
-														style={{
-															fontSize: 17,
-															color: '#7E7E7E',
-															fontFamily: Theme.fonts.medium,
-															marginTop: 12,
-														}}
-													>
-														{translate('search.not_found_part_two')}
-													</Text>
-												</View>
-												: null
-										}
-									/>
-							)
-					}
+													vendor_id={item.vendor_id}
+													style={{ width: '100%', marginBottom: 12 }}
+													onSelect={() => {
+														this.goToRestaurantDetails(item.vendor);
+													}}
+												/>
+											)}
+										<VendorFoodItem
+											data={item}
+											food_id={item.id}
+											isFav={item.isFav}
+											onSelect={(data) => {
+												this.props.setTmpFood(data);
+												this.props.rootStackNav.navigate(RouteNames.FoodScreen);
+												// this.goToRestaurantDetails(data.vendor);
+											}}
+											onFavChange={this.onProductFavChange}
+										/>
+									</View>
+								);
+							}}
+							ListEmptyComponent={() =>
+								this.state.is_loading_items == false ? (
+									<View
+										style={{
+											height: windowHeight / 1.5,
+											justifyContent: 'center',
+											alignItems: 'center',
+										}}
+									>
+										<View>
+											<FastImage
+												source={require('../../../common/assets/images/search.png')}
+												style={{
+													marginBottom: 30,
+													width: 40,
+													height: 40,
+													resizeMode: 'contain',
+												}}
+											/>
+										</View>
+										<Text
+											style={{
+												fontSize: 17,
+												color: '#7E7E7E',
+												fontFamily: Theme.fonts.medium,
+											}}
+										>
+											{translate('search.not_found_part_one')}
+										</Text>
+										<Text
+											style={{
+												color: '#25252D',
+												fontSize: 17,
+												fontFamily: Theme.fonts.medium,
+												marginTop: 3,
+											}}
+										>
+											{"'" + text + "'"}
+										</Text>
+										<Text
+											style={{
+												fontSize: 17,
+												color: '#7E7E7E',
+												fontFamily: Theme.fonts.medium,
+												marginTop: 12,
+											}}
+										>
+											{translate('search.not_found_part_two')}
+										</Text>
+									</View>
+								) : null
+							}
+						/>
+					)}
 				</View>
-				<View style={{ position: 'absolute', top: 50, left: 0, width: '100%', flexDirection: 'row', alignItems: 'center', }}>{this.renderSearchView()}</View>
+				<View
+					style={{
+						position: 'absolute',
+						top: 50,
+						left: 0,
+						width: '100%',
+						flexDirection: 'row',
+						alignItems: 'center',
+					}}
+				>
+					{this.renderSearchView()}
+				</View>
 			</View>
 		);
 	}
@@ -712,5 +737,6 @@ function mapStateToProps({ app, vendors, shop }) {
 }
 
 export default connect(mapStateToProps, {
-	setVendorCart, setTmpFood
+	setVendorCart,
+	setTmpFood,
 })(withNavigation(SearchScreen));

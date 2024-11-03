@@ -59,7 +59,7 @@ class MessageBubble extends React.Component {
 			const { currentMessage } = this.props;
 			this.backCount++;
 
-			// console.log('this.backCount ', this.backCount)
+			// 
 			if (this.backCount == 2) {
 				this.backCount = 0;
 				clearTimeout(this.backTimer);

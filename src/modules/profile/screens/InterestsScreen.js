@@ -40,7 +40,7 @@ const InterestsScreen = (props) => {
 	}
 
 	const onSave = async () => {
-		console.log(selected);
+		
 		apiFactory.post(`interests`, { interests: selected })
 			.then(async ({ data }) => {
 				setHasChanges(false);

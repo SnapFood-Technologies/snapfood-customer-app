@@ -67,10 +67,10 @@ export const renderActions = (props) => (
 		)}
 		options={{
 			'Choose From Library': () => {
-				console.log('Choose From Library');
+				
 			},
 			Cancel: () => {
-				console.log('Cancel');
+				
 			},
 		}}
 		optionTintColor='#222B45'
@@ -142,7 +142,7 @@ const CustomComposer = ({ props, editable = true, onPressEmoji, onPressLocation,
 					textInputProps={{
 						editable: editable,
 						onContentSizeChange: (event) => {
-							console.log(event.nativeEvent.contentSize.height);
+							
 							setMinHeight(event.nativeEvent.contentSize.height);
 						},
 					}}

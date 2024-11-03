@@ -29,7 +29,7 @@ class EditPhoneScreen extends React.Component {
 
     componentDidMount() {
         this._unsubscribe = this.props.navigation.addListener('beforeRemove', (e) => {
-            console.log('beforeRemove called')
+            
             e.preventDefault();
             if (this.props.user.phone) {
                 this.props.navigation.dispatch(e.data.action)
@@ -57,7 +57,7 @@ class EditPhoneScreen extends React.Component {
             this.setState({ loading: false });
             this.props.navigation.goBack();
         } catch (error) {
-            console.log('update error', error)
+            
             this.setState({ loading: false });
             return alerts.error(translate('attention'), translate('checkout.something_is_wrong'));
         }

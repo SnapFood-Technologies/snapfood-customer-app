@@ -61,7 +61,7 @@ class BlogScreen extends React.Component {
                 page: 1,
                 selectedCategory: this.props.profile_blog_filter.category_id,
             }); 
-            console.log('getBlog : ', this.state)
+            
             this.getBlog(IS_REFRESHING);
         }
     } 

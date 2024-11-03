@@ -12,7 +12,7 @@ const Switch = ({ cur_item, btnWidth = 100, items, textStyle, onSelect }) => {
         setCurItem(cur_item == null ? items[0] : cur_item)
     }, [cur_item])
 
-    console.log('2. Switch')
+    
     return <View style={[Theme.styles.row_center, styles.container, { width: items.length * btnWidth }]}>
         {
             items.map((item, index) =>

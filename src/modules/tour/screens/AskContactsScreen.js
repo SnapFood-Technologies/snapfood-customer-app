@@ -31,14 +31,14 @@ class AskContactsScreen extends React.PureComponent {
     accessContacts = () => {
         if (Platform.OS == 'android') {
             PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS).then((res) => {
-                console.log('PermissionsAndroid.request ', res);
+                
                 if (res == 'granted') {
                     this.props.navigation.navigate(RouteNames.ContactsScreen)
                 } else {
                     Alert.alert(translate('attention'), translate('contactUnavailable'), [
                         {
                             text: translate('cancel'),
-                            onPress: () => { }, // console.log('Cancel Pressed'),
+                            onPress: () => { }, // 
                             style: 'cancel',
                         },
                         {
@@ -58,7 +58,7 @@ class AskContactsScreen extends React.PureComponent {
                     Alert.alert(translate('attention'), translate('contactUnavailable'), [
                         {
                             text: translate('cancel'),
-                            onPress: () => { }, // console.log('Cancel Pressed'),
+                            onPress: () => { }, // 
                             style: 'cancel',
                         },
                         {
@@ -76,7 +76,7 @@ class AskContactsScreen extends React.PureComponent {
         try {
             await setStorageKey(KEYS.ASKED_CONTACTS_PERMISSION, true);
         } catch (e) {
-            console.log(e);
+            
         }
         this.props.setAskedContactsPerm(true);
     }

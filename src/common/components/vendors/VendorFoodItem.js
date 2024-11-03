@@ -13,18 +13,19 @@ import { updateCartItems, removeProductFromCart } from '../../../store/actions/s
 import { isEmpty } from '../../services/utility';
 import DiscountLabel from './DiscountLabel';
 import PriceLabel from './PriceLabel';
+import { mixpanel } from '../../../AppRoot';
 
 const VendorFoodItem = (props) => {
     const { data, isFav, cartCnt, type, onSelect, onFavChange, style, diabled, cartEnabled, } = props
 
     const onPressFav = () => {
-		mixpanel.track(props.vendorData.isFav ? 'Remove Products From Favorite' : 'Add Products To Favorite');
-        props.toggleProductFavourite(data.id, isFav == 1 ? 0 : 1).then((res) => {
-            data.isFav = isFav == 1 ? 0 : 1
+		mixpanel.track(isFav ? 'Remove Products From Favorite' : 'Add Products To Favorite');
+        props.toggleProductFavourite(data.id, isFav === 1 ? 0 : 1).then((res) => {
+            data.isFav = isFav === 1 ? 0 : 1
             onFavChange(data)
         })
             .catch((error) => {
-                console.log('onPressFav', error)
+                
             })
     }
 
@@ -32,7 +33,7 @@ const VendorFoodItem = (props) => {
         try {
             await props.removeProductFromCart(data, true);
         } catch (error) {
-            console.log('onRemoveItem', error);
+            
         }
     }
 
@@ -41,7 +42,7 @@ const VendorFoodItem = (props) => {
         return `${left_days} days left`;
     }
 
-    // console.log('vendor food item')
+    // 
     const getImagePath = () => {
         if (data.use_full_image == 1 && !isEmpty(data.new_image_path)) {
             return `${Config.IMG_BASE_URL}${data.new_image_path}`
@@ -63,7 +64,7 @@ const VendorFoodItem = (props) => {
     }
 
     if (data.price == 690) {
-        console.log('data.title.length ', data.title, data.title.length)
+        
     }
     
     return <Swipeout
@@ -159,7 +160,7 @@ function arePropsEqual(prevProps, nextProps) {
         (prevProps.food_id == nextProps.food_id && prevProps.cartCnt != nextProps.cartCnt) ||
         (prevProps.food_id == nextProps.food_id && prevProps.diabled != nextProps.diabled)
     ) {
-        console.log('food item equal : ', prevProps.data.title, false)
+        
         return false;
     }
     return true;

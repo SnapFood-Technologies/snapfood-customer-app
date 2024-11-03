@@ -133,11 +133,11 @@ const CartSchedulerModal = (props) => {
                     let tmpDateIndex = availPickupDays.findIndex(d => d.date == tmp[0]);
                     if (tmpDateIndex != -1) {
                         date_index = tmpDateIndex;
-                        console.log('date_index ', date_index, tmp[1])
+                        
                         if (availPickupDays[tmpDateIndex].times != null) {
                             let tmpTimeIndex = availPickupDays[tmpDateIndex].times.findIndex(t => t + ':00' == tmp[1]);
                             if (tmpTimeIndex != -1) {
-                                console.log('time_index ', tmpTimeIndex)
+                                
                                 time_index = tmpTimeIndex;
                             }
                         }
@@ -165,7 +165,7 @@ const CartSchedulerModal = (props) => {
             return;
         }
 
-        console.log('confirm ', _date, _time)
+        
         props.setDeliveryInfoCart({
             schedule_time: `${_date} ${_time}:00`
         });

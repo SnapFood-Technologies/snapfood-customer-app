@@ -90,7 +90,7 @@ export const confirmOrderDelivery = (orderId) =>  (dispatch, getState) => {
                 resolve();
             },
             (error) => {
-                console.log('confirmOrderDelivery ', error);
+                
                 reject(error);
             }
         );

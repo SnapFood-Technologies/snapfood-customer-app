@@ -17,7 +17,7 @@ const OrderItem = ({ data, order_id, order_status, onCancel, onDelete, onPress, 
 	const inprogress_status = ['new', 'processing', 'picked_by_rider']
 	const payment_methods = [Pay_COD, Pay_Paypal, Pay_Card, Pay_Apple]
 
-	console.log('order Item')
+	
 
 	const isPast = () => {
 		return past_status.includes(data.status)

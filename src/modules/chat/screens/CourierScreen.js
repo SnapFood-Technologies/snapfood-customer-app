@@ -58,9 +58,9 @@ class CourierScreen extends React.Component {
             }
         },
             (error) => {
-                console.log('getRiderDetail ', error)
+                
                 const message = error.message || translate('generic_error');
-                console.log(message);
+                
             });
     }
 
@@ -82,7 +82,7 @@ class CourierScreen extends React.Component {
         },
             (error) => {
                 this.setState({ loading: true })
-                console.log(error);
+                
                 const message = error.message || translate('generic_error');
                 alerts.error(translate('alerts.error'), message);
                 if (this._isMounted == true) {

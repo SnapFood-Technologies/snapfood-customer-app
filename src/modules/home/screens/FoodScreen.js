@@ -42,7 +42,6 @@ import ProductOptions from '../components/ProductOptions';
 import { mixpanel } from '../../../AppRoot';
 
 const FoodScreen = (props) => {
-
 	const [isGalleryModal, ShowGalleryModal] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [addtions, setAddtions] = useState([]);
@@ -52,22 +51,20 @@ const FoodScreen = (props) => {
 
 	const extraAdditions = useMemo(() => {
 		if (props.tmpFoodData?.product_options && props.tmpFoodData?.product_options.length > 0) {
-			return props.tmpFoodData?.product_options.filter(item => item.type == 'addition');
+			return props.tmpFoodData?.product_options.filter((item) => item.type == 'addition');
 		}
 		return [];
 	}, [props.tmpFoodData?.product_options]);
 
 	const extraOptions = useMemo(() => {
 		if (props.tmpFoodData?.product_options && props.tmpFoodData?.product_options.length > 0) {
-			return props.tmpFoodData?.product_options.filter(item => item.type == 'option');
+			return props.tmpFoodData?.product_options.filter((item) => item.type == 'option');
 		}
 		return [];
 	}, [props.tmpFoodData?.product_options]);
 
 	useEffect(() => {
-		return () => {
-			console.log('FoodScreen screen unmount');
-		};
+		return () => {};
 	}, []);
 
 	const onPressFav = () => {
@@ -76,9 +73,7 @@ const FoodScreen = (props) => {
 			.then((res) => {
 				props.setTmpFood({ ...props.tmpFoodData, isFav: props.tmpFoodData.isFav == 1 ? 0 : 1 });
 			})
-			.catch((error) => {
-				console.log('onPressFav', error);
-			});
+			.catch((error) => {});
 	};
 
 	const onShare = async () => {
@@ -95,7 +90,6 @@ const FoodScreen = (props) => {
 	};
 
 	const onPressAddCart = () => {
-
 		let items = props.cartItems.filter((i) => i.vendor_id != props.vendorData.id);
 		if (items.length > 0) {
 			checkVendorOpen(items[0].vendor_id)
@@ -111,15 +105,13 @@ const FoodScreen = (props) => {
 							.then(() => {
 								onConfirmReset();
 							});
-					}
-					else {
+					} else {
 						onConfirmReset();
 					}
 				})
 				.catch((error) => {
 					onConfirmReset();
-				})
-
+				});
 		} else {
 			if (cartNum <= 0) {
 				// remove item from cart
@@ -135,15 +127,13 @@ const FoodScreen = (props) => {
 			return alerts.error(translate('attention'), translate('restaurant_details.option_is_required'));
 		}
 		return true;
-	}
+	};
 
 	const onConfirmReset = async () => {
 		if (validateRequiredOption()) {
-			let selectedOptions = [
-				...addtions, ...options
-			];
+			let selectedOptions = [...addtions, ...options];
 
-			let cartItem = {...props.tmpFoodData};
+			let cartItem = { ...props.tmpFoodData };
 			cartItem.quantity = cartNum;
 			cartItem.comments = comments;
 			cartItem.options = selectedOptions;
@@ -158,13 +148,11 @@ const FoodScreen = (props) => {
 	};
 
 	const onAddCart = () => {
-		mixpanel.track('Cart Session Created')
+		mixpanel.track('Cart Session Created');
 		if (validateRequiredOption()) {
-			let selectedOptions = [
-				...addtions, ...options
-			];
+			let selectedOptions = [...addtions, ...options];
 
-			let cartItem = {...props.tmpFoodData};
+			let cartItem = { ...props.tmpFoodData };
 			cartItem.quantity = cartNum;
 			cartItem.comments = comments;
 			cartItem.options = selectedOptions;
@@ -195,7 +183,6 @@ const FoodScreen = (props) => {
 			}, 700);
 		} catch (error) {
 			setLoading(false);
-			console.log('onRemoveItem', error);
 		}
 	};
 
@@ -275,35 +262,45 @@ const FoodScreen = (props) => {
 	const renderImage = () => {
 		if (props.tmpFoodData.use_full_image == 1 && !isEmpty(props.tmpFoodData.new_image_path)) {
 			return (
-				<TouchableOpacity style={{ width: '100%', height: 270, }} onPress={() => { ShowGalleryModal(true) }}>
+				<TouchableOpacity
+					style={{ width: '100%', height: 300 }}
+					onPress={() => {
+						ShowGalleryModal(true);
+					}}
+				>
 					<FastImage
 						source={{ uri: `${Config.IMG_BASE_URL}${props.tmpFoodData.new_image_path}` }}
-						style={[styles.img, { height: 270 }]}
+						style={[styles.img, { height: 300 }]}
 						resizeMode={FastImage.resizeMode.cover}
 					/>
 				</TouchableOpacity>
-			)
+			);
 		}
 		if (!isEmpty(props.tmpFoodData.image_path)) {
 			return (
-				<TouchableOpacity style={{ width: '100%', height: 190, }} onPress={() => { ShowGalleryModal(true) }}>
+				<TouchableOpacity
+					style={{ width: '100%', height: 190 }}
+					onPress={() => {
+						ShowGalleryModal(true);
+					}}
+				>
 					<FastImage
 						source={{ uri: `${Config.IMG_BASE_URL}${props.tmpFoodData.image_path}?w=600&h=600` }}
 						style={[styles.img]}
 						resizeMode={FastImage.resizeMode.cover}
 					/>
 				</TouchableOpacity>
-			)
+			);
 		}
 		return <View style={{ height: 100 }} />;
-	}
+	};
 
 	const getModalImagePath = () => {
 		if (props.tmpFoodData.use_full_image == 1 && !isEmpty(props.tmpFoodData.new_image_path)) {
-			return `${Config.IMG_BASE_URL}${props.tmpFoodData.new_image_path}`
+			return `${Config.IMG_BASE_URL}${props.tmpFoodData.new_image_path}`;
 		}
-		return `${Config.IMG_BASE_URL}${props.tmpFoodData.image_thumbnail_path}?w=600&h=600`
-	}
+		return `${Config.IMG_BASE_URL}${props.tmpFoodData.image_thumbnail_path}?w=600&h=600`;
+	};
 
 	return (
 		<React.Fragment>
@@ -313,38 +310,34 @@ const FoodScreen = (props) => {
 					{
 						<View style={{ padding: 20, width: '100%' }}>
 							{_renderInfoView()}
-							{
-								extraAdditions.length > 0 &&
+							{extraAdditions.length > 0 && (
 								<ProductOptions
 									options={extraAdditions}
 									type='addition'
 									isMultiple={props.tmpFoodData?.addition_selected_type == 0}
 									values={addtions}
 									onSelect={(item) => {
-										let index = addtions.findIndex(i => i.id == item.id);
-										if (props.tmpFoodData?.addition_selected_type == 0) { // multiple
+										let index = addtions.findIndex((i) => i.id == item.id);
+										if (props.tmpFoodData?.addition_selected_type == 0) {
+											// multiple
 											if (index == -1) {
-												setAddtions(pre => [...pre, item]);
-											}
-											else {
+												setAddtions((pre) => [...pre, item]);
+											} else {
 												let cpy = addtions.slice(0);
 												cpy.splice(index, 1);
 												setAddtions(cpy);
 											}
-										}
-										else {
+										} else {
 											if (index == -1) {
 												setAddtions([item]);
-											}
-											else {
+											} else {
 												setAddtions([]);
 											}
 										}
 									}}
 								/>
-							}
-							{
-								extraOptions.length > 0 &&
+							)}
+							{extraOptions.length > 0 && (
 								<ProductOptions
 									options={extraOptions}
 									type='option'
@@ -352,28 +345,26 @@ const FoodScreen = (props) => {
 									isRequired={props.tmpFoodData?.option_selected_required == 1}
 									values={options}
 									onSelect={(item) => {
-										let index = options.findIndex(i => i.id == item.id);
-										if (props.tmpFoodData?.option_selected_type == 0) { // multiple
+										let index = options.findIndex((i) => i.id == item.id);
+										if (props.tmpFoodData?.option_selected_type == 0) {
+											// multiple
 											if (index == -1) {
-												setOptions(pre => [...pre, item]);
-											}
-											else {
+												setOptions((pre) => [...pre, item]);
+											} else {
 												let cpy = options.slice(0);
 												cpy.splice(index, 1);
 												setOptions(cpy);
 											}
-										}
-										else {
+										} else {
 											if (index == -1) {
 												setOptions([item]);
-											}
-											else {
+											} else {
 												setOptions([]);
 											}
 										}
 									}}
 								/>
-							}
+							)}
 							<View style={{ height: 12 }} />
 							<CommentView
 								title={translate('restaurant_details.additional_note')}
@@ -389,11 +380,12 @@ const FoodScreen = (props) => {
 			</KeyboardAwareScrollView>
 			<ImgGalleryModal
 				index={0}
-				images={[{
-					source: {
-						uri: getModalImagePath()
-					}
-				}
+				images={[
+					{
+						source: {
+							uri: getModalImagePath(),
+						},
+					},
 				]}
 				showModal={isGalleryModal}
 				onClose={() => ShowGalleryModal(false)}
@@ -457,7 +449,7 @@ const styles = StyleSheet.create({
 	cartBtns: { width: '100%', marginTop: 12, marginBottom: 40 },
 	img: { width: '100%', height: 190, resizeMode: 'cover' },
 	age18: { marginLeft: 4, width: 24, height: 24, borderRadius: 12, backgroundColor: Theme.colors.red1 },
-	age18txt: { fontSize: 12, lineHeight: 14, fontFamily: Theme.fonts.semiBold, color: Theme.colors.white, }
+	age18txt: { fontSize: 12, lineHeight: 14, fontFamily: Theme.fonts.semiBold, color: Theme.colors.white },
 });
 
 const mapStateToProps = ({ app, shop }) => ({

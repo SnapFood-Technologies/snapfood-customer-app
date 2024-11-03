@@ -70,7 +70,7 @@ function arePropsEqual(prevProps, nextProps) {
         prevProps.online_payment != nextProps.online_payment ||
         (prevProps.data?.selected_order_method != nextProps.data?.selected_order_method)
     ) {
-        console.log('vendor item equal : ', prevProps.data.title, false)
+        
         return false;
     }
     return true;

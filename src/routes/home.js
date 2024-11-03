@@ -66,18 +66,17 @@ const MyTabBar = connect(myTabBarState, { setActiveRoute, setShowOrderNowModal }
 					}
 
 					if (label == translate('bottomtabs.orders')) {
-						console.log('on click orders tab');
+						
 						setShowOrderNowModal(true);
 					}
 
 					if (homeScroller) {
 						try {
 							homeScroller.scrollToPosition(0, 0)
-						} catch (error) {console.log('err ======= ', error)}
+						} catch (error) {}
 					}
 
 					const event = navigation.emit({ type: 'tabPress', target: key, canPreventDefault: true });
-
 					if (!isFocused && !event.defaultPrevented) navigation.navigate(name);
 				};
 
@@ -126,7 +125,7 @@ const HomeTabs = (props) => {
         }
         if (props.isChatVisible == true && props.pushConversationId != null) {
             if (props.pushConversationId.includes('order') == true) {
-                console.log('order support ', props.pushConversationId)
+                
                 props.navigation.navigate(RouteNames.OrderSupport, { fromPush: true, channelId: props.pushConversationId, pushChatMsgTime: props.pushChatMsgTime })
             }
             else {

@@ -25,7 +25,7 @@ class VendorLocationScreen extends React.Component {
 
         const address = props.route.params.address
 
-        console.log('address', address)
+        
         if (address.lat) {
             address.lat = parseFloat(address.lat);
         }
@@ -47,7 +47,7 @@ class VendorLocationScreen extends React.Component {
         if (lat == null || lng == null) {
             return null;
         }
-        console.log('render map', lat, lng)
+        
         let marker = (
             <View style={[Theme.styles.col_center,]}>
                 <View style={[Theme.styles.row_center, styles.markerInfoView]}>

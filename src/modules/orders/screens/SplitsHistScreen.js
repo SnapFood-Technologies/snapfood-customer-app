@@ -47,7 +47,7 @@ const SplitsHistScreen = (props) => {
 			},
 				(error) => {
 					setCurrentLoaded(true);
-					console.log('get Current error', error)
+					
 					const message = error.message || translate('generic_error');
 					alerts.error(translate('alerts.error'), message);
 				});
@@ -84,7 +84,7 @@ const SplitsHistScreen = (props) => {
 				}
 			},
 				(error) => {
-					console.log('get deposits error', error)
+					
 					const message = error.message || translate('generic_error');
 					setPastLoadStatus({
 						...pastLoadState,

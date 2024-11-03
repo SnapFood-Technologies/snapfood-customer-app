@@ -37,7 +37,7 @@ class ChooseFriendsScreen extends React.Component {
 		this.getAllFriends();
 
 		this.removefocusListener = this.props.navigation.addListener('focus', () => {
-			console.log('focus listener : getAllFriends');
+			
 			this.getAllFriends();
 		});
 	}
@@ -64,7 +64,7 @@ class ChooseFriendsScreen extends React.Component {
 				if (this._isMounted == true) {
 					this.setState({ isLoading: false });
 				}
-				console.log('getFriends', err);
+				
 			});
 	};
 
@@ -130,7 +130,7 @@ class ChooseFriendsScreen extends React.Component {
 			<View style={styles.titleContainer}>
 				<BackButton
 					onPress={() => {
-						console.log(this.props.navigation);
+						
 						this.props.navigation.goBack();
 					}}
 				/>

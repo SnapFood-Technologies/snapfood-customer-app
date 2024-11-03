@@ -30,7 +30,7 @@ class ForgetPassScreen extends React.PureComponent {
         if (validateEmailAddress(this.state.email)) {
             apiFactory.post('forgot-password', { email: this.state.email })
                 .then(({ data }) => {
-                    console.log('onForgotPass', data)
+                    
                     if (data != null && data.success == true) {
                         this.props.navigation.navigate(RouteNames.ResetPassScreen, { email: this.state.email });
                     }
@@ -45,7 +45,7 @@ class ForgetPassScreen extends React.PureComponent {
                     if (error != null && error.message != null) {
                         alerts.error('Error', error.message);
                     }
-                    console.log('onForgotPass error', error)
+                    
                 })
         }
     }

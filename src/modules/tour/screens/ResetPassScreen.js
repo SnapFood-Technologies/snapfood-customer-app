@@ -33,7 +33,7 @@ class ResetPassScreen extends React.PureComponent {
             apiFactory.post('reset-password', { email: this.state.email, password: password })
                 .then((response) => {
                     this.setState({ loading: false });
-                    console.log('onResetPass', response)
+                    
                     this.props.navigation.navigate(RouteNames.ResetPassDoneScreen);
                 })
                 .catch((error) => {
@@ -41,7 +41,7 @@ class ResetPassScreen extends React.PureComponent {
                     if (error != null && error.message != null) {
                         alerts.error('Error', error.message);
                     }
-                    console.log('onResetPass error', error)
+                    
                 })
         }
 

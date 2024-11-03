@@ -41,7 +41,7 @@ const BlogFilterScreen = (props) => {
 							item={{ name : (props.language == 'en' ? item.title : item.sq_title), type: 'checkbox' }}
 							isChecked={selected_catid == item.id}
 							onSelect={(data) => {
-								console.log('=================== ', data)
+								
 								setCategoryId(item.id);
 							}}
 						/>

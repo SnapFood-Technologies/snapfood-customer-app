@@ -337,7 +337,7 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, tmp_new_address: action.payload || {} }
         }
         case APP.TMP_SET_FOOD: {
-            console.log('set tmp food', action.payload.isFav)
+            
             return {
                 ...state,
                 tmpFoodData: action.payload || {},

@@ -43,7 +43,7 @@ const InvitationReferralsHistScreen = (props) => {
 			.catch(err => {
 				if (_isMounted.current == true) {
 					setLoading(false)
-					console.log('err getReferrals ', err)
+					
 				}
 			});
 	};

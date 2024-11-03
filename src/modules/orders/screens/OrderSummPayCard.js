@@ -48,7 +48,7 @@ const OrderSummPayCard = (props) => {
             },
             (error) => {
                 setLoadingCard(false);
-                console.log('loadPaymentMethods error', error);
+                
                 // const message = error.message || translate('generic_error');
                 // alerts.error(translate('alerts.error'), message);
             }
@@ -65,7 +65,7 @@ const OrderSummPayCard = (props) => {
                     props.navigation.goBack();
                 })
                 .catch((error) => {
-                    console.log('getOrderDetail', error);
+                    
                     setLoading(false);
                     props.navigation.goBack();
                 });

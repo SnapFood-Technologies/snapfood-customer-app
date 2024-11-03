@@ -54,7 +54,7 @@ class NewGroupScreen extends React.Component {
     }
 
     onChangeSearch = async (searchTerms) => {
-        console.log(searchTerms)
+        
         await this.setState({searchTerms});
         this.getAllFriends(searchTerms);
         this.getSnapfooders('none');
@@ -93,7 +93,7 @@ class NewGroupScreen extends React.Component {
         })
         .catch(err => {
             this.setState({friend_loaded : true})
-            console.log('getFriends', err)
+            
         })
     }
 

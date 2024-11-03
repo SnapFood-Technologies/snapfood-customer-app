@@ -11,14 +11,14 @@ const UserMarkers = ({ latitude, longitude, photo }) => {
     const isMounted = useRef(false);
     const userMarker = useRef(null);
     useEffect(() => {
-        console.log("user mark called")
+        
         if (userMarker.current && isMounted.current == false) {
             userMarker.current.showCallout();
             isMounted.current = true;
         }
     }, []);
 
-    console.log('UserMarkers');
+    
     return (
         <Marker
             tracksInfoWindowChanges={false}
@@ -61,7 +61,7 @@ function arePropsEqual(prevProps, nextProps) {
         prevProps.longitude != nextProps.longitude ||
         prevProps.photo != nextProps.photo
     ) {
-        console.log('UserMarker item equal : ', false)
+        
         return false;
     }
     return true;

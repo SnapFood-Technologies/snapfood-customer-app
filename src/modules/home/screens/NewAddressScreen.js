@@ -32,7 +32,7 @@ const NewAddressScreen = (props) => {
 
 	useEffect(() => {
 		return () => {
-			console.log('NewAddressScreen screen unmount');
+			
 		};
 	}, []);
 
@@ -169,7 +169,7 @@ const NewAddressScreen = (props) => {
 					},
 				}}
 				onClose={() => {
-					console.log('dsad');
+					
 				}}
 			>
 				<View style={styles.rbSheetView}>
@@ -192,7 +192,7 @@ const NewAddressScreen = (props) => {
 							loading={loading}
 							title={translate('address_new.save_button')}
 							onPress={() => {
-								console.log('on presss')
+								
 								if (address_label.length > 0) {
 									props.setTmpLocationPicked({
 										...props.tmp_new_address,
@@ -273,7 +273,7 @@ const NewAddressScreen = (props) => {
 			}
 			props.navigation.goBack();
 		} catch (error) {
-			console.log('error', error);
+			
 			setLoading(false);
 			alerts.error(translate('restaurant_details.we_are_sorry'), extractErrorMessage(error));
 		}

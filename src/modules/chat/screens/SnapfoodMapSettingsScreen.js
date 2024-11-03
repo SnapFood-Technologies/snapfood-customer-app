@@ -44,7 +44,7 @@ class SnapfoodMapSettingsScreen extends React.Component {
 			.then(
 				({ data }) => {
 					if (this._isMounted == true) {
-						console.log('getMapSetting ', data);
+						
 						this.setState({
 							offlineMode: data.map_visible == 0,
 							hideSnapfooder: data.hide_as_snapfooder == 1,
@@ -78,7 +78,7 @@ class SnapfoodMapSettingsScreen extends React.Component {
 			.then(
 				({ data }) => {
 					if (this._isMounted == true) {
-						console.log('update Map Setting ', data);
+						
 						if (data.user) {
 							this.setState({
 								loading: false,

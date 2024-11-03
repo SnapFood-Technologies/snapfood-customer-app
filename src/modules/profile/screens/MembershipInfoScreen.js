@@ -45,7 +45,7 @@ const MembershipInfoScreen = (props) => {
             },
             (error) => {
                 setLoadingCard(false);
-                console.log('loadPaymentMethods error', error);
+                
                 // const message = error.message || translate('generic_error');
                 // alerts.error(translate('alerts.error'), message);
             }
@@ -84,7 +84,7 @@ const MembershipInfoScreen = (props) => {
             })
             .catch((error) => {
                 setLoading(false);
-                console.log('onSubscribe error', error);
+                
                 const message = error.message || translate('generic_error');
                 alerts.error(translate('alerts.error'), message);
             })

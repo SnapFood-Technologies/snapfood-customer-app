@@ -39,7 +39,7 @@ const CashbackOrdersScreen = (props) => {
 		loadCashback(1, PerPage, true);
 
 		return () => {
-			console.log("Cashback orders screen unmount")
+			
 			_isMounted.current = false;
 		};
 	}, [])
@@ -69,7 +69,7 @@ const CashbackOrdersScreen = (props) => {
 				(error) => {
 					if (_isMounted.current == true) {
 						setLoading(false);
-						console.log('loadCashback error', error)
+						
 						const message = error.message || translate('generic_error');
 						alerts.error(translate('alerts.error'), message);
 					}

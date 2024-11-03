@@ -121,12 +121,12 @@ export const Story = (props) => {
             })
             .then(
                 ({ data }) => {
-                    console.log('aaaaaaaaaaaaaaaa ', user_ids, data.snapfooders);
+                    
                     setViewers(data.snapfooders || []);
                 },
                 (error) => {
                     setViewers([]);
-                    console.log('onViewerOpen ', error);
+                    
                 }
             );
     }
@@ -226,7 +226,7 @@ export const Story = (props) => {
                         }
                     }}
                     callbackOnSwipe={() => {
-                        console.log('start swipe ')
+                        
                         setShowSnackBar(false);
                     }}
                 >
@@ -242,7 +242,7 @@ export const Story = (props) => {
                     }
                 }}
                 callbackOnSwipe={() => {
-                    console.log('start swipe ')
+                    
                     setShowSnackBar(false);
                 }}
             >

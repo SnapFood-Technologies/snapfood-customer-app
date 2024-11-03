@@ -50,7 +50,7 @@ const EarnScreen = (props) => {
 			props.loadInvitationTimerSetting();
 		});
 		return () => {
-			console.log("InviteEarn screen unmount")
+			
 			if (timeoutRef?.current) clearTimeout(timeoutRef.current);
 			_isMounted.current = false;
 			try {
@@ -152,7 +152,7 @@ const EarnScreen = (props) => {
 				}
 			})
 			.catch(err => {
-				console.log('onSendInvitation err ', err);
+				
 				const message = err.message || translate('generic_error');
 				alerts.error(translate('alerts.error'), message);
 			})

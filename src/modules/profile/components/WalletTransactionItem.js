@@ -101,6 +101,10 @@ const WalletTransactionItem = memo(({ data, onSelect, style }) => {
                     data.category == 'received_deposit' &&
                     <Text style={styles.descTxt}>{translate('wallet.received_from')} {data.user_data?.full_name}</Text>
                 }
+                {
+                    data.category == 'blog_quiz_earning' &&
+                    <Text style={styles.descTxt}>{translate('wallet.blog_quiz_earning')}</Text>
+                }
             </View>
             <Text style={styles.priceTxt}>{parseInt(data.amount) > 0 ? '+' : ''} {parseInt(data.amount)} L</Text>
         </TouchableOpacity>;

@@ -151,7 +151,7 @@ class SnapfoodersSplitScreen extends React.Component {
         return (
             <View style={styles.titleContainer}>
                 <BackButton onPress={() => {
-                    console.log(this.props.navigation);
+                    
                     this.props.navigation.goBack();
                 }} />
                 <Text style={styles.title}>{translate('social.snapfooders')}</Text>

@@ -57,7 +57,7 @@ const ScantoPay = (props) => {
                 setRewardRate(data.rate);
             },
             (error) => {
-                console.log('getReservationRewards error', error);
+                
             }
         );
     }
@@ -78,7 +78,7 @@ const ScantoPay = (props) => {
             },
             (error) => {
                 setLoadingCard(false);
-                console.log('loadPaymentMethods error', error);
+                
                 // const message = error.message || translate('generic_error');
                 // alerts.error(translate('alerts.error'), message);
             }

@@ -122,7 +122,7 @@ const OnboardingScreen = (props) => {
     return (
         <Swiper onIndexChanged={(index) => {
             if (index == config.length) {
-                console.log("index onGoWelcome")
+                
                 onGoWelcome()
             }
         }} loop={false} index={page_step} showsPagination={false}>

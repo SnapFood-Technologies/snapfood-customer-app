@@ -48,7 +48,7 @@ function arePropsEqual(prevProps, nextProps) {
     if (prevProps.curitem != nextProps.curitem) {
         isEqual = false;
     }
-    // console.log(prevProps.items, nextProps.items, isEqual)
+    // 
     return isEqual;
 }
 

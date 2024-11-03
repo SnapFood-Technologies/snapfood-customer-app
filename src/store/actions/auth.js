@@ -28,7 +28,7 @@ export const legacyLogin = token => async dispatch => {
         } catch (e) {
         }
 
-        console.log('legacy login fcm token : ', device.token)
+        
         apiFactory.post('login/legacy', { device }, {
             headers: {
                 Authorization: token,
@@ -157,7 +157,7 @@ export const googleLogin = (id_token, refferalCode) => async dispatch => {
         })
             .then(async ({ data }) => {
 
-                console.log('login/google', data)
+                
 
                 await setStorageKey(KEYS.TOKEN, data.token);
                 const user = await getLoggedInUserData();
@@ -325,7 +325,7 @@ export const updateProfileDetails = (user) => async dispatch => {
             //     type: APP.SET_HAS_VERIFIED_PHONE,
             //     payload: !!data.user['verified_by_mobile'],
             // }); 
-            // console.log('updateProfileDetails', data.user)
+            // 
             await dispatch({
                 type: APP.SET_USER_DATA,
                 payload: data.user,

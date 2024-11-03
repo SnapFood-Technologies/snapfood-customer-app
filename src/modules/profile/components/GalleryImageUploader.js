@@ -25,7 +25,7 @@ const GalleryImageUploader = ({ data, setPhoto, onDelete }) => {
 	const onCapture = useCallback(() => ImagePicker.openCamera(cameraOptions).then(onImage), []);
 
 	useEffect(()=>{
-		console.log('data?.remoteUrl 11 ', data?.remoteUrl, data?.loading)
+		
 	}, [data])
 	
 	return (

@@ -97,7 +97,7 @@ const InviteContactsFriendModal = (props) => {
             }
 
         } catch (e) {
-            console.log('loadContactsData err ', e);
+            
             return false;
         }
     }
@@ -106,7 +106,7 @@ const InviteContactsFriendModal = (props) => {
         try {
             let res = await apiFactory.get(`/users/random-snapfooders?count=20`);
 
-            // console.log('loadSnapfooders ', res.data ? res.data.snapfooders : [])
+            // 
             if (res.data && res.data.snapfooders && res.data.snapfooders.length > 0) {
                 setSnapfooders(res.data.snapfooders);
                 return true;
@@ -115,7 +115,7 @@ const InviteContactsFriendModal = (props) => {
                 return false;
             }
         } catch (e) {
-            console.log(e);
+            
             return false;
         }
     };
@@ -181,7 +181,7 @@ const InviteContactsFriendModal = (props) => {
         Linking.openURL(url);
     }
 
-    console.log('invite modal ', visible)
+    
 
     return <Modal
         isVisible={visible}

@@ -5,7 +5,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import Theme from '../../../theme';
 
 const ProfileInfoItem = ({ email, phone }) => {
-    console.log('ProfileInfoItem')
+    
 
     return <View style={[Theme.styles.col_center, styles.container]}>
         <View style={[Theme.styles.col_center, styles.itemView, ]}>

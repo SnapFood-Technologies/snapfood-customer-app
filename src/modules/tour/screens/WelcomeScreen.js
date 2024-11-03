@@ -48,7 +48,7 @@ const WelcomeScreen = (props) => {
 			props.getReferralsRewardsSetting();
 		});
 		return () => {
-			console.log("Welcome screen unmount")
+			
 			try {
 				focusListener();
 			} catch (error) { }
@@ -56,10 +56,7 @@ const WelcomeScreen = (props) => {
 	}, [])
 
 	const referralMessage = useMemo(() => {
-		console.log('  cccc ', props.referralsRewardsSetting.referral_description_message, 
-		props.referralsRewardsSetting.referral_description_message_it,
-		props.referralsRewardsSetting.referral_description_message_en
-		)
+	
 		let register_rewards = props.referralsRewardsSetting.register_rewards || 100;
 		let defaultMsg = translate('invitation_earn.welcome_earn_desc1') + register_rewards + translate('invitation_earn.welcome_earn_desc2');
 		
@@ -112,7 +109,7 @@ const WelcomeScreen = (props) => {
 				}
 			},
 			(error) => {
-				console.log('handleFbLogin', error);
+				
 				setLoading(false);
 				alerts.error(translate('attention'), extractErrorMessage(error));
 			}
@@ -131,7 +128,7 @@ const WelcomeScreen = (props) => {
 				}
 			},
 			(error) => {
-				console.log('handleAppleLogin', error);
+				
 				setLoading(false);
 				alerts.error(translate('attention'), extractErrorMessage(error));
 			}
@@ -142,7 +139,7 @@ const WelcomeScreen = (props) => {
 		setLoading(true);
 		props.googleLogin(id_token, ((props.systemSettings?.enable_referral_deeplink == 1) ? props.refferalCode : null)).then(
 			async (logged_user_data) => {
-				console.log('props.googleLogin');
+				
 				setLoading(false);
 				await loadUserSetting(props, logged_user_data);
 				if (backRoute) {
@@ -150,7 +147,7 @@ const WelcomeScreen = (props) => {
 				}
 			},
 			(error) => {
-				console.log('handleGoogleLogin', error);
+				
 				setLoading(false);
 				alerts.error(translate('attention'), extractErrorMessage(error));
 			}
@@ -182,29 +179,29 @@ const WelcomeScreen = (props) => {
 				requestedOperation: appleAuth.Operation.LOGIN,
 				requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
 			});
-			console.log('perform request done');
+			
 			const { identityToken, authorizationCode } = appleAuthRequestResponse;
 
 			try {
 				await setStorageKey(KEYS.APPLE_LOGIN_AUTH_CODE, authorizationCode);
 			} catch (e) {
-				console.log(e);
+				
 			}
 
 			if (identityToken) {
 				handleAppleLogin(appleAuthRequestResponse);
 			} else {
-				console.log('invalid apple identity token');
+				
 			}
 		} catch (error) {
-			console.log(error);
+			
 		}
 	};
 
 	const onGoogleSignin = async () => {
 		// Get the users ID token
 		const { idToken } = await GoogleSignin.signIn();
-		console.log('onGoogleSignin idToken', idToken);
+		
 
 		handleGoogleLogin(idToken);
 	};

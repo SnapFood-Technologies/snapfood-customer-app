@@ -42,7 +42,7 @@ const ProfileEditScreen = (props) => {
 
 	useEffect(() => { }, []);
 
-	console.log(gender);
+	
 	const onSave = async () => {
 		validateUserData({ full_name, email, phone, password: '', pass2: '' }, false).then(async () => {
 			try {
@@ -58,7 +58,7 @@ const ProfileEditScreen = (props) => {
 					bio_text,
 				});
 
-				console.log('updated_user', updated_user);
+				
 				await updateChannelUserInfo(updated_user);
 
 				ShowLoading(false);
@@ -67,7 +67,7 @@ const ProfileEditScreen = (props) => {
 				});
 			} catch (error) {
 				ShowLoading(false);
-				console.log('on Save', error);
+				
 				const message = error.message || translate('checkout.something_is_wrong');
 				alerts.error(translate('alerts.error'), translate(message));
 			}

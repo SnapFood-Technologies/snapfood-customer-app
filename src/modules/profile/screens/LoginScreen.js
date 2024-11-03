@@ -201,11 +201,11 @@ class Login extends React.Component {
             if (identityToken) {
                 this.handleAppleLogin(appleAuthRequestResponse)
             } else {
-                console.log("invalid apple identity token")
+                
             }
 
         } catch (error) {
-            console.log(error)
+            
         }
     };
 

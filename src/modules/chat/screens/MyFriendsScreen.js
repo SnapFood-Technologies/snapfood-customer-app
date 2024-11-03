@@ -27,14 +27,13 @@ class MyFriendsScreen extends React.Component {
 			searchTerm: '',
 			isLoading: null,
 			contactsAccessPermission: true,
-			options: []
+			options: [],
 		};
 	}
 
 	componentDidMount() {
 		this.getAllFriends();
 		this.removefocusListener = this.props.navigation.addListener('focus', () => {
-			console.log('focus listener : getAllFriends');
 			this.getAllFriends();
 		});
 
@@ -46,14 +45,14 @@ class MyFriendsScreen extends React.Component {
 					this.setState({ contactsAccessPermission: false });
 				}
 			})
-			.catch((e) => console.log(e));
+			.catch((e) => {});
 
 		let tmpOptions = [];
 		if (this.props.referralsRewardsSetting.show_referral_module == true) {
-			tmpOptions.push(translate('Invite'))
+			tmpOptions.push(translate('Invite'));
 		}
 		if (this.props.referralsRewardsSetting.show_earn_invitation_module == true) {
-			tmpOptions.push(translate('Invite_Earn'))
+			tmpOptions.push(translate('Invite_Earn'));
 		}
 		this.setState({ options: tmpOptions });
 
@@ -75,7 +74,6 @@ class MyFriendsScreen extends React.Component {
 			})
 			.catch((err) => {
 				this.setState({ isLoading: false });
-				console.log('getFriends', err);
 			});
 	};
 
@@ -100,7 +98,7 @@ class MyFriendsScreen extends React.Component {
 					{this.renderInviteFriends()}
 				</View>
 				{this.renderFriendList()}
-				<InviteMutualFriendModal onGoDetail={this.onGoDetail}/>
+				<InviteMutualFriendModal onGoDetail={this.onGoDetail} />
 			</View>
 		);
 	}
@@ -110,28 +108,24 @@ class MyFriendsScreen extends React.Component {
 			<View style={styles.titleContainer}>
 				<BackButton
 					onPress={() => {
-						console.log(this.props.navigation);
 						this.props.navigation.goBack();
 					}}
 				/>
 				<Text style={styles.title}>{translate('social.my_friends')}</Text>
-				{
-					this.state.options.length > 0 ?
-						<MoreBtn
-							options={this.state.options}
-							onSelect={(option, index) => {
-								if (option == translate('Invite')) {
-									this.props.navigation.navigate(RouteNames.InviteScreen, { fromPush: false });
-								}
-								else if (option == translate('Invite_Earn')) {
-									this.props.navigation.navigate(RouteNames.EarnScreen, { fromPush: false });
-								}
-							}}
-						/>
-						:
-						<View style={{ width: 30 }} />
-				}
-
+				{this.state.options.length > 0 ? (
+					<MoreBtn
+						options={this.state.options}
+						onSelect={(option, index) => {
+							if (option == translate('Invite')) {
+								this.props.navigation.navigate(RouteNames.InviteScreen, { fromPush: false });
+							} else if (option == translate('Invite_Earn')) {
+								this.props.navigation.navigate(RouteNames.EarnScreen, { fromPush: false });
+							}
+						}}
+					/>
+				) : (
+					<View style={{ width: 30 }} />
+				)}
 			</View>
 		);
 	}
@@ -273,7 +267,7 @@ const styles = StyleSheet.create({
 		height: 30,
 		borderRadius: 15,
 		marginRight: 10,
-		backgroundColor: '#FAFAFC'
+		backgroundColor: '#FAFAFC',
 	},
 	name: {
 		fontSize: 17,
@@ -318,4 +312,6 @@ const mapStateToProps = ({ app, chat }) => ({
 	referralsRewardsSetting: app.referralsRewardsSetting || {},
 });
 
-export default connect(mapStateToProps, { getFriends, setShowMutualFriendInviteModal })(withNavigation(MyFriendsScreen));
+export default connect(mapStateToProps, { getFriends, setShowMutualFriendInviteModal })(
+	withNavigation(MyFriendsScreen)
+);

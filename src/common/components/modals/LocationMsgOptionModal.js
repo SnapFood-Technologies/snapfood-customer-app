@@ -13,7 +13,7 @@ const LocationMsgOptionModal = ({ showModal, addCurrentLocation, goFindLocation,
         SetVisible(showModal)
     }, [showModal])
 
-    console.log('LocationMsgOptionModal')
+    
 
 	return <Modal
         testID={'modal'}
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 
 function arePropsEqual(prevProps, nextProps) {
     if (prevProps.showModal != nextProps.showModal ) {
-        console.log('LocationMsgOptionModal item equal : ', false)
+        
         return false;
     }
     return true;

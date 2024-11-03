@@ -53,7 +53,7 @@ const TransferScreen = (props) => {
 				},
 				(error) => {
 					setLoading(false);
-					console.log('onTransfer error', error);
+					
 					const message = error.message || translate('generic_error');
 					alerts.error(translate('alerts.error'), message);
 				}
@@ -87,7 +87,7 @@ const TransferScreen = (props) => {
 								delimiter=','
 								precision={0}
 								onChangeText={(formattedValue) => {
-									console.log(formattedValue); // $2,310.46
+									
 								}}
 							/>
 						</View>

@@ -80,7 +80,7 @@ const DepositTransferHistScreen = (props) => {
 				}
 			},
 				(error) => {
-					console.log('get deposits error', error)
+					
 					const message = error.message || translate('generic_error');
 					setDepositStatus({
 						...depositState,
@@ -121,7 +121,7 @@ const DepositTransferHistScreen = (props) => {
 				}
 			},
 				(error) => {
-					console.log('get deposits error', error)
+					
 					const message = error.message || translate('generic_error');
 					setTransferStatus({
 						...transferState,
@@ -285,7 +285,7 @@ const DepositTransferHistScreen = (props) => {
 				renderItem={({ item }) => <TransferHistItem
 					data={item}
 					onPress={() => {
-						console.log('============= transfer data ', item)
+						
 						props.navigation.navigate(RouteNames.TransferDetailsScreen, { data: item })
 					}}
 				/>}
