@@ -9,13 +9,11 @@ import apiFactory from '../../../common/services/apiFactory';
 import FastImage from 'react-native-fast-image';
 import styles from '../styles/blog';
 import HTML from 'react-native-render-html';
-import {
-	goActiveScreenFromPush
-} from '../../../store/actions/app';
+import { goActiveScreenFromPush } from '../../../store/actions/app';
 import { isEmpty, openExternalUrl } from '../../../common/services/utility';
 import BlockSpinner from '../../../common/components/BlockSpinner';
 import Theme from '../../../theme';
-import { RoundIconBtn, } from '../../../common/components';
+import { RoundIconBtn } from '../../../common/components';
 import Config from '../../../config';
 
 const handleBackPress = (navigation) => {
@@ -24,7 +22,7 @@ const handleBackPress = (navigation) => {
 };
 
 class BlogDetailsScreen extends React.Component {
-	_isMounted = true
+	_isMounted = true;
 	constructor(props) {
 		super(props);
 
@@ -39,8 +37,8 @@ class BlogDetailsScreen extends React.Component {
 	async componentDidMount() {
 		this._isMounted = true;
 		this.props.goActiveScreenFromPush({
-			isBlogVisible: false
-		})
+			isBlogVisible: false,
+		});
 		const blog = await apiFactory.get(`blogs/${this.state.blog.id}`);
 		if (blog.data.blog && this._isMounted == true) {
 			this.setState({ blog: blog.data.blog });
@@ -68,14 +66,14 @@ class BlogDetailsScreen extends React.Component {
 			width: Dimensions.get('screen').width,
 			height: 200,
 		};
-		if (styles) {
-			styles.split(';').map((style) => {
-				const p = style.replace(' ', '').replace('px', '').split(':');
-				if (['height', 'width'].indexOf(p[0]) !== -1) {
-					results[p[0]] = parseInt(p[1]);
-				}
-			});
-		}
+		// if (styles) {
+		// 	styles?.split(';').map((style) => {
+		// 		const p = style.replace(' ', '').replace('px', '').split(':');
+		// 		if (['height', 'width'].indexOf(p[0]) !== -1) {
+		// 			results[p[0]] = parseInt(p[1]);
+		// 		}
+		// 	});
+		// }
 		const screenWidth = Dimensions.get('screen').width - 30;
 		const diff = results.width / screenWidth;
 		results.width = screenWidth;
@@ -99,26 +97,37 @@ class BlogDetailsScreen extends React.Component {
 	};
 
 	renderHeader = () => {
-		return <View style={[Theme.styles.row_center, styles.header]}>
-			<RoundIconBtn style={styles.headerBtn} icon={<Feather name='chevron-left' size={22} color={Theme.colors.text} />} onPress={() => {
-				this.props.navigation.goBack()
-			}} />
-			<AppText style={[Theme.styles.headerTitle, { flex: 1, color: Theme.colors.white, }]}>Blog</AppText>
-			<View style={[Theme.styles.row_center_end,]}>
-				<RoundIconBtn style={styles.headerBtn} icon={<Entypo name='share' size={20} color={Theme.colors.text} />} onPress={this.onShare} />
+		return (
+			<View style={[Theme.styles.row_center, styles.header]}>
+				<RoundIconBtn
+					style={styles.headerBtn}
+					icon={<Feather name='chevron-left' size={22} color={Theme.colors.text} />}
+					onPress={() => {
+						this.props.navigation.goBack();
+					}}
+				/>
+				<AppText style={[Theme.styles.headerTitle, { flex: 1, color: Theme.colors.white }]}>Blog</AppText>
+				<View style={[Theme.styles.row_center_end]}>
+					<RoundIconBtn
+						style={styles.headerBtn}
+						icon={<Entypo name='share' size={20} color={Theme.colors.text} />}
+						onPress={this.onShare}
+					/>
+				</View>
 			</View>
-		</View>
-	}
+		);
+	};
 
 	render() {
 		const { blog } = this.state;
+		console.log('blog.content_en', blog.content_en);
 
 		if (!blog.title) {
 			return <BlockSpinner />;
 		}
 
 		return (
-			<View style={{ flex: 1, backgroundColor: Theme.colors.white, }}>
+			<View style={{ flex: 1, backgroundColor: Theme.colors.white }}>
 				<ScrollView style={{ flex: 1, width: '100%' }} showsVerticalScrollIndicator={false}>
 					<View style={styles.detail_image}>
 						<FastImage
@@ -128,24 +137,31 @@ class BlogDetailsScreen extends React.Component {
 						/>
 						{this.renderHeader()}
 					</View>
-					<View style={{ width: '100%', paddingTop: 12, paddingBottom: 30, paddingHorizontal: 20, }}>
+					<View style={{ width: '100%', paddingTop: 12, paddingBottom: 30, paddingHorizontal: 20 }}>
 						<View style={styles.rowFlex}>
 							<AppText style={styles.categoryDetails}>
-								{blog.categories.map((x) => (this.props.language == 'en' ? x.title : x.sq_title)).join(', ')}
+								{blog.categories
+									.map((x) => (this.props.language == 'en' ? x.title : x.sq_title))
+									.join(', ')}
 							</AppText>
 							<AppText style={styles.date}>{appMoment(blog['created_at']).format('DD/MM/YYYY')}</AppText>
 						</View>
-						<AppText style={styles.titleDetails}>{(this.props.language == 'en' && !isEmpty(blog.title_en)) ? blog.title_en : blog.title}</AppText>
+						<AppText style={styles.titleDetails}>
+							{this.props.language == 'en' && !isEmpty(blog.title_en) ? blog.title_en : blog.title}
+						</AppText>
 						<View style={styles.rowFlex}>
-							<AppText style={styles.date}>
-								{translate('blog.author')}:
-							</AppText>
+							<AppText style={styles.date}>{translate('blog.author')}:</AppText>
 							<AppText style={styles.authorDetails}>{blog['author']}</AppText>
 						</View>
 						<View style={{ height: 8 }} />
 						<HTML
-							html={(this.props.language == 'en' && !isEmpty(blog.content_en)) ? blog.content_en : blog.content}
-							renderers={this.parseTags()}
+							source={{
+								html:
+									this.props.language == 'en' && !isEmpty(blog.content_en)
+										? blog.content_en
+										: blog.content,
+							}}
+							// renderers={this.parseTags()}
 							imagesMaxWidth={Dimensions.get('window').width}
 							onLinkPress={(event, href) => openExternalUrl(href)}
 							baseFontStyle={{ fontSize: 16 }}
@@ -156,7 +172,6 @@ class BlogDetailsScreen extends React.Component {
 		);
 	}
 }
-
 
 const mapStateToProps = ({ app }) => ({
 	language: app.language,

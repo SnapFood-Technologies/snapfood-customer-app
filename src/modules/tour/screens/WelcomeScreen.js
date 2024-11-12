@@ -30,7 +30,14 @@ import {
 	setUserNeedLogin,
 	updateProfileDetails,
 } from '../../../store/actions/auth';
-import { getAddresses, setAddress, addDefaultAddress, setShowChangeCityModal, checkLocationDiff, getReferralsRewardsSetting } from '../../../store/actions/app';
+import {
+	getAddresses,
+	setAddress,
+	addDefaultAddress,
+	setShowChangeCityModal,
+	checkLocationDiff,
+	getReferralsRewardsSetting,
+} from '../../../store/actions/app';
 import BlockSpinner from '../../../common/components/BlockSpinner';
 import { isEmpty } from '../../../common/services/utility';
 import { setStorageKey, KEYS } from '../../../common/services/storage';
@@ -48,44 +55,52 @@ const WelcomeScreen = (props) => {
 			props.getReferralsRewardsSetting();
 		});
 		return () => {
-			
 			try {
 				focusListener();
-			} catch (error) { }
+			} catch (error) {}
 		};
-	}, [])
+	}, []);
 
 	const referralMessage = useMemo(() => {
-	
 		let register_rewards = props.referralsRewardsSetting.register_rewards || 100;
-		let defaultMsg = translate('invitation_earn.welcome_earn_desc1') + register_rewards + translate('invitation_earn.welcome_earn_desc2');
-		
+		let defaultMsg =
+			translate('invitation_earn.welcome_earn_desc1') +
+			register_rewards +
+			translate('invitation_earn.welcome_earn_desc2');
+
 		if (props.language == 'sq' && isEmpty(props.referralsRewardsSetting.referral_description_message) == false) {
 			defaultMsg = props.referralsRewardsSetting.referral_description_message;
-		}
-		else if (props.language == 'en' && isEmpty(props.referralsRewardsSetting.referral_description_message_en) == false) {
+		} else if (
+			props.language == 'en' &&
+			isEmpty(props.referralsRewardsSetting.referral_description_message_en) == false
+		) {
 			defaultMsg = props.referralsRewardsSetting.referral_description_message_en;
-		}
-		else if (props.language == 'it' && isEmpty(props.referralsRewardsSetting.referral_description_message_it) == false) {
+		} else if (
+			props.language == 'it' &&
+			isEmpty(props.referralsRewardsSetting.referral_description_message_it) == false
+		) {
 			defaultMsg = props.referralsRewardsSetting.referral_description_message_it;
 		}
 
 		defaultMsg = defaultMsg.replace('{amount}', register_rewards + 'L');
 		return defaultMsg;
-	}, [props.referralsRewardsSetting, props.language])
+	}, [props.referralsRewardsSetting, props.language]);
 
 	const _rendereEarnByReferral = () => {
+		console.log('props.refferalCode', props.refferalCode);
+
 		if (
 			props.refferalCode &&
 			props.systemSettings?.enable_referral_deeplink == 1 &&
-			isEmpty(referralMessage) != true) {
+			isEmpty(referralMessage) != true
+		) {
 			return (
 				<View style={[Theme.styles.row_center, styles.itemView]}>
 					<Text style={[styles.itemTxt, Theme.styles.flex_1]}>{referralMessage}</Text>
 				</View>
 			);
 		}
-		return (<View />);
+		return <View />;
 	};
 
 	const _renderDivider = () => {
@@ -100,58 +115,69 @@ const WelcomeScreen = (props) => {
 
 	const handleFbLogin = async (accessToken) => {
 		setLoading(true);
-		props.facebookLogin(accessToken.toString(), ((props.systemSettings?.enable_referral_deeplink == 1) ? props.refferalCode : null)).then(
-			async (logged_user_data) => {
-				setLoading(false);
-				await loadUserSetting(props, logged_user_data);
-				if (backRoute) {
-					props.navigation.goBack();
+		props
+			.facebookLogin(
+				accessToken.toString(),
+				props.systemSettings?.enable_referral_deeplink == 1 ? props.refferalCode : null
+			)
+			.then(
+				async (logged_user_data) => {
+					setLoading(false);
+					await loadUserSetting(props, logged_user_data);
+					if (backRoute) {
+						props.navigation.goBack();
+					}
+				},
+				(error) => {
+					setLoading(false);
+					alerts.error(translate('attention'), extractErrorMessage(error));
 				}
-			},
-			(error) => {
-				
-				setLoading(false);
-				alerts.error(translate('attention'), extractErrorMessage(error));
-			}
-		);
+			);
 	};
 
 	const handleAppleLogin = async (appleAuthRequestResponse) => {
 		const { user, identityToken, email, fullName } = appleAuthRequestResponse;
 		setLoading(true);
-		props.appleLogin({ user, identityToken, email, fullName, refferalCode: ((props.systemSettings?.enable_referral_deeplink == 1) ? props.refferalCode : null) }).then(
-			async (logged_user_data) => {
-				setLoading(false);
-				await loadUserSetting(props, logged_user_data);
-				if (backRoute) {
-					props.navigation.goBack();
+		props
+			.appleLogin({
+				user,
+				identityToken,
+				email,
+				fullName,
+				refferalCode: props.systemSettings?.enable_referral_deeplink == 1 ? props.refferalCode : null,
+			})
+			.then(
+				async (logged_user_data) => {
+					setLoading(false);
+					await loadUserSetting(props, logged_user_data);
+					if (backRoute) {
+						props.navigation.goBack();
+					}
+				},
+				(error) => {
+					setLoading(false);
+					alerts.error(translate('attention'), extractErrorMessage(error));
 				}
-			},
-			(error) => {
-				
-				setLoading(false);
-				alerts.error(translate('attention'), extractErrorMessage(error));
-			}
-		);
+			);
 	};
 
 	const handleGoogleLogin = async (id_token) => {
 		setLoading(true);
-		props.googleLogin(id_token, ((props.systemSettings?.enable_referral_deeplink == 1) ? props.refferalCode : null)).then(
-			async (logged_user_data) => {
-				
-				setLoading(false);
-				await loadUserSetting(props, logged_user_data);
-				if (backRoute) {
-					props.navigation.goBack();
+		props
+			.googleLogin(id_token, props.systemSettings?.enable_referral_deeplink == 1 ? props.refferalCode : null)
+			.then(
+				async (logged_user_data) => {
+					setLoading(false);
+					await loadUserSetting(props, logged_user_data);
+					if (backRoute) {
+						props.navigation.goBack();
+					}
+				},
+				(error) => {
+					setLoading(false);
+					alerts.error(translate('attention'), extractErrorMessage(error));
 				}
-			},
-			(error) => {
-				
-				setLoading(false);
-				alerts.error(translate('attention'), extractErrorMessage(error));
-			}
-		);
+			);
 	};
 
 	const onFbLogin = () => {
@@ -179,29 +205,23 @@ const WelcomeScreen = (props) => {
 				requestedOperation: appleAuth.Operation.LOGIN,
 				requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
 			});
-			
+
 			const { identityToken, authorizationCode } = appleAuthRequestResponse;
 
 			try {
 				await setStorageKey(KEYS.APPLE_LOGIN_AUTH_CODE, authorizationCode);
-			} catch (e) {
-				
-			}
+			} catch (e) {}
 
 			if (identityToken) {
 				handleAppleLogin(appleAuthRequestResponse);
 			} else {
-				
 			}
-		} catch (error) {
-			
-		}
+		} catch (error) {}
 	};
 
 	const onGoogleSignin = async () => {
 		// Get the users ID token
 		const { idToken } = await GoogleSignin.signIn();
-		
 
 		handleGoogleLogin(idToken);
 	};
@@ -289,7 +309,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-evenly',
 		alignItems: 'center',
 	},
-	itemView: { width: '100%', padding: 12, backgroundColor: Theme.colors.gray9, borderRadius: 15, },
+	itemView: { width: '100%', padding: 12, backgroundColor: Theme.colors.gray9, borderRadius: 15 },
 	itemTxt: { fontSize: 14, fontFamily: Theme.fonts.semiBold, color: Theme.colors.text, textAlign: 'center' },
 });
 
@@ -318,5 +338,5 @@ export default connect(mapStateToProps, {
 	addDefaultAddress,
 	getReferralsRewardsSetting,
 	setShowChangeCityModal,
-	checkLocationDiff
+	checkLocationDiff,
 })(WelcomeScreen);

@@ -10,7 +10,7 @@ import {
 	TouchableOpacity,
 	Platform,
 	StatusBar,
-	LayoutAnimation
+	LayoutAnimation,
 } from 'react-native';
 import {
 	QuickReplies,
@@ -38,6 +38,7 @@ import { SocialMapScreenStyles } from '../../../config/constants';
 import { translate } from '../../../common/services/translate';
 import { isEmpty } from '../../../common/services/utility';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Menu, MenuOption, MenuOptions, MenuTrigger } from 'react-native-popup-menu';
 
 const { isSameDay, isSameUser } = utils;
 const DEFAULT_OPTION_TITLES = ['Copy Text', 'Cancel'];
@@ -46,7 +47,10 @@ class MessageBubble extends React.Component {
 	constructor() {
 		super(...arguments);
 		this.backCount = 0;
+		this.menuRef = {};
 		this.onLongPress = () => {
+			this.menuRef.open();
+
 			const { currentMessage } = this.props;
 			// if (this.props.onLongPress) {
 			// 	this.props.onLongPress(currentMessage);
@@ -59,7 +63,7 @@ class MessageBubble extends React.Component {
 			const { currentMessage } = this.props;
 			this.backCount++;
 
-			// 
+			//
 			if (this.backCount == 2) {
 				this.backCount = 0;
 				clearTimeout(this.backTimer);
@@ -423,7 +427,7 @@ class MessageBubble extends React.Component {
 				return true;
 			}
 			return false;
-		}
+		};
 
 		if (
 			this.props.currentMessage &&
@@ -433,7 +437,7 @@ class MessageBubble extends React.Component {
 			const { containerStyle, wrapperStyle, ...messageImageProps } = this.props;
 			const ratio = MAX_CONTENT_WIDTH / width(100);
 			const storyHeight = height(100) - 80;
-			const imgHeight = this.isStoryReply() ? (7.5 * storyHeight / 10) * ratio : 100
+			const imgHeight = this.isStoryReply() ? ((7.5 * storyHeight) / 10) * ratio : 100;
 			return (
 				<View style={[{}]}>
 					{this.props.currentMessage.images.length == 1 ? (
@@ -456,16 +460,20 @@ class MessageBubble extends React.Component {
 								resizeMode={FastImage.resizeMode.cover}
 								source={{
 									uri:
-										(isVideofile(this.props.currentMessage.images[0]) &&
-											!isEmpty(this.props.currentMessage.thumb_image)) ?
-											this.props.currentMessage.thumb_image :
-											this.props.currentMessage.images[0]
+										isVideofile(this.props.currentMessage.images[0]) &&
+										!isEmpty(this.props.currentMessage.thumb_image)
+											? this.props.currentMessage.thumb_image
+											: this.props.currentMessage.images[0],
 								}}
 							/>
-							{
-								isVideofile(this.props.currentMessage.images[0]) &&
-								<Feather style={{ position: 'absolute', top: '43%', left: '38%' }} name='play-circle' color={'#fff'} size={60} />
-							}
+							{isVideofile(this.props.currentMessage.images[0]) && (
+								<Feather
+									style={{ position: 'absolute', top: '43%', left: '38%' }}
+									name='play-circle'
+									color={'#fff'}
+									size={60}
+								/>
+							)}
 						</TouchableOpacity>
 					) : (
 						this.renderImageList(this.props.currentMessage.images)
@@ -586,8 +594,8 @@ class MessageBubble extends React.Component {
 						checked={currentMessage.likes && currentMessage.likes.length > 0}
 						cnt={
 							currentMessage.likes &&
-								(currentMessage.likes.length > 1 ||
-									(currentMessage.likes.length == 1 && !currentMessage.likes.includes(user._id)))
+							(currentMessage.likes.length > 1 ||
+								(currentMessage.likes.length == 1 && !currentMessage.likes.includes(user._id)))
 								? currentMessage.likes.length
 								: null
 						}
@@ -678,7 +686,7 @@ class MessageBubble extends React.Component {
 
 	isStoryReply = () => this.props.currentMessage?.reply_type === 'story';
 
-	getWrapperReplyStoryStyles = () => this.isStoryReply() ? { paddingHorizontal: 7, paddingVertical: 6 } : {};
+	getWrapperReplyStoryStyles = () => (this.isStoryReply() ? { paddingHorizontal: 7, paddingVertical: 6 } : {});
 
 	render() {
 		LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -691,9 +699,87 @@ class MessageBubble extends React.Component {
 				) : (
 					<View style={[Theme.styles.row_center, styles[position].msgWrapper]}>
 						{position == 'right' && this.renderLikeBtns()}
-						<Tooltip
+						<Menu ref={(ref) => (this.menuRef = ref)}>
+							<MenuTrigger>
+								<View
+									style={[
+										styles[position].wrapper,
+										wrapperStyle && wrapperStyle[position],
+										this.styledBubbleToPrevious(),
+										this.styledBubbleToNext(),
+										this.getWrapperStyle(),
+										this.getWrapperReplyStoryStyles(),
+									]}
+								>
+									<TouchableOpacity
+										activeOpacity={1.0}
+										onPress={this.onPressMsg}
+										onLongPress={this.onLongPress}
+										{...this.props.touchableProps}
+									>
+										{this.renderBubbleContent()}
+									</TouchableOpacity>
+								</View>
+							</MenuTrigger>
+							{currentMessage && currentMessage.text && (
+								<MenuOptions
+									style={{
+										backgroundColor: Theme.colors.gray2,
+										borderRadius: 7,
+									}}
+									customStyles={{
+										optionsContainer: {
+											width: 120,
+											marginTop: 20,
+											borderRadius: 7,
+										},
+									}}
+								>
+									<MenuOption onSelect={() => this.onPopupPress(currentMessage, 'reply')}>
+										<View style={styles.popupBtn}>
+											<Feather name='corner-up-left' size={14} color={'#fff'} />
+											<Text style={styles.popupTxt}>{translate('social.chat.reply')}</Text>
+										</View>
+										{(this.props.disableForward != true || currentMessage.user._id == user._id) && (
+											<View style={styles.popupDivider} />
+										)}
+									</MenuOption>
+									{this.props.disableForward != true && (
+										<MenuOption onSelect={() => this.onPopupPress(currentMessage, 'forward')}>
+											<View style={styles.popupBtn}>
+												<Entypo name='forward' size={14} color={'#fff'} />
+												<Text style={styles.popupTxt}>{translate('social.chat.forward')}</Text>
+											</View>
+											<View style={styles.popupDivider} />
+										</MenuOption>
+									)}
+									{currentMessage && !isEmpty(currentMessage.text) && (
+										<MenuOption onSelect={() => this.onCopy(currentMessage)}>
+											<View style={styles.popupBtn}>
+												<Entypo name='documents' size={14} color={'#fff'} />
+												<Text style={styles.popupTxt}>
+													{translate('social.chat.copy_text')}
+												</Text>
+											</View>
+											{currentMessage.user._id == user._id && (
+												<View style={styles.popupDivider} />
+											)}
+										</MenuOption>
+									)}
+									{currentMessage.user._id == user._id && (
+										<MenuOption onSelect={() => this.onPopupPress(currentMessage, 'unsend')}>
+											<View style={styles.popupBtn}>
+												<Feather name='trash-2' size={14} color={'#fff'} />
+												<Text style={styles.popupTxt}>{translate('social.chat.unsend')}</Text>
+											</View>
+										</MenuOption>
+									)}
+								</MenuOptions>
+							)}
+						</Menu>
+						{/* <Tooltip
 							isVisible={this.state.isPopup}
-							backgroundColor={'transparent'}
+							// backgroundColor={'transparent'}
 							content={
 								<ScrollView style={styles.popup} showsVerticalScrollIndicator={false}>
 									{currentMessage && currentMessage.text && (
@@ -710,8 +796,8 @@ class MessageBubble extends React.Component {
 											</TouchableOpacity>
 											{(this.props.disableForward != true ||
 												currentMessage.user._id == user._id) && (
-													<View style={styles.popupDivider} />
-												)}
+												<View style={styles.popupDivider} />
+											)}
 										</>
 									)}
 									{this.props.disableForward != true && (
@@ -739,10 +825,14 @@ class MessageBubble extends React.Component {
 												style={styles.popupBtn}
 											>
 												<Entypo name='documents' size={14} color={'#fff'} />
-												<Text style={styles.popupTxt}>{translate('social.chat.copy_text')}</Text>
+												<Text style={styles.popupTxt}>
+													{translate('social.chat.copy_text')}
+												</Text>
 											</TouchableOpacity>
 
-											{currentMessage.user._id == user._id && <View style={styles.popupDivider} />}
+											{currentMessage.user._id == user._id && (
+												<View style={styles.popupDivider} />
+											)}
 										</>
 									)}
 									{currentMessage.user._id == user._id && (
@@ -762,18 +852,19 @@ class MessageBubble extends React.Component {
 								</ScrollView>
 							}
 							placement='bottom'
-							tooltipStyle={{ backgroundColor: 'transparent' }}
+							// tooltipStyle={{ backgroundColor: 'transparent' }}
 							topAdjustment={Platform.OS === 'android' ? -StatusBar.currentHeight : 0}
 							contentStyle={{
 								backgroundColor: Theme.colors.gray2,
 								borderRadius: 7,
 								paddingHorizontal: 12,
 							}}
-							arrowStyle={{}}
-							showChildInTooltip={false}
-							disableShadow={false}
+							// arrowStyle={{}}
+							// showChildInTooltip={false}
+							disableShadow={true}
+							useInteractionManager={true}
 							onClose={() => this.setState({ isPopup: false })}
-							closeOnContentInteraction={false}
+							closeOnContentInteraction={true}
 						>
 							<View
 								style={[
@@ -794,7 +885,7 @@ class MessageBubble extends React.Component {
 									{this.renderBubbleContent()}
 								</TouchableOpacity>
 							</View>
-						</Tooltip>
+						</Tooltip> */}
 						{position == 'left' && this.renderLikeBtns()}
 					</View>
 				)}
@@ -806,7 +897,7 @@ class MessageBubble extends React.Component {
 	}
 }
 
-export default React.memo(MessageBubble)
+export default React.memo(MessageBubble);
 
 Bubble.contextTypes = {
 	actionSheet: PropTypes.func,
@@ -865,26 +956,26 @@ Bubble.propTypes = {
 	nextMessage: PropTypes.object,
 	previousMessage: PropTypes.object,
 	containerStyle: PropTypes.shape({
-		left: ViewPropTypes.style,
-		right: ViewPropTypes.style,
+		left: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+		right: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 	}),
 	wrapperStyle: PropTypes.shape({
-		left: ViewPropTypes.style,
-		right: ViewPropTypes.style,
+		left: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+		right: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 	}),
 	bottomContainerStyle: PropTypes.shape({
-		left: ViewPropTypes.style,
-		right: ViewPropTypes.style,
+		left: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+		right: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 	}),
 	tickStyle: PropTypes.any,
 	usernameStyle: PropTypes.any,
 	containerToNextStyle: PropTypes.shape({
-		left: ViewPropTypes.style,
-		right: ViewPropTypes.style,
+		left: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+		right: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 	}),
 	containerToPreviousStyle: PropTypes.shape({
-		left: ViewPropTypes.style,
-		right: ViewPropTypes.style,
+		left: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+		right: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 	}),
 };
 
@@ -894,7 +985,7 @@ const styles = {
 			flex: 1,
 			alignItems: 'flex-start',
 		},
-		msgWrapper: { marginRight: 60, },
+		msgWrapper: { marginRight: 60 },
 		wrapper: {
 			marginRight: 8,
 			borderRadius: 28,
@@ -920,7 +1011,7 @@ const styles = {
 			flex: 1,
 			alignItems: 'flex-end',
 		},
-		msgWrapper: { marginLeft: 60, },
+		msgWrapper: { marginLeft: 60 },
 		wrapper: {
 			marginLeft: 8,
 			borderRadius: 28,
@@ -975,7 +1066,7 @@ const styles = {
 		emoji: { fontSize: 40 },
 	}),
 	popup: {},
-	popupBtn: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8 },
+	popupBtn: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8, paddingHorizontal: 10 },
 	popupTxt: { marginLeft: 6, fontSize: 14, color: '#fff', fontFamily: Theme.fonts.semiBold },
 	popupDivider: { width: '100%', height: 1, backgroundColor: Theme.colors.white },
 };

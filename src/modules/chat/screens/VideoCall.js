@@ -1,677 +1,681 @@
 import React, { Component } from 'react';
 import {
-  Button,
-  PermissionsAndroid,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View,
+	Button,
+	PermissionsAndroid,
+	Platform,
+	ScrollView,
+	StyleSheet,
+	TextInput,
+	TouchableOpacity,
+	View,
 } from 'react-native';
 import { connect } from 'react-redux';
 import RtcEngine, {
-  ChannelProfile,
-  ClientRole,
-  RtcEngineContext,
-  RtcLocalView,
-  RtcRemoteView,
-  VideoRenderMode
+	ChannelProfile,
+	ClientRole,
+	createAgoraRtcEngine,
+	RtcEngineContext,
+	RtcLocalView,
+	RtcRemoteView,
+	VideoRenderMode,
 } from 'react-native-agora';
 import { width, height } from 'react-native-dimension';
-import AppText from '../../../common/components/AppText'
+import AppText from '../../../common/components/AppText';
 import CallInfo from '../components/CallInfo';
 import CallActionView from '../components/CallActionView';
 import Config from '../../../config';
 import Theme from '../../../theme';
 import alerts from '../../../common/services/alerts';
-import { startCall, getAgoraToken, updateCallChannelStatus, call_channel_collection, updateCallDuration } from '../../../common/services/call';
+import {
+	startCall,
+	getAgoraToken,
+	updateCallChannelStatus,
+	call_channel_collection,
+	updateCallDuration,
+} from '../../../common/services/call';
 import { translate } from '../../../common/services/translate';
 import { CALL_STATUS } from '../../../config/constants';
 import { goActiveScreenFromPush } from '../../../store/actions/app';
 
 class VideoCallScreen extends Component {
-  _isMounted = false;
-  _engine = null;
-  _channelId = null;
-  _joinedUsers = [];
-  _currentStatus = null;
-  _call_started_time = null;
-  constructor(props) {
-    super(props);
-    this.state = {
-      isVideoCall: props.route.params.isVideoCall || false,
-      type: props.route.params.type, // 'incoming', 'outgoing'
-      IncomingCallData: props.route.params.IncomingCallData || {},
-      OutgoingCallReceiver: props.route.params.OutgoingCallReceiver || {},
+	_isMounted = false;
+	_engine = createAgoraRtcEngine();
+	_channelId = null;
+	_joinedUsers = [];
+	_currentStatus = null;
+	_call_started_time = null;
+	constructor(props) {
+		super(props);
+		this.state = {
+			isVideoCall: props.route.params.isVideoCall || false,
+			type: props.route.params.type, // 'incoming', 'outgoing'
+			IncomingCallData: props.route.params.IncomingCallData || {},
+			OutgoingCallReceiver: props.route.params.OutgoingCallReceiver || {},
 
-      isVideoOff: false,
-      isMuted: false,
-      isSpeakerOn: false,
+			isVideoOff: false,
+			isMuted: false,
+			isSpeakerOn: false,
 
-      channelId: null,
-      isJoined: false,
-      hide_RemoteView: false,
-      remoteUid: [],
-      myid: props.user.id,
-      switchCamera: true,
-      isLocalLarge: false,
-    };
-  }
-
-  async componentDidMount() {
-    this._isMounted = true;
-    if (this.state.type == 'incoming') {
-      this.props.goActiveScreenFromPush({
-        isIncomingCall: false
-      })
-
-      const { IncomingCallData } = this.state;
-      this.monitorPartnerStatus(IncomingCallData.channel_id);
-    }
-
-    if (this.state.type == 'outgoing') {
-      this.initiateCall()
-    }
-  }
-
-  UNSAFE_componentWillMount() {
-  }
-
-  async componentDidUpdate(prevProps, prevState) {
-    if (this.props.route && this.props.route.params && prevProps.route && prevProps.route.params) {
-      let this_type = this.props.route.params.type;
-      let this_IncomingCallData = this.props.route.params.IncomingCallData || {};
-
-      let prev_type = prevProps.route.params.type;
-      let prev_IncomingCallData = prevProps.route.params.IncomingCallData || {};
-
-      if (this_type == 'incoming' && prev_type == this_type) {
-        if (this_IncomingCallData.channel_id != prev_IncomingCallData.channel_id) {
-
-          if (this.partner_listener) {
-            this.partner_listener()
-          }
-          try {
-            await this._engine?.leaveChannel();
-            await this._engine?.destroy();
-          } catch (error) { }
-
-          this.monitorPartnerStatus(this_IncomingCallData.channel_id);
-          this.setState({
-            isVideoCall: this.props.route.params.isVideoCall || false,
-            type: this.props.route.params.type, // 'incoming', 'outgoing'
-            IncomingCallData: this.props.route.params.IncomingCallData || {},
-            OutgoingCallReceiver: this.props.route.params.OutgoingCallReceiver || {},
-      
-            isVideoOff: false,
-            isMuted: false,
-            isSpeakerOn: false,
-      
-            channelId: null,
-            isJoined: false,
-            hide_RemoteView: false,
-            remoteUid: [],
-            myid: this.props.user.id,
-            switchCamera: true,
-            isLocalLarge: false,
-          })
-          
-        }
-      }
-    } 
+			channelId: null,
+			isJoined: false,
+			hide_RemoteView: false,
+			remoteUid: [],
+			myid: props.user.id,
+			switchCamera: true,
+			isLocalLarge: false,
+		};
 	}
 
-  componentWillUnmount() {
-    this._isMounted = false;
-    if (this.partner_listener) {
-      this.partner_listener()
-    }
+	async componentDidMount() {
+		this._isMounted = true;
+		const inititalSuccess = await this._initEngine();
+		if (this.state.type == 'incoming') {
+			this.props.goActiveScreenFromPush({
+				isIncomingCall: false,
+			});
 
-    try {
-      this._leaveChannel();
-      this._engine?.destroy();
-    } catch (error) {
+			const { IncomingCallData } = this.state;
+			this.monitorPartnerStatus(IncomingCallData.channel_id);
+		}
 
-    }
-  }
+		if (this.state.type == 'outgoing') {
+			console.log('heree');
 
-  _initEngine = async () => {
-    try {
-      if (Platform.OS === 'android') {
-        let permOk = false;
-        if (this.state.isVideoCall) {
-          const results = await PermissionsAndroid.requestMultiple([
-            PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
-            PermissionsAndroid.PERMISSIONS.CAMERA,
-          ]);
-          if (results && results['android.permission.CAMERA'] == 'granted' && results['android.permission.RECORD_AUDIO'] == 'granted') {
-            permOk = true;
-          }
-          else {
-            alerts.error(translate('alerts.error'), translate('video_call.allow_camera_audio_perm'))
-          }
-        }
-        else {
-          const results = await PermissionsAndroid.requestMultiple([
-            PermissionsAndroid.PERMISSIONS.RECORD_AUDIO
-          ]);
-          if (results && results['android.permission.RECORD_AUDIO'] == 'granted') {
-            permOk = true;
-          }
-          else {
-            alerts.error(translate('alerts.error'), translate('video_call.allow_audio_perm'))
-          }
-        }
+			this.initiateCall();
+		}
+	}
 
-        if (permOk == false) {
-          return false;
-        }
-      }
+	UNSAFE_componentWillMount() {}
 
-      this._engine = await RtcEngine.createWithContext(
-        new RtcEngineContext(Config.AGORA_APP_ID)
-      );
-      this._addListeners();
+	async componentDidUpdate(prevProps, prevState) {
+		if (this.props.route && this.props.route.params && prevProps.route && prevProps.route.params) {
+			let this_type = this.props.route.params.type;
+			let this_IncomingCallData = this.props.route.params.IncomingCallData || {};
 
-      if (this.state.isVideoCall) {
-        await this._engine.enableVideo();
-        await this._engine.startPreview();
-      }
-      else {
-        await this._engine.enableAudio();
-        await this._engine.setEnableSpeakerphone(this.state.isSpeakerOn);
-      }
+			let prev_type = prevProps.route.params.type;
+			let prev_IncomingCallData = prevProps.route.params.IncomingCallData || {};
 
-      await this._engine.setChannelProfile(ChannelProfile.LiveBroadcasting);
-      await this._engine.setClientRole(ClientRole.Broadcaster);
+			if (this_type == 'incoming' && prev_type == this_type) {
+				if (this_IncomingCallData.channel_id != prev_IncomingCallData.channel_id) {
+					if (this.partner_listener) {
+						this.partner_listener();
+					}
+					try {
+						await this._engine?.leaveChannel();
+						await this._engine?.destroy();
+					} catch (error) {}
 
-      return true;
-    } catch (error) {
-      
-      return false;
-    }
-  };
+					this.monitorPartnerStatus(this_IncomingCallData.channel_id);
+					this.setState({
+						isVideoCall: this.props.route.params.isVideoCall || false,
+						type: this.props.route.params.type, // 'incoming', 'outgoing'
+						IncomingCallData: this.props.route.params.IncomingCallData || {},
+						OutgoingCallReceiver: this.props.route.params.OutgoingCallReceiver || {},
 
-  _addListeners = () => {
-    this._engine?.addListener('Warning', (warningCode) => {
-      console.info('Warning', warningCode);
-    });
-    this._engine?.addListener('Error', (errorCode) => {
-      console.info('Error', errorCode);
-      this.onError(errorCode);
-    });
-    this._engine?.addListener('JoinChannelSuccess', (channel, uid, elapsed) => {
-      console.info('JoinChannelSuccess', channel, uid, elapsed);
-      if (this._isMounted) {
-        this.setState({ isJoined: true });
-      }
+						isVideoOff: false,
+						isMuted: false,
+						isSpeakerOn: false,
 
-      const { type } = this.state;
-      if (type == 'outgoing') {
-        this.monitorPartnerStatus(this._channelId);
-        this.monitorMissed();
-      }
+						channelId: null,
+						isJoined: false,
+						hide_RemoteView: false,
+						remoteUid: [],
+						myid: this.props.user.id,
+						switchCamera: true,
+						isLocalLarge: false,
+					});
+				}
+			}
+		}
+	}
 
-    });
-    this._engine?.addListener('UserJoined', (uid, elapsed) => {
-      console.info('UserJoined', uid, elapsed);
-      if (this._isMounted) {
-        this.setState({ remoteUid: [...this.state.remoteUid, uid] });
-      }
-      this._joinedUsers = [...this.state.remoteUid, uid];
-      if (this._joinedUsers.length > 0) {
-        updateCallChannelStatus(this._channelId, this.props.user.id, CALL_STATUS.joined);
-        this._currentStatus = CALL_STATUS.joined;
-        this._call_started_time = new Date().getTime();
-      }
-    });
-    this._engine?.addListener('UserOffline', (uid, reason) => {
-      console.info('UserOffline', uid, reason);
-      let remainingUsers = this.state.remoteUid.filter((value) => value !== uid);
-      if (this._isMounted) {
-        this.setState({
-          remoteUid: remainingUsers
-        });
-      }
-      this._joinedUsers = remainingUsers;
-      if (remainingUsers.length == 0) {
-        this.endCall();
-      }
-    });
-    this._engine?.addListener('LeaveChannel', (stats) => {
-      console.info('LeaveChannel', stats);
-      if (this._isMounted) {
-        this.setState({ isJoined: false, remoteUid: [] });
-      }
-    });
+	componentWillUnmount() {
+		this._engine.unregisterEventHandler();
+		this._engine.leaveChannel();
+		this._engine.release();
+		this._isMounted = false;
+		if (this.partner_listener) {
+			this.partner_listener();
+		}
 
-    if (this.state.isVideoCall) {
-      this._engine?.addListener('RemoteVideoStateChanged', (uid, state, reason, elapsed) => {
-        console.info('RemoteVideoStateChanged', uid, state, reason, elapsed);
+		try {
+			this._leaveChannel();
+			this._engine?.destroy();
+		} catch (error) {}
+	}
 
-        if (this._isMounted) {
-          if (state == 0 && reason == 5) // Stopped : RemoteMuted 
-          {
-            this.setState({ hide_RemoteView: true });
-          }
-          else {
-            this.setState({ hide_RemoteView: false });
-          }
-        }
-      });
-    }
-  };
+	_initEngine = async () => {
+		try {
+			if (Platform.OS === 'android') {
+				let permOk = false;
+				if (this.state.isVideoCall) {
+					const results = await PermissionsAndroid.requestMultiple([
+						PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+						PermissionsAndroid.PERMISSIONS.CAMERA,
+					]);
+					if (
+						results &&
+						results['android.permission.CAMERA'] == 'granted' &&
+						results['android.permission.RECORD_AUDIO'] == 'granted'
+					) {
+						permOk = true;
+					} else {
+						alerts.error(translate('alerts.error'), translate('video_call.allow_camera_audio_perm'));
+					}
+				} else {
+					const results = await PermissionsAndroid.requestMultiple([
+						PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+					]);
+					if (results && results['android.permission.RECORD_AUDIO'] == 'granted') {
+						permOk = true;
+					} else {
+						alerts.error(translate('alerts.error'), translate('video_call.allow_audio_perm'));
+					}
+				}
 
-  _joinChannel = async (channelId, token) => {
-    this._channelId = channelId;
-    if (this._isMounted == true) {
-      this.setState({ channelId: channelId });
-    }
-    try {
-      await this._engine?.joinChannel(
-        token,
-        channelId,
-        null,
-        this.props.user.id
-      );
-    } catch (error) {
+				if (permOk == false) {
+					return false;
+				}
+			}
 
-    }
-  };
+			// this._engine = createAgoraRtcEngine();
+			await this._engine.initialize({ appId: Config.AGORA_APP_ID, channelProfile: 1, clientRole: 1 });
 
-  _leaveChannel = async () => {
-    try {
-      await this._engine?.leaveChannel();
-    } catch (error) {
-    }
-  };
+			// this._engine = await RtcEngine.createWithContext(new RtcEngineContext(Config.AGORA_APP_ID));
+			this._addListeners();
 
-  _switchCamera = () => {
-    const { switchCamera } = this.state;
-    this._engine
-      ?.switchCamera()
-      .then(() => {
-        this.setState({ switchCamera: !switchCamera });
-      })
-      .catch((err) => {
-        console.warn('switchCamera', err);
-      });
-  };
+			if (this.state.isVideoCall) {
+				await this._engine.enableVideo();
+				await this._engine.startPreview();
+			} else {
+				await this._engine.enableAudio();
+				await this._engine.setEnableSpeakerphone(this.state.isSpeakerOn);
+			}
 
-  _onMute = () => {
-    const { isMuted } = this.state;
-    this._engine
-      ?.muteLocalAudioStream(!isMuted)
-      .then(() => {
-        this.setState({ isMuted: !isMuted });
-      })
-      .catch((err) => {
-        console.warn('mute Local Audio Stream', err);
-      });
-  }
+			await this._engine.setChannelProfile(1);
+			await this._engine.setClientRole(1);
 
-  _onSpeakerOff = () => {
-    const { isSpeakerOn } = this.state;
-    this._engine
-      ?.setEnableSpeakerphone(!isSpeakerOn)
-      .then(() => {
-        this.setState({ isSpeakerOn: !isSpeakerOn });
-      })
-      .catch((err) => {
-        console.warn('mute Local Audio Stream', err);
-      });
-  }
+			return true;
+		} catch (error) {
+			console.log('error', error);
 
-  _onVideoOff = () => {
-    const { isVideoOff } = this.state;
-    this._engine
-      ?.muteLocalVideoStream(!isVideoOff)
-      .then(() => {
-        this.setState({ isVideoOff: !isVideoOff });
-      })
-      .catch((err) => {
-        console.warn('mute Local Video Stream', err);
-      });
-  }
+			return false;
+		}
+	};
 
-  // outgoing
-  initiateCall = async () => {
-    const inititalSuccess = await this._initEngine();
-    if (!inititalSuccess) {
-      this.props.navigation.goBack();
-      return;
-    }
-    let channelId = await startCall(this.props.user, this.state.OutgoingCallReceiver, this.state.isVideoCall);
-    if (channelId) {
-      this._currentStatus = CALL_STATUS.calling;
-      getAgoraToken(channelId, this.props.user.id).then(({ data }) => {
-        
-        this._joinChannel(channelId, data.token);
-      })
-        .catch(err => {
-          this.onError(err);
-        })
-    }
-    else {
-      this.onError();
-    }
-  }
+	_addListeners = () => {
+		console.log('this._engine', this._engine);
 
-  cancelCall = async () => {
-    if (this._channelId) {
-      try {
-        await this._engine?.leaveChannel();
-        await this._engine?.destroy();
-      } catch (error) { }
-      updateCallChannelStatus(this._channelId, this.props.user.id, CALL_STATUS.canceled);
-    }
-    this.props.navigation.goBack();
-  }
+		// Register event handlers using registerEventHandler
+		this._engine.registerEventHandler({
+			onWarning: (warningCode) => {
+				console.info('Warning', warningCode);
+			},
+			onError: (errorCode) => {
+				console.info('Error', errorCode);
+				this.onError(errorCode);
+			},
+			onJoinChannelSuccess: (channel, uid, elapsed) => {
+				console.info('JoinChannelSuccess', channel, uid, elapsed);
+				// this.setState({ remoteUid: [...this.state.remoteUid, uid] });
+				if (this._isMounted) {
+					this.setState({ isJoined: true });
+				}
 
-  // incoming
-  acceptCall = async () => {
-    const { IncomingCallData } = this.state;
-    const inititalSuccess = await this._initEngine();
-    if (!inititalSuccess) {
-      this.props.navigation.goBack();
-      return;
-    }
-    this._joinChannel(IncomingCallData.channel_id, IncomingCallData.agora_token);
-  }
+				const { type } = this.state;
+				if (type === 'outgoing') {
+					this.monitorPartnerStatus(this._channelId);
+					this.monitorMissed();
+				}
+			},
+			onUserJoined: (uid, elapsed) => {
+				console.info('UserJoined', uid, elapsed);
+				if (this._isMounted) {
+					this.setState({ remoteUid: [...this.state.remoteUid, uid] });
+				}
+				this._joinedUsers = [...this.state.remoteUid, uid];
+				if (this._joinedUsers.length > 0) {
+					updateCallChannelStatus(this._channelId, this.props.user.id, CALL_STATUS.joined);
+					this._currentStatus = CALL_STATUS.joined;
+					this._call_started_time = new Date().getTime();
+				}
+			},
+			onUserOffline: (uid, reason) => {
+				console.info('UserOffline', uid, reason);
+				let remainingUsers = this.state.remoteUid.filter((value) => value !== uid);
+				console.log('remainingUsers', remainingUsers);
 
-  rejectCall = async () => {
-    const { IncomingCallData } = this.state;
-    try {
-      await this._engine?.leaveChannel();
-      await this._engine?.destroy();
-    } catch (error) { }
-    updateCallChannelStatus(IncomingCallData.channel_id, this.props.user.id, CALL_STATUS.rejected);
-    this.props.navigation.goBack();
-  }
+				if (this._isMounted) {
+					this.setState({
+						remoteUid: remainingUsers,
+					});
+				}
+				this._joinedUsers = remainingUsers;
+				if (remainingUsers.length === 1) {
+					this.endCall();
+				}
+			},
+			onLeaveChannel: (stats) => {
+				console.info('LeaveChannel', stats);
+				if (this._isMounted) {
+					this.setState({ isJoined: false, remoteUid: [] });
+				}
+			},
+			onRemoteVideoStateChanged: (uid, state, reason, elapsed) => {
+				console.info('RemoteVideoStateChanged', uid, state, reason, elapsed);
 
-  // joined
-  monitorPartnerStatus = (channel_id) => {
-    if (channel_id == null || channel_id == '') { return; }
+				if (this._isMounted) {
+					if (state === 0 && reason === 5) {
+						// Stopped : RemoteMuted
+						this.setState({ hide_RemoteView: true });
+					} else {
+						this.setState({ hide_RemoteView: false });
+					}
+				}
+			},
+		});
+	};
 
-    const { type, OutgoingCallReceiver, IncomingCallData } = this.state;
-    if ((type == 'outgoing' && OutgoingCallReceiver.id == null) ||
-      (type == 'incoming' && IncomingCallData.caller_id == null)
-    ) {
-      return;
-    }
-    if (this.partner_listener) {
-      this.partner_listener()
-    }
-    let partnerId = OutgoingCallReceiver.id;
-    if (type == 'incoming') {
-      partnerId = IncomingCallData.caller_id;
-    }
+	_joinChannel = async (channelId, token) => {
+		this._channelId = channelId;
+		if (this._isMounted == true) {
+			this.setState({ channelId: channelId });
+		}
+		try {
+			await this._engine?.joinChannel(token, channelId, this.props.user.id);
+		} catch (error) {}
+	};
 
-    this.partner_listener = call_channel_collection.doc(channel_id)
-      .onSnapshot((doc) => {
-        if (doc.data()) {
-          if (this._isMounted) {
-            let user_status = doc.data().user_status || {};
+	_leaveChannel = async () => {
+		try {
+			await this._engine?.leaveChannel();
+		} catch (error) {}
+	};
 
-            if (user_status[partnerId] == CALL_STATUS.rejected) {
-              this.missedCall(1)
-            }
-            else if (user_status[partnerId] == CALL_STATUS.canceled) {
-              this.missedCall(2)
-            }
-          }
-        }
-      },
-        (error) => {
-          
-        });
-  }
+	_switchCamera = () => {
+		const { switchCamera } = this.state;
+		this._engine
+			?.switchCamera()
+			.then(() => {
+				this.setState({ switchCamera: !switchCamera });
+			})
+			.catch((err) => {
+				console.warn('switchCamera', err);
+			});
+	};
 
-  monitorMissed = () => {
-    setTimeout(async () => {
-      if (this.state.type == 'outgoing' && this._currentStatus == CALL_STATUS.calling && this._channelId && this._joinedUsers.length == 0) {
-        if (this._isMounted) {
-          this.missedCall(3)
-        }
-      }
-    }, 60000) // 1 min : auto missed
-  }
+	_onMute = () => {
+		const { isMuted } = this.state;
+		this.setState({ isMuted: !isMuted });
+		this._engine.muteLocalAudioStream(isMuted);
+	};
 
-  missedCall = async (flag = 3) => {
-    const { type, OutgoingCallReceiver, IncomingCallData } = this.state;
-    let partner_name = '';
-    if (type == 'incoming') {
-      partner_name = IncomingCallData.caller_name
-    }
-    else {
-      partner_name = OutgoingCallReceiver.username || OutgoingCallReceiver.full_name
-    }
+	_onSpeakerOff = () => {
+		const { isSpeakerOn } = this.state;
+		this._engine?.setEnableSpeakerphone(!isSpeakerOn);
+		this.setState({ isSpeakerOn: !isSpeakerOn });
+	};
 
-    let message = `${partner_name}`;
-    if (flag == 1) { // declined
-      message = message + translate('video_call.declined_call');
-    }
-    else if (flag == 2){ // cancelled
-      message = message + translate('video_call.cancelled_call');
-    }
-    else { // missed
-      message = message + translate('video_call.missed_call');
-    }
+	_onVideoOff = () => {
+		const { isVideoOff } = this.state;
+		this._engine
+			?.muteLocalVideoStream(!isVideoOff)
+			.then(() => {
+				this.setState({ isVideoOff: !isVideoOff });
+			})
+			.catch((err) => {
+				console.warn('mute Local Video Stream', err);
+			});
+	};
 
-    alerts.info('', message)
-      .then((res) => {
-      });
+	// outgoing
+	initiateCall = async () => {
+		let channelId = await startCall(this.props.user, this.state.OutgoingCallReceiver, this.state.isVideoCall);
+		if (channelId) {
+			this._currentStatus = CALL_STATUS.calling;
+			getAgoraToken(channelId, this.props.user.id)
+				.then(({ data }) => {
+					this._joinChannel(channelId, data.token);
+				})
+				.catch((err) => {
+					this.onError(err);
+				});
+		} else {
+			this.onError();
+		}
+	};
 
-    if (this._channelId) {
-      if (flag == 3) {
-        updateCallChannelStatus(this._channelId, this.props.user.id, CALL_STATUS.missed);
-      }
-    }
-    try {
-      await this._engine?.leaveChannel();
-      await this._engine?.destroy();
-    } catch (error) { }
-    this.props.navigation.goBack();
-  }
+	cancelCall = async () => {
+		if (this._channelId) {
+			try {
+				await this._engine?.leaveChannel();
+				await this._engine?.destroy();
+			} catch (error) {}
+			updateCallChannelStatus(this._channelId, this.props.user.id, CALL_STATUS.canceled);
+		}
+		this.props.navigation.goBack();
+	};
 
-  endCall = async () => {
-    if (this._channelId) {
-      if (this._call_started_time != null && this._call_started_time > 0) {
-        let duration = new Date().getTime() - this._call_started_time;
-        if (duration > 0) {
-          await updateCallDuration(this._channelId, duration);
-        }
-      }
+	// incoming
+	acceptCall = async () => {
+		const { IncomingCallData } = this.state;
 
-      updateCallChannelStatus(this._channelId, this.props.user.id, CALL_STATUS.ended);
-      try {
-        await this._engine?.leaveChannel();
-        await this._engine?.destroy();
-      } catch (error) { }
-    }
-    this.props.navigation.goBack();
-  }
+		this._joinChannel(IncomingCallData.channel_id, IncomingCallData.agora_token);
+	};
 
-  onError = (err) => {
-    
-    this.endCall();
-    alerts.error(translate('alerts.error'), translate('video_call.something_is_wrong'))
-  }
+	rejectCall = async () => {
+		const { IncomingCallData } = this.state;
+		try {
+			await this._engine?.leaveChannel();
+			await this._engine?.destroy();
+		} catch (error) {}
+		updateCallChannelStatus(IncomingCallData.channel_id, this.props.user.id, CALL_STATUS.rejected);
+		this.props.navigation.goBack();
+	};
 
-  getPartnerName = () => {
-    const { type, IncomingCallData, OutgoingCallReceiver } = this.state;
-    if (type == 'incoming') {
-      return IncomingCallData.caller_name;
-    }
-    else {
-      return OutgoingCallReceiver.username || OutgoingCallReceiver.full_name;
-    }
-  }
+	// joined
+	monitorPartnerStatus = (channel_id) => {
+		if (channel_id == null || channel_id == '') {
+			return;
+		}
 
-  getPartnerPhoto = () => {
-    const { type, IncomingCallData, OutgoingCallReceiver } = this.state;
-    if (type == 'incoming') {
-      return IncomingCallData.caller_photo;
-    }
-    else {
-      return OutgoingCallReceiver.photo;
-    }
-  }
+		const { type, OutgoingCallReceiver, IncomingCallData } = this.state;
+		if (
+			(type == 'outgoing' && OutgoingCallReceiver.id == null) ||
+			(type == 'incoming' && IncomingCallData.caller_id == null)
+		) {
+			return;
+		}
+		if (this.partner_listener) {
+			this.partner_listener();
+		}
+		let partnerId = OutgoingCallReceiver.id;
+		if (type == 'incoming') {
+			partnerId = IncomingCallData.caller_id;
+		}
 
-  render() {
-    const { type, isVideoCall, IncomingCallData, OutgoingCallReceiver, channelId, isJoined, remoteUid, switchCamera } = this.state;
-    if (isJoined && remoteUid.length > 0) {
-      if (isVideoCall) {
-        return (
-          <View style={styles.container}>
-            {this._renderVideo()}
-            <CallActionView
-              type={'joined'}
-              isMuted={this.state.isMuted}
-              isVideoOff={this.state.isVideoOff}
-              isCameraRear={!switchCamera}
-              style={styles.float}
-              endCall={this.endCall}
-              onMute={this._onMute}
-              onChangeCamera={this._switchCamera}
-              onVideoOff={this._onVideoOff}
-            />
-          </View>
-        );
-      }
-      return (
-        <View style={styles.audioCallContainer}>
-          <CallInfo type={'audio-joined'} full_name={this.getPartnerName()} photo={this.getPartnerPhoto()} />
-          <CallActionView type={'audio-joined'}
-            isMuted={this.state.isMuted}
-            isSpeakerOn={this.state.isSpeakerOn}
-            onMute={this._onMute}
-            onSpeakerOff={this._onSpeakerOff}
-            endCall={this.endCall} />
-        </View>
-      );
-    }
-    else {
-      if (type == 'incoming') {
-        return (
-          <View style={[Theme.styles.col_center, styles.incomingContainer]}>
-            <CallInfo type={type} isVideoCall={isVideoCall} full_name={this.getPartnerName()} photo={this.getPartnerPhoto()} />
-            <CallActionView type={type} acceptCall={this.acceptCall} endCall={this.rejectCall} />
-          </View>
-        )
-      }
-      return (
-        <View style={[Theme.styles.col_center, styles.incomingContainer]}>
-          <CallInfo type={type} isVideoCall={isVideoCall} full_name={this.getPartnerName()} photo={this.getPartnerPhoto()} />
-          <CallActionView type={type} endCall={this.cancelCall} />
-        </View>
-      )
-    }
-  }
+		this.partner_listener = call_channel_collection.doc(channel_id).onSnapshot(
+			(doc) => {
+				if (doc.data()) {
+					if (this._isMounted) {
+						let user_status = doc.data().user_status || {};
 
-  _renderVideo = () => {
-    const { remoteUid, isJoined, isLocalLarge, type, hide_RemoteView } = this.state;
-    return (
-      <View style={{ flex: 1 }}>
-        <TouchableOpacity
-          activeOpacity={1}
-          style={[isLocalLarge ? styles.remote : styles.local, { backgroundColor: '#000' }]}
-          onPress={() => {
-            if (isLocalLarge) {
-              this.setState({ isLocalLarge: !isLocalLarge })
-            }
-          }}
-        >
-          {
-            !hide_RemoteView &&
-            <RtcRemoteView.SurfaceView
-              style={{ flex: 1, width: '100%', height: '100%' }}
-              channelId={this.state.channelId}
-              uid={remoteUid[0]}
-              renderMode={isLocalLarge ? VideoRenderMode.Hidden : VideoRenderMode.Hidden}
-              zOrderMediaOverlay={isLocalLarge ? true : false}
-            />
-          }
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={1}
-          style={[isLocalLarge ? styles.local : styles.remote]}
-          onPress={() => {
-            if (!isLocalLarge) {
-              this.setState({ isLocalLarge: !isLocalLarge })
-            }
-          }}
-        >
-          <RtcLocalView.SurfaceView
-            style={{ flex: 1, width: '100%', height: '100%' }}
-            channelId={this.state.channelId}
-            renderMode={isLocalLarge ? VideoRenderMode.Hidden : VideoRenderMode.Hidden}
-            zOrderMediaOverlay={isLocalLarge ? false : true}
-          />
-        </TouchableOpacity>
-      </View>
-    );
-  };
+						if (user_status[partnerId] == CALL_STATUS.rejected) {
+							this.missedCall(1);
+						} else if (user_status[partnerId] == CALL_STATUS.canceled) {
+							this.missedCall(2);
+						}
+					}
+				}
+			},
+			(error) => {}
+		);
+	};
 
+	monitorMissed = () => {
+		setTimeout(async () => {
+			if (
+				this.state.type == 'outgoing' &&
+				this._currentStatus == CALL_STATUS.calling &&
+				this._channelId &&
+				this._joinedUsers.length == 0
+			) {
+				if (this._isMounted) {
+					this.missedCall(3);
+				}
+			}
+		}, 60000); // 1 min : auto missed
+	};
+
+	missedCall = async (flag = 3) => {
+		const { type, OutgoingCallReceiver, IncomingCallData } = this.state;
+		let partner_name = '';
+		if (type == 'incoming') {
+			partner_name = IncomingCallData.caller_name;
+		} else {
+			partner_name = OutgoingCallReceiver.username || OutgoingCallReceiver.full_name;
+		}
+
+		let message = `${partner_name}`;
+		if (flag == 1) {
+			// declined
+			message = message + translate('video_call.declined_call');
+		} else if (flag == 2) {
+			// cancelled
+			message = message + translate('video_call.cancelled_call');
+		} else {
+			// missed
+			message = message + translate('video_call.missed_call');
+		}
+
+		alerts.info('', message).then((res) => {});
+
+		if (this._channelId) {
+			if (flag == 3) {
+				updateCallChannelStatus(this._channelId, this.props.user.id, CALL_STATUS.missed);
+			}
+		}
+		try {
+			await this._engine?.leaveChannel();
+			await this._engine?.destroy();
+		} catch (error) {}
+		this.props.navigation.goBack();
+	};
+
+	endCall = async () => {
+		if (this._channelId) {
+			if (this._call_started_time != null && this._call_started_time > 0) {
+				let duration = new Date().getTime() - this._call_started_time;
+				if (duration > 0) {
+					await updateCallDuration(this._channelId, duration);
+				}
+			}
+
+			updateCallChannelStatus(this._channelId, this.props.user.id, CALL_STATUS.ended);
+			try {
+				await this._engine?.leaveChannel();
+				await this._engine?.destroy();
+			} catch (error) {}
+		}
+		this.props.navigation.goBack();
+	};
+
+	onError = (err) => {
+		this.endCall();
+		alerts.error(translate('alerts.error'), translate('video_call.something_is_wrong'));
+	};
+
+	getPartnerName = () => {
+		const { type, IncomingCallData, OutgoingCallReceiver } = this.state;
+		if (type == 'incoming') {
+			return IncomingCallData.caller_name;
+		} else {
+			return OutgoingCallReceiver.username || OutgoingCallReceiver.full_name;
+		}
+	};
+
+	getPartnerPhoto = () => {
+		const { type, IncomingCallData, OutgoingCallReceiver } = this.state;
+		if (type == 'incoming') {
+			return IncomingCallData.caller_photo;
+		} else {
+			return OutgoingCallReceiver.photo;
+		}
+	};
+
+	render() {
+		const {
+			type,
+			isVideoCall,
+			IncomingCallData,
+			OutgoingCallReceiver,
+			channelId,
+			isJoined,
+			remoteUid,
+			switchCamera,
+		} = this.state;
+
+		console.log('isJoined', isJoined, remoteUid);
+
+		if (isJoined && remoteUid.length > 0) {
+			if (isVideoCall) {
+				return (
+					<View style={styles.container}>
+						{this._renderVideo()}
+						<CallActionView
+							type={'joined'}
+							isMuted={this.state.isMuted}
+							isVideoOff={this.state.isVideoOff}
+							isCameraRear={!switchCamera}
+							style={styles.float}
+							endCall={this.endCall}
+							onMute={this._onMute}
+							onChangeCamera={this._switchCamera}
+							onVideoOff={this._onVideoOff}
+						/>
+					</View>
+				);
+			}
+			return (
+				<View style={styles.audioCallContainer}>
+					<CallInfo type={'audio-joined'} full_name={this.getPartnerName()} photo={this.getPartnerPhoto()} />
+					<CallActionView
+						type={'audio-joined'}
+						isMuted={this.state.isMuted}
+						isSpeakerOn={this.state.isSpeakerOn}
+						onMute={this._onMute}
+						onSpeakerOff={this._onSpeakerOff}
+						endCall={this.endCall}
+					/>
+				</View>
+			);
+		} else {
+			if (type == 'incoming') {
+				return (
+					<View style={[Theme.styles.col_center, styles.incomingContainer]}>
+						<CallInfo
+							type={type}
+							isVideoCall={isVideoCall}
+							full_name={this.getPartnerName()}
+							photo={this.getPartnerPhoto()}
+						/>
+						<CallActionView type={type} acceptCall={this.acceptCall} endCall={this.rejectCall} />
+					</View>
+				);
+			}
+			return (
+				<View style={[Theme.styles.col_center, styles.incomingContainer]}>
+					<CallInfo
+						type={type}
+						isVideoCall={isVideoCall}
+						full_name={this.getPartnerName()}
+						photo={this.getPartnerPhoto()}
+					/>
+					<CallActionView type={type} endCall={this.cancelCall} />
+				</View>
+			);
+		}
+	}
+
+	_renderVideo = () => {
+		const { remoteUid, isJoined, isLocalLarge, type, hide_RemoteView } = this.state;
+		return (
+			<View style={{ flex: 1 }}>
+				<TouchableOpacity
+					activeOpacity={1}
+					style={[isLocalLarge ? styles.remote : styles.local, { backgroundColor: '#000' }]}
+					onPress={() => {
+						if (isLocalLarge) {
+							this.setState({ isLocalLarge: !isLocalLarge });
+						}
+					}}
+				>
+					{!hide_RemoteView && (
+						<RtcRemoteView.SurfaceView
+							style={{ flex: 1, width: '100%', height: '100%' }}
+							channelId={this.state.channelId}
+							uid={remoteUid[0]}
+							renderMode={isLocalLarge ? VideoRenderMode.Hidden : VideoRenderMode.Hidden}
+							zOrderMediaOverlay={isLocalLarge ? true : false}
+						/>
+					)}
+				</TouchableOpacity>
+				<TouchableOpacity
+					activeOpacity={1}
+					style={[isLocalLarge ? styles.local : styles.remote]}
+					onPress={() => {
+						if (!isLocalLarge) {
+							this.setState({ isLocalLarge: !isLocalLarge });
+						}
+					}}
+				>
+					<RtcLocalView.SurfaceView
+						style={{ flex: 1, width: '100%', height: '100%' }}
+						channelId={this.state.channelId}
+						renderMode={isLocalLarge ? VideoRenderMode.Hidden : VideoRenderMode.Hidden}
+						zOrderMediaOverlay={isLocalLarge ? false : true}
+					/>
+				</TouchableOpacity>
+			</View>
+		);
+	};
 }
 
 const styles = StyleSheet.create({
-  incomingContainer: { flex: 1, backgroundColor: Theme.colors.cyan2 },
-  container: {
-    flex: 1,
-  },
-  float: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 2,
-    height: 120,
-  },
-  top: {
-    width: '100%',
-  },
-  input: {
-    borderColor: 'gray',
-    borderWidth: 1,
-  },
-  local: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    width: width(100),
-    height: height(100),
-    zIndex: 1
-  },
-  remote: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    width: 160,
-    height: 160,
-    zIndex: 10
-  },
-  audioCallContainer: {
-    flex: 1, backgroundColor: '#50b7ed80'
-  },
-  audioCallInfo: { flex: 1, justifyContent: 'center', paddingVertical: 60, paddingHorizontal: 40 },
-  audioCallName: {
-    fontSize: 22, fontFamily: Theme.fonts.semiBold, color: Theme.colors.white
-  },
-  audioCallTimer: { fontSize: 17, fontFamily: Theme.fonts.medium, color: Theme.colors.white },
+	incomingContainer: { flex: 1, backgroundColor: Theme.colors.cyan2 },
+	container: {
+		flex: 1,
+	},
+	float: {
+		position: 'absolute',
+		left: 0,
+		right: 0,
+		bottom: 0,
+		zIndex: 2,
+		height: 120,
+	},
+	top: {
+		width: '100%',
+	},
+	input: {
+		borderColor: 'gray',
+		borderWidth: 1,
+	},
+	local: {
+		position: 'absolute',
+		left: 0,
+		top: 0,
+		width: width(100),
+		height: height(100),
+		zIndex: 1,
+	},
+	remote: {
+		position: 'absolute',
+		left: 0,
+		top: 0,
+		width: 160,
+		height: 160,
+		zIndex: 10,
+	},
+	audioCallContainer: {
+		flex: 1,
+		backgroundColor: '#50b7ed80',
+	},
+	audioCallInfo: { flex: 1, justifyContent: 'center', paddingVertical: 60, paddingHorizontal: 40 },
+	audioCallName: {
+		fontSize: 22,
+		fontFamily: Theme.fonts.semiBold,
+		color: Theme.colors.white,
+	},
+	audioCallTimer: { fontSize: 17, fontFamily: Theme.fonts.medium, color: Theme.colors.white },
 });
-
 
 const mapStateToProps = ({ app, chat }) => ({
-  isLoggedIn: app.isLoggedIn,
-  language: app.language,
-  user: app.user,
+	isLoggedIn: app.isLoggedIn,
+	language: app.language,
+	user: app.user,
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    goActiveScreenFromPush
-  },
-)(VideoCallScreen);
+export default connect(mapStateToProps, {
+	goActiveScreenFromPush,
+})(VideoCallScreen);

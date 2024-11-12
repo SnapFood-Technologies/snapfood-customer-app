@@ -46,7 +46,7 @@ import LocationMsgOptionModal from '../../../common/components/modals/LocationMs
 import MsgInfoModal from '../../../common/components/modals/MsgInfoModal';
 import MessagesHeader from '../components/MessagesHeader';
 import AudioInputView from '../components/AudioInputView';
-import { renderInputToolbar, renderComposer, renderSend } from '../components/InputToolbar';
+import { renderInputToolbar, renderComposer, renderSend, renderActions } from '../components/InputToolbar';
 import { renderBubble, renderMessage } from '../components/MessageContainer';
 import { checkLocationPermission, requestLocationPermission } from '../../../common/services/location';
 import { ROLE_CUSTOMER, ROLE_RIDER } from '../../../config/constants';
@@ -55,6 +55,7 @@ import SnackBar from 'react-native-snackbar-component';
 import Toast from 'react-native-toast-message';
 import apiFactory from '../../../common/services/apiFactory';
 import _ from 'lodash';
+import { useKeyboard } from '@react-native-community/hooks';
 const systemMsg = {
 	_id: 1,
 	text: '',
@@ -65,6 +66,7 @@ const systemMsg = {
 const PerPage = 12;
 const MessagesScreen = (props) => {
 	const { setMessagesByChannel, route, user, messages, chat_channels } = props;
+	const [loading, setLoading] = useState(true);
 	const channel = useMemo(() => {
 		return (chat_channels || []).find(({ id }) => id === route.params.channelId);
 	}, [route.params.channelId || '']);
@@ -109,12 +111,14 @@ const MessagesScreen = (props) => {
 	};
 
 	const listenForMessages = () => {
+		setLoading(true);
 		msgs_unlistener.current = getMessageCollection().onSnapshot((snaps) => {
 			let msgs = messagesBySnapShots(snaps);
 			if (JSON.stringify(messages || {}) !== JSON.stringify(msgs || {})) {
 				setMessages(msgs);
 			}
 			if (hasMore !== !!(msgs.length > 0)) setHasMore(!!(msgs.length > 0));
+			setLoading(false);
 		});
 	};
 
@@ -723,7 +727,7 @@ const MessagesScreen = (props) => {
 
 	return (
 		<View style={styles.container}>
-			<Spinner visible={imageUploading} />
+			<Spinner visible={imageUploading || loading} />
 			<CustomGiftedChat
 				messages={messages}
 				textChanged={textChanged}
@@ -938,6 +942,7 @@ const CustomGiftedChat = (props) => {
 	const textLength = text?.length || 0;
 	const { id, username, full_name, phone, photo, email } = props.user || {};
 	const role = ROLE_CUSTOMER;
+	const keyboard = useKeyboard();
 
 	const onSendData = useCallback(() => {}, []);
 
@@ -955,11 +960,16 @@ const CustomGiftedChat = (props) => {
 	const renderLoading = useCallback(() => null, []);
 	const listViewProps = useMemo(() => getListViewProps(prevLoading, loadPrevMessage), [prevLoading, loadPrevMessage]);
 	const chatRenderSend = useCallback(
-		(props) => renderSend(props, textLength > 0 || imagesLength > 0, onRecord, onSendData),
-		[textLength, imagesLength, onRecord, onSendData]
+		(props) => renderSend(props, textLength > 0 || imagesLength > 0, onRecord, onSendData, keyboard),
+		[textLength, imagesLength, onRecord, onSendData, keyboard]
 	);
 	const renderSystemMessage = useCallback(() => null, []);
-	const messageContainerStyle = useMemo(() => ({ paddingBottom: imagesLength > 0 ? 60 : 0 }), [imagesLength]);
+	const messageContainerStyle = useMemo(
+		() => ({
+			paddingBottom: keyboard.keyboardShown ? 0 : 75,
+		}),
+		[keyboard]
+	);
 	const renderFooter = useCallback(
 		() => (
 			<View>
@@ -988,38 +998,41 @@ const CustomGiftedChat = (props) => {
 	);
 
 	return (
-		<GiftedChat
-			messages={messages.length == 0 ? [systemMsg] : messages}
-			text={text}
-			onInputTextChanged={onInputTextChanged}
-			onSend={onSend}
-			user={user}
-			minInputToolbarHeight={100}
-			alwaysShowSend={true}
-			showUserAvatar={false}
-			renderUsernameOnMessage={true}
-			textInputAutoFocus={false}
-			renderLoading={renderLoading}
-			listViewProps={listViewProps}
-			renderInputToolbar={renderBottomInputbar}
-			renderSend={chatRenderSend}
-			renderComposer={renderComposer}
-			renderMessage={renderMessage}
-			renderBubble={renderBubble}
-			renderAvatar={null}
-			// alignTop
-			// scrollToBottom={260}
-			bottomOffset={useSafeArea().bottom}
-			renderSystemMessage={renderSystemMessage}
-			// renderAvatarOnTop
-			// renderActions={renderActions}
-			// renderMessageImage
-			// renderCustomView={renderCustomView}
-			// isCustomViewBottom
-			messagesContainerStyle={messageContainerStyle}
-			renderFooter={renderFooter}
-			parsePatterns={parsePatterns}
-		/>
+		<>
+			<GiftedChat
+				messages={messages.length == 0 ? [systemMsg] : messages}
+				text={text}
+				onInputTextChanged={onInputTextChanged}
+				onSend={onSend}
+				user={user}
+				minInputToolbarHeight={100}
+				alwaysShowSend={true}
+				showUserAvatar={false}
+				renderUsernameOnMessage={true}
+				textInputAutoFocus={false}
+				renderLoading={renderLoading}
+				listViewProps={listViewProps}
+				renderInputToolbar={renderBottomInputbar}
+				renderSend={chatRenderSend}
+				renderComposer={renderComposer}
+				renderMessage={renderMessage}
+				renderBubble={renderBubble}
+				renderAvatar={null}
+				// alignTop
+				// scrollToBottom={260}
+				bottomOffset={useSafeArea().bottom}
+				renderSystemMessage={renderSystemMessage}
+				// renderAvatarOnTop
+				renderActions={renderActions}
+				// renderMessageImage
+				// renderCustomView={renderCustomView}
+				// isCustomViewBottom
+				messagesContainerStyle={messageContainerStyle}
+				renderFooter={renderFooter}
+				s
+				parsePatterns={parsePatterns}
+			/>
+		</>
 	);
 };
 
@@ -1042,7 +1055,8 @@ const getListViewProps = (prevLoading, loadPrevMessage) => ({
 	onScroll: ({ nativeEvent }) => {
 		if (isCloseToTop(nativeEvent)) if (isCloseToBottom(nativeEvent)) loadPrevMessage();
 	},
-	keyboardShouldPersistTaps: 'handled',
+	// keyboardShouldPersistTaps: 'handled',
+	showsVerticalScrollIndicator: false,
 });
 
 const ChatLoading = () => (

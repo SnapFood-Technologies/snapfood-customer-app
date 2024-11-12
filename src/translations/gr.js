@@ -69,7 +69,7 @@ export default {
 	and: ' and ',
 	open: 'Ánoixto',
 	closed: 'Kλειστό',
-	required : 'Required',
+	required: 'Required',
 	term_privacy: 'Όροι και απόρρητο',
 
 	'Snapfood Support': 'Ομάδα Snapfood',
@@ -175,13 +175,15 @@ export default {
 	spend_wallet: 'Ξοδέψτε από το πορτοφόλι σας',
 	spend_wallet_desc: 'Διαχειριστείτε την επιστροφή μετρητών σας απευθείας από το πορτοφόλι σας στο Snapfood.',
 	save_cashback: 'Εξοικονομήστε περισσότερα με το Cashback',
-	save_cashback_desc: 'Όσο περισσότερα παραγγέλνετε, όσο περισσότερα cashback λαμβάνετε, τόσο περισσότερο εξοικονομείτε.',
+	save_cashback_desc:
+		'Όσο περισσότερα παραγγέλνετε, όσο περισσότερα cashback λαμβάνετε, τόσο περισσότερο εξοικονομείτε.',
 	split_bill: 'Διαίρεση λογαριασμού',
 	split_bill_desc: 'Διαχωρίστε τον λογαριασμό με τους φίλους σας απευθείας στην εφαρμογή, για ομαδικές παραγγελίες.',
 	gift_order_onboard: 'Παραγγελίες δώρων',
 	gift_order_onboard_desc: 'Κάντε κάποιον χαρούμενο στέλνοντάς του το αγαπημένο του πιάτο με το Snapfood.',
 	refer_onboard: 'Αναφορά & Κερδίστε',
-	refer_onboard_desc: 'Αναφέρετε το Snapfood στους φίλους σας και κερδίζετε πίστωση κάθε φορά που εγγράφονται χρησιμοποιώντας τον κωδικό σας.',
+	refer_onboard_desc:
+		'Αναφέρετε το Snapfood στους φίλους σας και κερδίζετε πίστωση κάθε φορά που εγγράφονται χρησιμοποιώντας τον κωδικό σας.',
 
 	splash_intro: {
 		title: 'Fast Delivery',
@@ -292,11 +294,12 @@ export default {
 	report: {
 		title: 'Report',
 		subtitle: 'Υπάρχει κάτι λάθος;',
-		subSubtitle: 'Αναφέρετε ένα πρόβλημα και βοηθήστε μας να βελτιωθούμε παρέχοντας όσο το δυνατόν περισσότερες λεπτομέρειες',
+		subSubtitle:
+			'Αναφέρετε ένα πρόβλημα και βοηθήστε μας να βελτιωθούμε παρέχοντας όσο το δυνατόν περισσότερες λεπτομέρειες',
 		descriptionPlaceholder: 'Περιγράψτε το πρόβλημα με όσο το δυνατόν περισσότερες λεπτομέρειες',
 		descriptionWarning: 'Περιγράψτε με περισσότερες λεπτομέρειες το πρόβλημα που αντιμετωπίσατε',
 		typePlaceholder: 'Type of problem',
-		choose_type_problem: "Τι τρέχει",
+		choose_type_problem: 'Τι τρέχει',
 		tipet: ['Problem with app', 'Problem with order', 'Suggestions'],
 		upload_image: 'Upload image',
 		success_title: 'Η αναφορά σας στάλθηκε με επιτυχία',
@@ -307,7 +310,7 @@ export default {
 		promotions_menu: 'Promotions',
 		vendor_promotions_menu: 'Προσφορές από εστιατόρια',
 		snapfood_promotions_menu: 'Προσφορές από το Snapfood',
- 		student_verify_menu: 'Επαλήθευση μαθητή',
+		student_verify_menu: 'Επαλήθευση μαθητή',
 		invite_reward: 'Αναφέρομαι',
 		earn_reward: 'Earn',
 		addresses: 'Addresses',
@@ -408,7 +411,7 @@ export default {
 		public_desc: 'Μπορεί να προβληθεί από όλα τα Snapfoodies',
 		private: 'Ιδιωτικός',
 		private_desc: 'Μπορεί να προβληθεί μόνο από φίλους',
-		delete_confirm: 'Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν τη φωτογραφία?'
+		delete_confirm: 'Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν τη φωτογραφία?',
 	},
 	biosetting: {
 		privacy: 'Ρυθμίσεις απορρήτου',
@@ -777,7 +780,7 @@ export default {
 		product_not_available: 'Product is not available',
 		started_new_order: 'Starting a new oder?',
 		current_cart_will_erase: 'Your cart will reset.',
-		option_is_required : 'You need to select at least one option',
+		option_is_required: 'You need to select at least one option',
 		confirm: 'Confirm',
 		cancel: 'Cancel',
 		loading_products: 'Loading products list',
@@ -791,7 +794,7 @@ export default {
 		hours_left: 'απομένουν ώρες',
 		random_limit: 'Αυτή η προσφορά θα λήξει στις ',
 		expire_in: 'Expires in ',
-		basket_is_empty: 'Το καλάθι σας είναι άδειο. Προσθέστε ένα προϊόν.'
+		basket_is_empty: 'Το καλάθι σας είναι άδειο. Προσθέστε ένα προϊόν.',
 	},
 	add_new_address: {
 		header: 'Address details',
@@ -846,6 +849,7 @@ export default {
 			have_one: 'Do you have a coupon?',
 			placeholder: 'Add Coupon',
 			applied_successfully: 'Coupon applied successfully',
+			free_delivery: 'Το κουπόνι εφαρμόστηκε επιτυχώς και τώρα έχετε δωρεάν παράδοση για αυτή την παραγγελία',
 		},
 		a_coupon_value: 'Εφαρμόστηκε κουπόνι',
 		a_coupon_value_a: 'Ένα κουπόνι με',
@@ -853,7 +857,7 @@ export default {
 		a_discount_value: 'Εφαρμόστηκε έκπτωση',
 		a_discount_was_applied: '',
 		you_used_discount: 'έχει εφαρμοστεί έκπτωση σε αυτήν την παραγγελία',
-		add_promo_code: 'Enter Promotion Code',
+		add_promo_code: 'Εισαγάγετε τον κωδικό πρόσκλησης παραγγελίας',
 		invalid_promotion_code: 'Invalid promotion code',
 		invalid_running_promotion_code: 'Έχετε μια τρέχουσα παραγγελία με αυτόν τον κωδικό προσφοράς',
 		suggested_items: 'Suggested Items',
@@ -882,7 +886,8 @@ export default {
 		cashback_amount: 'Cashback Amount',
 		discount_amount: 'Discount Amount',
 		split_with: 'Split With',
-		split_order_not_possible_before_all_reply: 'Τα άτομα με τα οποία θέλετε να μοιραστείτε τον λογαριασμό πρέπει να ανταποκριθούν στο αίτημά σας, διαφορετικά πρέπει να τα καταργήσετε για να συνεχίσετε την παραγγελία',
+		split_order_not_possible_before_all_reply:
+			'Τα άτομα με τα οποία θέλετε να μοιραστείτε τον λογαριασμό πρέπει να ανταποκριθούν στο αίτημά σας, διαφορετικά πρέπει να τα καταργήσετε για να συνεχίσετε την παραγγελία',
 		not_snapfood_user: 'Not A Snapfood User',
 		select_card: 'Please select a card',
 		order_failed: "Oops! We couldn't place your order at the moment",
@@ -902,34 +907,38 @@ export default {
 		now: 'Now',
 		schedule: 'Schedule',
 		select_schedule_time: 'You need to select a schedule time.',
-		schedule_reorder_desc: 'Το εστιατόριο είναι προς το παρόν κλειστό! Προγραμματίστε την παραγγελία σας για τις ώρες λειτουργίας',
+		schedule_reorder_desc:
+			'Το εστιατόριο είναι προς το παρόν κλειστό! Προγραμματίστε την παραγγελία σας για τις ώρες λειτουργίας',
 		schedule_order: 'Schedule Order',
 		order_for: 'Χρησιμοποιήστε την προώθηση για:',
 		confirm_legal_age: 'Επιβεβαιώνω ότι είμαι σε νόμιμη ηλικία για να παραγγείλω αυτά τα προϊόντα',
-		send_order_as_gift : 'Στείλτε την παραγγελία ως δώρο',
+		send_order_as_gift: 'Στείλτε την παραγγελία ως δώρο',
 		send_order_as_gift_desc: 'Προσθέστε τον παραλήπτη και ένα μήνυμα',
 		reseve_order_as_gift: 'Κράτηση βιβλίου ως δώρο',
-		reseve_order_as_gift_desc: "Εισαγάγετε το όνομα του παραλήπτη",
-		recipient_name : 'Όνομα Παραλήπτη',
-		recipient_phone : 'Αριθμός τηλεφώνου παραλήπτη',
+		reseve_order_as_gift_desc: 'Εισαγάγετε το όνομα του παραλήπτη',
+		recipient_name: 'Όνομα Παραλήπτη',
+		recipient_phone: 'Αριθμός τηλεφώνου παραλήπτη',
 		recipient_phone_description: 'Οι ειδοποιήσεις παραγγελίας θα αποστέλλονται σε αυτόν τον αριθμό τηλεφώνου',
-		gift_order_from : 'Το όνομα σου',
-		gift_message : 'Μήνυμα δώρου (προαιρετικό)',
-		grant_reserve_gift: 'Εξουσιοδοτώ το Snapfood να κάνει αυτή την κράτηση ως δώρο εκ μέρους μου για τον παραλήπτη που αναφέρεται παραπάνω.',
-		grant_gift : 'Εξουσιοδοτώ το Snapfood να στείλει αυτήν την παραγγελία ως δώρο εκ μέρους μου στη διεύθυνση του παραλήπτη που καθορίζεται παραπάνω',
-		enter_recipient_name: "Εισαγάγετε το όνομα του παραλήπτη στο κατάλληλο πεδίο",
+		gift_order_from: 'Το όνομα σου',
+		gift_message: 'Μήνυμα δώρου (προαιρετικό)',
+		grant_reserve_gift:
+			'Εξουσιοδοτώ το Snapfood να κάνει αυτή την κράτηση ως δώρο εκ μέρους μου για τον παραλήπτη που αναφέρεται παραπάνω.',
+		grant_gift:
+			'Εξουσιοδοτώ το Snapfood να στείλει αυτήν την παραγγελία ως δώρο εκ μέρους μου στη διεύθυνση του παραλήπτη που καθορίζεται παραπάνω',
+		enter_recipient_name: 'Εισαγάγετε το όνομα του παραλήπτη στο κατάλληλο πεδίο',
 		enter_gift_order_from: 'Εισαγάγετε το όνομά σας στο κατάλληλο πεδίο',
 		enter_recipient_phone: 'Πρέπει να εισαγάγετε το τηλέφωνο του παραλήπτη.',
 		enter_valid_recipient_phone_title: 'Ο αριθμός δεν είναι σωστός',
 		enter_valid_recipient_phone: 'Εισαγάγετε τον σωστό αριθμό παραλήπτη',
 		select_reserve_gift_permission: 'Επιβεβαιώστε ότι εξουσιοδοτείτε το Snapfood να κάνει δώρο αυτήν την κράτηση',
 		select_gift_permission: 'Επιβεβαιώστε ότι εξουσιοδοτείτε το Snapfood να στείλει αυτήν την παραγγελία ως δώρο',
-		gift_order_not_possible_for_cash : 'Οι παραγγελίες δώρων γίνονται μόνο μέσω πληρωμών με κάρτα',
-		gift_pickup_user_title : 'Select the recipient',
-		gift_select_user : 'The recipient of the gift order is:',
-		gift_select_friend : 'Application user',
-		gift_select_non_user : 'Other',
-		gift_nonuser_referral_desc : 'In addition to the gift order, invite the recipient to download Snapfood and earn XXX Lek each',
+		gift_order_not_possible_for_cash: 'Οι παραγγελίες δώρων γίνονται μόνο μέσω πληρωμών με κάρτα',
+		gift_pickup_user_title: 'Select the recipient',
+		gift_select_user: 'The recipient of the gift order is:',
+		gift_select_friend: 'Application user',
+		gift_select_non_user: 'Other',
+		gift_nonuser_referral_desc:
+			'In addition to the gift order, invite the recipient to download Snapfood and earn XXX Lek each',
 		gift_confirm_recipient_address: 'Please confirm recipient address',
 	},
 	split: {
@@ -1006,12 +1015,12 @@ export default {
 		confirmation: 'Επιβεβαιώστε τη λειτουργία',
 		confirm_logout: 'Είστε σίγουροι ότι θα αποσυνδεθείτε από το Snapfood;',
 		confirm_logout_title: 'Yes, Logout',
-		confirm_logout_desc : 'Depending on your privacy settings, your profile will continue to appear in the app',
+		confirm_logout_desc: 'Depending on your privacy settings, your profile will continue to appear in the app',
 		confirm_language: 'Είστε σίγουροι ότι θα αλλάξετε γλώσσα σε {{language}}?',
 		confirm_delete_address: 'Είστε βέβαιοι ότι πρέπει να διαγράψετε την επιλεγμένη διεύθυνση;',
 		account_deleted_title: 'The account was deleted',
 		account_deleted_description: 'Your Snapfood account has been deleted',
-		upload_photo: "Μεταφόρτωση εικόνας",
+		upload_photo: 'Μεταφόρτωση εικόνας',
 		take_picture: 'Πάρε μία φωτογραφία',
 		photo_galley: 'Από Photo Gallery',
 	},
@@ -1020,7 +1029,7 @@ export default {
 		no_blog_message: 'Βρέθηκαν 0 αποτελέσματα ',
 		all: 'Ολα',
 		author: 'Γραμμένο από',
-		all_topic: "All Topics",
+		all_topic: 'All Topics',
 	},
 	promotions: {
 		coupon_discount: 'Κουπόνι: {{code}}',
@@ -1191,19 +1200,21 @@ export default {
 		you_are_friend: 'Είστε φίλοι στο Snapfood',
 		you_are_not_friend: 'Δεν είστε φίλοι στο Snapfood',
 		reservation_reward_tooltip_title: 'Κερδίστε ανταμοιβές από τις κρατήσεις σας',
-		reservation_reward_tooltip_description: 'Κλείστε ένα τραπέζι στις ώρες ανταμοιβής για να κερδίσετε x% της αξίας ως πίστωση στο πορτοφόλι σας',
+		reservation_reward_tooltip_description:
+			'Κλείστε ένα τραπέζι στις ώρες ανταμοιβής για να κερδίσετε x% της αξίας ως πίστωση στο πορτοφόλι σας',
 		reservation_discount_tooltip_title: 'Κερδίστε εκπτώσεις από τις κρατήσεις σας',
-		reservation_discount_tooltip_description: 'Κλείστε τραπέζι σε ώρες έκπτωσης και κερδίστε έκπτωση x% στον λογαριασμό σας',
-		invite_accept_success: 'Αποδεχτήκατε την πρόσκληση με επιτυχία.'
+		reservation_discount_tooltip_description:
+			'Κλείστε τραπέζι σε ώρες έκπτωσης και κερδίστε έκπτωση x% στον λογαριασμό σας',
+		invite_accept_success: 'Αποδεχτήκατε την πρόσκληση με επιτυχία.',
 	},
 	story_metion: {
-		done: 'Εγινε'
+		done: 'Εγινε',
 	},
 	order_now: {
 		title: 'Παραγγείλετε & Κερδίστε',
 		description: 'Λαχταράτε κάτι νόστιμο; Παραγγείλετε τώρα και κερδίστε επιστροφή μετρητών.',
 		go_home: 'Κάνετε μια παραγγελία',
-		go_wallet: 'Το πορτοφόλι μου'
+		go_wallet: 'Το πορτοφόλι μου',
 	},
 	invitation_earn: {
 		title: 'Πρόσκληση & Κερδίστε',
@@ -1359,13 +1370,13 @@ export default {
 		invitation: 'Invitation',
 		deposit_snapfood: 'Deposited from Snapfood',
 		deposit_revoke_snapfood: 'Revoked deposit',
-		deposit_stripe_card : 'Added by card',
-		blog_quiz_earning: 'Credit from SnapFood\'s quiz',
-		transfered_to_friend : 'Transferred to',
-		received_from_transfer : 'Received from friend',
-		transfered_to : 'Transferred to',
-		received_from : 'Transferred from',
-		new_transfer: "Μεταφορά",
+		deposit_stripe_card: 'Added by card',
+		blog_quiz_earning: "Credit from SnapFood's quiz",
+		transfered_to_friend: 'Transferred to',
+		received_from_transfer: 'Received from friend',
+		transfered_to: 'Transferred to',
+		received_from: 'Transferred from',
+		new_transfer: 'Μεταφορά',
 	},
 	order: {
 		new: 'Νέος',
@@ -1431,10 +1442,11 @@ export default {
 		reserve_time: 'Ώρα κράτησης',
 		promotion_for: 'Προώθηση για',
 		gift_order: 'This order is a gift',
-		gift_order_desc : 'Gift order sent to:',
-		gift_order_received_desc : 'Gift order from:',
+		gift_order_desc: 'Gift order sent to:',
+		gift_order_received_desc: 'Gift order from:',
 		confirm_order_delivery: 'Επιβεβαιώστε την παραγγελία',
-		confirm_order_delivery_success: 'Η παραγγελία επιβεβαιώθηκε! Η επιστροφή μετρητών έχει κατατεθεί στο πορτοφόλι. Ευχαριστώ για την παραγγελία.',
+		confirm_order_delivery_success:
+			'Η παραγγελία επιβεβαιώθηκε! Η επιστροφή μετρητών έχει κατατεθεί στο πορτοφόλι. Ευχαριστώ για την παραγγελία.',
 		payment_not_done: 'Ημιτελής πληρωμή',
 		paid: 'Eπί πληρωμή',
 		pay_with_card: 'Πληρώστε με κάρτα',
@@ -1500,7 +1512,7 @@ export default {
 		cashback: 'Εφαρμόστηκε επιστροφή μετρητών',
 		promotion: 'Εφαρμόστηκε η προώθηση',
 		split_order: 'Διαίρεση παραγγελίας',
-		gift_order: 'Παραγγείλετε ένα δώρο'
+		gift_order: 'Παραγγείλετε ένα δώρο',
 	},
 	vendor_filter: {
 		cuisine: 'Κουζίνα',
@@ -1523,7 +1535,7 @@ export default {
 		cancel_invitation: 'Ακύρωση πρόσκλησης',
 		remove_friend: 'Αφαίρεση φίλου',
 		reject_invitation: 'Απόρριψη αιτήματος φιλίας',
-		accept_invitation: 'Αποδοχή αιτήματος φιλίας'
+		accept_invitation: 'Αποδοχή αιτήματος φιλίας',
 	},
 
 	group_related: {
@@ -1555,7 +1567,8 @@ export default {
 		earn_invitation_code_input_description: 'Εισαγάγετε τον κωδικό πρόσκλησης από τον φίλο σας',
 
 		gift_order_referral_title: 'Invitation to registration',
-		gift_order_referral_desc: 'When the recipient registers in the application, XXX Lek will be deposited in the wallet of each of you. The recipient also has YYY invitations available to send to their friends and earn even more money.',
+		gift_order_referral_desc:
+			'When the recipient registers in the application, XXX Lek will be deposited in the wallet of each of you. The recipient also has YYY invitations available to send to their friends and earn even more money.',
 
 		what_means: 'Τι σημαίνει αυτό?',
 		snapfood_delivery_desc:
@@ -1604,7 +1617,8 @@ export default {
 		wallet_deposit_title: 'Κατάθεση',
 		wallet_deposit_desc: 'Χρήματα δωρισμένα από το Snapfood',
 		wallet_enabled_deposit_title: 'Deposit & Transfers',
-		wallet_enabled_deposit_desc: 'Deposit: Credit deposited from card to wallet\nTransfer: Credit that you have transferred to friends or they have transferred to you',
+		wallet_enabled_deposit_desc:
+			'Deposit: Credit deposited from card to wallet\nTransfer: Credit that you have transferred to friends or they have transferred to you',
 		wallet_cashback_title: 'Cashback',
 		wallet_cashback_desc: 'Κέρδη επιστροφής μετρητών από κάθε παραγγελία',
 		wallet_earn_title: 'Κερδί',
@@ -1619,19 +1633,24 @@ export default {
 		gallery_desc: 'Γκαλερί προφίλ',
 
 		interests_title: 'Τα ενδιαφέροντα',
-		interests_desc: 'Επιλέξτε το φαγητό και τα κοινωνικά σας ενδιαφέροντα, ώστε οι φίλοι σας να μάθουν περισσότερα για εσάς',
+		interests_desc:
+			'Επιλέξτε το φαγητό και τα κοινωνικά σας ενδιαφέροντα, ώστε οι φίλοι σας να μάθουν περισσότερα για εσάς',
 
 		get_promo_title: 'Εισαγάγετε το promo σας',
-		get_promo_description: 'Εισαγάγετε τον κωδικό που έχουν μοιραστεί οι φίλοι σας σε εσάς, ώστε να μπορείτε να χρησιμοποιήσετε την προσφορά κατά την παραγγελία',
+		get_promo_description:
+			'Εισαγάγετε τον κωδικό που έχουν μοιραστεί οι φίλοι σας σε εσάς, ώστε να μπορείτε να χρησιμοποιήσετε την προσφορά κατά την παραγγελία',
 
 		calendar_promo_title: 'Ημερολόγιο προώθησης',
-		calendar_promo_description: 'Αποκτήστε πρόσβαση στη λίστα με τις τρέχουσες και μελλοντικές προσφορές στο Snapfood',
+		calendar_promo_description:
+			'Αποκτήστε πρόσβαση στη λίστα με τις τρέχουσες και μελλοντικές προσφορές στο Snapfood',
 
 		scan_pay_tooltip_title: 'Σάρωση και πληρωμή',
-		scan_pay_tooltip_desc: 'Ανοίξτε την κάμερά σας και στρέψτε την προς τον κωδικό QR στο rastaurant για σάρωση και πληρωμή. Προσοχή! Χρειάζεστε μια χρεωστική/πιστωτική κάρτα συνδεδεμένη με τον λογαριασμό σας για να ολοκληρώσετε την πληρωμή',
+		scan_pay_tooltip_desc:
+			'Ανοίξτε την κάμερά σας και στρέψτε την προς τον κωδικό QR στο rastaurant για σάρωση και πληρωμή. Προσοχή! Χρειάζεστε μια χρεωστική/πιστωτική κάρτα συνδεδεμένη με τον λογαριασμό σας για να ολοκληρώσετε την πληρωμή',
 
 		bio_title: 'Bio',
-		bio_description: 'Ένα σύντομο κείμενο έως 100 χαρακτήρες για να περιγράψετε τον εαυτό σας. Αυτό το κείμενο θα εμφανιστεί στο προφίλ σας ανάλογα με τις ρυθμίσεις απορρήτου σας.'
+		bio_description:
+			'Ένα σύντομο κείμενο έως 100 χαρακτήρες για να περιγράψετε τον εαυτό σας. Αυτό το κείμενο θα εμφανιστεί στο προφίλ σας ανάλογα με τις ρυθμίσεις απορρήτου σας.',
 	},
 	help: {
 		title: 'Βοήθεια',
@@ -1683,20 +1702,20 @@ export default {
 		where_heard: 'Πού μάθατε για εμάς?',
 		tell_us_more: 'Πείτε μας περισσότερα',
 	},
-	referral_code_input_view : {
-		title : 'Do you have referral code?',
-		description : 'Enter your referral code',
-		attention : 'Enter your referral code',
+	referral_code_input_view: {
+		title: 'Do you have referral code?',
+		description: 'Enter your referral code',
+		attention: 'Enter your referral code',
 		submit: 'Confirm',
-		skip : 'Skip'
+		skip: 'Skip',
 	},
 	deposit_card: {
 		title: 'Deposit',
 		enter_amount: 'Enter Amount',
 		enter_60_lek: 'Amount must be at least 60L',
-		success: "Deposit completed successfully!",
-		success_desc : "You have deposited XXX L in the wallet.",
-		your_balance : 'Your total balance is now',
+		success: 'Deposit completed successfully!',
+		success_desc: 'You have deposited XXX L in the wallet.',
+		your_balance: 'Your total balance is now',
 		back_wallet: 'Return to Wallet',
 		back_home: 'Home',
 		deposit: 'Deposit',
@@ -1704,12 +1723,12 @@ export default {
 	transfer_balance: {
 		title: 'Transfers',
 		enter_amount: 'Enter Amount',
-		recipient : 'Recipient',
+		recipient: 'Recipient',
 		select_recipient: 'Select a recipient',
-		not_enough_balance: "Your balance is not enough",
-		success: "Transfer completed successfully!",
-		success_desc : "You successfully transfered an amount of XXX L from your balance.",
-		your_balance : 'Your total balance is now',
+		not_enough_balance: 'Your balance is not enough',
+		success: 'Transfer completed successfully!',
+		success_desc: 'You successfully transfered an amount of XXX L from your balance.',
+		your_balance: 'Your total balance is now',
 		back_wallet: 'Return to Wallet',
 		back_home: 'Home',
 		transfer: 'Transfer',
@@ -1718,15 +1737,15 @@ export default {
 	deposit_transfer_hist: {
 		deposit: 'Deposit',
 		transfer: 'Transfers',
-		transfered : 'Transferred to',
-		received : 'Transferred from',
-		transfered_from_card : 'Added by card',
-		no_deposit_title : 'Nothing to show',
-		no_deposit_desc : "Haven't made any deposits yet? Add credit to wallet",
-		no_transfer_title : 'Nothing to show',
-		no_transfer_desc : "Haven't made any transfers yet? Send credit to a friend",
-		deposit_now : 'Deposit now',
-		transfer_now : 'Make a transfer'
+		transfered: 'Transferred to',
+		received: 'Transferred from',
+		transfered_from_card: 'Added by card',
+		no_deposit_title: 'Nothing to show',
+		no_deposit_desc: "Haven't made any deposits yet? Add credit to wallet",
+		no_transfer_title: 'Nothing to show',
+		no_transfer_desc: "Haven't made any transfers yet? Send credit to a friend",
+		deposit_now: 'Deposit now',
+		transfer_now: 'Make a transfer',
 	},
 	transfer_details: {
 		transfer_from: 'Μεταφέρω από',
@@ -1737,11 +1756,12 @@ export default {
 		sender: 'Αποστολέας',
 		receiver: 'Δέκτης',
 		transfer_message: 'Μήνυμα',
-		note: 'Μήνυμα'
+		note: 'Μήνυμα',
 	},
 	student_verify: {
 		title: 'Επαλήθευση μαθητή',
-		description: 'Μπορείτε να ανεβάσετε μια φωτογραφία πιστοποίησης που αποδεικνύει ότι είστε φοιτητής, το μεταφορτωμένο έγγραφο θα επαληθευτεί σε 2 εργάσιμες ημέρες.',
+		description:
+			'Μπορείτε να ανεβάσετε μια φωτογραφία πιστοποίησης που αποδεικνύει ότι είστε φοιτητής, το μεταφορτωμένο έγγραφο θα επαληθευτεί σε 2 εργάσιμες ημέρες.',
 		pending: 'Η επαλήθευση του εγγράφου σας εκκρεμεί τώρα',
 		verified: 'Η τεκμηρίωσή σας επαληθεύτηκε με επιτυχία',
 		rejected: 'Η τεκμηρίωσή σας απορρίφθηκε, υποβάλετε άλλο έγγραφο.',
@@ -1750,7 +1770,7 @@ export default {
 		verify_image_subject: 'Η φοιτητική σας κάρτα',
 		expire_date_subject: 'Ημερομηνία λήξης',
 		upload_image: 'Μεταφόρτωση',
-		button: 'υποβάλλουν'
+		button: 'υποβάλλουν',
 	},
 	splits_hist: {
 		title: 'Order Split History',
@@ -1762,7 +1782,7 @@ export default {
 		split_bill_some_screen_filter: 'Split bills',
 		orderer: 'Παραγγελιοδότης',
 		total_amount: 'Σύνολο',
-		your_split: 'Ο χωρισμός σου'
+		your_split: 'Ο χωρισμός σου',
 	},
 	membership: {
 		subscribe_now: 'Εγγραφείτε',
@@ -1792,7 +1812,7 @@ export default {
 		confirm_cancel_subscribe: 'Ακυρώστε τη συνδρομή σας',
 		confirm_cancel_subscribe_message: 'Είστε βέβαιοι ότι θέλετε να ακυρώσετε τη συνδρομή σας;',
 		success_cancel_subscription: 'Η συνδρομή σας ακυρώθηκε με επιτυχία',
-		term_privacy_desc: ''
+		term_privacy_desc: '',
 	},
 	scan_to_pay: {
 		pay_merchant: 'Πληρώστε το εστιατόριο',
@@ -1806,17 +1826,18 @@ export default {
 		scan_pay_success: 'Η πληρωμή της κράτησης που έγινε από το Scan and Pay ήταν επιτυχής!',
 		reward: 'Ανταμοιβή',
 		discount: 'Εκπτωση',
-		subtotal: 'ΜΕΡΙΚΟ ΣΥΝΟΛΟ'
+		subtotal: 'ΜΕΡΙΚΟ ΣΥΝΟΛΟ',
 	},
 	phone_placeholder: {
 		us: 'Τηλεφωνικό νούμερο',
 		al: 'Τηλεφωνικό νούμερο (Π. 06.......)',
 		it: 'Τηλεφωνικό νούμερο',
-		gr: 'Τηλεφωνικό νούμερο'
+		gr: 'Τηλεφωνικό νούμερο',
 	},
 	interests: {
 		title: 'Επιλέξτε τα ενδιαφέροντά σας',
-		description: 'Επιλέξτε το φαγητό και τα κοινωνικά σας ενδιαφέροντα, ώστε οι φίλοι σας να μάθουν περισσότερα για εσάς',
+		description:
+			'Επιλέξτε το φαγητό και τα κοινωνικά σας ενδιαφέροντα, ώστε οι φίλοι σας να μάθουν περισσότερα για εσάς',
 		food: 'Διατροφικά ενδιαφέροντα',
 		social: 'Κοινωνικά συμφέροντα',
 		food_interest: 'Διατροφικά ενδιαφέροντα',
@@ -1829,6 +1850,6 @@ export default {
 		public_desc: 'Μπορεί να προβληθεί από όλα τα Snapfoodies',
 		private: 'Ιδιωτικός',
 		private_desc: 'Μπορεί να προβληθεί μόνο από φίλους',
-		save_success: "Οι προτιμήσεις ενημερώθηκαν με επιτυχία!"
-	}
+		save_success: 'Οι προτιμήσεις ενημερώθηκαν με επιτυχία!',
+	},
 };

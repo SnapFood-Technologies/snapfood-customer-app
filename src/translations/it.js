@@ -69,7 +69,7 @@ export default {
 	and: ' and ',
 	open: 'Aperto',
 	closed: 'Chiuso',
-	required : 'Required',
+	required: 'Required',
 	term_privacy: 'Termini e privacy',
 	'Snapfood Support': 'Squadra Snapfood',
 	home: 'Home',
@@ -170,17 +170,18 @@ export default {
 	},
 
 	chat_social: 'Chatta e socializza',
-	chat_social_desc: 'Chatta e socializza con la community su Snapfood. Un\'esperienza unica!',
+	chat_social_desc: "Chatta e socializza con la community su Snapfood. Un'esperienza unica!",
 	spend_wallet: 'Spendi dal tuo portafoglio',
 	spend_wallet_desc: 'Gestisci il tuo cashback direttamente dal tuo portafoglio su Snapfood.',
 	save_cashback: 'Risparmia di più con Cashback',
 	save_cashback_desc: 'Più ordini, più cashback ricevi, più risparmi.',
 	split_bill: 'Conto diviso',
-	split_bill_desc: 'Dividi il conto con i tuoi amici direttamente sull\'app, per ordini di gruppo.',
+	split_bill_desc: "Dividi il conto con i tuoi amici direttamente sull'app, per ordini di gruppo.",
 	gift_order_onboard: 'Ordini regalo',
 	gift_order_onboard_desc: 'Rendi felice qualcuno inviandogli il suo piatto preferito con Snapfood.',
 	refer_onboard: 'Fai riferimento e guadagna',
-	refer_onboard_desc: 'Presenta Snapfood ai tuoi amici e guadagna credito ogni volta che si iscrivono utilizzando il tuo codice.',
+	refer_onboard_desc:
+		'Presenta Snapfood ai tuoi amici e guadagna credito ogni volta che si iscrivono utilizzando il tuo codice.',
 
 	splash_intro: {
 		title: 'Fast Delivery',
@@ -307,7 +308,7 @@ export default {
 		promotions_menu: 'Promozioni',
 		vendor_promotions_menu: 'Promozioni da ristoranti',
 		snapfood_promotions_menu: 'Promozioni da Snapfood',
- 		student_verify_menu: 'Verifica dello studente',
+		student_verify_menu: 'Verifica dello studente',
 		invite_reward: 'Fare riferimento',
 		earn_reward: 'Guadagna',
 		addresses: 'Addresses',
@@ -352,7 +353,7 @@ export default {
 		add_gallery: 'Aggiungi una foto',
 		preferences: 'Interessi',
 		manage_preference: 'Seleziona i tuoi interessi',
-		
+
 		version: 'version',
 		no_favorites: 'There are no favorites restaurants.',
 		latest: 'Latest',
@@ -408,7 +409,7 @@ export default {
 		public_desc: 'Snapfood visto da tutti',
 		private: 'Privato',
 		private_desc: 'Visto solo dagli amici',
-		delete_confirm: 'Sei sicuro di voler eliminare questa foto?'
+		delete_confirm: 'Sei sicuro di voler eliminare questa foto?',
 	},
 	biosetting: {
 		privacy: 'Impostazioni della privacy',
@@ -590,7 +591,7 @@ export default {
 		xmin_until_close: 'Si chiude per {mins} minuti! Sbrigati ora o scegli  un altro ristorante.',
 		vendor_closed_now: 'This vendor is currently closed.',
 		vendor_schedule_only_delivery: 'You can schedule order only for delivery type',
-		closed_but_can_schedule: "Chiuso! Ordine di pianificazione",
+		closed_but_can_schedule: 'Chiuso! Ordine di pianificazione',
 	},
 	vendor_profile_info: {
 		header_title: 'Info',
@@ -775,7 +776,7 @@ export default {
 		product_not_available: 'Product is not available',
 		started_new_order: 'Starting a new oder?',
 		current_cart_will_erase: 'Your cart will reset.',
-		option_is_required : 'You need to select at least one option',
+		option_is_required: 'You need to select at least one option',
 		confirm: 'Confirm',
 		cancel: 'Cancel',
 		loading_products: 'Loading products list',
@@ -789,7 +790,7 @@ export default {
 		hours_left: 'ore rimanenti',
 		random_limit: 'Questa promozione scadrà il ',
 		expire_in: 'Expires in ',
-		basket_is_empty: 'Il tuo cestino è vuoto. Aggiungi un prodotto.'
+		basket_is_empty: 'Il tuo cestino è vuoto. Aggiungi un prodotto.',
 	},
 	add_new_address: {
 		header: 'Address details',
@@ -844,6 +845,7 @@ export default {
 			have_one: 'Do you have a coupon?',
 			placeholder: 'Add Coupon',
 			applied_successfully: 'Coupon applied successfully',
+			free_delivery: 'Il coupon è stato applicato con successo e ora hai una consegna gratuita per questo ordine',
 		},
 		a_coupon_value: 'Tagliando applicato',
 		a_coupon_value_a: 'Un buono con',
@@ -851,7 +853,7 @@ export default {
 		a_discount_value: 'Sconto applicato',
 		a_discount_was_applied: '',
 		you_used_discount: 'su questo ordine è stato applicato uno sconto',
-		add_promo_code: 'Enter Promotion Code',
+		add_promo_code: `Inserisci il codice di invito dell'ordine`,
 		invalid_promotion_code: 'Invalid promotion code',
 		invalid_running_promotion_code: 'Hai un ordine in corso con questo codice promozionale',
 		suggested_items: 'Suggested Items',
@@ -880,7 +882,8 @@ export default {
 		cashback_amount: 'Cashback Amount',
 		discount_amount: 'Discount Amount',
 		split_with: 'Split With',
-		split_order_not_possible_before_all_reply: 'Le persone con cui vuoi condividere il conto devono rispondere alla tua richiesta, altrimenti devi rimuoverle per continuare a ordinare',
+		split_order_not_possible_before_all_reply:
+			'Le persone con cui vuoi condividere il conto devono rispondere alla tua richiesta, altrimenti devi rimuoverle per continuare a ordinare',
 		not_snapfood_user: 'Non utente di Snapfood',
 		select_card: 'Si prega di selezionare una carta',
 		order_failed: "Oops! We couldn't place your order at the moment",
@@ -904,30 +907,33 @@ export default {
 		schedule_order: 'Schedule Order',
 		order_for: 'Usa la promozione per:',
 		confirm_legal_age: "Confermo di avere l'età legale per ordinare questi prodotti",
-		send_order_as_gift : "Invia l'ordine come regalo",
+		send_order_as_gift: "Invia l'ordine come regalo",
 		send_order_as_gift_desc: 'Aggiungi il destinatario e un messaggio',
 		reseve_order_as_gift: 'Prenota la prenotazione come regalo',
-		reseve_order_as_gift_desc: "Inserisci il nome del destinatario",
-		recipient_name : 'Nome destinatario',
-		recipient_phone : 'Numero di telefono del destinatario',
+		reseve_order_as_gift_desc: 'Inserisci il nome del destinatario',
+		recipient_name: 'Nome destinatario',
+		recipient_phone: 'Numero di telefono del destinatario',
 		recipient_phone_description: 'Le notifiche degli ordini verranno inviate a questo numero di telefono',
-		gift_order_from : 'Il tuo nome',
-		gift_message : 'Messaggio regalo (opzionale)',
-		grant_reserve_gift: 'Autorizzo Snapfood a prenotare questa prenotazione come regalo per mio conto per il destinatario sopra indicato.',
-		grant_gift : "Autorizzo Snapfood a spedire questo ordine come regalo per mio conto all'indirizzo del destinatario sopra specificato",
-		enter_recipient_name: "Si prega di inserire il nome del destinatario nel campo appropriato",
+		gift_order_from: 'Il tuo nome',
+		gift_message: 'Messaggio regalo (opzionale)',
+		grant_reserve_gift:
+			'Autorizzo Snapfood a prenotare questa prenotazione come regalo per mio conto per il destinatario sopra indicato.',
+		grant_gift:
+			"Autorizzo Snapfood a spedire questo ordine come regalo per mio conto all'indirizzo del destinatario sopra specificato",
+		enter_recipient_name: 'Si prega di inserire il nome del destinatario nel campo appropriato',
 		enter_gift_order_from: 'Per favore inserisci il tuo nome nel campo appropriato',
 		enter_recipient_phone: 'Devi inserire il telefono del destinatario.',
 		enter_valid_recipient_phone_title: 'Il numero non è corretto',
 		enter_valid_recipient_phone: 'Si prega di inserire il numero corretto del destinatario',
 		select_reserve_gift_permission: 'Conferma che autorizzi Snapfood a prenotare questa prenotazione come regalo',
 		select_gift_permission: 'Conferma di autorizzare Snapfood a inviare questo ordine come regalo',
-		gift_order_not_possible_for_cash : 'Gli ordini regalo vengono effettuati solo tramite pagamenti con carta',
-		gift_pickup_user_title : 'Select the recipient',
-		gift_select_user : 'The recipient of the gift order is:',
-		gift_select_friend : 'Application user',
-		gift_select_non_user : 'Other',
-		gift_nonuser_referral_desc : 'In addition to the gift order, invite the recipient to download Snapfood and earn XXX Lek each',
+		gift_order_not_possible_for_cash: 'Gli ordini regalo vengono effettuati solo tramite pagamenti con carta',
+		gift_pickup_user_title: 'Select the recipient',
+		gift_select_user: 'The recipient of the gift order is:',
+		gift_select_friend: 'Application user',
+		gift_select_non_user: 'Other',
+		gift_nonuser_referral_desc:
+			'In addition to the gift order, invite the recipient to download Snapfood and earn XXX Lek each',
 		gift_confirm_recipient_address: 'Please confirm recipient address',
 	},
 	split: {
@@ -1004,12 +1010,12 @@ export default {
 		confirmation: "Conferma l'azione",
 		confirm_logout: "Sei sicuro di voler uscire dall'applicazione Snapfood?",
 		confirm_logout_title: 'Si, Esci',
-		confirm_logout_desc : 'Depending on your privacy settings, your profile will continue to appear in the app',
+		confirm_logout_desc: 'Depending on your privacy settings, your profile will continue to appear in the app',
 		confirm_language: 'Sei sicuro di voler cambiare la lingua in {{language}}?',
 		confirm_delete_address: "Sei sicuro di voler cancellare  l'indirizzo  selezionato?",
 		account_deleted_title: 'The account was deleted',
 		account_deleted_description: 'Your Snapfood account has been deleted',
-		upload_photo: "Carica immagine",
+		upload_photo: 'Carica immagine',
 		take_picture: 'Fai una foto',
 		photo_galley: 'Dalla Galleria Fotografica',
 	},
@@ -1018,7 +1024,7 @@ export default {
 		no_blog_message: '0 post trovati dalla ricerca',
 		all: 'Tutto',
 		author: 'Scritto da',
-		all_topic: "All Topics",
+		all_topic: 'All Topics',
 	},
 	promotions: {
 		coupon_discount: 'Coupon: {{code}}',
@@ -1189,19 +1195,21 @@ export default {
 		you_are_friend: 'Siete amici su Snapfood',
 		you_are_not_friend: 'Non siete amici su Snapfood',
 		reservation_reward_tooltip_title: 'Guadagna premi dalle tue prenotazioni',
-		reservation_reward_tooltip_description: 'Prenota un tavolo nelle ore premio per guadagnare il x% del valore come credito nel tuo portafoglio',
+		reservation_reward_tooltip_description:
+			'Prenota un tavolo nelle ore premio per guadagnare il x% del valore come credito nel tuo portafoglio',
 		reservation_discount_tooltip_title: 'Guadagna sconti dalle tue prenotazioni',
-		reservation_discount_tooltip_description: 'Prenota un tavolo in orari scontati e ottieni uno sconto del x% sul conto',
-		invite_accept_success: "Hai accettato l'invito con successo."
+		reservation_discount_tooltip_description:
+			'Prenota un tavolo in orari scontati e ottieni uno sconto del x% sul conto',
+		invite_accept_success: "Hai accettato l'invito con successo.",
 	},
 	story_metion: {
-		done: 'Fatto'
+		done: 'Fatto',
 	},
 	order_now: {
 		title: 'Ordina e guadagna',
 		description: 'Craving something delicious? Order now and earn cashback.',
 		go_home: 'Effettua un ordine',
-		go_wallet: 'Il mio portafoglio'
+		go_wallet: 'Il mio portafoglio',
 	},
 	invitation_earn: {
 		title: 'Invita e Guadagna',
@@ -1358,13 +1366,13 @@ export default {
 		invitation: 'Invitation',
 		deposit_snapfood: 'Deposited from Snapfood',
 		deposit_revoke_snapfood: 'Revoked deposit',
-		deposit_stripe_card : 'Added by card',
-		blog_quiz_earning: 'Credit from SnapFood\'s quiz',
-		transfered_to_friend : 'Transferred to',
-		received_from_transfer : 'Received from friend',
-		transfered_to : 'Transferred to',
-		received_from : 'Transferred from',
-		new_transfer: "Trasferimento",
+		deposit_stripe_card: 'Added by card',
+		blog_quiz_earning: "Credit from SnapFood's quiz",
+		transfered_to_friend: 'Transferred to',
+		received_from_transfer: 'Received from friend',
+		transfered_to: 'Transferred to',
+		received_from: 'Transferred from',
+		new_transfer: 'Trasferimento',
 	},
 	order: {
 		new: 'In attesa',
@@ -1430,10 +1438,11 @@ export default {
 		reserve_time: 'Tempo di prenotazione',
 		promotion_for: 'Promozione per',
 		gift_order: 'This order is a gift',
-		gift_order_desc : 'Gift order sent to:',
-		gift_order_received_desc : 'Gift order from:',
+		gift_order_desc: 'Gift order sent to:',
+		gift_order_received_desc: 'Gift order from:',
 		confirm_order_delivery: "Conferma l'ordine",
-		confirm_order_delivery_success: "Ordine confermato! Il cashback è stato depositato nel portafoglio. Grazie per il tuo ordine.",
+		confirm_order_delivery_success:
+			'Ordine confermato! Il cashback è stato depositato nel portafoglio. Grazie per il tuo ordine.',
 		payment_not_done: 'Pagamento incompleto',
 		paid: 'Pagato',
 		pay_with_card: 'Paga con carta',
@@ -1449,7 +1458,7 @@ export default {
 		confirm_payment: 'Conferma il pagamento',
 		reservation_total: 'Totale prenotazione',
 		review_reservation: 'Vota la prenotazione',
-		repeat_reservation: 'Prenota di nuovo'
+		repeat_reservation: 'Prenota di nuovo',
 	},
 	order_review: {
 		your_reviewed: 'Hai valutato questo ordine',
@@ -1499,7 +1508,7 @@ export default {
 		cashback: 'Cashback applicato',
 		promotion: 'Promozione applicata',
 		split_order: "Dividi l'ordine",
-		gift_order: 'Ordina un regalo'
+		gift_order: 'Ordina un regalo',
 	},
 	vendor_filter: {
 		cuisine: 'Cucina',
@@ -1521,8 +1530,8 @@ export default {
 		add_friend: 'Aggiungi come amico',
 		cancel_invitation: "Rimuovi l'invito",
 		remove_friend: 'Rimuovi dagli amici',
-		reject_invitation: "Rifiuta la richiesta di amicizia",
-		accept_invitation: "Accetta la richiesta di amicizia"
+		reject_invitation: 'Rifiuta la richiesta di amicizia',
+		accept_invitation: 'Accetta la richiesta di amicizia',
 	},
 
 	group_related: {
@@ -1554,7 +1563,8 @@ export default {
 		earn_invitation_code_input_description: 'Inserisci il codice di invito che ti ha inviato il tuo amico.',
 
 		gift_order_referral_title: 'Invitation to registration',
-		gift_order_referral_desc: 'When the recipient registers in the application, XXX Lek will be deposited in the wallet of each of you. The recipient also has YYY invitations available to send to their friends and earn even more money.',
+		gift_order_referral_desc:
+			'When the recipient registers in the application, XXX Lek will be deposited in the wallet of each of you. The recipient also has YYY invitations available to send to their friends and earn even more money.',
 
 		what_means: 'Cosa significa questo?',
 		snapfood_delivery_desc:
@@ -1599,7 +1609,8 @@ export default {
 		wallet_deposit_title: 'Depositi',
 		wallet_deposit_desc: 'Soldi regalati da Snapfood',
 		wallet_enabled_deposit_title: 'Deposit & Transfers',
-		wallet_enabled_deposit_desc: 'Deposit: Credit deposited from card to wallet\nTransfer: Credit that you have transferred to friends or they have transferred to you',
+		wallet_enabled_deposit_desc:
+			'Deposit: Credit deposited from card to wallet\nTransfer: Credit that you have transferred to friends or they have transferred to you',
 		wallet_cashback_title: 'Cashback',
 		wallet_cashback_desc: 'Guadagno cashback da ogni ordine',
 		wallet_earn_title: 'Guadagna',
@@ -1617,16 +1628,18 @@ export default {
 		interests_desc: 'Select your food and social interests so that your friends can learn more about you',
 
 		get_promo_title: 'Ottieni la promozione',
-		get_promo_description: "Applica il codice che i tuoi amici ti hanno inviato per usufruire della promozione",
+		get_promo_description: 'Applica il codice che i tuoi amici ti hanno inviato per usufruire della promozione',
 
 		calendar_promo_title: 'Calendario delle promozioni',
 		calendar_promo_description: 'Access the list of current and future promotions on Snapfood',
 
 		bio_title: 'Bio',
-		bio_description: 'Un breve testo di massimo 100 caratteri per descriverti. Questo testo appare sul tuo profilo in base alle tue impostazioni sulla riservatezza.',
+		bio_description:
+			'Un breve testo di massimo 100 caratteri per descriverti. Questo testo appare sul tuo profilo in base alle tue impostazioni sulla riservatezza.',
 
 		scan_pay_tooltip_title: 'Scansiona e paga',
-		scan_pay_tooltip_desc: 'Apri la fotocamera e puntala verso il codice QR nel ristorante per scansionarlo e pagare. Attenzione! Hai bisogno di una carta di debito/credito collegata al tuo account per completare il pagamento',
+		scan_pay_tooltip_desc:
+			'Apri la fotocamera e puntala verso il codice QR nel ristorante per scansionarlo e pagare. Attenzione! Hai bisogno di una carta di debito/credito collegata al tuo account per completare il pagamento',
 	},
 	help: {
 		title: 'Aiuto',
@@ -1678,20 +1691,20 @@ export default {
 		where_heard: 'Dove hai sentito parlare di noi?',
 		tell_us_more: 'Dicci di più',
 	},
-	referral_code_input_view : {
-		title : 'Do you have referral code?',
-		description : 'Enter your referral code',
-		attention : 'Enter your referral code',
+	referral_code_input_view: {
+		title: 'Do you have referral code?',
+		description: 'Enter your referral code',
+		attention: 'Enter your referral code',
 		submit: 'Confirm',
-		skip : 'Skip'
+		skip: 'Skip',
 	},
 	deposit_card: {
 		title: 'Deposit',
 		enter_amount: 'Enter Amount',
 		enter_60_lek: 'Amount must be at least 60L',
-		success: "Deposit completed successfully!",
-		success_desc : "You have deposited XXX L in the wallet.",
-		your_balance : 'Your total balance is now',
+		success: 'Deposit completed successfully!',
+		success_desc: 'You have deposited XXX L in the wallet.',
+		your_balance: 'Your total balance is now',
 		back_wallet: 'Return to Wallet',
 		back_home: 'Home',
 		deposit: 'Deposit',
@@ -1699,12 +1712,12 @@ export default {
 	transfer_balance: {
 		title: 'Transfers',
 		enter_amount: 'Enter Amount',
-		recipient : 'Recipient',
+		recipient: 'Recipient',
 		select_recipient: 'Select a recipient',
-		not_enough_balance: "Your balance is not enough",
-		success: "Transfer completed successfully!",
-		success_desc : "You successfully transfered an amount of XXX L from your balance.",
-		your_balance : 'Your total balance is now',
+		not_enough_balance: 'Your balance is not enough',
+		success: 'Transfer completed successfully!',
+		success_desc: 'You successfully transfered an amount of XXX L from your balance.',
+		your_balance: 'Your total balance is now',
 		back_wallet: 'Return to Wallet',
 		back_home: 'Home',
 		transfer: 'Transfer',
@@ -1713,15 +1726,15 @@ export default {
 	deposit_transfer_hist: {
 		deposit: 'Deposit',
 		transfer: 'Transfers',
-		transfered : 'Transferred to',
-		received : 'Transferred from',
-		transfered_from_card : 'Added by card',
-		no_deposit_title : 'Nothing to show',
-		no_deposit_desc : "Haven't made any deposits yet? Add credit to wallet",
-		no_transfer_title : 'Nothing to show',
-		no_transfer_desc : "Haven't made any transfers yet? Send credit to a friend",
-		deposit_now : 'Deposit now',
-		transfer_now : 'Make a transfer'
+		transfered: 'Transferred to',
+		received: 'Transferred from',
+		transfered_from_card: 'Added by card',
+		no_deposit_title: 'Nothing to show',
+		no_deposit_desc: "Haven't made any deposits yet? Add credit to wallet",
+		no_transfer_title: 'Nothing to show',
+		no_transfer_desc: "Haven't made any transfers yet? Send credit to a friend",
+		deposit_now: 'Deposit now',
+		transfer_now: 'Make a transfer',
 	},
 	transfer_details: {
 		transfer_from: 'Trasferito da',
@@ -1732,11 +1745,12 @@ export default {
 		sender: 'Il mittente',
 		receiver: 'Il destinatario',
 		transfer_message: 'Messaggio di trasferimento',
-		note: 'Messaggio'
+		note: 'Messaggio',
 	},
 	student_verify: {
 		title: 'Verifica dello studente',
-		description: 'Puoi caricare una foto di certificazione che dimostri che sei uno studente, il documento caricato verrà verificato in 2 giorni lavorativi.',
+		description:
+			'Puoi caricare una foto di certificazione che dimostri che sei uno studente, il documento caricato verrà verificato in 2 giorni lavorativi.',
 		pending: 'La verifica del tuo documento è attualmente in sospeso',
 		verified: 'La tua documentazione è stata verificata con successo',
 		rejected: 'La tua documentazione è stata rifiutata, invia un altro documento.',
@@ -1745,7 +1759,7 @@ export default {
 		verify_image_subject: 'La tua tessera studente',
 		expire_date_subject: 'Data di scadenza',
 		upload_image: 'Caricamento',
-		button: 'Invia'
+		button: 'Invia',
 	},
 	splits_hist: {
 		title: 'Split bills history',
@@ -1761,7 +1775,7 @@ export default {
 	},
 	membership: {
 		subscribe_now: 'Iscriviti',
-		cancel_subscribe: 'Cancella l\'abbonamento',
+		cancel_subscribe: "Cancella l'abbonamento",
 		member: 'Abbonarsi',
 		info1: '0 Lek per la spedizione su ogni ordine, a tutti i ristoranti, mercati ed altro',
 		info2: 'Approfitta di infinite promozioni, sconti, coupon ed altro',
@@ -1785,9 +1799,10 @@ export default {
 		no_card: 'Nessuna carta di credito/debito',
 		change_plan: 'Cambia il piano',
 		confirm_cancel_subscribe: 'Annulla l’abbonamento',
-		confirm_cancel_subscribe_message: 'Sei sicuro di voler annullare l\'abbonamento?',
+		confirm_cancel_subscribe_message: "Sei sicuro di voler annullare l'abbonamento?",
 		success_cancel_subscription: 'Il tuo abbonamento è stato annullato con successo',
-		term_privacy_desc: 'Scegliendo Snapfood+, autorizzi l\'applicazione ad addebitarti sulla tua carta di credito/debito i servizi utilizzati. Se non sei d\'accordo, annulla l\'abbonamento nell\'applicazione, entro 48 ore dalla data di fatturazione.'
+		term_privacy_desc:
+			"Scegliendo Snapfood+, autorizzi l'applicazione ad addebitarti sulla tua carta di credito/debito i servizi utilizzati. Se non sei d'accordo, annulla l'abbonamento nell'applicazione, entro 48 ore dalla data di fatturazione.",
 	},
 	scan_to_pay: {
 		pay_merchant: 'Paga il ristorante',
@@ -1801,17 +1816,18 @@ export default {
 		scan_pay_success: 'Il pagamento della prenotazione effettuato da Scan and Pay è andato a buon fine!',
 		reward: 'Ricompensa',
 		discount: 'Sconto',
-		subtotal: 'totale parziale'
+		subtotal: 'totale parziale',
 	},
 	phone_placeholder: {
 		us: 'Numero di telefono',
 		al: 'Numero di telefono (Es. 06.......)',
 		it: 'Numero di telefono',
-		gr: 'Numero di telefono'
+		gr: 'Numero di telefono',
 	},
 	interests: {
 		title: 'Seleziona i tuoi interessi',
-		description: 'Seleziona il tuo cibo e i tuoi interessi sociali in modo che i tuoi amici possano saperne di più su di te',
+		description:
+			'Seleziona il tuo cibo e i tuoi interessi sociali in modo che i tuoi amici possano saperne di più su di te',
 		food: 'Interessi alimentari',
 		social: 'Interessi sociali',
 		food_interest: 'Interessi alimentari',
@@ -1824,6 +1840,6 @@ export default {
 		public_desc: 'Può essere visualizzato da tutti gli Snapfoodies',
 		private: 'Privato',
 		private_desc: 'Può essere visualizzato solo da amici',
-		save_success: "Preferenze aggiornate con successo!"
-	}
+		save_success: 'Preferenze aggiornate con successo!',
+	},
 };

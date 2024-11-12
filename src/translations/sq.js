@@ -187,7 +187,8 @@ export default {
 	gift_order_onboard: 'Porosi dhuratë',
 	gift_order_onboard_desc: 'Bëj dikë të lumtur duke i dërguar ushqimin e tyre të preferuar nëpërmjet SnapFood.',
 	refer_onboard: 'Refero & Fito',
-	refer_onboard_desc: 'Refero SnapFood tek miqtë dhe fito kredit sa herë një prej tyre regjistrohet duke përdorur kodin tënd.',
+	refer_onboard_desc:
+		'Refero SnapFood tek miqtë dhe fito kredit sa herë një prej tyre regjistrohet duke përdorur kodin tënd.',
 
 	splash_intro: {
 		title: 'Ushqime të shijshme',
@@ -416,7 +417,7 @@ export default {
 		public_desc: 'Shikohet nga të gjithë Snapfoodies',
 		private: 'Private',
 		private_desc: 'Shikohet vetëm nga miqtë',
-		delete_confirm: 'Je i sigurt që dëshiron ta fshish këtë foto?'
+		delete_confirm: 'Je i sigurt që dëshiron ta fshish këtë foto?',
 	},
 	biosetting: {
 		privacy: 'Konfigurimet e privatësisë',
@@ -597,8 +598,10 @@ export default {
 		store_delivery_Restaurant: 'Dorëzimi nga vetë restoranti',
 		snapfood_delivery: 'Dorëzimi nga SnapFood',
 		xmin_until_close: 'Për {mins} minuta mbyllet! Nxito tani ose zgjidh një restorant tjetër',
-		vendor_closed_now: 'Restoranti është i mbyllur në këte orë. Shiko menunë ose mund të zgjedhësh një restorant të sugjeruar',
-		vendor_schedule_only_delivery: 'Restoranti është i mbyllur momentalisht! Skedulo një porosi për oraret kur është i hapur',
+		vendor_closed_now:
+			'Restoranti është i mbyllur në këte orë. Shiko menunë ose mund të zgjedhësh një restorant të sugjeruar',
+		vendor_schedule_only_delivery:
+			'Restoranti është i mbyllur momentalisht! Skedulo një porosi për oraret kur është i hapur',
 		closed_but_can_schedule: 'Mbyllur! Skedulo porosinë',
 	},
 	vendor_profile_info: {
@@ -799,7 +802,7 @@ export default {
 		hours_left: 'orë të mbetura',
 		random_limit: 'Ky promocion do të skadojë në ',
 		expire_in: 'Skadon në ',
-		basket_is_empty: 'Shporta jote është bosh. Shto një produkt.'
+		basket_is_empty: 'Shporta jote është bosh. Shto një produkt.',
 	},
 	add_new_address: {
 		header: 'Detajet e adresës',
@@ -854,6 +857,7 @@ export default {
 			have_one: 'Keni një kupon?',
 			placeholder: 'Vendos kodin e promocionit',
 			applied_successfully: 'Kuponi u aplikua me sukses',
+			free_delivery: 'Kuponi u aplikua me sukses dhe tani keni transport falas për këtë porosi',
 		},
 		a_coupon_value: 'Kupon i aplikuar',
 		a_coupon_value_a: 'Një kupon me',
@@ -861,7 +865,7 @@ export default {
 		a_discount_value: 'Zbritje e aplikuar',
 		a_discount_was_applied: 'Është aplikuar',
 		you_used_discount: 'zbritje në këtë porosi',
-		add_promo_code: 'Vendos kodin e ftesës',
+		add_promo_code: 'Fut kodin e ftesës së porosisë',
 		invalid_promotion_code: 'Kodi i ftesës i pavlefshëm',
 		invalid_running_promotion_code: 'Kodi i ftesës është duke u përdorur',
 		suggested_items: 'Produktet e sugjeruara',
@@ -890,7 +894,8 @@ export default {
 		cashback_amount: 'Cashback i aplikuar',
 		discount_amount: 'Zbritje i aplikuar',
 		split_with: 'Ndaje me...',
-		split_order_not_possible_before_all_reply: 'Personat me të cilët dëshironi të ndani faturën duhet t’i përgjigjen kërkesës suaj, në të kundërt duhet t’i hiqni për të vazhduar porosinë',
+		split_order_not_possible_before_all_reply:
+			'Personat me të cilët dëshironi të ndani faturën duhet t’i përgjigjen kërkesës suaj, në të kundërt duhet t’i hiqni për të vazhduar porosinë',
 		not_snapfood_user: 'Jo një përdorues i SnapFood',
 		select_card: 'Ju lutemi zgjidhni një kartë',
 		order_failed: 'Oops! Ne nuk mund të japim porosinë tuaj për momentin',
@@ -910,35 +915,41 @@ export default {
 		now: 'Tani',
 		schedule: 'Skedulo',
 		select_schedule_time: 'Ju lutem zgjidhni një orar për porosinë.',
-		schedule_reorder_desc: 'Restoranti është i mbyllur momentalisht! Skedulo një porosi për oraret kur është i hapur',
+		schedule_reorder_desc:
+			'Restoranti është i mbyllur momentalisht! Skedulo një porosi për oraret kur është i hapur',
 		schedule_order: 'Orari i porosisë',
 		order_for: 'Shpenzo promocionin për:',
 		confirm_legal_age: 'Konfirmoj se jam në moshën e lejuar ligjërisht për të porositur këto produkte',
 		send_order_as_gift: 'Dërgoje porosinë si dhuratë',
 		send_order_as_gift_desc: 'Plotëso të dhënat',
 		reseve_order_as_gift: 'Prenoto rezervimin dhuratë',
-		reseve_order_as_gift_desc: "Vendos emrin e marrësit",
+		reseve_order_as_gift_desc: 'Vendos emrin e marrësit',
 		recipient_name: 'Emri i marrësit',
 		recipient_phone: 'Numri i telefonit të marrësit',
 		recipient_phone_description: 'Marrësi do të njoftohet për porosinë në këtë numër telefoni',
 		gift_order_from: 'Emri yt',
 		gift_message: 'Mesazhi i dhuratës (opsional)',
-		grant_reserve_gift: 'Autorizoj SnapFood që të prenotojë këtë rezervim dhuratë nga ana ime për marrësin e specifikuar më lart.',
-		grant_gift: 'I jap të drejtën SnapFood që të dërgojë këtë porosi si dhuratë nga ana ime, në adresën e marrësit të specifikuar më lart',
+		grant_reserve_gift:
+			'Autorizoj SnapFood që të prenotojë këtë rezervim dhuratë nga ana ime për marrësin e specifikuar më lart.',
+		grant_gift:
+			'I jap të drejtën SnapFood që të dërgojë këtë porosi si dhuratë nga ana ime, në adresën e marrësit të specifikuar më lart',
 		enter_recipient_name: 'Ju lutemi vendosni emrin e marrësit në fushën përkatëse',
 		enter_gift_order_from: 'Ju lutemi vendosni emrin tuaj në fushën përkatëse',
 		enter_recipient_phone: 'Duhet të futni telefonin e marrësit.',
 		enter_valid_recipient_phone_title: 'Numri nuk është i saktë',
 		enter_valid_recipient_phone: 'Ju lutemi vendosni numrin e saktë të marrësit',
-		select_reserve_gift_permission: 'Ju lutemi konfirmoni që i jepni autorizim SnapFood që të prenotojë këtë rezervim dhuratë',
-		select_gift_permission: 'Ju lutemi konfirmoni që i jepni të drejtë SnapFood që ta dërgojë këtë porosi si dhuratë',
+		select_reserve_gift_permission:
+			'Ju lutemi konfirmoni që i jepni autorizim SnapFood që të prenotojë këtë rezervim dhuratë',
+		select_gift_permission:
+			'Ju lutemi konfirmoni që i jepni të drejtë SnapFood që ta dërgojë këtë porosi si dhuratë',
 		gift_order_not_possible_for_cash: 'Porositë dhuratë kryhen vetëm nëpërmjet pagesave me kartë',
 		gift_pickup_user_title: 'Zgjidh marrësin',
 		gift_select_user: 'Marrësi i porosisë dhuratë është:',
 		gift_select_friend: 'Përdorues i aplikacionit',
 		gift_select_non_user: 'Tjetër',
-		gift_nonuser_referral_desc: 'Krahas porosisë dhuratë, fto marrësin që të shkarkojë SnapFood dhe fitoni secili nga XXX lekë',
-		gift_confirm_recipient_address: 'Konfirmo adresën e marrësit në hartë'
+		gift_nonuser_referral_desc:
+			'Krahas porosisë dhuratë, fto marrësin që të shkarkojë SnapFood dhe fitoni secili nga XXX lekë',
+		gift_confirm_recipient_address: 'Konfirmo adresën e marrësit në hartë',
 	},
 	split: {
 		bill_total: 'Totali i faturës',
@@ -1013,12 +1024,13 @@ export default {
 		confirmation: 'Konfirmo veprimin',
 		confirm_logout_title: 'PO, DILNI',
 		confirm_logout: 'Jeni i sigurt që doni të dilni nga aplikacioni SnapFood?',
-		confirm_logout_desc: 'Në varësi të konfigurimeve tuaja të privatësisë, profili juaj do të vijojë të shfaqet në aplikacion',
+		confirm_logout_desc:
+			'Në varësi të konfigurimeve tuaja të privatësisë, profili juaj do të vijojë të shfaqet në aplikacion',
 		confirm_language: 'Jeni i sigurt që doni të ndryshoni gjuhën në {{language}}?',
 		confirm_delete_address: 'Jeni i sigurt që doni të fshini adresën e zgjedhur?',
 		account_deleted_title: 'Llogaria u fshi',
 		account_deleted_description: 'Llogaria jote në SnapFood u fshi',
-		upload_photo: "Ngarko imazhin",
+		upload_photo: 'Ngarko imazhin',
 		take_picture: 'Hap kamerën',
 		take_video: 'Merrni një video',
 		photo_galley: 'Zgjidh nga galeria',
@@ -1028,7 +1040,7 @@ export default {
 		no_blog_message: '0 postime të gjetura nga kërkimi',
 		all: 'Të gjitha',
 		author: 'Shkruar nga',
-		all_topic: "Të gjitha",
+		all_topic: 'Të gjitha',
 	},
 	promotions: {
 		coupon_discount: 'Kupon: {{code}}',
@@ -1163,8 +1175,7 @@ export default {
 		no_friends_from_new_group: 'Asnjë shok i disponueshëm për tu futuar në grup chat!',
 		no_snapfooders_from_new_group: 'Asnjë Snapfoodie i disponueshëm për tu ftuar!',
 		no_snapfooders_from_split_bill: 'Ups… Nuk ke asnjë mik për të ndarë faturën',
-		no_snapfooders_desc_from_split_bill:
-			'Shto miqtë në mënyrë që të ndash faturën',
+		no_snapfooders_desc_from_split_bill: 'Shto miqtë në mënyrë që të ndash faturën',
 		delete_conv_confirm: 'Jeni të sigurt që dëshironi të hiqni bisedën?',
 		delete_confirm_yes: 'Fshi',
 		delete_confirm_no: 'Anullo',
@@ -1200,19 +1211,21 @@ export default {
 		you_are_friend: 'Ju jeni miq në SnapFood',
 		you_are_not_friend: 'Ju nuk jeni miq në SnapFood',
 		reservation_reward_tooltip_title: 'Fito shpërblime nga rezervimet',
-		reservation_reward_tooltip_description: 'Rezervo një tavolinë në oraret e shpërblimit dhe fito x% të vlerës si kredit në kuletë',
+		reservation_reward_tooltip_description:
+			'Rezervo një tavolinë në oraret e shpërblimit dhe fito x% të vlerës si kredit në kuletë',
 		reservation_discount_tooltip_title: 'Përfito ulje nga rezervimet',
-		reservation_discount_tooltip_description: 'Rezervo një tavolinë në oraret e uljes dhe fito x% zbritje nga fatura',
-		invite_accept_success: 'Ju e pranuat ftesën me sukses.'
+		reservation_discount_tooltip_description:
+			'Rezervo një tavolinë në oraret e uljes dhe fito x% zbritje nga fatura',
+		invite_accept_success: 'Ju e pranuat ftesën me sukses.',
 	},
 	story_metion: {
-		done: 'Përfundo'
+		done: 'Përfundo',
 	},
 	order_now: {
 		title: 'Porosit & Fito',
 		description: 'Ke neps për diçka të shijshme? Porosit tani dhe fito cashback.',
 		go_home: 'Bëj një porosi',
-		go_wallet: 'Kuleta ime'
+		go_wallet: 'Kuleta ime',
 	},
 	invitation_earn: {
 		title: 'Refero',
@@ -1374,7 +1387,7 @@ export default {
 		received_from_transfer: 'Transferuar nga',
 		transfered_to: 'Transferuar tek',
 		received_from: 'Transferuar nga',
-		new_transfer: "Transfertë",
+		new_transfer: 'Transfertë',
 	},
 	order: {
 		new: 'Në pritje',
@@ -1443,7 +1456,8 @@ export default {
 		gift_order_desc: 'Porosia dhuratë iu dërgua:',
 		gift_order_received_desc: 'Porosi dhuratë nga:',
 		confirm_order_delivery: 'Konfirmo porosinë',
-		confirm_order_delivery_success: 'Porosia u konfirmua! Cashback-u është depozituar në kuletë. Faleminderit për porosinë.',
+		confirm_order_delivery_success:
+			'Porosia u konfirmua! Cashback-u është depozituar në kuletë. Faleminderit për porosinë.',
 		payment_not_done: 'Pagesa e papërfunduar',
 		paid: 'Paguar',
 		pay_with_card: 'Paguaj me kartë',
@@ -1509,7 +1523,7 @@ export default {
 		cashback: 'Cashback i aplikuar',
 		promotion: 'Promocion i aplikuar',
 		split_order: 'Nda faturën',
-		gift_order: 'Porosi dhuratë'
+		gift_order: 'Porosi dhuratë',
 	},
 	vendor_filter: {
 		cuisine: 'Kuzhina',
@@ -1531,7 +1545,7 @@ export default {
 		cancel_invitation: 'Hiq ftesën',
 		remove_friend: 'Hiq nga lista e miqve',
 		reject_invitation: 'Refuzo kërkesën e miqësisë',
-		accept_invitation: 'Prano kërkesën e miqësisë'
+		accept_invitation: 'Prano kërkesën e miqësisë',
 	},
 	group_related: {
 		confirm_del_group: 'Jeni të sigurtë që doni të fshini grupin?',
@@ -1562,7 +1576,8 @@ export default {
 		earn_invitation_code_input_description: 'Vendos kodin e ftesës që të ka dërguar miku yt',
 
 		gift_order_referral_title: 'Ftesë për regjistrim',
-		gift_order_referral_desc: 'Kur marrësi të regjistrohet në aplikacion, në kuletën e secilit prej jush do të depozitohen XXX lekë. Marrësi ka gjithashtu YYY ftesa në dispozicion për të dërguar tek miqtë e tij dhe për të fituar edhe më shumë para.',
+		gift_order_referral_desc:
+			'Kur marrësi të regjistrohet në aplikacion, në kuletën e secilit prej jush do të depozitohen XXX lekë. Marrësi ka gjithashtu YYY ftesa në dispozicion për të dërguar tek miqtë e tij dhe për të fituar edhe më shumë para.',
 
 		what_means: 'Çfarë do të thotë kjo?',
 		snapfood_delivery_desc:
@@ -1609,7 +1624,8 @@ export default {
 		wallet_deposit_title: 'Depozitë',
 		wallet_deposit_desc: 'Para të dhuruara nga SnapFood',
 		wallet_enabled_deposit_title: 'Depozitim & Transferta',
-		wallet_enabled_deposit_desc: 'Depozitim: Kredit i depozituar nga karta në kuletë\nTransferta: Kredit që ti i ke transferuar miqve ose ata të kanë transferuar ty',
+		wallet_enabled_deposit_desc:
+			'Depozitim: Kredit i depozituar nga karta në kuletë\nTransferta: Kredit që ti i ke transferuar miqve ose ata të kanë transferuar ty',
 		wallet_cashback_title: 'Cashback',
 		wallet_cashback_desc: 'Para të kthyera mbrapsht pas porosive',
 		wallet_earn_title: 'Bonus',
@@ -1633,10 +1649,12 @@ export default {
 		calendar_promo_description: 'Akseso listën e promocioneve aktuale dhe të ardhshme në SnapFood',
 
 		bio_title: 'Bio',
-		bio_description: 'Një tekst i shkurtër deri në 100 karaktere për të pëshkruar veten. Ky tekst shfaqet në profilin tënd në varësi të konfigurimeve të privatësisë.',
+		bio_description:
+			'Një tekst i shkurtër deri në 100 karaktere për të pëshkruar veten. Ky tekst shfaqet në profilin tënd në varësi të konfigurimeve të privatësisë.',
 
 		scan_pay_tooltip_title: 'Scan and Pay',
-		scan_pay_tooltip_desc: 'Hap kamerën dhe drejtoje tek kodi QR në restorant për të kryer pagesën me skanim. Kujdes! Për të përfunduar pagesën duhet të kesh një kartë debiti/krediti të lidhur me llogarinë tënde në SnapFood\n',
+		scan_pay_tooltip_desc:
+			'Hap kamerën dhe drejtoje tek kodi QR në restorant për të kryer pagesën me skanim. Kujdes! Për të përfunduar pagesën duhet të kesh një kartë debiti/krediti të lidhur me llogarinë tënde në SnapFood\n',
 	},
 	help: {
 		title: 'Ndihmë',
@@ -1692,14 +1710,14 @@ export default {
 		description: 'Vendos kodin tuaj të regjistrimit',
 		attention: 'Vendos kodin tuaj të regjistrimit',
 		submit: 'Konfirmo',
-		skip: 'Kalo'
+		skip: 'Kalo',
 	},
 	deposit_card: {
 		title: 'Depozitë',
 		enter_amount: 'Vendos shumën',
 		enter_60_lek: 'Shuma duhet të jetë të paktën mbi 60L',
-		success: "Depozitimi u krye me sukses!",
-		success_desc: "Ti ke depozituar XXX L në kuletë.",
+		success: 'Depozitimi u krye me sukses!',
+		success_desc: 'Ti ke depozituar XXX L në kuletë.',
 		your_balance: 'Balanca jote totale tashmë është',
 		back_wallet: 'Rikthehu tek Kuleta',
 		back_home: 'Home',
@@ -1710,14 +1728,14 @@ export default {
 		enter_amount: 'Vendos shumën',
 		recipient: 'Marrësi',
 		select_recipient: 'Përzgjidh një marrës',
-		not_enough_balance: "Krediti juaj është i pamjaftueshëm për të kryer transfertën",
-		success: "Transferta u krye me sukses!",
-		success_desc: "Ti ke transferuar XXX L nga kuleta jote.",
+		not_enough_balance: 'Krediti juaj është i pamjaftueshëm për të kryer transfertën',
+		success: 'Transferta u krye me sukses!',
+		success_desc: 'Ti ke transferuar XXX L nga kuleta jote.',
 		your_balance: 'Balanca jote totale tashmë është',
 		back_wallet: 'Rikthehu tek Kuleta',
 		back_home: 'Home',
 		transfer: 'Transfero',
-		transfer_msg: 'Mesazh (opsional)'
+		transfer_msg: 'Mesazh (opsional)',
 	},
 	deposit_transfer_hist: {
 		deposit: 'Depozitë',
@@ -1726,11 +1744,11 @@ export default {
 		received: 'Transferuar nga',
 		transfered_from_card: 'Shtuar nga karta',
 		no_deposit_title: 'Asgjë për të treguar',
-		no_deposit_desc: "Nuk ke bërë ende asnjë depozitim? Shtoje kreditin në kuletë",
+		no_deposit_desc: 'Nuk ke bërë ende asnjë depozitim? Shtoje kreditin në kuletë',
 		no_transfer_title: 'Asgjë për të treguar',
-		no_transfer_desc: "Nuk ke bërë ende asnjë transfertë? Dërgoji kredit një miku",
+		no_transfer_desc: 'Nuk ke bërë ende asnjë transfertë? Dërgoji kredit një miku',
 		deposit_now: 'Depozito tani',
-		transfer_now: 'Transfero tani'
+		transfer_now: 'Transfero tani',
 	},
 	transfer_details: {
 		transfer_from: 'Transferuar nga',
@@ -1741,20 +1759,21 @@ export default {
 		transfer_message: 'Mesazhi i transferimit',
 		note: 'Mesazhi',
 		sent: 'Dërguar',
-		received: 'Marrë'
+		received: 'Marrë',
 	},
 	student_verify: {
 		title: 'Aksesi i studentit',
 		description: 'Ngarko kartën e studentit për të përfituar ulje dhe privilegje të tjera',
 		pending: 'Në pritje të verifikimit',
-		verified: 'Verifikimi u krye me sukses! Eksploro aplikacionin për të zbuluar ofertat dhe privilegjet që të presin',
+		verified:
+			'Verifikimi u krye me sukses! Eksploro aplikacionin për të zbuluar ofertat dhe privilegjet që të presin',
 		rejected: 'Verifikim i pasuksesshëm! Ngarko kartën tënde të studentit',
 		expired: 'Karta jote e studentit ka skaduar',
 		student_card: 'Karta e studentit',
 		verify_image_subject: 'Karta jote e studentit',
 		expire_date_subject: 'Data e skadencës',
 		upload_image: 'Ngarko',
-		button: 'Verifiko'
+		button: 'Verifiko',
 	},
 	splits_hist: {
 		title: 'Historiku i ndarjes së faturave',
@@ -1766,7 +1785,7 @@ export default {
 		split_bill_some_screen_filter: 'Fatura të ndara',
 		orderer: 'Porositësi',
 		total_amount: 'Totali',
-		your_split: 'Pjesa jote'
+		your_split: 'Pjesa jote',
 	},
 	membership: {
 		subscribe_now: 'Abonohu',
@@ -1796,7 +1815,8 @@ export default {
 		confirm_cancel_subscribe: 'Anulo abonimin',
 		confirm_cancel_subscribe_message: 'Je i sigurt që dëshiron të anulosh abonimin?',
 		success_cancel_subscription: 'Abonimi yt u anulua me sukses',
-		term_privacy_desc: 'Duke zgjedhur SnapFood+, ti autorizon aplikacionin të të faturojë në kartën tënde të kreditit/debitit për shërbimet e përdorura. Nëse nuk je dakord, anulo abonimin tënd në aplikacion brenda 48 orëve nga data e faturimit.'
+		term_privacy_desc:
+			'Duke zgjedhur SnapFood+, ti autorizon aplikacionin të të faturojë në kartën tënde të kreditit/debitit për shërbimet e përdorura. Nëse nuk je dakord, anulo abonimin tënd në aplikacion brenda 48 orëve nga data e faturimit.',
 	},
 	scan_to_pay: {
 		pay_merchant: 'Paguaj subjektin',
@@ -1810,13 +1830,13 @@ export default {
 		scan_pay_success: 'Rezervimi me Scan and Pay u krye me sukses!',
 		reward: 'Shperblim',
 		discount: 'Zbritje',
-		subtotal: 'Nëntotali'
+		subtotal: 'Nëntotali',
 	},
 	phone_placeholder: {
 		us: 'Numri i telefonit',
 		al: 'Numri i telefonit (Prsh 06.......)',
 		it: 'Numri i telefonit',
-		gr: 'Numri i telefonit'
+		gr: 'Numri i telefonit',
 	},
 	interests: {
 		title: 'Përzgjidh preferencat e tua',
@@ -1833,6 +1853,6 @@ export default {
 		public_desc: 'Shikohet nga të gjithë Snapfoodies',
 		private: 'Private',
 		private_desc: 'Shikohet vetëm nga miqtë',
-		save_success: "Të dhënat e preferencave u modifikuan me sukses!"
-	}
+		save_success: 'Të dhënat e preferencave u modifikuan me sukses!',
+	},
 };

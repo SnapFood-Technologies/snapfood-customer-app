@@ -155,7 +155,7 @@ export default {
 	code_complete: 'The code has been copied, follow with the order',
 
 	allmost_done: {
-		title: "Almost done!",
+		title: 'Almost done!',
 		description: 'Please setup your location to discover restaurants nearby',
 		button: 'Location',
 		later: 'Later',
@@ -413,7 +413,7 @@ export default {
 		public_desc: 'Can be viewed from all Snapfoodies',
 		private: 'Private',
 		private_desc: 'Can be viewed from only friends',
-		delete_confirm: 'Are you sure you want to delete this photo?'
+		delete_confirm: 'Are you sure you want to delete this photo?',
 	},
 	biosetting: {
 		privacy: 'Bio privacy',
@@ -593,7 +593,8 @@ export default {
 		store_delivery_Restaurant: 'This store delivers its own orders',
 		snapfood_delivery: 'Delivered by SnapFood',
 		xmin_until_close: '{mins} min until closing. Order quickly or consider choosing another option',
-		vendor_closed_now: 'The restaurant is closed at this time. Check the menu or order from a suggested restaurant.',
+		vendor_closed_now:
+			'The restaurant is closed at this time. Check the menu or order from a suggested restaurant.',
 		vendor_schedule_only_delivery: 'The restaurant is currently closed! Schedule your order for opening hours',
 		closed_but_can_schedule: 'Closed! Schedule your order',
 	},
@@ -794,7 +795,7 @@ export default {
 		hours_left: 'hours left',
 		random_limit: 'This promotion will be expired in ',
 		expire_in: 'Expires in ',
-		basket_is_empty: 'Your basket is empty. Add an item.'
+		basket_is_empty: 'Your basket is empty. Add an item.',
 	},
 	add_new_address: {
 		header: 'Address details',
@@ -849,6 +850,7 @@ export default {
 			have_one: 'Do you have a coupon?',
 			placeholder: 'Add promo code',
 			applied_successfully: 'Coupon applied successfully',
+			free_delivery: 'The coupon was successfully applied and now you have free delivery for this order',
 		},
 		a_coupon_value: 'Coupon applied',
 		a_coupon_value_a: 'A coupon with',
@@ -856,7 +858,7 @@ export default {
 		a_discount_value: 'Discount applied',
 		a_discount_was_applied: '',
 		you_used_discount: 'off discount has been applied on this order',
-		add_promo_code: 'Enter Promotion Code',
+		add_promo_code: 'Enter order invitation code',
 		invalid_promotion_code: 'Invalid promotion code',
 		invalid_running_promotion_code: 'You have a running order with this promotion code',
 		suggested_items: 'Suggested Items',
@@ -885,7 +887,8 @@ export default {
 		cashback_amount: 'Cashback Amount',
 		discount_amount: 'Discount Amount',
 		split_with: 'Split With',
-		split_order_not_possible_before_all_reply: 'The people you want to share the bill with must respond to your request, otherwise you must remove them to continue ordering',
+		split_order_not_possible_before_all_reply:
+			'The people you want to share the bill with must respond to your request, otherwise you must remove them to continue ordering',
 		not_snapfood_user: 'Not A SnapFood User',
 		select_card: 'Please select a card',
 		order_failed: "Oops! We couldn't place your order at the moment",
@@ -918,8 +921,10 @@ export default {
 		recipient_phone_description: 'Order notifications will be sent to this phone number',
 		gift_order_from: 'Your name',
 		gift_message: 'Gift message (optional)',
-		grant_reserve_gift: 'I authorize SnapFood to book this reservation as a gift on my behalf for the recipient named above.',
-		grant_gift: 'I authorize SnapFood to ship this order as a gift on my behalf to the recipient address specified above',
+		grant_reserve_gift:
+			'I authorize SnapFood to book this reservation as a gift on my behalf for the recipient named above.',
+		grant_gift:
+			'I authorize SnapFood to ship this order as a gift on my behalf to the recipient address specified above',
 		enter_recipient_name: "Please enter the recipient's name in the appropriate field",
 		enter_gift_order_from: 'Please enter your name in the appropriate field',
 		enter_recipient_phone: 'You need to enter recipient phone.',
@@ -932,8 +937,9 @@ export default {
 		gift_select_user: 'The recipient of the gift order is:',
 		gift_select_friend: 'Application user',
 		gift_select_non_user: 'Other',
-		gift_nonuser_referral_desc: 'In addition to the gift order, invite the recipient to download SnapFood and earn XXX Lek each',
-		gift_confirm_recipient_address: 'Please confirm recipient address'
+		gift_nonuser_referral_desc:
+			'In addition to the gift order, invite the recipient to download SnapFood and earn XXX Lek each',
+		gift_confirm_recipient_address: 'Please confirm recipient address',
 	},
 	split: {
 		bill_total: 'Bill Total',
@@ -988,7 +994,7 @@ export default {
 			my_location: 'My location',
 			my_location_subtitle: 'Your location on the map will be updated when you open the app',
 			offline_mode: 'Hide your location',
-			offline_mode_subtitle: "Enable the option that hides your location on the map",
+			offline_mode_subtitle: 'Enable the option that hides your location on the map',
 			offline_mode_subtitle_enabled: 'Enabled',
 			hide_snapfooder: 'Become invisible',
 			hide_snapfooder_subtitle: 'Enable the option that hides your account from every Snapfoodie',
@@ -1013,7 +1019,7 @@ export default {
 		confirm_delete_address: 'Are you sure you to delete the selected address?',
 		account_deleted_title: 'The account was deleted',
 		account_deleted_description: 'Your SnapFood account has been deleted',
-		upload_photo: "Upload image",
+		upload_photo: 'Upload image',
 		take_picture: 'Take a picture',
 		take_video: 'Take a video',
 		photo_galley: 'From Photo Gallery',
@@ -1023,7 +1029,7 @@ export default {
 		no_blog_message: '0 results found',
 		all: 'All',
 		author: 'Written by',
-		all_topic: "All Topics",
+		all_topic: 'All Topics',
 	},
 	promotions: {
 		coupon_discount: 'Coupon: {{code}}',
@@ -1143,7 +1149,7 @@ export default {
 		},
 		no_friends: "You don't have any friends yet!",
 		no_friends_desc: 'Find & add new friends from SnapFood Map.',
-		no_snapfooders: "There are no Snapfoodies in your area!",
+		no_snapfooders: 'There are no Snapfoodies in your area!',
 		no_snapfooders_desc: 'You can add them on the SnapFood map.',
 		no_invitations: "You don't have any invitations yet!",
 		no_invitations_invite_sent: 'You havent sent any invitation yet!',
@@ -1194,19 +1200,20 @@ export default {
 		you_are_friend: 'You are friends on SnapFood',
 		you_are_not_friend: 'You are not friends on SnapFood',
 		reservation_reward_tooltip_title: 'Earn rewards from your reservations',
-		reservation_reward_tooltip_description: 'Reserve a table at reward hours to earn x% of the value as credit in your wallet',
+		reservation_reward_tooltip_description:
+			'Reserve a table at reward hours to earn x% of the value as credit in your wallet',
 		reservation_discount_tooltip_title: 'Earn discounts from your reservations',
 		reservation_discount_tooltip_description: 'Reserve a table at discount hours and get x% off on your bill',
-		invite_accept_success: 'You accepted the invitation successfully.'
+		invite_accept_success: 'You accepted the invitation successfully.',
 	},
 	story_metion: {
-		done: 'Done'
+		done: 'Done',
 	},
 	order_now: {
 		title: 'Order & Earn',
 		description: 'Craving something delicious? Order now and earn cashback.',
 		go_home: 'Place an order',
-		go_wallet: 'My Wallet'
+		go_wallet: 'My Wallet',
 	},
 	invitation_earn: {
 		title: 'Refer',
@@ -1362,12 +1369,12 @@ export default {
 		deposit_snapfood: 'Reward from SnapFood',
 		deposit_revoke_snapfood: 'The reward has expired',
 		deposit_stripe_card: 'Card deposit',
-		blog_quiz_earning: 'Credit from SnapFood\'s quiz',
+		blog_quiz_earning: "Credit from SnapFood's quiz",
 		transfered_to_friend: 'Transferred to',
 		received_from_transfer: 'Transferred from',
 		transfered_to: 'Transferred to',
 		received_from: 'Transferred from',
-		new_transfer: "Transfer"
+		new_transfer: 'Transfer',
 	},
 	order: {
 		new: 'New',
@@ -1436,7 +1443,8 @@ export default {
 		gift_order_desc: 'Gift order sent to:',
 		gift_order_received_desc: 'Gift order from:',
 		confirm_order_delivery: 'Confirm the order',
-		confirm_order_delivery_success: 'Order confirmed! Cashback has been deposited into the wallet. Thank you for the order.',
+		confirm_order_delivery_success:
+			'Order confirmed! Cashback has been deposited into the wallet. Thank you for the order.',
 		payment_not_done: 'Incomplete payment',
 		paid: 'Paid',
 		pay_with_card: 'Pay by card',
@@ -1502,7 +1510,7 @@ export default {
 		cashback: 'Cashback applied',
 		promotion: 'Promotion applied',
 		split_order: 'Split Order',
-		gift_order: 'Gift orders'
+		gift_order: 'Gift orders',
 	},
 	vendor_filter: {
 		cuisine: 'Cuisine',
@@ -1525,7 +1533,7 @@ export default {
 		cancel_invitation: 'Cancel invitation',
 		remove_friend: 'Remove friend',
 		reject_invitation: 'Reject friend request',
-		accept_invitation: 'Accept friend request'
+		accept_invitation: 'Accept friend request',
 	},
 
 	group_related: {
@@ -1557,7 +1565,8 @@ export default {
 		earn_invitation_code_input_description: 'Enter the invitation code from your friend',
 
 		gift_order_referral_title: 'Invitation to registration',
-		gift_order_referral_desc: 'When the recipient registers in the application, XXX Lek will be deposited in the wallet of each of you. The recipient also has YYY invitations available to send to their friends and earn even more money.',
+		gift_order_referral_desc:
+			'When the recipient registers in the application, XXX Lek will be deposited in the wallet of each of you. The recipient also has YYY invitations available to send to their friends and earn even more money.',
 
 		what_means: 'What does this mean?',
 		snapfood_delivery_desc: 'This means you can track your order until delivered to you.',
@@ -1566,7 +1575,8 @@ export default {
 		phone_number_required_description:
 			"Snapfood won't share your phone number. It will only be used for your orders!",
 		full_name_required: 'Why do we ask for your full name?',
-		full_name_required_description: "SnapFood won’t share your full name. It will only be used for your orders, subscriptions and marketing purposes to make your experience better.",
+		full_name_required_description:
+			'SnapFood won’t share your full name. It will only be used for your orders, subscriptions and marketing purposes to make your experience better.',
 		username_required: 'Why do you need a username?',
 		username_required_description:
 			'Your username will be used to build your profile as a Snapfoodie. You will be identified through it.',
@@ -1599,7 +1609,8 @@ export default {
 		wallet_deposit_title: 'Deposit',
 		wallet_deposit_desc: 'Credit gifted SnapFood',
 		wallet_enabled_deposit_title: 'Deposit & Transfers',
-		wallet_enabled_deposit_desc: 'Deposit: Credit deposited from card to wallet\nTransfer: Credit that you have transferred to friends or they have transferred to you',
+		wallet_enabled_deposit_desc:
+			'Deposit: Credit deposited from card to wallet\nTransfer: Credit that you have transferred to friends or they have transferred to you',
 		wallet_cashback_title: 'Cashback',
 		wallet_cashback_desc: 'Cashback credit',
 		wallet_earn_title: 'Earn',
@@ -1623,10 +1634,12 @@ export default {
 		calendar_promo_description: 'Access the list of current and future promotions on SnapFood',
 
 		bio_title: 'Bio',
-		bio_description: 'A short text up to 100 characters to describe yourself. This text will appear in your profile depending on your privacy settings.',
+		bio_description:
+			'A short text up to 100 characters to describe yourself. This text will appear in your profile depending on your privacy settings.',
 
 		scan_pay_tooltip_title: 'Scan and pay',
-		scan_pay_tooltip_desc: 'Open your camera and point it towards the QR code in the rastaurant to scan and pay. Attention! You need a debit/credit card linked to your account to complete the payment',
+		scan_pay_tooltip_desc:
+			'Open your camera and point it towards the QR code in the rastaurant to scan and pay. Attention! You need a debit/credit card linked to your account to complete the payment',
 	},
 	help: {
 		title: 'Help',
@@ -1683,14 +1696,14 @@ export default {
 		description: 'Enter your referral code',
 		attention: 'Enter your referral code',
 		submit: 'Confirm',
-		skip: 'Skip'
+		skip: 'Skip',
 	},
 	deposit_card: {
 		title: 'Deposit',
 		enter_amount: 'Enter Amount',
 		enter_60_lek: 'Amount must be at least 60L',
-		success: "Deposit completed successfully!",
-		success_desc: "You have deposited XXX L in the wallet.",
+		success: 'Deposit completed successfully!',
+		success_desc: 'You have deposited XXX L in the wallet.',
 		your_balance: 'Your total balance is now',
 		back_wallet: 'Return to Wallet',
 		back_home: 'Home',
@@ -1701,14 +1714,14 @@ export default {
 		enter_amount: 'Enter Amount',
 		recipient: 'Recipient',
 		select_recipient: 'Select a recipient',
-		not_enough_balance: "Your balance is not enough",
-		success: "Transfer completed successfully!",
-		success_desc: "You successfully transfered an amount of XXX L from your balance.",
+		not_enough_balance: 'Your balance is not enough',
+		success: 'Transfer completed successfully!',
+		success_desc: 'You successfully transfered an amount of XXX L from your balance.',
 		your_balance: 'Your total balance is now',
 		back_wallet: 'Return to Wallet',
 		back_home: 'Home',
 		transfer: 'Transfer',
-		transfer_msg: 'Message (optional)'
+		transfer_msg: 'Message (optional)',
 	},
 	deposit_transfer_hist: {
 		deposit: 'Deposit',
@@ -1721,7 +1734,7 @@ export default {
 		no_transfer_title: 'Nothing to show',
 		no_transfer_desc: "Haven't made any transfers yet? Send credit to a friend",
 		deposit_now: 'Deposit now',
-		transfer_now: 'Make a transfer'
+		transfer_now: 'Make a transfer',
 	},
 	transfer_details: {
 		transfer_from: 'Transfer from',
@@ -1732,11 +1745,12 @@ export default {
 		sender: 'Sender',
 		receiver: 'Receiver',
 		transfer_message: 'Message',
-		note: 'Message'
+		note: 'Message',
 	},
 	student_verify: {
 		title: 'Student Verify',
-		description: 'You can upload a certification photo which prove you are a student, the uploaded document will be verified in 2 business days.',
+		description:
+			'You can upload a certification photo which prove you are a student, the uploaded document will be verified in 2 business days.',
 		pending: 'Verification of your document is in pending now',
 		verified: 'Your documentation was verified successfully',
 		rejected: 'Your documentation was rejected, please submit another document.',
@@ -1745,7 +1759,7 @@ export default {
 		verify_image_subject: 'Your student card',
 		expire_date_subject: 'Expiration date',
 		upload_image: 'Upload',
-		button: 'Submit'
+		button: 'Submit',
 	},
 	splits_hist: {
 		title: 'Split bills history',
@@ -1757,7 +1771,7 @@ export default {
 		split_bill_some_screen_filter: 'Split bills',
 		orderer: 'Orderer',
 		total_amount: 'Total',
-		your_split: 'Your split'
+		your_split: 'Your split',
 	},
 	membership: {
 		subscribe_now: 'Subscribe',
@@ -1787,7 +1801,8 @@ export default {
 		confirm_cancel_subscribe: 'Cancel your subscription',
 		confirm_cancel_subscribe_message: 'Are you sure you want to cancel your subscription?',
 		success_cancel_subscription: 'Your subscription was successfully canceled',
-		term_privacy_desc: 'By choosing SnapFood+, you authorize SnapFood to charge you on your credit/debit card for the service provided. In case you do not wish to be charged, please cancel your subscription in app 48 hours before your billing date.'
+		term_privacy_desc:
+			'By choosing SnapFood+, you authorize SnapFood to charge you on your credit/debit card for the service provided. In case you do not wish to be charged, please cancel your subscription in app 48 hours before your billing date.',
 	},
 	scan_to_pay: {
 		pay_merchant: 'Pay vendor',
@@ -1801,13 +1816,13 @@ export default {
 		scan_pay_success: 'The reservation payment made by Scan and Pay was successful!',
 		reward: 'Reward',
 		discount: 'Discount',
-		subtotal: 'Subtotal'
+		subtotal: 'Subtotal',
 	},
 	phone_placeholder: {
 		us: 'Phone number',
 		al: 'Phone number (Ex. 06.......)',
 		it: 'Phone number',
-		gr: 'Phone number'
+		gr: 'Phone number',
 	},
 	interests: {
 		title: 'Select your interests',
@@ -1824,6 +1839,6 @@ export default {
 		public_desc: 'Can be viewed from all Snapfoodies',
 		private: 'Private',
 		private_desc: 'Can be viewed from only friends',
-		save_success: "Preferences updated successfully!"
-	}
+		save_success: 'Preferences updated successfully!',
+	},
 };

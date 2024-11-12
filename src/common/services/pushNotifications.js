@@ -12,21 +12,7 @@ export const PUSH_NOTIFICATION_NEW_BLOG = 'pushNotificationNewBlog';
 export const setupPushNotifications = async () => {
 	try {
 		await messaging().requestPermission();
-		const fcmToken = await messaging().getToken();
-		
-
-		messaging().onNotificationOpenedApp((remoteMessage) => {
-			
-			EventRegister.emit(PUSH_NOTIFICATION_RECEIVED_EVENT, remoteMessage);
-		});
-
-		const notificationOpen = await messaging().getInitialNotification();
-		if (notificationOpen) {
-			
-			EventRegister.emit(PUSH_NOTIFICATION_RECEIVED_EVENT, notificationOpen);
-		}
-		return notificationOpen;
 	} catch (e) {
-		
+		console.log('error', e);
 	}
 };
