@@ -44,7 +44,7 @@ const ReportFeedbackScreen = (props) => {
 				}
 			})
 			.catch(err => {
-				console.log('loadProblemTags ', err);
+				
 			});
 	}
 
@@ -70,7 +70,7 @@ const ReportFeedbackScreen = (props) => {
 				},
 				(error) => {
 					setLoading(false);
-					console.log('onSubmit ', error);
+					
 					const message = error.message || translate('generic_error');
 					alerts.error(translate('alerts.error'), message);
 				}

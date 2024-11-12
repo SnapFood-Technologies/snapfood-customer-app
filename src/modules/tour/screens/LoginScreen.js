@@ -79,7 +79,7 @@ class LoginScreen extends React.PureComponent {
             }
         }
         catch (e) {
-            console.log('login', e)
+            
             this.setState({ loading: false });
             alerts.error(translate('restaurant_details.we_are_sorry'), extractErrorMessage(e));
         }
@@ -118,7 +118,7 @@ class LoginScreen extends React.PureComponent {
                     }
                 }
                 catch (e) {
-                    console.log('register', e)
+                    
                     this.setState({ loading: false });
                     alerts.error(translate('restaurant_details.we_are_sorry'), extractErrorMessage(e));
                 }

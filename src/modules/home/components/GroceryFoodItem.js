@@ -18,7 +18,7 @@ const GroceryFoodItem = (props) => {
             onFavChange(data)
         })
             .catch((error) => {
-                console.log('onPressFav', error)
+                
             })
     }
 
@@ -29,7 +29,7 @@ const GroceryFoodItem = (props) => {
         return data.image_path;
     }
 
-    console.log('grocery food item')
+    
 
     return <TouchableOpacity disabled={data.available != 1} onPress={() => onSelect(data)}
         style={[Theme.styles.col_center, styles.container, style]}>
@@ -104,7 +104,7 @@ function arePropsEqual(prevProps, nextProps) {
         (prevProps.food_id == nextProps.food_id && prevProps.cartCnt != nextProps.cartCnt)
     ) {
 
-        console.log('grocery item equal : ', prevProps.data.title, false, prevProps.food_id, nextProps.food_id, prevProps.cartCnt, nextProps.cartCnt)
+        
         return false;
     }
     return true;

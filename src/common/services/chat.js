@@ -67,7 +67,7 @@ export const createGroupChannel = async (group_data) => {
         return channelId;
     }
     catch (error) {
-        console.log('create group channel', error)
+        
         return null
     }
 };
@@ -96,7 +96,7 @@ export const findChannel = async (user_id, partner_id) => {
         return found_channel
     }
     catch (error) {
-        console.log('findChannel', error)
+        
         return null
     }
 }
@@ -203,7 +203,7 @@ export const deleteMessage = async (channelId, messageId) => {
             .doc(messageId)
             .delete();
     } catch (err) {
-        console.log(err);
+        
     }
 }
 
@@ -215,7 +215,7 @@ export const updateLastMessageOnChannel = async (channelId, newLastMsg) => {
                 last_msg: (newLastMsg == null ? { createdAt: FieldValue.serverTimestamp() } : newLastMsg)
             });
     } catch (err) {
-        console.log(err);
+        
     }
 }
 
@@ -225,7 +225,7 @@ export const sendMessage = async (channelId, user_id, message) => {
         let serverTimeResponse = await apiFactory.get('server-time');
 
         if (serverTimeResponse != null && serverTimeResponse.data != null && serverTimeResponse.data.time != null) {
-            console.log('serverTimeResponse.data.time: ', serverTimeResponse.data.time);
+            
             created_time = serverTimeResponse.data.time;
         }
         if (message._id == null) {
@@ -283,7 +283,7 @@ export const sendMessage = async (channelId, user_id, message) => {
         }
 
     } catch (err) {
-        console.log(err);
+        
     }
 };
 
@@ -361,7 +361,7 @@ export const updateChannelUserInfo = async (user) => {
         await batch.commit()
     }
     catch (error) {
-        console.log('findChannel', error)
+        
         return null
     }
 }
@@ -390,7 +390,7 @@ export const deleteUserChannels = async (user_id) => {
         return true;
     }
     catch (error) {
-        console.log('deleteUserChannels', error)
+        
         return false;
     }
 }

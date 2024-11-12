@@ -37,7 +37,7 @@ const CartGiftOrderView = (props) => {
                 setReferralAvailable(data.user_refferal != null);
             })
             .catch(err => {
-                console.log('checkReferralAvailable err ', err);
+                
             });
     }
 

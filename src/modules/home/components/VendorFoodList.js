@@ -22,7 +22,7 @@ import { OrderType_Delivery } from '../../../config/constants';
 const VISIBLE_PRODUCT_CNT = 6;
 const getVisibleCategoryIndex = (categories) => {
 	if (categories == null || categories.length == 0) {
-		console.log('getVisibleCategoryIndex called : ', 0);
+		
 		return 0;
 	}
 
@@ -37,10 +37,10 @@ const getVisibleCategoryIndex = (categories) => {
 		}
 	});
 	if (found_index != -1) {
-		console.log('getVisibleCategoryIndex called : ', found_index + 1);
+		
 		return found_index + 1;
 	}
-	console.log('getVisibleCategoryIndex called : ', 'categories.length');
+	
 	return categories.length;
 };
 
@@ -49,7 +49,7 @@ const VendorFoodList = (props) => {
 	const [productsListDimensions, setProductsListDimensions] = useState([]);
 
 	useEffect(() => {
-		console.log('tmpFoodData.isFav');
+		
 		onProductFavChange(props.tmpFoodData);
 	}, [props.tmpFoodData.isFav]);
 
@@ -106,7 +106,7 @@ const VendorFoodList = (props) => {
 			}
 		})
 			.catch(err => {
-				console.log('Add Product VendorCheck err ', err)
+				
 			});
 	};
 
@@ -140,7 +140,7 @@ const VendorFoodList = (props) => {
 		try {
 			await props.removeProductFromCart(product);
 		} catch (error) {
-			console.log('onRemoveItem', error);
+			
 		}
 	};
 
@@ -251,7 +251,7 @@ const VendorFoodList = (props) => {
 		return null;
 	}
 
-	console.log('food list ');
+	
 	return (
 		<View style={{ backgroundColor: Theme.colors.white }}>
 			{vendorData.categories

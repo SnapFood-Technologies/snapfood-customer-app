@@ -11,7 +11,7 @@ class MainButton extends PureComponent {
         if (disabled) {
             buttonStyles = { ...buttonStyles, ...Theme.styles.disabledButton };
         }
-        // console.log('buttonStyles', buttonStyles, style)
+        // 
         return <TouchableOpacity style={buttonStyles}
             activeOpacity={0.75}
             onPress={onPress}

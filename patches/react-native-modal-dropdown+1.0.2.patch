@@ -1,0 +1,22 @@
+diff --git a/node_modules/react-native-modal-dropdown/components/ModalDropdown.js b/node_modules/react-native-modal-dropdown/components/ModalDropdown.js
+index f788d8e..94b2478 100644
+--- a/node_modules/react-native-modal-dropdown/components/ModalDropdown.js
++++ b/node_modules/react-native-modal-dropdown/components/ModalDropdown.js
+@@ -427,6 +427,8 @@ export default class ModalDropdown extends Component {
+     const { selectedIndex } = this.state;
+     const { options } = this.state;
+ 
++    console.log(" FIRST", dropdownListProps)
++
+     return (
+       <FlatList
+         {...dropdownListProps}
+@@ -442,7 +444,7 @@ export default class ModalDropdown extends Component {
+         automaticallyAdjustContentInsets={false}
+         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
+         keyboardShouldPersistTaps={keyboardShouldPersistTaps}
+-        ListHeaderComponent={ dropdownListProps.ListHeaderComponent? dropdownListProps.ListHeaderComponent: this._renderSearchInput}
++        ListHeaderComponent={ dropdownListProps?.ListHeaderComponent? dropdownListProps?.ListHeaderComponent: this._renderSearchInput}
+         onScrollToIndexFailed={info => {
+           const wait = new Promise(resolve => setTimeout(resolve, 500));
+           wait.then(() => {

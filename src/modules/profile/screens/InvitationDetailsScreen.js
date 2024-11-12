@@ -52,7 +52,7 @@ const InvitationDetailsScreen = (props) => {
 			})
 			.catch(err => {
 				if (_isMounted.current == true) {
-					console.log('err loadData', err)
+					
 				}
 			});
 	}

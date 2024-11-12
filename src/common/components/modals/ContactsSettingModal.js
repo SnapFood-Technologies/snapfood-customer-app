@@ -30,7 +30,7 @@ const ContactsSettingModal = (props) => {
         try {
             await setStorageKey(KEYS.HIDE_CONTACTS_MODAL_SHOW, true);
         } catch (e) {
-            console.log(e);
+            
         }
         props.setShowContactsModal(false);
     }

@@ -38,7 +38,7 @@ const AddressesScreen = (props) => {
 			await props.getAddresses()
 		}
 		catch (error) {
-			console.log('error', error)
+			
 		}
 	}, [])
 
@@ -113,7 +113,7 @@ const AddressesScreen = (props) => {
 		}
 		catch (error) {
 			showLoading(false);
-			console.log('error', error)
+			
 			alerts.error(translate('restaurant_details.we_are_sorry'), extractErrorMessage(error));
 		}
 	}
@@ -126,7 +126,7 @@ const AddressesScreen = (props) => {
 			await props.getAddresses();
 		}
 		catch (error) {
-			console.log('error', error)
+			
 			alerts.error(translate('restaurant_details.we_are_sorry'), extractErrorMessage(error));
 		}
 	}

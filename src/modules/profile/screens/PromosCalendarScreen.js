@@ -66,7 +66,7 @@ const PromosCalendarScreen = (props) => {
 			})
 			.catch(err => {
 				setLoading(false)
-				console.log('err getActivePromotions', err)
+				
 			});
 	};
 

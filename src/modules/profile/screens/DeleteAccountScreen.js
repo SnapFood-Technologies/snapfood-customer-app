@@ -42,7 +42,7 @@ const DeleteAccountScreen = (props) => {
             })
             .catch(err => {
                 setLoading(false);
-                console.log(err);
+                
                 alerts.error(translate('alerts.error'), translate('checkout.something_is_wrong'));
             });
     };
@@ -51,12 +51,12 @@ const DeleteAccountScreen = (props) => {
         try {
             LoginManager.logOut();
         } catch (e) {
-            console.log('LoginManager.logOut', e)
+            
         }
         try {
             await props.logout();
         } catch (e) {
-            console.log('logout', e)
+            
         }
 
         setLoading(false);

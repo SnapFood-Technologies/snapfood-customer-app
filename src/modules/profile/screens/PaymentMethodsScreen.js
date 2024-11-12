@@ -25,7 +25,7 @@ const PaymentMethodsScreen = (props) => {
 
 	useEffect(() => {
 		return () => {
-			console.log("PaymentMethods screen unmount")
+			
 			_isMounted.current = false;
 		};
 	}, [])
@@ -49,7 +49,7 @@ const PaymentMethodsScreen = (props) => {
 				(error) => {
 					if (_isMounted.current == true) {
 						setLoading(false);
-						console.log('load Payment Methods error', error)
+						
 					}
 				});
 	}
@@ -64,7 +64,7 @@ const PaymentMethodsScreen = (props) => {
 			}
 		}
 		catch (error) {
-			console.log('on changePrimary', error)
+			
 			alerts.error(translate('alerts.error'), translate('checkout.something_is_wrong'));
 		}
 	}
@@ -82,7 +82,7 @@ const PaymentMethodsScreen = (props) => {
 			},
 				(error) => {
 					if (_isMounted.current == true) {
-						console.log('deleteCard error', error)
+						
 						const message = error.message || translate('generic_error');
 						alerts.error(translate('alerts.error'), message);
 					}

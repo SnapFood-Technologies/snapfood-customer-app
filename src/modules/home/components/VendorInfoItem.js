@@ -11,7 +11,7 @@ const VendorInfoItem = ({ data, style }) => {
 
     const [showTooltip, setToolTip] = useState(false);
 
-    console.log('vendor info item')
+    
 
     return <TouchableOpacity activeOpacity={1} style={[Theme.styles.col_center, styles.container, style]}>
         <View style={[Theme.styles.row_center_start, { width: '100%', marginBottom: 12, }]}>

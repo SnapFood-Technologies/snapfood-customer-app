@@ -184,7 +184,7 @@ class CreateGroupScreen extends React.Component {
                     return;
                 }
             } catch (error) {
-                console.log('uploadImage', error)
+                
                 this.setState({ loading: false })
                 alerts.error(translate('alerts.error'), translate('checkout.something_is_wrong'));
                 return;
@@ -243,7 +243,7 @@ class CreateGroupScreen extends React.Component {
                     (this.state.Pre_Friends.findIndex(f => f.id == i) == -1)
                 ))
                 if (new_added_users.length > 0) {
-                    console.log('================================ new_added_users ', new_added_users)
+                    
                     sendGroupChatInviteNotification(channelID, group_data.full_name, new_added_users);
                 }
             }

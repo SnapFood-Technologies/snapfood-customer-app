@@ -11,6 +11,6 @@ export const updateLocation = async (user_id, lat, lng) => {
         });
     }
     catch (error) {
-        console.log('tracking updateLocation ', error);
+        
     }
 };

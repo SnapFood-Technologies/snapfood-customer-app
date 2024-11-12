@@ -15,7 +15,7 @@ export const updateStory = async (user, photoUrl, thumbUrl, isCaptured = false, 
         let serverTimeResponse = await apiFactory.get('server-time');
 
         if (serverTimeResponse != null && serverTimeResponse.data != null && serverTimeResponse.data.time != null) {
-            console.log('serverTimeResponse.data.time: ', serverTimeResponse.data.time);
+            
             created_time = serverTimeResponse.data.time;
         }
 
@@ -70,7 +70,7 @@ export const updateStory = async (user, photoUrl, thumbUrl, isCaptured = false, 
         return storyId;
     }
     catch (error) {
-        console.log('updateStory ', error)
+        
         return null
     }
 };
@@ -99,7 +99,7 @@ export const findUserStory = async (user_id) => {
         return found_story
     }
     catch (error) {
-        console.log('findUserStory', error)
+        
         return null
     }
 }
@@ -144,7 +144,7 @@ export const uploadImage = (base64Image) => {
 };
 
 export const uploadVideo = (file, isMuted) => {
-    console.log('============ uploadVideo ', file)
+    
     const data = new FormData();
     data.append('file', {
         name: file.fileName || file.uri.substring(file.uri.lastIndexOf('/') + 1),
@@ -185,7 +185,7 @@ export const deleteUserStory = async (user_id) => {
         return true;
     }
     catch (error) {
-        console.log('findUserStory', error)
+        
         return false;
     }
 } 

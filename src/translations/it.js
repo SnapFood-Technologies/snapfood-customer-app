@@ -1359,6 +1359,7 @@ export default {
 		deposit_snapfood: 'Deposited from Snapfood',
 		deposit_revoke_snapfood: 'Revoked deposit',
 		deposit_stripe_card : 'Added by card',
+		blog_quiz_earning: 'Credit from SnapFood\'s quiz',
 		transfered_to_friend : 'Transferred to',
 		received_from_transfer : 'Received from friend',
 		transfered_to : 'Transferred to',
@@ -1577,12 +1578,12 @@ export default {
 		next_member_type_silver: 'Livello successivo: ARGENTO',
 		next_member_type_gold: 'Livello successivo: ORO',
 		next_member_type_platinium: 'Livello successivo: PLATINO',
-		platinium: 'A questo livello, ottieni il 3% di cashback su ciascuno dei tuoi ordini su Snapfood.',
+		platinium: 'A questo livello, ottieni il X% di cashback su ciascuno dei tuoi ordini su Snapfood.',
 		platinium_2: 'Nota: per mantenere il tuo livello, devi completare almeno 1 ordine a settimana su Snapfood.',
-		silver: 'A questo livello, ottieni un cashback di 1% per ciascuno dei tuoi ordini su Snapfood.',
+		silver: 'A questo livello, ottieni un cashback di X% per ciascuno dei tuoi ordini su Snapfood.',
 		silver_2: 'Se completi 10 ordini in questo livello, passi automaticamente al livello GOLD.',
 		silver_3: 'Nota: per mantenere il tuo livello, devi completare almeno 1 ordine a settimana su Snapfood.',
-		gold: 'A questo livello, ottieni il 2% di cashback per  ciascuno dei tuoi ordini su Snapfood.',
+		gold: 'A questo livello, ottieni il X% di cashback per  ciascuno dei tuoi ordini su Snapfood.',
 		gold_2: 'Se completi 15 ordini a questo livello, passi automaticamente al livello PLATINO.',
 		gold_3: 'Nota: per mantenere il tuo livello, devi completare almeno 1 ordine a settimana su Snapfood.',
 
@@ -1824,18 +1825,5 @@ export default {
 		private: 'Privato',
 		private_desc: 'Può essere visualizzato solo da amici',
 		save_success: "Preferenze aggiornate con successo!"
-	},
-	vendor_voice_order: {
-		voice_recording: 'Ordine Vocale',
-		item1Text: 'Indica chiaramente i prodotti che desideri e la loro quantità. Il nome del ristorante è facoltativo',
-		item2Text: 'Il tuo indirizzo e il numero di telefono saranno automaticamente salvati dalle informazioni del tuo profilo SnapFood',
-		item3Text: 'Fai clic sull\'icona del microfono per effettuare subito il tuo ordine',
-		faq: 'Domande frequenti',
-		info: "Gli ordini vocali semplificano la tua esperienza in-app. Tutto ciò che devi fare è pronunciare chiaramente il tuo ordine e SnapFood si occupa del resto. La migliore alternativa quando le tue mani sono occupate o sei in movimento.",
-		example: 'Esempio',
-		example_info: '4 pizze familiari e 1 coca cola',
-	},
-	vendor_voice_order_faq: {
-		faq_title: 'Domande frequenti',
-	},
+	}
 };

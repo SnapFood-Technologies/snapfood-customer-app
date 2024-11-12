@@ -42,7 +42,7 @@ const InterestsScreen = (props) => {
 			await setStorageKey(KEYS.INTERESTS, selected);
 			onSkip();
 		} catch (e) {
-			console.log(e);
+			
 		}
 	}
 
@@ -50,7 +50,7 @@ const InterestsScreen = (props) => {
 		try {
 			await setStorageKey(KEYS.ASKED_INTERESTS, true);
 		} catch (e) {
-			console.log(e);
+			
 		}
 		props.setAskedInterests(true);
 	}

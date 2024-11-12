@@ -68,7 +68,7 @@ class AddressMapScreen extends React.Component {
 
 	setAddressByCoordinates = async (locationObj) => {
 		const address = await getAddressByCoordinates(locationObj);
-		console.log('address', address);
+		
 		await this.setState({
 			coords: locationObj,
 			street: address.street,
@@ -131,11 +131,11 @@ class AddressMapScreen extends React.Component {
 		try {
 			let hasPermission = await checkLocationPermission();
 			if (hasPermission) {
-				console.log('checkLocationPermission : True, get current position')
+				
 				this.getCurrentPosition()
 			}
 			else {
-				console.log('checkLocationPermission : False')
+				
 				requestLocationPermission()
 					.catch(() => {
 						alerts.error(translate('attention'), translate('locationUnavailable'));
@@ -143,7 +143,7 @@ class AddressMapScreen extends React.Component {
 			}
 		}
 		catch (error) {
-			console.log('checkLocationPermission : ', error)
+			
 			alerts.error(translate('attention'), translate('locationUnavailable'));
 		}
 	}
@@ -151,11 +151,11 @@ class AddressMapScreen extends React.Component {
 	getCurrentPosition = async () => {
 		try {
 			const location = await GetLocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 15000, });
-			console.log("searched Location is:")
-			console.log(location)
+			
+			
 			if (location) {
 				const address = await getAddressByCoordinates(location);
-				console.log(address)
+				
 				if (address) {
 					this._isLocationUpdated = true;
 					this.setState({

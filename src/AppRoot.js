@@ -75,7 +75,7 @@ class AppRoot extends React.Component {
 			}
 			this.setState({ appState: nextAppState });
 		} catch (e) {
-			console.log('handle App State Change ', e);
+			
 		}
 	};
 
@@ -88,7 +88,7 @@ class AppRoot extends React.Component {
 			console.error("Error from Branch: " + error);
 			return;
 		  }
-		  console.log(":params", params);
+		  
 		  if (params["~referring_link"]) {
 			// Alert.alert("oped", params["~referring_link"]);
 		  }
@@ -96,35 +96,35 @@ class AppRoot extends React.Component {
 		let lastParams = await branch.getLatestReferringParams(); // params from last open
 		let installParams = await branch.getFirstReferringParams(); // params from original install
 		if (lastParams["~referring_link"] && lastParams["code"]) {
-		  console.log("code1", lastParams["code"]);
+		  
 		  this.props.setRefferalCode({
 			refferalCode: lastParams["code"],
 		  });
 		}
 		if (installParams["~referring_link"] && installParams["code"]) {
-		  console.log("code2", installParams["code"]);
+		  
 		  this.props.setRefferalCode({
 			refferalCode: installParams["code"],
 		  });
 		} else {
-		  console.log("No", "not from link");
+		  
 		}
 	  }
 
 	async componentDidMount() {
 		await this.clearIOSBadge();
 		await this.loadLoginInfo();
-		RNLocalize.addEventListener('change', this.handleLocalizationChange);
-		AppState.addEventListener('change', this._handleAppStateChange);
+		this.localizationListener = RNLocalize.addEventListener('change', this.handleLocalizationChange);
+		this.appStateListener = AppState.addEventListener('change', this._handleAppStateChange);
 		AppState.addEventListener("change", this.getBrachIOHandler);
 		this.setupNotificationListener();
 		const wasOpenedByNotification = await setupPushNotifications();
 		if (wasOpenedByNotification) {
-			console.log('was Opened By Notification');
+			
 		}
 
 		this.unsubscribe = messaging().onMessage(async (remoteMessage) => {
-			console.log('onMessage', remoteMessage);
+			
 			if (remoteMessage && remoteMessage.data && remoteMessage.data.type != 'chat_notification') {
 				this.setIOSBadge(); // android badge is default
 				EventRegister.emit(PUSH_NOTIFICATION_RECEIVED_EVENT, remoteMessage);
@@ -133,11 +133,11 @@ class AppRoot extends React.Component {
 
 		messaging().setBackgroundMessageHandler(async (remoteMessage) => {
 			if (this.unsubscribe) {
-				console.log('background unsubscribe on message');
+				
 				this.unsubscribe();
 			}
 			this.setIOSBadge();
-			console.log('Message handled in the background!', remoteMessage);
+			
 			EventRegister.emit(PUSH_NOTIFICATION_RECEIVED_EVENT, remoteMessage);
 		});
 		this.getBrachIOHandler();
@@ -158,7 +158,7 @@ class AppRoot extends React.Component {
 
 	componentWillUnmount() {
 		if (this.unsubscribe) {
-			console.log('app route unmount');
+			
 			this.unsubscribe();
 		}
 		if (this.pushNotiListener) {
@@ -167,8 +167,12 @@ class AppRoot extends React.Component {
 		if (this.shareListener) {
 			this.shareListener.remove();
 		}
-		RNLocalize.removeEventListener('change', this.handleLocalizationChange);
-		AppState.removeEventListener('change', this._handleAppStateChange);
+		if (this.localizationListener) {
+			this.localizationListener.remove();
+		}
+		if (this.appStateListener) {
+			this.appStateListener.remove();
+		}
 	}
 
 	setupNotificationListener = () => {
@@ -185,7 +189,7 @@ class AppRoot extends React.Component {
 			let res = await apiFactory.get(`invite-earn/get-rewards-setting`);
 			if (res.data) this.props.setInvitationRewards(res.data.rewards || []);
 		} catch (e) {
-			console.log('clearIOSBadge ', e);
+			
 		}
 	};
 
@@ -195,7 +199,7 @@ class AppRoot extends React.Component {
 				let res = await apiFactory.get(`users-clear-badge`);
 				if (res.data) await PushNotificationIOS.setApplicationIconBadgeNumber(0);
 			} catch (e) {
-				console.log('clearIOSBadge ', e);
+				
 			}
 		}
 	};
@@ -214,7 +218,7 @@ class AppRoot extends React.Component {
 				}, 500);
 			})
 			.catch((error) => {
-				console.log('vendor_notification get Vendor err ', error);
+				
 			});
 	}
 
@@ -243,7 +247,7 @@ class AppRoot extends React.Component {
 				if (Platform.OS == 'ios') {
 					PushNotificationIOS.getDeliveredNotifications((notifications) => {
 						// remove notification by conversation_id
-						console.log(notifications);
+						
 						let deliveredNotificationIds = notifications
 							.filter(({ userInfo }) => userInfo?.type === type)
 							.map(({ identifier }) => identifier);
@@ -308,13 +312,13 @@ class AppRoot extends React.Component {
 			try {
 				await callbackByType[type]();
 			} catch (error) {
-				console.log(type, error);
+				
 			}
 		}
 	};
 
 	handleDynamicLink = async (link) => {
-		console.log('Dynamic link: ', link);
+		
 		if (link.url) {
 			if (Platform.OS == 'ios') {
 				if (link.url.includes("snapfoodies.app.link")) {
@@ -323,7 +327,7 @@ class AppRoot extends React.Component {
 						console.error("Error from Branch: " + error);
 						return;
 					  }
-					  console.log(":params", params);
+					  
 					  if (params["~referring_link"]) {
 						// Alert.alert("oped", params["~referring_link"]);
 					  }
@@ -331,26 +335,26 @@ class AppRoot extends React.Component {
 					let lastParams = await branch.getLatestReferringParams(); // params from last open
 					let installParams = await branch.getFirstReferringParams(); // params from original install
 					if (lastParams["~referring_link"] && lastParams["code"]) {
-					  console.log("code3", lastParams["code"]);
+					  
 					  this.props.setRefferalCode({
 						refferalCode: lastParams["code"],
 					  });
 					}
 			  
 					if (installParams["~referring_link"] && installParams["code"]) {
-					  console.log("code4", installParams["code"]);
+					  
 					  this.props.setRefferalCode({
 						refferalCode: installParams["code"],
 					  });
 					} else {
-					  console.log("No", "not from link");
+					  
 					}
 				}
 			}
 			if (link.url.includes('snapfood.al/referral')) {
 				// link type is 'https://snapfood.al/referral?referral-code='
 				const refferal = getSearchParamFromURL(link.url, 'referralCode');
-				console.log('referral Code is:', refferal);
+				
 				if (refferal) {
 					this.props.setRefferalCode({
 						refferalCode: refferal,
@@ -375,7 +379,7 @@ class AppRoot extends React.Component {
 						}
 					}
 				} catch (err) {
-					console.log(err);
+					
 				}
 			}
 		}
@@ -397,7 +401,7 @@ class AppRoot extends React.Component {
 		try {
 			await this.props.setSafeAreaData();
 		} catch (e) {
-			console.log(e);
+			
 		}
 		try {
 			const cartItems = await getStorageKey(KEYS.CART_ITEMS);
@@ -405,7 +409,7 @@ class AppRoot extends React.Component {
 				this.props.updateCartItems(cartItems, false);
 			}
 		} catch (e) {
-			console.log(e);
+			
 		}
 	};
 
@@ -415,7 +419,7 @@ class AppRoot extends React.Component {
 		try {
 			await this.props.loadAppLang();
 		} catch (e) {
-			console.log('loadAppLang err', e);
+			
 		}
 
 		try {
@@ -424,38 +428,38 @@ class AppRoot extends React.Component {
 				await this.props.setAsSeenOnboard();
 			}
 		} catch (e) {
-			console.log(e);
+			
 		}
 
 		try {
 			const res = await RNContacts.checkPermission();
-			console.log('RNContacts.checkPermission ', res);
+			
 			if (res == 'denied') {
 				await this.props.setShowContactsModal(true);
 			}
 		} catch (e) {
-			console.log(e);
+			
 		}
 
 		try {
 			await this.props.setShowInviteFriendModal(true);
 		} catch (e) {
-			console.log(e);
+			
 		}
 		try {
 			await this.props.setShowEarnInviteRemindModal(true);
 		} catch (e) {
-			console.log(e);
+			
 		}
 		try {
 			await this.props.getReferralsRewardsSetting();
 		} catch (e) {
-			console.log(e);
+			
 		}
 		try {
 			await this.props.getSystemSettings();
 		} catch (e) {
-			console.log(e);
+			
 		}
 
 		try {
@@ -464,7 +468,7 @@ class AppRoot extends React.Component {
 				addLog('log-1', `ios Linking.getInitialURL : ${dynamicLink}`)
 				if (dynamicLink) {
 					await fetch(dynamicLink).then((initialUrl) => {
-						console.log(initialUrl);
+						
 						addLog('log-2', `ios fetch(dynamicLink) : ${dynamicLink},  initialUrl : ${initialUrl}`)
 						this.handleDynamicLink(initialUrl);
 					});
@@ -477,7 +481,7 @@ class AppRoot extends React.Component {
 				}
 			}
 		} catch (e) {
-			console.log(e);
+			
 			try {
 				addLog('log-4', `ios getInitialURL Error Catch : ` + JSON.stringify(e))
 			} catch (error) { }
@@ -489,7 +493,7 @@ class AppRoot extends React.Component {
 		// this.shareListener = ShareMenu.addNewShareListener(this.handleListenerShare);
 		this.shareListener = ReceiveSharingIntent.getReceivedFiles(
 			(files) => {
-				console.log(files);
+				
 				var content = [];
 				var mimeType = '';
 				files.forEach((file) => {
@@ -514,7 +518,7 @@ class AppRoot extends React.Component {
 				//[{ filePath: null, text: null, weblink: null, mimeType: null, contentUri: null, fileName: null, extension: null }]
 			},
 			(error) => {
-				console.log(error);
+				
 			},
 			'SnapfoodShareMenu'
 		);
@@ -525,14 +529,14 @@ class AppRoot extends React.Component {
 		try {
 			let token = await getStorageKey(KEYS.TOKEN);
 			if (token) {
-				console.log('token', token);
+				
 				if (!token.startsWith('Bearer')) {
 					token = `Bearer ${token}`;
 				}
 				logged_user_data = await this.props.legacyLogin(token);
 			}
 		} catch (e) {
-			console.log('loadLoginInfo error', e);
+			
 		}
 
 		try {
@@ -541,7 +545,7 @@ class AppRoot extends React.Component {
 				await this.props.setAskedContactsPerm(true);
 			}
 		} catch (e) {
-			console.log(e);
+			
 		}
 
 		try {
@@ -550,24 +554,24 @@ class AppRoot extends React.Component {
 				await this.props.setAskedInterests(true);
 			}
 		} catch (e) {
-			console.log(e);
+			
 		}
 
 		try {
 			await loadUserSetting(this.props, logged_user_data);
 		} catch (error) {
-			console.log('loadUserSetting error', error);
+			
 		}
 
 		try {
 			await this.loadSettings();
 		} catch (error) {
-			console.log('loadSettings error', error);
+			
 		}
 		try {
 			await this.loadSharedContent();
 		} catch (error) {
-			console.log('loadShared error', error);
+			
 		}
 		this.appLoaded();
 	};

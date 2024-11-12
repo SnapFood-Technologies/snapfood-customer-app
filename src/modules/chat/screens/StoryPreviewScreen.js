@@ -54,7 +54,7 @@ const StoryPreviewScreen = (props) => {
 					}
 					setImageUploading(false);
 				} catch (error) {
-					console.log('uploadImage ', error);
+					
 					setImageUploading(false);
 				}
 			}
@@ -69,7 +69,7 @@ const StoryPreviewScreen = (props) => {
 					}
 					setImageUploading(false);
 				} catch (error) {
-					console.log('upload video ', error);
+					
 					setImageUploading(false);
 				}
 			}

@@ -17,8 +17,8 @@ import Tooltip from 'react-native-walkthrough-tooltip';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Foundation from 'react-native-vector-icons/Foundation';
 import Octicons from 'react-native-vector-icons/Octicons';
-import Feather from 'react-native-vector-icons/Feather'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ContentLoader from '@sarmad1995/react-native-content-loader';
 import InAppReview from 'react-native-in-app-review';
 import { setInitHomeTab, setTmpOrder, goActiveScreenFromPush, setDefaultOrdersTab } from '../../../store/actions/app';
@@ -36,8 +36,14 @@ import OrderStepper from '../../../common/components/order/OrderStepper';
 import InfoRow from '../../../common/components/InfoRow';
 import Header1 from '../../../common/components/Header1';
 import RouteNames from '../../../routes/names';
-import { OrderType_Delivery, OrderType_Reserve, OrderType_Pickup, Order_Preparing, RESERVACTION_PAID } from '../../../config/constants';
-import moment from "moment";
+import {
+	OrderType_Delivery,
+	OrderType_Reserve,
+	OrderType_Pickup,
+	Order_Preparing,
+	RESERVACTION_PAID,
+} from '../../../config/constants';
+import moment from 'moment';
 import 'moment/locale/sq';
 import AppTooltip from '../../../common/components/AppTooltip';
 import { getLanguage } from '../../../common/services/translate';
@@ -67,77 +73,79 @@ const OrderSummScreen = (props) => {
 		setReady(true);
 		setLoaded(false);
 
-		console.log('getOrderDetail 1 ')
 		getOrderDetail(props.route.params.order_id)
 			.then((order_data) => {
 				props.setTmpOrder(order_data);
 				setLoaded(true);
-				console.log('getOrderDetail 2')
+
 				_isMounted.current = true;
 				beginOrderSupportRedirection(order_data);
 			})
 			.catch((error) => {
 				setLoaded(true);
-				console.log('getOrderDetail', error);
 			});
 
 		return () => {
 			_isMounted.current = false;
-			console.log('OrderSummScreen unmount')
+
 			props.goActiveScreenFromPush({
 				isOrderSummVisible: false,
 			});
-		}
+		};
 	}, [props.route.params.order_id, order_status]);
 
 	useEffect(() => {
 		setIsNew(props.route.params.isnew ?? false);
 
-		if (props.route.params.isnew && props.systemSettings.enable_inapp_reivew_modal == 1 && InAppReview.isAvailable()) {
+		if (
+			props.route.params.isnew &&
+			props.systemSettings.enable_inapp_reivew_modal == 1 &&
+			InAppReview.isAvailable()
+		) {
 			checkInAppReview();
 		}
-	}, [props.route.params.isnew])
+	}, [props.route.params.isnew]);
 
 	const confirm_order_tooltip = useMemo(() => {
 		if (props.language == 'en' && !isEmpty(props.systemSettings.order_delivery_confirm_order_desc_tooltip_en)) {
 			return props.systemSettings.order_delivery_confirm_order_desc_tooltip_en;
-		}
-		else if (props.language == 'it' && !isEmpty(props.systemSettings.order_delivery_confirm_order_desc_tooltip_it)) {
+		} else if (
+			props.language == 'it' &&
+			!isEmpty(props.systemSettings.order_delivery_confirm_order_desc_tooltip_it)
+		) {
 			return props.systemSettings.order_delivery_confirm_order_desc_tooltip_it;
 		}
 		props.systemSettings.order_delivery_confirm_order_desc_tooltip;
-	}, [props.language, props.systemSettings.order_delivery_confirm_order_desc_tooltip,
-	props.systemSettings.order_delivery_confirm_order_desc_tooltip_en,
-	props.systemSettings.order_delivery_confirm_order_desc_tooltip_it
-	])
+	}, [
+		props.language,
+		props.systemSettings.order_delivery_confirm_order_desc_tooltip,
+		props.systemSettings.order_delivery_confirm_order_desc_tooltip_en,
+		props.systemSettings.order_delivery_confirm_order_desc_tooltip_it,
+	]);
 
 	const beginOrderSupportRedirection = (order_data) => {
-		console.log('beginOrderSupportRedirection 1 ', order_data.status, props.route.params.fromPush, order_data.order_type == OrderType_Delivery)
 		if (
-			order_data.status == 'processing' &&  // order is accepted
+			order_data.status == 'processing' && // order is accepted
 			props.route.params.fromPush == true &&
 			order_data.order_type == OrderType_Delivery
 		) {
 			setTimeout(async () => {
-
 				let channelId = null;
-				const channelData = await getOrderSupportChannel(order_data.id)
+				const channelData = await getOrderSupportChannel(order_data.id);
 				if (channelData) {
 					channelId = channelData.id;
-				}
-				else {
+				} else {
 					channelId = await createOrderSupportChannel(order_data, props.user, props.language);
 				}
-				console.log('beginOrderSupportRedirection ', channelId)
+
 				if (channelId != null) {
 					props.navigation.navigate(RouteNames.OrderSupport, { channelId: channelId });
 				}
-			}, 2000)
+			}, 2000);
 		}
-	}
+	};
 
 	const checkInAppReview = () => {
-		console.log('============ trigger UI InAppreview')
 		InAppReview.RequestInAppReview()
 			.then((hasFlowFinishedSuccessfully) => {
 				if (hasFlowFinishedSuccessfully) {
@@ -145,21 +153,18 @@ const OrderSummScreen = (props) => {
 					// do something for android
 				}
 			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}
+			.catch((error) => {});
+	};
 
 	const reorderRequest = async (order, restaurant) => {
 		props.reOrder(order, restaurant).then(
 			async (items) => {
 				if (items.length > 0) {
 					props.setDeliveryInfoCart({
-						handover_method: order.order_type
+						handover_method: order.order_type,
 					});
-					props.navigation.navigate(RouteNames.CartScreen, {isReorder: true});
-				}
-				else {
+					props.navigation.navigate(RouteNames.CartScreen, { isReorder: true });
+				} else {
 					props.navigation.navigate(RouteNames.VendorScreen);
 				}
 			},
@@ -172,7 +177,10 @@ const OrderSummScreen = (props) => {
 	const reorder = () => {
 		const restaurant = order.vendor;
 		if (restaurant == null) {
-			return alerts.error(translate('restaurant_details.we_are_sorry'), translate('order_summary.reorder_unavailable_vendor'));
+			return alerts.error(
+				translate('restaurant_details.we_are_sorry'),
+				translate('order_summary.reorder_unavailable_vendor')
+			);
 		}
 
 		let items = props.cartItems.filter((i) => i.vendor_id != restaurant.id);
@@ -190,15 +198,13 @@ const OrderSummScreen = (props) => {
 							.then(() => {
 								reorderRequest(order, restaurant);
 							});
-					}
-					else {
+					} else {
 						reorderRequest(order, restaurant);
 					}
 				})
 				.catch((error) => {
 					reorderRequest(order, restaurant);
-				})
-
+				});
 		} else {
 			reorderRequest(order, restaurant);
 		}
@@ -229,20 +235,24 @@ const OrderSummScreen = (props) => {
 	};
 
 	const renderProducts = () => {
-		if (order.products == null) { return null; }
+		if (order.products == null) {
+			return null;
+		}
 		let items = order.products.slice(0);
-		let free_items = items.filter(p => p.total_price == 0);
+		let free_items = items.filter((p) => p.total_price == 0);
 		for (let i = 0; i < free_items.length; i++) {
-			let foundIndex = items.findIndex(p => p.total_price != 0 && p.product_id == free_items[i].product_id);
+			let foundIndex = items.findIndex((p) => p.total_price != 0 && p.product_id == free_items[i].product_id);
 			if (foundIndex != -1) {
 				items[foundIndex].quantity = items[foundIndex].quantity + free_items[i].quantity;
 
-				let freeItemIndex = items.findIndex(p => p.total_price == 0 && p.product_id == free_items[i].product_id);
+				let freeItemIndex = items.findIndex(
+					(p) => p.total_price == 0 && p.product_id == free_items[i].product_id
+				);
 				items.splice(freeItemIndex, 1);
 			}
 		}
-		return items.map((item, index) => <OrderProductItem key={index} data={item} />)
-	}
+		return items.map((item, index) => <OrderProductItem key={index} data={item} />);
+	};
 
 	const renderCouponDesc = () => {
 		let promoData = order.discount;
@@ -254,20 +264,23 @@ const OrderSummScreen = (props) => {
 		}
 
 		if (promoData.type == 'item') {
-			return <Text style={styles.couponDescText}>{translate('cart.promo_free_item').replace('###', parseInt(promoData.value))}</Text>
+			return (
+				<Text style={styles.couponDescText}>
+					{translate('cart.promo_free_item').replace('###', parseInt(promoData.value))}
+				</Text>
+			);
 		} else if (promoData.type == 'free_delivery') {
-			return <Text style={styles.couponDescText}>{translate('cart.promo_free_delivery')}</Text>
+			return <Text style={styles.couponDescText}>{translate('cart.promo_free_delivery')}</Text>;
 		}
 
 		return null;
-	}
+	};
 
 	const _renderOrderDetail = () => {
 		return (
 			<View style={[Theme.styles.col_center_start, styles.sectionView, { borderBottomWidth: 0 }]}>
 				<View style={[Theme.styles.row_center, { width: '100%', marginBottom: 16 }]}>
-					{
-						order.vendor != null &&
+					{order.vendor != null && (
 						<View style={[Theme.styles.row_center_start, { flex: 1 }]}>
 							<RoundIconBtn
 								style={{ ...Theme.styles.col_center, ...styles.LogoView }}
@@ -278,11 +291,11 @@ const OrderSummScreen = (props) => {
 										source={{ uri: Config.IMG_BASE_URL + order.vendor.logo_thumbnail_path }}
 									/>
 								}
-								onPress={() => { }}
+								onPress={() => {}}
 							/>
 							<Text style={styles.LogoText}>{order.vendor.title}</Text>
 						</View>
-					}
+					)}
 					{/* {
                     (order.status == 'new' || order.status == 'processing' || order.status == 'picked_by_rider') &&
 						<TouchableOpacity>
@@ -290,61 +303,73 @@ const OrderSummScreen = (props) => {
 						</TouchableOpacity>
 					} */}
 				</View>
-				{
-					order.order_type != OrderType_Delivery &&
+				{order.order_type != OrderType_Delivery && (
 					<View style={[styles.vendorAddress]}>
 						<Text style={[styles.vendorPhone]}>{order.vendor?.phone_number}</Text>
 						<Text style={[styles.vendorAddressTxt]}>{order.vendor?.address}</Text>
 					</View>
-				}
-				{
-					order.order_for_friend != null &&
-					<Text style={[styles.vendorAddressTxt, { width: '100%', textAlign: 'center', fontFamily: Theme.fonts.semiBold, marginBottom: 12 }]}>
-						{translate('order_summary.promotion_for')} : {
-							order.order_for_friend.username || order.order_for_friend.full_name
-						}
+				)}
+				{order.order_for_friend != null && (
+					<Text
+						style={[
+							styles.vendorAddressTxt,
+							{ width: '100%', textAlign: 'center', fontFamily: Theme.fonts.semiBold, marginBottom: 12 },
+						]}
+					>
+						{translate('order_summary.promotion_for')} :{' '}
+						{order.order_for_friend.username || order.order_for_friend.full_name}
 					</Text>
-				}
-				{
-					order.order_type == OrderType_Delivery && order.is_schedule == 1 && !isEmpty(order.schedule_time) &&
+				)}
+				{order.order_type == OrderType_Delivery && order.is_schedule == 1 && !isEmpty(order.schedule_time) && (
 					<Text style={[styles.vendorAddressTxt, { fontFamily: Theme.fonts.semiBold, marginBottom: 12 }]}>
-						{translate('order_summary.scheduled_time')} : {
-							moment(order.schedule_time, "YYYY-MM-DD HH:mm:ss").locale(getLanguage()).format('DD MMMM YYYY, HH:mm')
-						}
+						{translate('order_summary.scheduled_time')} :{' '}
+						{moment(order.schedule_time, 'YYYY-MM-DD HH:mm:ss')
+							.locale(getLanguage())
+							.format('DD MMMM YYYY, HH:mm')}
 					</Text>
-				}
-				{
-					order.order_type == OrderType_Pickup &&
+				)}
+				{order.order_type == OrderType_Pickup && (
 					<Text style={[styles.vendorAddressTxt, { fontFamily: Theme.fonts.semiBold, marginBottom: 12 }]}>
-						{translate('order_summary.pickup_time')} : {
-							order.pickup_datetime ? moment(order.pickup_datetime, "YYYY-MM-DD HH:mm:ss").locale(getLanguage()).format('DD MMMM YYYY, HH:mm')
-								: 0
-						}
+						{translate('order_summary.pickup_time')} :{' '}
+						{order.pickup_datetime
+							? moment(order.pickup_datetime, 'YYYY-MM-DD HH:mm:ss')
+									.locale(getLanguage())
+									.format('DD MMMM YYYY, HH:mm')
+							: 0}
 					</Text>
-				}
-				{
-					order.order_type == OrderType_Reserve &&
-					<Text style={[styles.vendorAddressTxt, { fontFamily: Theme.fonts.semiBold, }]}>
-						{translate('order_summary.reserve_time')} : {
-							order.pickup_datetime ? moment(order.pickup_datetime, "YYYY-MM-DD HH:mm:ss").locale(getLanguage()).format('DD MMMM YYYY, HH:mm')
-								: 0
-						}
+				)}
+				{order.order_type == OrderType_Reserve && (
+					<Text style={[styles.vendorAddressTxt, { fontFamily: Theme.fonts.semiBold }]}>
+						{translate('order_summary.reserve_time')} :{' '}
+						{order.pickup_datetime
+							? moment(order.pickup_datetime, 'YYYY-MM-DD HH:mm:ss')
+									.locale(getLanguage())
+									.format('DD MMMM YYYY, HH:mm')
+							: 0}
 					</Text>
-				}
-				{
-					order.order_type == OrderType_Reserve &&
-					<Text style={[styles.vendorAddressTxt, { fontFamily: Theme.fonts.semiBold, marginTop: 8, marginBottom: 12 }]}>
+				)}
+				{order.order_type == OrderType_Reserve && (
+					<Text
+						style={[
+							styles.vendorAddressTxt,
+							{ fontFamily: Theme.fonts.semiBold, marginTop: 8, marginBottom: 12 },
+						]}
+					>
 						{translate('cart.num_guests')} : {order.num_guests ?? 0}
 					</Text>
-				}
+				)}
 				<View style={[Theme.styles.col_center, styles.orderInfoView]}>
 					{renderProducts()}
-					{order.status != 'declined' ?
-						renderCouponDesc() :
-						(!isEmpty(order.declined_reason) && order.declined_reason != 'Respond timeout' && order.declined_reason != 'Decline' &&
-							<Text style={styles.couponDescText}>{translate('reason')}: {order.declined_reason}</Text>)
-					}
-					{order.order_note != null && order.order_note != '' &&
+					{order.status != 'declined'
+						? renderCouponDesc()
+						: !isEmpty(order.declined_reason) &&
+						  order.declined_reason != 'Respond timeout' &&
+						  order.declined_reason != 'Decline' && (
+								<Text style={styles.couponDescText}>
+									{translate('reason')}: {order.declined_reason}
+								</Text>
+						  )}
+					{order.order_note != null && order.order_note != '' && (
 						<View
 							style={[
 								Theme.styles.row_center,
@@ -358,12 +383,14 @@ const OrderSummScreen = (props) => {
 							]}
 						>
 							<Text style={[Theme.styles.flex_1, styles.cancelOrdertxt]}>
-								<Text style={[styles.item_title, { flex: 1 }]}>{translate('order_details.order_notes')}:  </Text>
+								<Text style={[styles.item_title, { flex: 1 }]}>
+									{translate('order_details.order_notes')}:{' '}
+								</Text>
 								{order.order_note}
 							</Text>
 						</View>
-					}
-					{order.total_price != null &&
+					)}
+					{order.total_price != null && (
 						<View
 							style={[
 								Theme.styles.row_center,
@@ -371,52 +398,52 @@ const OrderSummScreen = (props) => {
 									marginBottom: 6,
 									paddingTop: 15,
 								},
-								(order.order_note == null || order.order_note == '') &&
-								{
+								(order.order_note == null || order.order_note == '') && {
 									marginTop: 15,
 									borderTopWidth: 1,
 									borderTopColor: Theme.colors.gray9,
-								}
+								},
 							]}
 						>
 							<Text style={[Theme.styles.flex_1, styles.subjectTitle]}>
-								{order.order_type == OrderType_Reserve ? translate('order_summary.reservation_total') : translate('cart.order_total')}</Text>
+								{order.order_type == OrderType_Reserve
+									? translate('order_summary.reservation_total')
+									: translate('cart.order_total')}
+							</Text>
 							<Text style={[styles.orderTotalTxt]}>{parseInt(order.total_price)} L</Text>
 						</View>
-					}
+					)}
 					{order.splits != null && order.splits.length > 0 && (
 						<View style={[Theme.styles.col_center, styles.splitsView]}>
 							<Text style={[styles.cancelOrdertxt, { width: '100%' }]}>
 								{translate('split.bill_split_among')} {order.splits.length} {translate('cart.people')}
 							</Text>
-							{
-								order.splits.map((item, index) =>
-									<View key={index} style={[Theme.styles.row_center, { marginTop: 3 }]}>
-										<Text style={[Theme.styles.flex_1, styles.cancelOrdertxt]}>
-											{item.person_id == props.user?.id ? translate('you') : item.person_name}
-										</Text>
-										<Text style={[styles.cancelOrdertxt]}>{item.amount} L</Text>
-									</View>
-								)
-							}
+							{order.splits.map((item, index) => (
+								<View key={index} style={[Theme.styles.row_center, { marginTop: 3 }]}>
+									<Text style={[Theme.styles.flex_1, styles.cancelOrdertxt]}>
+										{item.person_id == props.user?.id ? translate('you') : item.person_name}
+									</Text>
+									<Text style={[styles.cancelOrdertxt]}>{item.amount} L</Text>
+								</View>
+							))}
 						</View>
 					)}
-					{
-						order.sub_total != null &&
+					{order.sub_total != null && (
 						<View style={[Theme.styles.row_center, { marginTop: 3 }]}>
 							<Text style={[Theme.styles.flex_1, styles.cancelOrdertxt]}>
 								{translate('order_details.subtotal')}
 							</Text>
 							<Text style={[styles.cancelOrdertxt]}>{parseInt(order.sub_total)} L</Text>
 						</View>
-					}
+					)}
 					{order.cashback != null && parseInt(order.cashback) >= 0 && (
 						<View style={[Theme.styles.row_center, { marginTop: 3 }]}>
 							<Text style={[Theme.styles.flex_1, styles.cancelOrdertxt]}>
 								{translate('filter.cashback')}
 							</Text>
 							<Text style={[styles.cancelOrdertxt]}>
-								{parseInt(order.cashback) > 0 ? `-${parseInt(order.cashback)}` : `0`} L</Text>
+								{parseInt(order.cashback) > 0 ? `-${parseInt(order.cashback)}` : `0`} L
+							</Text>
 						</View>
 					)}
 					{order.total_price != null && getDiscountAmount(order) >= 0 && (
@@ -425,7 +452,11 @@ const OrderSummScreen = (props) => {
 								{translate('filter.discount')}
 							</Text>
 							<Text style={[styles.cancelOrdertxt]}>
-								{parseInt(getDiscountAmount(order)) > 0 ? `-${parseInt(getDiscountAmount(order))}` : `0`} L</Text>
+								{parseInt(getDiscountAmount(order)) > 0
+									? `-${parseInt(getDiscountAmount(order))}`
+									: `0`}{' '}
+								L
+							</Text>
 						</View>
 					)}
 					{order.order_type == OrderType_Delivery &&
@@ -473,23 +504,26 @@ const OrderSummScreen = (props) => {
 								valueStyle={styles.cancelOrdertxt}
 							/>
 						)}
-					{
-						order.order_type == OrderType_Delivery &&
+					{order.order_type == OrderType_Delivery &&
 						order.tip_rider != null &&
-						parseInt(order.tip_rider) > 0 &&
-						<View style={[Theme.styles.row_center, { marginTop: 3, }]}>
-							<Text style={[Theme.styles.flex_1, styles.cancelOrdertxt,]}>{translate('cart.leave_rider_tip')}</Text>
-							<Text style={[styles.cancelOrdertxt,]}>{order.tip_rider} L</Text>
-						</View>
-					}
-					{order.order_type == OrderType_Delivery && order.delivery_fee != null && parseInt(order.delivery_fee) >= 0 && (
-						<View style={[Theme.styles.row_center, { marginTop: 3 }]}>
-							<Text style={[Theme.styles.flex_1, styles.cancelOrdertxt]}>
-								{translate('checkout.delivery_fee')}
-							</Text>
-							<Text style={[styles.cancelOrdertxt]}>{parseInt(order.delivery_fee)} L</Text>
-						</View>
-					)}
+						parseInt(order.tip_rider) > 0 && (
+							<View style={[Theme.styles.row_center, { marginTop: 3 }]}>
+								<Text style={[Theme.styles.flex_1, styles.cancelOrdertxt]}>
+									{translate('cart.leave_rider_tip')}
+								</Text>
+								<Text style={[styles.cancelOrdertxt]}>{order.tip_rider} L</Text>
+							</View>
+						)}
+					{order.order_type == OrderType_Delivery &&
+						order.delivery_fee != null &&
+						parseInt(order.delivery_fee) >= 0 && (
+							<View style={[Theme.styles.row_center, { marginTop: 3 }]}>
+								<Text style={[Theme.styles.flex_1, styles.cancelOrdertxt]}>
+									{translate('checkout.delivery_fee')}
+								</Text>
+								<Text style={[styles.cancelOrdertxt]}>{parseInt(order.delivery_fee)} L</Text>
+							</View>
+						)}
 				</View>
 			</View>
 		);
@@ -500,160 +534,200 @@ const OrderSummScreen = (props) => {
 			<View style={[Theme.styles.row_center_start, styles.gift_order_view]}>
 				<AntDesign name='gift' size={28} color={Theme.colors.cyan2} />
 				<View style={[{ flex: 1, marginLeft: 15 }]}>
-					<Text style={[styles.gift_order_txt]}>
-						{translate('order_summary.gift_order')}
-					</Text>
-					{
-						order.customer_id == props.user?.id ?
-							<Text style={[styles.gift_order_desc]}>
-								{translate('order_summary.gift_order_desc')} {order.gift_recip_name}
-							</Text>
-							:
-							<Text style={[styles.gift_order_desc]}>
-								{translate('order_summary.gift_order_received_desc')} {order.order_customer_data?.full_name}
-							</Text>
-					}
+					<Text style={[styles.gift_order_txt]}>{translate('order_summary.gift_order')}</Text>
+					{order.customer_id == props.user?.id ? (
+						<Text style={[styles.gift_order_desc]}>
+							{translate('order_summary.gift_order_desc')} {order.gift_recip_name}
+						</Text>
+					) : (
+						<Text style={[styles.gift_order_desc]}>
+							{translate('order_summary.gift_order_received_desc')} {order.order_customer_data?.full_name}
+						</Text>
+					)}
 				</View>
 			</View>
 		);
 	};
 
 	const _renderReservationPaymentBlock = () => {
-		if (order.status != 'new' && order.status != 'completed' && order.status != 'declined' && isEmpty(order.reservation_paid)) {
+		if (
+			order.status != 'new' &&
+			order.status != 'completed' &&
+			order.status != 'declined' &&
+			isEmpty(order.reservation_paid)
+		) {
 			return (
 				<View style={[Theme.styles.col_center, styles.paymentBlock]}>
 					<View style={[Theme.styles.row_center, { width: '100%' }]}>
-						<View style={[Theme.styles.row_center,]}>
+						<View style={[Theme.styles.row_center]}>
 							<Feather name='info' size={16} color={'#D89C03'} />
-							<AppText style={[styles.paymentBlockStatus, { color: '#D89C03' }]}>{translate('order_summary.payment_not_done')}</AppText>
+							<AppText style={[styles.paymentBlockStatus, { color: '#D89C03' }]}>
+								{translate('order_summary.payment_not_done')}
+							</AppText>
 						</View>
 						<View style={styles.paymentBlockline} />
 					</View>
 					<View style={[Theme.styles.row_center, { width: '100%', marginTop: 15 }]}>
-						{
-							order?.vendor?.online_payment == 1 ?
-								<TouchableOpacity style={[Theme.styles.row_center, styles.paymentBtn]}
-									onPress={() => props.navigation.navigate(RouteNames.OrderSummPayCard)}
-								>
-									<Octicons name='credit-card' size={18} color={Theme.colors.text} />
-									<AppText style={styles.paymentBtnTxt}>{translate('order_summary.pay_with_card')}</AppText>
-								</TouchableOpacity>
-								: <View style={{ flex: 1 }} />
-						}
+						{order?.vendor?.online_payment == 1 ? (
+							<TouchableOpacity
+								style={[Theme.styles.row_center, styles.paymentBtn]}
+								onPress={() => props.navigation.navigate(RouteNames.OrderSummPayCard)}
+							>
+								<Octicons name='credit-card' size={18} color={Theme.colors.text} />
+								<AppText style={styles.paymentBtnTxt}>
+									{translate('order_summary.pay_with_card')}
+								</AppText>
+							</TouchableOpacity>
+						) : (
+							<View style={{ flex: 1 }} />
+						)}
 						<View style={{ width: 10 }} />
-						{
-							order?.vendor?.enable_scan_pay == 1 ?
-								<TouchableOpacity style={[Theme.styles.row_center, styles.paymentBtn]}
-									onPress={() => props.navigation.navigate(RouteNames.ScantoPay)}
-								>
-									<AntDesign name='scan1' size={18} color={Theme.colors.text} />
-									<AppText style={styles.paymentBtnTxt}>{translate('order_summary.scan_pay')}</AppText>
-								</TouchableOpacity>
-								: <View style={{ flex: 1 }} />
-						}
+						{order?.vendor?.enable_scan_pay == 1 ? (
+							<TouchableOpacity
+								style={[Theme.styles.row_center, styles.paymentBtn]}
+								onPress={() => props.navigation.navigate(RouteNames.ScantoPay)}
+							>
+								<AntDesign name='scan1' size={18} color={Theme.colors.text} />
+								<AppText style={styles.paymentBtnTxt}>{translate('order_summary.scan_pay')}</AppText>
+							</TouchableOpacity>
+						) : (
+							<View style={{ flex: 1 }} />
+						)}
 					</View>
 				</View>
-			)
-		}
-		else if (order.reservation_paid == RESERVACTION_PAID.card) {
+			);
+		} else if (order.reservation_paid == RESERVACTION_PAID.card) {
 			return (
 				<View style={[Theme.styles.col_center, styles.paymentBlock]}>
 					<View style={[Theme.styles.row_center, { width: '100%' }]}>
-						<View style={[Theme.styles.row_center,]}>
+						<View style={[Theme.styles.row_center]}>
 							<AntDesign name='checkcircleo' size={18} color={Theme.colors.cyan2} />
-							<AppText style={[styles.paymentBlockStatus, { color: Theme.colors.cyan2 }]}>{translate('order_summary.paid')}</AppText>
+							<AppText style={[styles.paymentBlockStatus, { color: Theme.colors.cyan2 }]}>
+								{translate('order_summary.paid')}
+							</AppText>
 						</View>
 						<View style={styles.paymentBlockline} />
 					</View>
 					<View style={[Theme.styles.col_center, styles.paymentBlockDetails]}>
 						<View style={[Theme.styles.row_center, { marginVertical: 5 }]}>
-							<AppText style={styles.paymentBlockDetailsLabel}>{translate('order_summary.status')}</AppText>
-							<AppText style={styles.paymentBlockDetailsValue}>{translate('order_summary.paid_with_card')}</AppText>
+							<AppText style={styles.paymentBlockDetailsLabel}>
+								{translate('order_summary.status')}
+							</AppText>
+							<AppText style={styles.paymentBlockDetailsValue}>
+								{translate('order_summary.paid_with_card')}
+							</AppText>
 						</View>
-						{
-							order.reservation_paid_date != null &&
+						{order.reservation_paid_date != null && (
 							<View style={[Theme.styles.row_center, { marginVertical: 5 }]}>
-								<AppText style={styles.paymentBlockDetailsLabel}>{translate('order_summary.date_payment')}</AppText>
-								<AppText style={styles.paymentBlockDetailsValue}>{moment(order.reservation_paid_date, "YYYY-MM-DD HH:mm:ss").locale(getLanguage()).format('DD MMM YYYY, HH:mm')}</AppText>
+								<AppText style={styles.paymentBlockDetailsLabel}>
+									{translate('order_summary.date_payment')}
+								</AppText>
+								<AppText style={styles.paymentBlockDetailsValue}>
+									{moment(order.reservation_paid_date, 'YYYY-MM-DD HH:mm:ss')
+										.locale(getLanguage())
+										.format('DD MMM YYYY, HH:mm')}
+								</AppText>
 							</View>
-						}
-						{
-							order.card_last4 != null &&
+						)}
+						{order.card_last4 != null && (
 							<View style={[Theme.styles.row_center, { marginVertical: 5 }]}>
-								<AppText style={styles.paymentBlockDetailsLabel}>{translate('order_summary.card')}</AppText>
+								<AppText style={styles.paymentBlockDetailsLabel}>
+									{translate('order_summary.card')}
+								</AppText>
 								<View style={Theme.styles.row_center}>
-									{
-										order.card_brand == 'visa' ? <FontAwesome name='cc-visa' size={16} color={Theme.colors.text} />
-											:
-											<FontAwesome name='cc-mastercard' size={16} color={Theme.colors.text} />
-									}
+									{order.card_brand == 'visa' ? (
+										<FontAwesome name='cc-visa' size={16} color={Theme.colors.text} />
+									) : (
+										<FontAwesome name='cc-mastercard' size={16} color={Theme.colors.text} />
+									)}
 									<AppText style={styles.paymentBlockDetailsValue}>
-										{order.card_brand == 'visa' ? translate('order_summary.visa_card') : translate('order_summary.master_card')}...{order.card_last4}
+										{order.card_brand == 'visa'
+											? translate('order_summary.visa_card')
+											: translate('order_summary.master_card')}
+										...{order.card_last4}
 									</AppText>
 								</View>
 							</View>
-						}
+						)}
 					</View>
 				</View>
-			)
-		}
-		else if (order.reservation_paid == RESERVACTION_PAID.scan) {
+			);
+		} else if (order.reservation_paid == RESERVACTION_PAID.scan) {
 			return (
 				<View style={[Theme.styles.col_center, styles.paymentBlock]}>
 					<View style={[Theme.styles.row_center, { width: '100%' }]}>
-						<View style={[Theme.styles.row_center,]}>
+						<View style={[Theme.styles.row_center]}>
 							<AntDesign name='checkcircleo' size={18} color={Theme.colors.cyan2} />
-							<AppText style={[styles.paymentBlockStatus, { color: Theme.colors.cyan2 }]}>{translate('order_summary.paid')}</AppText>
+							<AppText style={[styles.paymentBlockStatus, { color: Theme.colors.cyan2 }]}>
+								{translate('order_summary.paid')}
+							</AppText>
 						</View>
 						<View style={styles.paymentBlockline} />
 					</View>
 					<View style={[Theme.styles.col_center, styles.paymentBlockDetails]}>
 						<View style={[Theme.styles.row_center, { marginVertical: 5 }]}>
 							<AppText style={styles.paymentBlockDetailsLabel}>{translate('order_summary.paid')}</AppText>
-							<View style={[Theme.styles.row_center,]}>
+							<View style={[Theme.styles.row_center]}>
 								<AntDesign name='scan1' size={18} color={Theme.colors.text} />
-								<AppText style={styles.paymentBlockDetailsValue}>{translate('order_summary.with_scan_qr_code')}</AppText>
+								<AppText style={styles.paymentBlockDetailsValue}>
+									{translate('order_summary.with_scan_qr_code')}
+								</AppText>
 							</View>
 						</View>
-						{
-							order.reservation_paid_date != null &&
+						{order.reservation_paid_date != null && (
 							<View style={[Theme.styles.row_center, { marginVertical: 5 }]}>
-								<AppText style={styles.paymentBlockDetailsLabel}>{translate('order_summary.date_payment')}</AppText>
-								<AppText style={styles.paymentBlockDetailsValue}>{moment(order.reservation_paid_date, "YYYY-MM-DD HH:mm:ss").locale(getLanguage()).format('DD MMM YYYY, HH:mm')}</AppText>
+								<AppText style={styles.paymentBlockDetailsLabel}>
+									{translate('order_summary.date_payment')}
+								</AppText>
+								<AppText style={styles.paymentBlockDetailsValue}>
+									{moment(order.reservation_paid_date, 'YYYY-MM-DD HH:mm:ss')
+										.locale(getLanguage())
+										.format('DD MMM YYYY, HH:mm')}
+								</AppText>
 							</View>
-						}
+						)}
 					</View>
 				</View>
-			)
-		}
-		else if (order.reservation_paid == RESERVACTION_PAID.cash) {
+			);
+		} else if (order.reservation_paid == RESERVACTION_PAID.cash) {
 			return (
 				<View style={[Theme.styles.col_center, styles.paymentBlock]}>
 					<View style={[Theme.styles.row_center, { width: '100%' }]}>
-						<View style={[Theme.styles.row_center,]}>
+						<View style={[Theme.styles.row_center]}>
 							<AntDesign name='checkcircleo' size={18} color={Theme.colors.cyan2} />
-							<AppText style={[styles.paymentBlockStatus, { color: Theme.colors.cyan2 }]}>{translate('order_summary.paid')}</AppText>
+							<AppText style={[styles.paymentBlockStatus, { color: Theme.colors.cyan2 }]}>
+								{translate('order_summary.paid')}
+							</AppText>
 						</View>
 						<View style={styles.paymentBlockline} />
 					</View>
 					<View style={[Theme.styles.col_center, styles.paymentBlockDetails]}>
 						<View style={[Theme.styles.row_center, { marginVertical: 5 }]}>
-							<AppText style={styles.paymentBlockDetailsLabel}>{translate('order_summary.status')}</AppText>
-							<AppText style={styles.paymentBlockDetailsValue}>{translate('order_summary.paid_with_cash')}</AppText>
+							<AppText style={styles.paymentBlockDetailsLabel}>
+								{translate('order_summary.status')}
+							</AppText>
+							<AppText style={styles.paymentBlockDetailsValue}>
+								{translate('order_summary.paid_with_cash')}
+							</AppText>
 						</View>
-						{
-							order.reservation_paid_date != null &&
+						{order.reservation_paid_date != null && (
 							<View style={[Theme.styles.row_center, { marginVertical: 5 }]}>
-								<AppText style={styles.paymentBlockDetailsLabel}>{translate('order_summary.date_payment')}</AppText>
-								<AppText style={styles.paymentBlockDetailsValue}>{moment(order.reservation_paid_date, "YYYY-MM-DD HH:mm:ss").locale(getLanguage()).format('DD MMM YYYY, HH:mm')}</AppText>
+								<AppText style={styles.paymentBlockDetailsLabel}>
+									{translate('order_summary.date_payment')}
+								</AppText>
+								<AppText style={styles.paymentBlockDetailsValue}>
+									{moment(order.reservation_paid_date, 'YYYY-MM-DD HH:mm:ss')
+										.locale(getLanguage())
+										.format('DD MMM YYYY, HH:mm')}
+								</AppText>
 							</View>
-						}
+						)}
 					</View>
 				</View>
-			)
+			);
 		}
 		return null;
-	}
+	};
 
 	const _renderOrderReview = (review) => {
 		if (!isReady) {
@@ -662,12 +736,9 @@ const OrderSummScreen = (props) => {
 		return (
 			<View style={[Theme.styles.col_center, styles.review]}>
 				<Text style={[styles.backTxt, { fontSize: 17 }]}>
-					{
-					((order.gift_recip_id == props.user?.id) || (order.gift_recip_id == null)) ?
-						translate('order_review.your_reviewed')
-						:
-						(order.gift_recip_name + translate('order_review.user_reviewed'))
-					}
+					{order.gift_recip_id == props.user?.id || order.gift_recip_id == null
+						? translate('order_review.your_reviewed')
+						: order.gift_recip_name + translate('order_review.user_reviewed')}
 				</Text>
 				<View style={[Theme.styles.row_center, { marginTop: 25 }]}>
 					<View style={[Theme.styles.col_center, { flex: 1 }]}>
@@ -792,18 +863,19 @@ const OrderSummScreen = (props) => {
 			<View style={styles.formView}>
 				<ScrollView style={{ flex: 1, width: '100%', paddingHorizontal: 20 }}>
 					<Text style={[Theme.styles.flex_1, styles.subjectTitle, { marginBottom: 12 }]}>
-						{moment(order.ordered_date, "DD-MM-YYYY HH:mm").locale(getLanguage()).format('DD MMMM YYYY, HH:mm')}
+						{moment(order.ordered_date, 'DD-MM-YYYY HH:mm')
+							.locale(getLanguage())
+							.format('DD MMMM YYYY, HH:mm')}
 					</Text>
 					<View style={[Theme.styles.col_center, styles.sectionView, { paddingVertical: 10 }]}>
-						{
-							order.id != null &&
+						{order.id != null && (
 							<OrderStepper
 								order={order}
 								onTrackOrder={() => {
 									props.navigation.navigate(RouteNames.TrackOrderScreen, { order: order });
 								}}
 							/>
-						}
+						)}
 						{order.status == 'canceled' && (
 							<Text style={styles.orderCancelledTxt}>{translate('order_summary.order_cancelled')}</Text>
 						)}
@@ -815,22 +887,32 @@ const OrderSummScreen = (props) => {
 					{isPastOrder(order) && order.order_review && _renderOrderReview(order.order_review)}
 					<View style={{ height: 40 }} />
 				</ScrollView>
-				{isPastOrder(order) && !order.order_review && (order.is_gift != 1 || (order.is_gift == 1 && order.customer_id != props.user?.id)) && (
-					<View style={[{ width: '100%', paddingHorizontal: 20, paddingBottom: 10 }]}>
-						<MainBtn
-							// disabled={loading}
-							// loading={loading}
-							title={order.order_type == OrderType_Reserve ? translate('order_summary.review_reservation') : translate('order_summary.review_order')}
-							onPress={() => {
-								props.navigation.navigate(RouteNames.OrderReviewScreen);
-							}}
-						/>
-					</View>
-				)}
-				{((isPastOrder(order) || order.status == 'declined') && order?.vendor?.active == 1) && (
+				{isPastOrder(order) &&
+					!order.order_review &&
+					(order.is_gift != 1 || (order.is_gift == 1 && order.customer_id != props.user?.id)) && (
+						<View style={[{ width: '100%', paddingHorizontal: 20, paddingBottom: 10 }]}>
+							<MainBtn
+								// disabled={loading}
+								// loading={loading}
+								title={
+									order.order_type == OrderType_Reserve
+										? translate('order_summary.review_reservation')
+										: translate('order_summary.review_order')
+								}
+								onPress={() => {
+									props.navigation.navigate(RouteNames.OrderReviewScreen);
+								}}
+							/>
+						</View>
+					)}
+				{(isPastOrder(order) || order.status == 'declined') && order?.vendor?.active == 1 && (
 					<View style={[Theme.styles.col_center_start, styles.bottom]}>
 						<TouchableOpacity onPress={reorder}>
-							<Text style={styles.backTxt}>{order.order_type == OrderType_Reserve ? translate('order_summary.repeat_reservation') : translate('order_summary.order_again')}</Text>
+							<Text style={styles.backTxt}>
+								{order.order_type == OrderType_Reserve
+									? translate('order_summary.repeat_reservation')
+									: translate('order_summary.order_again')}
+							</Text>
 						</TouchableOpacity>
 					</View>
 				)}
@@ -880,8 +962,7 @@ const OrderSummScreen = (props) => {
 						}
 
 						props.navigation.navigate(RouteNames.BottomTabs);
-					}
-					else {
+					} else {
 						props.navigation.goBack();
 					}
 				}}
@@ -891,17 +972,13 @@ const OrderSummScreen = (props) => {
 					props.navigation.navigate(RouteNames.OrderHelp);
 				}}
 				right={
-					(
-						order.order_type == OrderType_Delivery &&
-						(order.status != 'new')
-					) ? <Text style={styles.helpBtn}>{translate('help.title')}</Text> : null
+					order.order_type == OrderType_Delivery && order.status != 'new' ? (
+						<Text style={styles.helpBtn}>{translate('help.title')}</Text>
+					) : null
 				}
 			/>
 			{renderBody()}
-			<UnConfirmedOrderToast
-				orderId={props.route.params.order_id}
-				navigation={props.navigation}
-			/>
+			<UnConfirmedOrderToast orderId={props.route.params.order_id} navigation={props.navigation} />
 		</View>
 	);
 };
@@ -931,7 +1008,15 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 1,
 		borderBottomColor: Theme.colors.gray9,
 	},
-	couponDescText: { width: '100%', marginTop: 12, paddingHorizontal: 20, textAlign: 'center', fontSize: 17, fontFamily: Theme.fonts.semiBold, color: Theme.colors.text, },
+	couponDescText: {
+		width: '100%',
+		marginTop: 12,
+		paddingHorizontal: 20,
+		textAlign: 'center',
+		fontSize: 17,
+		fontFamily: Theme.fonts.semiBold,
+		color: Theme.colors.text,
+	},
 	LogoText: { color: Theme.colors.text, fontSize: 19, fontFamily: Theme.fonts.bold, marginLeft: 10 },
 	LogoView: { width: 34, height: 34, borderRadius: 8, backgroundColor: Theme.colors.white },
 	Logo: { width: 28, height: 28 },
@@ -947,7 +1032,7 @@ const styles = StyleSheet.create({
 		backgroundColor: Theme.colors.gray8,
 	},
 	orderTotalTxt: { fontSize: 17, fontFamily: Theme.fonts.bold, color: Theme.colors.text },
-	orderNoteTxt: { fontSize: 17, color: Theme.colors.text, fontFamily: Theme.fonts.medium, },
+	orderNoteTxt: { fontSize: 17, color: Theme.colors.text, fontFamily: Theme.fonts.medium },
 	orderCancelledTxt: {
 		width: '100%',
 		textAlign: 'center',
@@ -959,18 +1044,32 @@ const styles = StyleSheet.create({
 	review: { width: '100%', paddingTop: 20, borderTopWidth: 1, borderTopColor: Theme.colors.gray9 },
 	review_title: { fontSize: 17, color: Theme.colors.text, fontFamily: Theme.fonts.medium },
 
-	vendorAddress: { marginBottom: 12, width: '100%', alignItems: 'flex-start', borderRadius: 15, backgroundColor: Theme.colors.gray8, paddingVertical: 12, paddingHorizontal: 15, },
-	vendorPhone: { fontSize: 16, color: Theme.colors.text, fontFamily: Theme.fonts.medium, },
-	vendorAddressTxt: { marginTop: 4, fontSize: 16, color: Theme.colors.text, fontFamily: Theme.fonts.medium, },
+	vendorAddress: {
+		marginBottom: 12,
+		width: '100%',
+		alignItems: 'flex-start',
+		borderRadius: 15,
+		backgroundColor: Theme.colors.gray8,
+		paddingVertical: 12,
+		paddingHorizontal: 15,
+	},
+	vendorPhone: { fontSize: 16, color: Theme.colors.text, fontFamily: Theme.fonts.medium },
+	vendorAddressTxt: { marginTop: 4, fontSize: 16, color: Theme.colors.text, fontFamily: Theme.fonts.medium },
 
 	helpBtn: { fontSize: 19, fontFamily: Theme.fonts.semiBold, color: Theme.colors.cyan2 },
 
-	gift_order_view: { width: '100%', },
+	gift_order_view: { width: '100%' },
 	gift_order_txt: { fontSize: 16, color: Theme.colors.text, fontFamily: Theme.fonts.semiBold },
 	gift_order_desc: { fontSize: 15, color: Theme.colors.gray1, fontFamily: Theme.fonts.medium },
 
-	confirm_order_view: { marginBottom: 20, width: '100%', },
-	confirm_order_txt: { marginRight: 8, fontSize: 18, color: Theme.colors.text, fontFamily: Theme.fonts.semiBold, textDecorationLine: 'underline' },
+	confirm_order_view: { marginBottom: 20, width: '100%' },
+	confirm_order_txt: {
+		marginRight: 8,
+		fontSize: 18,
+		color: Theme.colors.text,
+		fontFamily: Theme.fonts.semiBold,
+		textDecorationLine: 'underline',
+	},
 
 	splitsView: { width: '100%', marginVertical: 10 },
 
@@ -978,10 +1077,35 @@ const styles = StyleSheet.create({
 	paymentBlockStatus: { marginHorizontal: 5, fontSize: 17, lineHeight: 21, fontFamily: Theme.fonts.semiBold },
 	paymentBlockline: { flex: 1, height: 1, backgroundColor: Theme.colors.gray6 },
 	paymentBtn: { flex: 1, padding: 14, borderRadius: 10, backgroundColor: Theme.colors.gray8 },
-	paymentBtnTxt: { marginLeft: 7, fontSize: 16, lineHeight: 20, fontFamily: Theme.fonts.semiBold, color: Theme.colors.text },
-	paymentBlockDetails: { marginTop: 14, width: '100%', paddingHorizontal: 16, paddingVertical: 12, borderRadius: 10, backgroundColor: Theme.colors.gray8 },
-	paymentBlockDetailsLabel: { flex: 1, fontSize: 17, lineHeight: 21, fontFamily: Theme.fonts.semiBold, color: Theme.colors.text },
-	paymentBlockDetailsValue: { marginLeft: 5, fontSize: 17, lineHeight: 21, fontFamily: Theme.fonts.medium, color: Theme.colors.text }
+	paymentBtnTxt: {
+		marginLeft: 7,
+		fontSize: 16,
+		lineHeight: 20,
+		fontFamily: Theme.fonts.semiBold,
+		color: Theme.colors.text,
+	},
+	paymentBlockDetails: {
+		marginTop: 14,
+		width: '100%',
+		paddingHorizontal: 16,
+		paddingVertical: 12,
+		borderRadius: 10,
+		backgroundColor: Theme.colors.gray8,
+	},
+	paymentBlockDetailsLabel: {
+		flex: 1,
+		fontSize: 17,
+		lineHeight: 21,
+		fontFamily: Theme.fonts.semiBold,
+		color: Theme.colors.text,
+	},
+	paymentBlockDetailsValue: {
+		marginLeft: 5,
+		fontSize: 17,
+		lineHeight: 21,
+		fontFamily: Theme.fonts.medium,
+		color: Theme.colors.text,
+	},
 });
 
 const mapStateToProps = ({ app, shop }) => ({
@@ -991,7 +1115,7 @@ const mapStateToProps = ({ app, shop }) => ({
 	hometab_navigation: app.hometab_navigation,
 	cartItems: shop.items,
 	systemSettings: app.systemSettings || {},
-	unconfirmedDeliveryOrders: app.unconfirmedDeliveryOrders || []
+	unconfirmedDeliveryOrders: app.unconfirmedDeliveryOrders || [],
 });
 
 export default connect(mapStateToProps, {

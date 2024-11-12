@@ -173,7 +173,7 @@ class CartScreen extends React.Component {
 			)
 		) {
 			// address changed
-			console.log('address changed : get delivery fee');
+			
 			this.getDeliveryFees(
 				this.props.vendorData.id,
 				this.props.delivery_info.address.lat,
@@ -189,14 +189,14 @@ class CartScreen extends React.Component {
 				this.setState({ friends: data });
 			})
 			.catch((err) => {
-				console.log('get Friends', err);
+				
 			});
 	};
 
 	getInviteCode = async () => {
 		try {
 			let inviteCode = await getStorageKey(KEYS.INVITE_CODE);
-			console.log("invite Code", inviteCode);
+			
 			if (inviteCode) {
 				apiFactory.post(`/invite-earn/validate-earninvitation-code`, {
 					promo_code: inviteCode
@@ -212,12 +212,12 @@ class CartScreen extends React.Component {
 							try {
 								await setStorageKey(KEYS.INVITE_CODE, null);
 							} catch (e) {
-								console.log(e);
+								
 							}
 						}
 					},
 					async (error) => {
-						console.log('validate invitation coide err ', error)
+						
 						await this.setState({
 							loading_invitation_code: false,
 							has_valid_invitation_code: false,
@@ -225,33 +225,33 @@ class CartScreen extends React.Component {
 						try {
 							await setStorageKey(KEYS.INVITE_CODE, null);
 						} catch (e) {
-							console.log(e);
+							
 						}
 						alerts.error(translate('alerts.error'), translate('cart.invalid_promotion_code'));
 					}
 				);
 			}
 		} catch (e) {
-			console.log(e);
+			
 		}
 	}
 
 	getCouponCode = async () => {
 		try {
 			let couponCode = await getStorageKey(KEYS.COUPON_CODE);
-			console.log("coupon Code", couponCode);
+			
 			if (couponCode) {
 				this.checkCoupon(couponCode);
 			}
 		} catch (e) {
-			console.log(e);
+			
 		}
 	}
 
 	getCashBackInput = async () => {
 		try {
 			let cashbackInput = await getStorageKey(KEYS.CART_CASHBACK_INPUT);
-			console.log("cashbackInput", cashbackInput);
+			
 			if (cashbackInput && cashbackInput.vendor_id && cashbackInput.cashback) {
 				if (cashbackInput.vendor_id == this.props.vendorData.id) {
 					this.props.setPriceCart({
@@ -265,14 +265,14 @@ class CartScreen extends React.Component {
 			try {
 				await setStorageKey(KEYS.CART_CASHBACK_INPUT, null);
 			} catch (e) {
-				console.log(e);
+				
 			}
 			this.props.setPriceCart({
 				...this.props.cartPrice,
 				cashback: 0,
 			});
 		} catch (e) {
-			console.log(e);
+			
 		}
 	}
 
@@ -285,7 +285,7 @@ class CartScreen extends React.Component {
 
 			await setStorageKey(KEYS.CART_CASHBACK_INPUT, data);
 		} catch (e) {
-			console.log(e);
+			
 		}
 	}
 
@@ -301,7 +301,7 @@ class CartScreen extends React.Component {
 					try {
 						await setStorageKey(KEYS.COUPON_CODE, coupon);
 					} catch (e) {
-						console.log(e);
+						
 					}
 					resolve(data.coupon);
 				},
@@ -312,7 +312,7 @@ class CartScreen extends React.Component {
 					try {
 						await setStorageKey(KEYS.COUPON_CODE, null);
 					} catch (e) {
-						console.log(e);
+						
 					}
 					const message = extractErrorMessage(error);
 					reject(message);
@@ -329,7 +329,7 @@ class CartScreen extends React.Component {
 			this.couponObj = couponData;
 			this.applyPromo(couponData);
 		} catch (message) {
-			console.log('checkCoupon', message);
+			
 			if (typeof message === 'string') {
 				alerts.error(translate('alerts.error'), message);
 			}
@@ -364,7 +364,7 @@ class CartScreen extends React.Component {
 				}
 			},
 			async (error) => {
-				console.log('validate invitation coide err ', error)
+				
 				await this.setState({
 					loading_invitation_code: false,
 					has_valid_invitation_code: false,
@@ -399,7 +399,7 @@ class CartScreen extends React.Component {
 
 			this.deliveryFee = data['deliveryFee'] || 0;
 		} catch (error) {
-			console.log('getDeliveryFees err ', error);
+			
 			// alerts.error(translate('attention'), extractErrorMessage(error));
 		}
 	};
@@ -452,7 +452,7 @@ class CartScreen extends React.Component {
 				.slice(0, 10);
 			this.setState({ suggestedItems: suggestedItems });
 		} catch (error) {
-			console.log('get Vendor Detail', error);
+			
 		}
 	};
 	// end api
@@ -476,12 +476,12 @@ class CartScreen extends React.Component {
 					this.discountObj = null;
 					this.applyPromo(this.discountObj);
 				}
-				console.log('load load Discount', err)
+				
 			})
 	}
 
 	applyPromo = (promoData) => {
-		console.log('promoData ', promoData)
+		
 		if (promoData == null) {
 			this.setState({ promoFreeItems: [], delivery_fee: this.deliveryFee, discount: 0 });
 			return;
@@ -553,7 +553,7 @@ class CartScreen extends React.Component {
 		try {
 			setStorageKey(KEYS.COUPON_CODE, null);
 		} catch (e) {
-			console.log(e);
+			
 		}
 	}
 
@@ -612,7 +612,7 @@ class CartScreen extends React.Component {
 					await this.props.updateCartItems(tmp);
 				}
 			} catch (error) {
-				console.log('onPlusItem', error);
+				
 			}
 		};
 
@@ -625,7 +625,7 @@ class CartScreen extends React.Component {
 					await this.props.updateCartItems(tmp);
 				}
 			} catch (error) {
-				console.log('onMinusItem', error);
+				
 			}
 		};
 
@@ -641,7 +641,7 @@ class CartScreen extends React.Component {
 						try {
 							await setStorageKey(KEYS.CART_CASHBACK_INPUT, null);
 						} catch (e) {
-							console.log(e);
+							
 						}
 						this.props.setPriceCart({
 							...this.props.cartPrice,
@@ -651,7 +651,7 @@ class CartScreen extends React.Component {
 					}
 				}
 			} catch (error) {
-				console.log('onRemoveItem', error);
+				
 			}
 		};
 
@@ -670,7 +670,7 @@ class CartScreen extends React.Component {
 					await this.props.updateCartItems(tmp);
 				}
 			} catch (error) {
-				console.log('onPlusItem', error);
+				
 			}
 		};
 
@@ -889,7 +889,7 @@ class CartScreen extends React.Component {
 				}
 				await this.props.updateCartItems(tmp);
 			} catch (error) {
-				console.log('onAddCart', error);
+				
 			}
 		};
 
@@ -1475,7 +1475,7 @@ class CartScreen extends React.Component {
 				await setStorageKey(KEYS.INVITE_CODE, null);
 			}
 		} catch (e) {
-			console.log(e);
+			
 		}
 		this.props.navigation.navigate(RouteNames.CartPaymentScreen);
 	};

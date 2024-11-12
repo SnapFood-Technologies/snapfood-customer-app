@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { View, Text, StyleSheet, ScrollView, StatusBar, Platform, TouchableOpacity } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Foundation from 'react-native-vector-icons/Foundation';
-import BraintreeDropIn from 'react-native-braintree-dropin-ui';
 // import { useApplePay } from '@stripe/stripe-react-native';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
@@ -66,7 +65,7 @@ const CartPaymentScreen = (props) => {
 
 		return () => {
 			if (_Timer.current) {
-				console.log('vendor open check timer off')
+				
 				clearInterval(_Timer.current);
 				_Timer.current = null;
 			}
@@ -78,7 +77,7 @@ const CartPaymentScreen = (props) => {
 	}, [props.navigation]);
 
 	useEffect(() => {
-		console.log('==================== loadPaymentMethods ', props.user.default_card_id)
+		
 		loadPaymentMethods();
 	}, [props.user.default_card_id]);
 
@@ -111,7 +110,7 @@ const CartPaymentScreen = (props) => {
 				}
 			})
 			.catch(err => {
-				console.log('check vendor open ', err);
+				
 			})
 	}
 
@@ -145,7 +144,7 @@ const CartPaymentScreen = (props) => {
 				setDefaultCard(loadedCards);
 			},
 			(error) => {
-				console.log('loadPaymentMethods error', error);
+				
 				const message = error.message || translate('generic_error');
 				// alerts.error(translate('alerts.error'), message);
 			}
@@ -158,7 +157,7 @@ const CartPaymentScreen = (props) => {
 		const total_amount = calculateOrderTotal();
 		apiFactory.get(`checkout/get-cart-split?vendor_id=${props.vendorData?.id}&total_amount=${total_amount}`).then(
 			({ data }) => {
-				// console.log('getCartSplit ', data.data);
+				// 
 				setCartSplit(data.data);
 				if (data.data?.users) {
 					let tmpIndex = data.data?.users.findIndex(u => u.status == 'pending');
@@ -167,7 +166,7 @@ const CartPaymentScreen = (props) => {
 				setCartSplitLoaded(true);
 			},
 			(error) => {
-				console.log('getCartSplit error', error);
+				
 				setCartSplit(null);
 				setIsAllSplitResponded(false);
 				setCartSplitLoaded(true);
@@ -178,11 +177,11 @@ const CartPaymentScreen = (props) => {
 	const loadPaypalClientToken = () => {
 		apiFactory.post(`checkout/get-paypal-client-token`).then(
 			({ data }) => {
-				// console.log('loadPaypalClientToken', data.client_token)
+				// 
 				setPaypalClientToken(data.client_token);
 			},
 			(error) => {
-				console.log('loadPaypalClientToken error', error);
+				
 				const message = error.message || translate('generic_error');
 				// alerts.error(translate('alerts.error'), message);
 			}
@@ -504,25 +503,7 @@ const CartPaymentScreen = (props) => {
 	const doPay = async () => {
 		const { method, selected_card } = props.payment_info;
 		if (method == 'paypal') {
-			BraintreeDropIn.show({
-				clientToken: paypal_client_token,
-				orderTotal: calculateOrderTotal(),
-				googlePay: false,
-				applePay: false,
-				vaultManager: false,
-				cardDisabled: true,
-			})
-				.then((result) => {
-					console.log('BraintreeDropIn ', result);
-					finalizeCheckout(result.nonce);
-				})
-				.catch((error) => {
-					if (error.code === 'USER_CANCELLATION') {
-						console.log('BraintreeDropIn USER_CANCELLATION');
-					} else {
-						console.log('BraintreeDropIn error', error);
-					}
-				});
+			console.log('paypal')
 		} else if (method == 'apple') {
 			if (!isApplePaySupported) return;
 
@@ -665,24 +646,24 @@ const CartPaymentScreen = (props) => {
 		try {
 			await setStorageKey(KEYS.CART_CASHBACK_INPUT, null);
 		} catch (e) {
-			console.log(e);
+			
 		}
 
 		try {
 			await setStorageKey(KEYS.COUPON_CODE, null);
 		} catch (e) {
-			console.log(e);
+			
 		}
 
 		let orderData = getOrderData(paypal_nonce);
 		if (orderData == null) {
 			return;
 		}
-		console.log('orderData', orderData);
+		
 		setLoading(true);
 		props.sendOrder(orderData).then(
 			(order) => {
-				console.log('order success', order);
+				
 				let cartItems = items.filter((i) => i.vendor_id != vendorData.id);
 				props.setTmpOrder({});
 				props.clearCart(cartItems);
@@ -695,7 +676,7 @@ const CartPaymentScreen = (props) => {
 				props.navigation.navigate(RouteNames.OrderSummScreen, { order_id: order.id, isnew: true });
 			},
 			(error) => {
-				console.log('sendOrder', error);
+				
 				setLoading(false);
 
 				onOrderFailed(error);
@@ -705,12 +686,12 @@ const CartPaymentScreen = (props) => {
 
 	// const doApplepay = async () => {
 	// 	let orderData = getOrderData();
-	// 	console.log('orderData', orderData);
+	// 	
 	// 	setLoading(true);
 	// 	apiFactory
 	// 		.post('checkout/get-applepay-client-secret', orderData)
 	// 		.then(async ({ data }) => {
-	// 			console.log('get-applepay-client-secret', data.client_secret);
+	// 			
 	//
 	// 			const { error } = await presentApplePay({
 	// 				cartItems: [{ label: translate('cart.total'), amount: '' + calculateOrderTotal() }],
@@ -719,21 +700,21 @@ const CartPaymentScreen = (props) => {
 	// 			});
 	// 			if (error) {
 	// 				setLoading(false);
-	// 				console.log('presentApplePay error ', error);
+	// 				
 	// 			} else {
-	// 				console.log('do apple payment');
+	// 				
 	// 				const { error: confirmError } = await confirmApplePayPayment(data.client_secret);
 	//
 	// 				setLoading(false);
 	// 				if (confirmError) {
-	// 					console.log('confirmApplePayPayment error', confirmError);
+	// 					
 	// 				} else {
 	// 					finalizeCheckout();
 	// 				}
 	// 			}
 	// 		})
 	// 		.catch((error) => {
-	// 			console.log('doApplepay error ', error);
+	// 			
 	// 			setLoading(false);
 	//
 	// 			onOrderFailed(error);

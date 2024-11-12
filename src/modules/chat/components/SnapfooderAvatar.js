@@ -54,7 +54,7 @@ function arePropsEqual(prevProps, nextProps) {
         prevProps.birthdate != nextProps.birthdate ||
         prevProps.country != nextProps.country
     ) {
-        console.log('SnapfooderAvatar item equal : ', false)
+        
         return false;
     }
     return true;

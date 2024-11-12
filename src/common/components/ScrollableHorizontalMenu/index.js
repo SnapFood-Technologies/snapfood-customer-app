@@ -61,13 +61,13 @@ const ScrollableHorizontalMenu = ({ items = [], onItemSelected = () => { }, sele
 
 function arePropsEqual(prevProps, nextProps) {
   if (prevProps.selectedItem != nextProps.selectedItem) {
-    console.log('ScrollableHorizontalMenu item equal 1 : ', false)
+    
     return false;
   }
   let isEqual = true;
   if (prevProps.items.length != nextProps.items.length || nextProps.items.filter((x) => prevProps.items.findIndex(i => i.id != x.id) === -1).length > 0) {
     isEqual = false;
-    console.log('ScrollableHorizontalMenu item equal 2 : ', false)
+    
   }
   return true;
 }

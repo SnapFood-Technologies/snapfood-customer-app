@@ -11,7 +11,7 @@ const VendorClosedModal = ({ showModal, title, seeMenuTitle, goHome, onClose, is
         SetVisible(showModal)
     }, [showModal])
 
-    console.log('VendorClosedModal')
+    
 
     return <Modal
         testID={'modal'}
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 
 function arePropsEqual(prevProps, nextProps) {
     if (prevProps.showModal != nextProps.showModal || prevProps.title != nextProps.title) {
-        console.log('VendorClosedModal item equal : ', false)
+        
         return false;
     }
     return true;

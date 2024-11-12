@@ -60,7 +60,7 @@ const SnapfooderMarker = (props) => {
 	const source = useMemo(() => ({ uri: getImageFullURL(photo) }), [photo]);
 	// const zodiacSign = useMemo(() => findZodiacSign(moment(birthdate).toDate()), [birthdate]);
 
-	console.log('source ', source)
+	
 	return (
 		<Marker
 			// key={namewidth} 
@@ -154,7 +154,7 @@ function arePropsEqual(prevProps, nextProps) {
 		prevProps.user_id != nextProps.user_id ||
 		prevProps.is_friend != nextProps.is_friend
 	) {
-		console.log('SnapfooderMarker item equal : ', false);
+		
 		return false;
 	}
 	return true;

@@ -69,14 +69,14 @@ class UserStories extends React.Component {
         }
 
         if (this.props.forceReload != prevProps.forceReload) {
-            console.log('reload story by pull refresh')
+            
             this.getStoryListner(this.props.user.id);
         }
     }
 
     getStoryListner = (user_id) => {
         if (this.story_listener) {
-            console.log('remove old story listener')
+            
             this.story_listener()
         }
         this.setState({ isLoading: true });
@@ -155,7 +155,7 @@ class UserStories extends React.Component {
         },
             (error) => {
                 this.setState({ isLoading: false })
-                console.log('getStoryListner error', error)
+                
             });
     }
 

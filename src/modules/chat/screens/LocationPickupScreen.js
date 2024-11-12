@@ -66,7 +66,7 @@ class LocationPickupScreen extends React.Component {
         catch (error) {
             this.setState({loading: false})
             this._loading = false;
-            console.log('onShareLocation error ', error)
+            
             alerts.error('Error', extractErrorMessage(error));
         }
     };

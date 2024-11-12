@@ -19,7 +19,7 @@ const CallInfo = ({ type = 'incoming', isVideoCall = false, timer, full_name, ph
 
         return () => {
             if (_Timer.current) {
-                console.log('audio-duration timer off')
+                
                 clearInterval(_Timer.current);
                 _Timer.current = null;
             }

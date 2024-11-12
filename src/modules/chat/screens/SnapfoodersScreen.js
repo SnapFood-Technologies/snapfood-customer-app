@@ -162,7 +162,7 @@ class SnapfoodersScreen extends React.Component {
         },
             (error) => {
                 const message = error.message || translate('generic_error');
-                console.log(message);
+                
             });
     }
 
@@ -208,7 +208,7 @@ class SnapfoodersScreen extends React.Component {
     };
 
     loadNewPage = async (new_page) => {
-        console.log('loadNewPage ', new_page)
+        
         await this.setState({
             page: new_page,
         });
@@ -224,7 +224,7 @@ class SnapfoodersScreen extends React.Component {
             })
             .then(
                 (res) => {
-                    console.log('on SendInvitation', res.data);
+                    
                     if (callback) {
                         callback(true);
                     } else {

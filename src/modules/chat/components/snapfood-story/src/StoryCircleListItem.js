@@ -38,7 +38,7 @@ const StoryCircleListItem = (props) => {
 
     const size = avatarSize ?? 72;
 
-    // console.log('item.seen ', item.seen)
+    // 
     return (
         <View style={styles.container}>
             <TouchableOpacity

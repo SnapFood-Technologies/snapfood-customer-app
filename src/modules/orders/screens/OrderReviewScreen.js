@@ -36,8 +36,8 @@ const OrderReviewScreen = (props) => {
 		Keyboard.addListener('keyboardDidHide', onKeyboardDidHide);
 
 		return () => {
-			Keyboard.removeListener('keyboardDidShow', onKeyboardDidShow);
-			Keyboard.removeListener('keyboardDidHide', onKeyboardDidHide);
+			Keyboard.remove('keyboardDidShow', onKeyboardDidShow);
+			Keyboard.remove('keyboardDidHide', onKeyboardDidHide);
 		};
 	}, [])
 
@@ -129,12 +129,12 @@ const OrderReviewScreen = (props) => {
 					})
 					.catch((error) => {
 						setLoading(false);
-						console.log('getOrderDetail', error);
+						
 					});
 			},
 			(error) => {
 				setLoading(false);
-				console.log('getOrderDetail', error);
+				
 				alerts.error(translate('restaurant_details.we_are_sorry'), translate('checkout.something_is_wrong'));
 			}
 		);

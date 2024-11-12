@@ -91,7 +91,7 @@ const OrdersScreen = (props) => {
 	useEffect(() => {
 		getActivePromotions();
 		const focusListener = props.navigation.addListener('focus', () => {
-			console.log('order tab focusListener : active', pageFocusRef.current)
+			
 			setPageFocus(!pageFocusRef.current)
 		});
 
@@ -186,7 +186,7 @@ const OrdersScreen = (props) => {
 				}
 			})
 			.catch((error) => {
-				console.log('getOrders', error)
+				
 				if (opType == translate('Current')) {
 					setCurLoading(false);
 					setCurNextLoading(false);

@@ -97,7 +97,7 @@ class RegisterScreen extends React.PureComponent {
                     await this.props.setAsLoggedIn();
 
                 } catch (e) {
-                    console.log('register', e)
+                    
                     alerts.error(translate('restaurant_details.we_are_sorry'), extractErrorMessage(e));
                     this.setState({ loading: false });
                 }

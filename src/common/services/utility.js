@@ -188,7 +188,7 @@ export const convertTimeString2Hours = (time) => {
 }
 
 export const getElapsedTime = (start_time_as_mili_seconds) => {
-	// console.log('getElapsedTime ', start_time_as_mili_seconds)
+	// 
 	if (start_time_as_mili_seconds == null) {
 		return '';
 	}
@@ -197,7 +197,7 @@ export const getElapsedTime = (start_time_as_mili_seconds) => {
 	let diff_mins = moment(new Date()).diff(moment(new Date(start_time_as_mili_seconds)), 'minutes');
 	let diff_seconds = moment(new Date()).diff(moment(new Date(start_time_as_mili_seconds)), 'seconds');
 
-	// console.log('getElapsedTime ', diff_days, diff_hours, diff_mins)
+	// 
 
 	if (diff_days > 0) {
 		return `${diff_days}d`
@@ -313,7 +313,7 @@ export const compareProductItems = (product1, product2) => {
 		else if (product1.options != null && product2.options != null) {
 			let arr1 = product1.options.map(o => o.id);
 			let arr2 = product2.options.map(o => o.id);
-			console.log('========= ', arr1, arr2)
+			
 			if (JSON.stringify(arr1.sort()) === JSON.stringify(arr2.sort())) {
 				return true;
 			}

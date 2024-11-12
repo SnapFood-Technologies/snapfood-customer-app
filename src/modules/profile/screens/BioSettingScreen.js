@@ -14,7 +14,7 @@ const BioSettingScreen = (props) => {
 			.updateProfileDetails(data)
 			.then((res) => { })
 			.catch((err) => {
-				console.log('updateProfileDetails', err);
+				
 			});
 	};
 

@@ -153,12 +153,12 @@ const NewCardScreen = (props) => {
 		let this_month = new Date().getMonth() + 1;
 
 		if (year < this_year || month <= 0 || month > 12) {
-			console.log(this_year, year);
+			
 			alerts.error(translate('alerts.error'), translate('card.wrong_expiry_date'));
 			return false;
 		}
 		if (year == this_year && month < this_month) {
-			console.log(month, this_month);
+			
 			alerts.error(translate('alerts.error'), translate('card.wrong_expiry_date'));
 			return false;
 		}
@@ -174,7 +174,7 @@ const NewCardScreen = (props) => {
 			props.navigation.goBack();
 		} catch (error) {
 			setLoading(false);
-			console.log('change card Primary', error);
+			
 			// alerts.error(translate('alerts.error'), translate('checkout.something_is_wrong'));
 			props.navigation.goBack();
 		}
@@ -195,12 +195,12 @@ const NewCardScreen = (props) => {
 			})
 			.then(
 				({ data }) => {
-					console.log('onSaveCard', data.payment_method);
+					
 					changePrimary(data.payment_method);
 				},
 				(error) => {
 					setLoading(false);
-					console.log('onSaveCard error', error);
+					
 					const message = error.message || translate('generic_error');
 					alerts.error(translate('alerts.error'), message);
 				}

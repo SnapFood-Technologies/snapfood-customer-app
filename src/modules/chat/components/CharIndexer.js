@@ -29,7 +29,7 @@ const calculate = (contacts) => {
 
 const CharIndexer = ({ contacts, onScroll }) => {
 	const data = useMemo(() => calculate(contacts), [contacts]);
-	console.log('CharIndexer ', data);
+	
 	return (
 		Object.keys(data).map(key =>
 		<TouchableOpacity key={"CharIndexer_"+ key} style={[Theme.styles.col_center, styles.container]} onPress={() => {

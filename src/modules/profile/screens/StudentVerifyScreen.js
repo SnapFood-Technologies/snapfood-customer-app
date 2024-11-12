@@ -53,7 +53,7 @@ const StudentVerifyScreen = (props) => {
 				},
 				(error) => {
 					setLoaded(true);
-					console.log('loadData ', error);
+					
 				}
 			);
 	}
@@ -73,7 +73,7 @@ const StudentVerifyScreen = (props) => {
 				},
 				(error) => {
 					setLoading(false);
-					console.log('onSubmit ', error);
+					
 					const message = error.message || translate('generic_error');
 					alerts.error(translate('alerts.error'), message);
 				}

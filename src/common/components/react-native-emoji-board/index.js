@@ -49,7 +49,7 @@ const EmojiBoard = ({
     tabBarStyle = {},
     labelStyle = {}
 }) => {
-    console.log('emoji board ')
+    
     // emoji board height only for android
     const containerHeight = numCols * 40 + 40 + 60;
     const animationOffset = containerHeight + 100;
@@ -176,7 +176,7 @@ EmojiBoard.propTypes = {
 
 function arePropsEqual(prevProps, nextProps) {
     if (prevProps.showBoard != nextProps.showBoard ) {
-        console.log('EmojiBoard item equal : ', false)
+        
         return false;
     }
     return true;

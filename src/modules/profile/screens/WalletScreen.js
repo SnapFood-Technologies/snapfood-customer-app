@@ -100,7 +100,7 @@ const WalletScreen = (props) => {
 			},
 				(error) => {
 					setLoading(false);
-					console.log('loadCashback error', error)
+					
 					const message = error.message || translate('generic_error');
 					alerts.error(translate('alerts.error'), message);
 				});
@@ -131,13 +131,13 @@ const WalletScreen = (props) => {
 							<Text style={styles.title}>{translate('tooltip.member_type_platinium')}</Text>
 						)}
 						{props.user.user_category.name == "Silver" && (
-							<Text style={styles.description}>{translate('tooltip.silver')} </Text>
+							<Text style={styles.description}>{translate('tooltip.silver').replace('X%', `${props.user.user_category.cashback_percentage}%`)} </Text>
 						)}
 						{props.user.user_category.name == "Gold" && (
-							<Text style={styles.description}>{translate('tooltip.gold')} </Text>
+							<Text style={styles.description}>{translate('tooltip.gold').replace('X%', `${props.user.user_category.cashback_percentage}%`)} </Text>
 						)}
 						{props.user.user_category.name == "Platinum" && (
-							<Text style={styles.description}>{translate('tooltip.platinium')} </Text>
+							<Text style={styles.description}>{translate('tooltip.platinium').replace('X%', `${props.user.user_category.cashback_percentage}%`)} </Text>
 						)}
 						{props.user.user_category.name == "Silver" && (
 							<Text style={styles.description}>{translate('tooltip.silver_2')} </Text>
@@ -188,13 +188,13 @@ const WalletScreen = (props) => {
 							<Text style={styles.title}>{translate('tooltip.next_member_type_platinium')}</Text>
 						)}
 						{props.user.user_category.next_category.name == "Silver" && (
-							<Text style={styles.description}>{translate('tooltip.silver')} </Text>
+							<Text style={styles.description}>{translate('tooltip.silver').replace('X%', `${props.user.next_category.cashback_percentage}%`)} </Text>
 						)}
 						{props.user.user_category.next_category.name == "Gold" && (
-							<Text style={styles.description}>{translate('tooltip.gold')} </Text>
+							<Text style={styles.description}>{translate('tooltip.gold').replace('X%', `${props.user.next_category.cashback_percentage}%`)} </Text>
 						)}
 						{props.user.user_category.next_category.name == "Platinum" && (
-							<Text style={styles.description}>{translate('tooltip.platinium')} </Text>
+							<Text style={styles.description}>{translate('tooltip.platinium').replace('X%', `${props.user.next_category.cashback_percentage}%`)} </Text>
 						)}
 						{props.user.user_category.next_category.name == "Silver" && (
 							<Text style={styles.description}>{translate('tooltip.silver_2')} </Text>
@@ -231,7 +231,7 @@ const WalletScreen = (props) => {
 	}
 
 	const _renderAvatarView = () => {
-		console.log('props.user.user_category ', props.user.user_category)
+		
 
 		const getCurOrders = () => {
 			return props.user.user_category.order_count - props.user.user_category.orders;

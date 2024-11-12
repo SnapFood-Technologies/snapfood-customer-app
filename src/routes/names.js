@@ -70,8 +70,6 @@ export default {
 	LocationSetupScreen: 'LocationSetupScreen',
 	FilterScreen: 'FilterScreen',
 	VendorScreen: 'VendorScreen',
-	VendorVoiceOrderScreen: 'VendorVoiceOrderScreen',
-	VendorVoiceFaqScreen: 'VendorVoiceFaqScreen',
 	VendorLocationScreen: 'VendorLocationScreen',
 	FoodScreen: 'FoodScreen',
 	PastOrderScreen: 'PastOrderScreen',

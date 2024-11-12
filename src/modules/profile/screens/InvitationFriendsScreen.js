@@ -30,7 +30,6 @@ class InvitationFriendsScreen extends React.Component {
 		this.getAllFriends();
 
 		this.removefocusListener = this.props.navigation.addListener('focus', () => {
-			console.log('focus listener : getAllFriends');
 			this.getAllFriends();
 		});
 
@@ -42,7 +41,7 @@ class InvitationFriendsScreen extends React.Component {
 					this.setState({ contactsAccessPermission: false });
 				}
 			})
-			.catch((e) => console.log(e));
+			.catch((e) => {});
 	}
 
 	componentWillUnmount() {
@@ -61,7 +60,6 @@ class InvitationFriendsScreen extends React.Component {
 			})
 			.catch((err) => {
 				this.setState({ isLoading: false });
-				console.log('getFriends', err);
 			});
 	};
 
@@ -94,7 +92,6 @@ class InvitationFriendsScreen extends React.Component {
 			<View style={styles.titleContainer}>
 				<BackButton
 					onPress={() => {
-						console.log(this.props.navigation);
 						this.goBack();
 					}}
 				/>
@@ -211,4 +208,6 @@ const mapStateToProps = ({ app, chat }) => ({
 	user: app.user,
 });
 
-export default connect(mapStateToProps, { getFriends, setInvitationPickedUser })(withNavigation(InvitationFriendsScreen));
+export default connect(mapStateToProps, { getFriends, setInvitationPickedUser })(
+	withNavigation(InvitationFriendsScreen)
+);

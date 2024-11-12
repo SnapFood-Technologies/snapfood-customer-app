@@ -54,7 +54,7 @@ const VendorInfoLocItem = ({ data, onSelect, style }) => {
                     let open_time = moment(data.vendor_opening_days[foundIndex].time_open, 'HH:mm:ss');
                     let close_time = moment(data.vendor_opening_days[foundIndex].time_close, 'HH:mm:ss');
 
-                    console.log('--------------------------- ', data.is_open, current_time.format('HH:mm:ss'), open_time.format('HH:mm:ss'), close_time.format('HH:mm:ss'))
+                    
                     if (current_time.isSameOrBefore(open_time)) {
                         return translate('vendor_profile.closed') + '! ' + translate('vendor_profile.open_at') + ' ' + open_time.format('H:mm a');
                     }

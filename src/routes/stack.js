@@ -28,8 +28,6 @@ import ReferralCodeInputScreen from '../modules/tour/screens/ReferralCodeInputSc
 import HomeTabs from './home';
 import FilterScreen from '../modules/home/screens/FilterScreen';
 import VendorScreen from '../modules/home/screens/VendorScreen';
-import VendorVoiceOrderScreen from '../modules/home/screens/VendorVoiceOrderScreen';
-import VendorVoiceFaqScreen from '../modules/home/screens/VoiceOrderFaqs';
 import VendorLocationScreen from '../modules/home/screens/VendorLocationScreen';
 import FoodScreen from '../modules/home/screens/FoodScreen';
 import PastOrderScreen from '../modules/home/screens/PastOrderScreen';
@@ -71,7 +69,7 @@ import GalleryScreen from '../modules/profile/screens/GalleryScreen';
 import GallerySettingScreen from '../modules/profile/screens/GallerySettingScreen';
 import ProfileInterestsScreen from '../modules/profile/screens/InterestsScreen';
 import InterestSettingScreen from '../modules/profile/screens/InterestSettingScreen';
-import BioSettingScreen from '../modules/profile/screens/BioSettingScreen'
+import BioSettingScreen from '../modules/profile/screens/BioSettingScreen';
 import GetPromoScreen from '../modules/profile/screens/GetPromoScreen';
 import PromosCalendarScreen from '../modules/profile/screens/PromosCalendarScreen';
 import ScanQRcodeScreen from '../modules/profile/screens/ScanQRcodeScreen';
@@ -281,7 +279,6 @@ function EditNameRoute() {
 	);
 }
 
-
 function ReferralCodeInputRoute() {
 	return (
 		<NavigationContainer>
@@ -298,7 +295,10 @@ function ReferralCodeInputRoute() {
 				}}
 				initialRouteName={RouteNames.ReferralCodeInputScreen}
 			>
-				<ReferralCodeStack.Screen name={RouteNames.ReferralCodeInputScreen} component={ReferralCodeInputScreen} />
+				<ReferralCodeStack.Screen
+					name={RouteNames.ReferralCodeInputScreen}
+					component={ReferralCodeInputScreen}
+				/>
 			</ReferralCodeStack.Navigator>
 		</NavigationContainer>
 	);
@@ -322,7 +322,11 @@ function MemberRoute() {
 			>
 				<MemberStack.Screen name={RouteNames.BottomTabs} component={HomeTabs} />
 				<MemberStack.Screen name={RouteNames.LocationSetupScreen} component={LocationSetupScreen} />
-				<MemberStack.Screen options={{ gestureEnabled: false }} name={RouteNames.FilterScreen} component={FilterScreen} />
+				<MemberStack.Screen
+					options={{ gestureEnabled: false }}
+					name={RouteNames.FilterScreen}
+					component={FilterScreen}
+				/>
 				<MemberStack.Screen
 					name={RouteNames.VendorScreen}
 					component={VendorScreen}
@@ -332,16 +336,6 @@ function MemberRoute() {
 						},
 					}}
 				/>
-				<MemberStack.Screen
-					name={RouteNames.VendorVoiceOrderScreen}
-					component={VendorVoiceOrderScreen}
-					options={{
-						gestureResponseDistance: {
-							horizontal: 40,
-						},
-					}}
-				/>
-				<MemberStack.Screen name={RouteNames.VendorVoiceFaqScreen} component={VendorVoiceFaqScreen} />
 				<MemberStack.Screen name={RouteNames.VendorLocationScreen} component={VendorLocationScreen} />
 				<MemberStack.Screen name={RouteNames.FoodScreen} component={FoodScreen} />
 				<MemberStack.Screen name={RouteNames.PastOrderScreen} component={PastOrderScreen} />
@@ -476,17 +470,16 @@ function MemberRoute() {
 				<MemberStack.Screen name={RouteNames.ShareChatScreen} component={ShareChatScreen} />
 				<MemberStack.Screen name={RouteNames.NewGroupScreen} component={NewGroupScreen} />
 				<MemberStack.Screen name={RouteNames.InvitationsScreen} component={InvitationsScreen} />
-				<MemberStack.Screen name={RouteNames.SnapfoodMapScreen} component={SnapfoodMapScreen}
+				<MemberStack.Screen
+					name={RouteNames.SnapfoodMapScreen}
+					component={SnapfoodMapScreen}
 					options={{
 						gestureResponseDistance: {
 							horizontal: 20,
 						},
 					}}
 				/>
-				<MemberStack.Screen
-					name={RouteNames.SnapfoodMapSettingsScreen}
-					component={SnapfoodMapSettingsScreen}
-				/>
+				<MemberStack.Screen name={RouteNames.SnapfoodMapSettingsScreen} component={SnapfoodMapSettingsScreen} />
 				<MemberStack.Screen name={RouteNames.StorySettingScreen} component={StorySettingScreen} />
 				<MemberStack.Screen name={RouteNames.SnapfoodersScreen} component={SnapfoodersScreen} />
 				<MemberStack.Screen name={RouteNames.MyFriendsScreen} component={MyFriendsScreen} />
@@ -508,7 +501,6 @@ function MemberRoute() {
 				<MemberStack.Screen name={RouteNames.ChooseFriendsScreen} component={ChooseFriendsScreen} />
 				<MemberStack.Screen name={RouteNames.StoryPreviewScreen} component={StoryPreviewScreen} />
 				<MemberStack.Screen name={RouteNames.GiftUserPickScreen} component={GiftUserPickScreen} />
-
 
 				<MemberStack.Screen
 					name={RouteNames.ForwardScreen}
@@ -566,43 +558,50 @@ class RootStack extends React.Component {
 	}
 
 	render() {
-		const { user, isLoggedIn, seenOnboard, hasVerifiedPhone, needLogin, hasLocation, asked_contacts_permission, asked_interests,
-			skipReferralCodeInputView, referralsRewardsSetting, systemSettings } = this.props;
-
-		console.log(
-			user.phone,
+		const {
+			user,
 			isLoggedIn,
 			seenOnboard,
 			hasVerifiedPhone,
 			needLogin,
 			hasLocation,
 			asked_contacts_permission,
-			asked_interests
-		);
+			asked_interests,
+			skipReferralCodeInputView,
+			referralsRewardsSetting,
+			systemSettings,
+		} = this.props;
+
+		user.phone,
+			isLoggedIn,
+			seenOnboard,
+			hasVerifiedPhone,
+			needLogin,
+			hasLocation,
+			asked_contacts_permission,
+			asked_interests;
+
 		if (!isLoggedIn && seenOnboard == false) {
 			return <OnBoardRoute />;
 		} else if (!isLoggedIn && seenOnboard == true && needLogin == true) {
 			return <GuestRoute />;
-		}
-		else if (
-			isLoggedIn && !hasVerifiedPhone &&
+		} else if (
+			isLoggedIn &&
+			!hasVerifiedPhone &&
 			referralsRewardsSetting.show_referral_module == true &&
 			systemSettings?.enable_referral_input == 1 &&
-			(user.user_referral_id == null) &&
+			user.user_referral_id == null &&
 			!skipReferralCodeInputView &&
 			(user.apple_id != null || user.google_id != null || user.facebook_id != null)
 		) {
 			return <ReferralCodeInputRoute />;
-		}
-		else if (isLoggedIn && !hasVerifiedPhone) {
+		} else if (isLoggedIn && !hasVerifiedPhone) {
 			return <PhoneVerifyRoute />;
 		} else if (!asked_contacts_permission) {
 			return <ContactsRoute />;
-		}
-		else if (systemSettings?.enable_interests == 1 && !asked_interests) {
+		} else if (systemSettings?.enable_interests == 1 && !asked_interests) {
 			return <InterestsScreen />;
-		}
-		else if (!hasLocation) {
+		} else if (!hasLocation) {
 			return <SetupLocationRoute />;
 		} else if (
 			isLoggedIn &&

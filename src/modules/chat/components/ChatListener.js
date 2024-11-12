@@ -8,7 +8,7 @@ import apiFactory from '../../../common/services/apiFactory';
 let channel_collection = FireStore.collection('channels');
 
 const ChatListener = (props) => {
-	const { setAllChannels, setChannelsLoading,setNewInvites, userId, activeRoute } = props;
+	const { setAllChannels, setChannelsLoading, setNewInvites, userId, activeRoute } = props;
 	const chatchannel_unlistener = useRef(null);
 	const mounted = useRef(false);
 
@@ -40,28 +40,45 @@ const ChatListener = (props) => {
 				if (mounted?.current) setNewInvites(res_invitations);
 			},
 			(error) => {
-				console.log('getNewInvites error ', error)
 				// const message = error.message || translate('generic_error');
 				// alerts.error(translate('alerts.error'), message);
 			}
 		);
 	};
 
-	const onUnMount = () => {
-		if (chatchannel_unlistener?.current) chatchannel_unlistener.current();
-	};
+	// const onUnMount = () => {
+	// 	if (chatchannel_unlistener?.current) chatchannel_unlistener.current();
+	// };
+
+	// const onMount = () => {
+	// 	mounted.current = true;
+	// 	getChatChannelsListner();
+	// 	getNewInvites();
+	// 	return onUnMount;
+	// };
+
+	// useEffect(onMount, []);
+	// useEffect(getNewInvites, [activeRoute]);
+	// useEffect(getChatChannelsListner, [userId]);
+
+	useEffect(() => {
+		getNewInvites();
+	}, [activeRoute]);
 
 
-	const onMount = () => {
+	useEffect(() => {
+		getChatChannelsListner();
+	}, [userId]);
+
+	useEffect(() => {
 		mounted.current = true;
 		getChatChannelsListner();
 		getNewInvites();
-		return onUnMount;
-	};
 
-	useEffect(onMount, []);
-	useEffect(getNewInvites, [activeRoute]);
-	useEffect(getChatChannelsListner, [userId]);
+		return () => {
+			if (chatchannel_unlistener?.current) chatchannel_unlistener.current();
+		};
+	}, []);
 
 	return null;
 };

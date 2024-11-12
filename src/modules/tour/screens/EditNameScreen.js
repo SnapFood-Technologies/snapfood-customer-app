@@ -46,7 +46,7 @@ class EditNameScreen extends React.Component {
             await this.props.updateProfileDetails(user);
             // this.setState({ loading: false });
         } catch (error) {
-            console.log('update error', error)
+            
             this.setState({ loading: false });
             const message = error.message || translate('checkout.something_is_wrong');
             return alerts.error(translate('attention'), translate(message));

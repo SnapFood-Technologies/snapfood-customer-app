@@ -56,7 +56,7 @@ const SplitOrderScreen = (props) => {
 				setManualPrices(prices);
 			},
 			(error) => {
-				console.log('loadCartSplit error', error);
+				
 				setSplitUsers([]);
 			}
 		);

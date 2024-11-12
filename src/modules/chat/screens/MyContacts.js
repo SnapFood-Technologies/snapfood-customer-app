@@ -81,7 +81,7 @@ class MyContacts extends React.Component {
 			})
 			.then(
 				(res) => {
-					console.log('on SendInvitation', res.data);
+					
 					if (callback) {
 						callback(true);
 					}
@@ -159,7 +159,7 @@ class MyContacts extends React.Component {
 	getContacts = () => {
 		if (Platform.OS == 'android') {
 			PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS).then((res) => {
-				console.log('PermissionsAndroid.request ', res);
+				
 				if (res == 'granted') {
 					this.loadContacts();
 				} else {
@@ -224,7 +224,7 @@ class MyContacts extends React.Component {
 			})
 			.catch((err) => {
 				this.setState({ contacts_loaded: true, contacts_loading: false });
-				console.log('loadContacts ', err);
+				
 			});
 	};
 
@@ -311,7 +311,7 @@ class MyContacts extends React.Component {
 									try {
 										this.contacts_scroller.scrollToOffset({ animated: true, offset: offset });
 									} catch (error) {
-										console.log('contacts_scroller ', error);
+										
 									}
 								}}
 							/>

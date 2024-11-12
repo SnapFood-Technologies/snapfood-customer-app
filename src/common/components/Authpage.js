@@ -11,8 +11,8 @@ const Authpage = memo(({ onKeyboardDidShow, onKeyboardDidHide, children }) => {
 		Keyboard.addListener('keyboardDidHide', onKeyboardDidHide);
 		 
 		return () => {
-			Keyboard.removeListener('keyboardDidShow', onKeyboardDidShow);
-			Keyboard.removeListener('keyboardDidHide', onKeyboardDidHide);
+			Keyboard.remove('keyboardDidShow', onKeyboardDidShow);
+			Keyboard.remove('keyboardDidHide', onKeyboardDidHide);
 		};
     }, [])
   

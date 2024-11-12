@@ -55,7 +55,7 @@ export const startCall = async (user, partner, isVideoCall = false) => {
         return null;
     }
     catch (error) {
-        console.log('startCall error ', error)
+        
         return null;
     }
 };
@@ -119,7 +119,7 @@ export const getCallHistory = async (user_id, partner_id) => {
         return history;
     }
     catch (error) {
-        console.log('getCallHistory', error)
+        
         return [];
     }
 }
@@ -136,7 +136,7 @@ export const seenCallChannel = async (channelData, user_id) => {
         return false;
     }
     catch (error) {
-        console.log('seenCallChannel', error)
+        
         return false;
     }
 }
@@ -162,7 +162,7 @@ export const deleteUserCallChannels = async (user_id) => {
         return true;
     }
     catch (error) {
-        console.log('deleteUserCallChannels', error)
+        
         return false;
     }
 }

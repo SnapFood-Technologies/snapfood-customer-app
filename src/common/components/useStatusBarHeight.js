@@ -1,23 +1,31 @@
 import { useState, useEffect } from 'react';
-import { NativeModules, StatusBarIOS, Platform, StatusBar } from 'react-native';
+import { NativeModules, Platform, StatusBar, Dimensions } from 'react-native';
 
 const { StatusBarManager } = NativeModules;
 
 export default function useStatusBarHeight() {
-	const [height, setHeight] = useState(StatusBar.currentHeight || 20);
+	const [height, setHeight] = useState(0);
 
 	useEffect(() => {
-		if (Platform.OS !== 'ios'){
-			setHeight(20);
-			return;
+		if (Platform.OS === 'ios') {
+			const getStatusBarHeight = () => {
+				StatusBarManager.getHeight((statusBarFrameData) => {
+					setHeight(statusBarFrameData.height);
+				});
+			};
+
+			getStatusBarHeight();
+
+			// Listen for device orientation changes
+			const subscription = Dimensions.addEventListener('change', getStatusBarHeight);
+
+			return () => {
+				subscription.remove();
+			};
+		} else {
+			// For Android, we can directly use StatusBar.currentHeight
+			setHeight(StatusBar.currentHeight || 0);
 		}
-
-		StatusBarManager.getHeight(({ height }) => setHeight(height));
-		const listener = StatusBarIOS.addListener('statusBarFrameWillChange', (data) => {
-			setHeight(data?.statusBarData?.frame?.height || 20);
-		});
-
-		return () => listener.remove();
 	}, []);
 
 	return height;

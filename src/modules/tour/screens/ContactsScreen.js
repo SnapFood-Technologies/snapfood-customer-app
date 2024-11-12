@@ -116,7 +116,7 @@ class ContactsScreen extends React.Component {
 			})
 			.catch((err) => {
 				this.setState({ contacts_loaded: true, contacts_loading: false });
-				console.log('loadContacts ', err);
+				
 			});
 	};
 
@@ -184,7 +184,7 @@ class ContactsScreen extends React.Component {
 		try {
 			await setStorageKey(KEYS.ASKED_CONTACTS_PERMISSION, true);
 		} catch (e) {
-			console.log(e);
+			
 		}
 		this.props.setAskedContactsPerm(true);
 	}
@@ -204,7 +204,7 @@ class ContactsScreen extends React.Component {
 								try {
 									this.contacts_scroller.scrollToOffset({ animated: true, offset: offset });
 								} catch (error) {
-									console.log('contacts_scroller ', error)
+									
 								}
 							}}
 						/>

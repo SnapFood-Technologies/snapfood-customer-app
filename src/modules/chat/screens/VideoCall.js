@@ -188,7 +188,7 @@ class VideoCallScreen extends Component {
 
       return true;
     } catch (error) {
-      console.log('_initEngine error ', error);
+      
       return false;
     }
   };
@@ -346,7 +346,7 @@ class VideoCallScreen extends Component {
     if (channelId) {
       this._currentStatus = CALL_STATUS.calling;
       getAgoraToken(channelId, this.props.user.id).then(({ data }) => {
-        console.log('getAgoraToken ', channelId, data.token)
+        
         this._joinChannel(channelId, data.token);
       })
         .catch(err => {
@@ -424,7 +424,7 @@ class VideoCallScreen extends Component {
         }
       },
         (error) => {
-          console.log('partner_listener error', error)
+          
         });
   }
 
@@ -494,7 +494,7 @@ class VideoCallScreen extends Component {
   }
 
   onError = (err) => {
-    console.log('on error : ', err);
+    
     this.endCall();
     alerts.error(translate('alerts.error'), translate('video_call.something_is_wrong'))
   }

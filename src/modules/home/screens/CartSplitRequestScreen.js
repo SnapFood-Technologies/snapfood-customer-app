@@ -44,7 +44,7 @@ const CartSplitRequestScreen = (props) => {
 				setSplitData(data.data);
 			},
 			(error) => {
-				console.log('loadSummaryCartSplit error', error);
+				
 				setSplitData(null);
 			}
 		);
@@ -68,7 +68,7 @@ const CartSplitRequestScreen = (props) => {
 				setCards(data || []);
 			},
 				(error) => {
-					console.log('load Payment Methods error', error)
+					
 				});
 	}
 
@@ -79,7 +79,7 @@ const CartSplitRequestScreen = (props) => {
 			})
 		}
 		catch (error) {
-			console.log('on changePrimary', error)
+			
 			alerts.error(translate('alerts.error'), translate('checkout.something_is_wrong'));
 		}
 	}
@@ -109,7 +109,7 @@ const CartSplitRequestScreen = (props) => {
 				});
 			},
 			(error) => {
-				console.log('onReplyRequest error', error);
+				
 				setIsRejecting(false);
 				setIsAccepting(false);
 				const message = error.message || translate('generic_error');

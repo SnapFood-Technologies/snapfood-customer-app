@@ -16,7 +16,7 @@ import { isEmpty } from '../../../common/services/utility';
 
 const ShopInfoView = ({ data, handover_method, style, language }) => {
 
-    console.log('ShopInfoView',);
+    
 
     const getTags = () => {
         let tags_str = language == 'en' ? data.tags_en : data.tags;

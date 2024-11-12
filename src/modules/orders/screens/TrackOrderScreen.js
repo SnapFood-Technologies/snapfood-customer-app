@@ -64,19 +64,19 @@ class TrackOrderScreen extends React.Component {
 
         this.rider_location_listener = tracking_collection.doc(rider_unique_id).onSnapshot((doc) => {
             if (doc.data()) {
-                console.log('rider_location_listener ', doc.data())
+                
                 this.setState({ rider_lat: parseFloat(doc.data().lat), rider_lon: parseFloat(doc.data().lng) });
                 this.getEstimated(parseFloat(doc.data().lat), parseFloat(doc.data().lng));
             }
         },
             (error) => {
-                console.log('rider_location_listener error', error)
+                
             });
     }
 
     componentDidUpdate = (prevProps, prevState) => {
         // if (this.state.region_coords != null && this.mapView != null) { 
-        //     console.log('componentDidUpdate this.mapView.fitToCoordinates')
+        //     
         //     setTimeout(()=>{
         //         this.mapView.fitToCoordinates(this.state.region_coords, {
         //             edgePadding: {
@@ -95,14 +95,14 @@ class TrackOrderScreen extends React.Component {
         const { latitude, longitude } = this.props.coordinates;
         apiFactory.get(`orders/get-rider-info?order_id=${order.id}&vendor_id=${order.vendor_id}&lat=${latitude}&lng=${longitude}`)
             .then(({ data }) => {
-                console.log('data.order.rider_info ', data.order.rider_info)
+                
                 this.setState({ rider: data.order.rider_info, maximum_delivery_time: data.order.maximum_delivery_time });
                 if (data.order.rider_info) {
                     this.getRiderLocationListner(data.order.rider_info.unique_id)
                 }
             },
                 (error) => {
-                    console.log('get Rider Info error ', error)
+                    
                     const message = error.message || translate('generic_error');
                     // alerts.error(translate('alerts.error'), message);
                 });
@@ -152,7 +152,7 @@ class TrackOrderScreen extends React.Component {
             }
 
         } catch (error) {
-            console.log('calculate DistanceDuration ', error)
+            
         }
 
         return { distance: 0, duration: 0 };
@@ -213,7 +213,7 @@ class TrackOrderScreen extends React.Component {
                 });
             })
             .catch((error) => {
-                console.log('send-poke-notification error ', error)
+                
                 const message = error.message || translate('generic_error');
                 alerts.error(translate('alerts.error'), message);
             });
@@ -315,8 +315,8 @@ class TrackOrderScreen extends React.Component {
                         strokeWidth={3}
                         strokeColor={Theme.colors.cyan2}// "hotpink"
                         onReady={result => {
-                            // console.log(`Distance: ${result.distance} km`)
-                            // console.log(`Duration: ${result.duration} min.`)
+                            // 
+                            // 
                             // this.setState({ distance: result.distance, duration: result.duration, region_coords: result.coordinates })
                             // setTimeout(()=>{
                             //     this.mapView.fitToCoordinates(result.coordinates, {
@@ -360,8 +360,8 @@ class TrackOrderScreen extends React.Component {
                         strokeWidth={3}
                         strokeColor={Theme.colors.cyan2}// "hotpink"
                         onReady={result => {
-                            // console.log(`Distance: ${result.distance} km`)
-                            // console.log(`Duration: ${result.duration} min.`)
+                            // 
+                            // 
                             // this.setState({ distance: result.distance, duration: result.duration, region_coords: result.coordinates })
                             // setTimeout(()=>{
                             //     this.mapView.fitToCoordinates(result.coordinates, {

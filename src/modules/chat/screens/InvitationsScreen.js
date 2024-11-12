@@ -66,7 +66,7 @@ class InvitationsScreen extends React.Component {
             this.setState({ inviteLoading: true })
         }
         apiFactory.get(`users/invitations`).then(({ data }) => {
-            console.log('ppp ', data['invitations'])
+            
             const res_invitations = data['invitations'];
             if (this._isMounted == true) {
                 this.setState({
@@ -103,7 +103,7 @@ class InvitationsScreen extends React.Component {
             }
         })
             .catch(err => {
-                console.log('getFriends', err)
+                
                 this.setState({ sentLoading: false })
             })
     };

@@ -29,7 +29,7 @@ const InvitationHistScreen = (props) => {
 		getSentInvitations()
 		getReceivedInvitations()
 		return () => {
-			console.log("InvitationHist Screen  unmount")
+			
 			_isMounted.current = false;
 		};
 	}, [])
@@ -46,7 +46,7 @@ const InvitationHistScreen = (props) => {
 			.catch(err => {
 				if (_isMounted.current == true) {
 					setLoadingSent(false)
-					console.log('err getSentInvitations', err)
+					
 				}
 			});
 	};
@@ -63,7 +63,7 @@ const InvitationHistScreen = (props) => {
 			.catch(err => {
 				if (_isMounted.current == true) {
 					setLoadingReceived(false)
-					console.log('err getReceivedInvitations', err)
+					
 				}
 			});
 	};

@@ -65,7 +65,7 @@ export const getFakeBadgeAvailabilty =  async () => {
     } catch (error) { }
 
     try {
-        console.log('getFakeBadgeAvailabilty ', available )
+        
         const last_time = await getStorageKey(KEYS.FAKE_BADGE_LAST_TIME)
         if (available &&  new Date().getTime() > (parseInt(last_time) + (24 * 60 * 60 * 1000)) ) {
             return true

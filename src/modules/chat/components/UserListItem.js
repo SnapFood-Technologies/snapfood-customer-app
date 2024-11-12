@@ -13,15 +13,15 @@ const UserListItem = ({ full_name, phoneNumber, contact_phone, photo, invite_sta
 		if (onRightBtnPress) {
 			onRightBtnPress()
 		}
-		console.log('contact_phone ', contact_phone)
+		
 		if (isEmpty(contact_phone) != true && isSigned != true) {
 			apiFactory.post(`users/invite_contact_phone`, {
 				phone: ('' + contact_phone)
 			}).then(({ data }) => {
-				console.log('check Friend', data.success)
+				
 			},
 				(error) => {
-					console.log(error);
+					
 				});
 		}
 	}

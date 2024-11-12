@@ -229,7 +229,7 @@ export const reOrder = (order, restaurant) => (dispatch, getState) => {
 							updated_at : o.updated_at,
 						}));
 
-						console.log('---------------- options ' , options)
+						
 						cart_items.push({
 							...productItem,
 							quantity : cartProducts[i].quantity,

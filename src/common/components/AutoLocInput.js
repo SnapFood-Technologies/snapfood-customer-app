@@ -29,7 +29,7 @@ const AutoLocInput = ({ onChange, language, address_text, forceUpdate, left_icon
     }, [address_text, forceUpdate])
 
     const onChangeInput = (location, address) => {
-        console.log('onchange input', location, address)
+        
         onChange(location, address)
         if (autoMapInput != null && autoMapInput.current != null) {
             let text = address.street || '';
@@ -47,11 +47,11 @@ const AutoLocInput = ({ onChange, language, address_text, forceUpdate, left_icon
         try {
             let hasPermission = await checkLocationPermission();
             if (hasPermission) {
-                console.log('checkLocationPermission : True, get current position')
+                
                 getCurrentPosition()
             }
             else {
-                console.log('checkLocationPermission : False')
+                
                 requestLocationPermission()
                     .catch(() => {
                         alerts.error(translate('attention'), translate('locationUnavailable'));
@@ -59,7 +59,7 @@ const AutoLocInput = ({ onChange, language, address_text, forceUpdate, left_icon
             }
         }
         catch (error) {
-            console.log('checkLocationPermission : ', error)
+            
             alerts.error(translate('attention'), translate('locationUnavailable'));
         }
     }
@@ -67,11 +67,11 @@ const AutoLocInput = ({ onChange, language, address_text, forceUpdate, left_icon
     const getCurrentPosition = async () => {
         try {
             const location = await GetLocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 15000, });
-            console.log("searched Location is:")
-            console.log(location)
+            
+            
             if (location) {
                 const address = await getAddressByCoordinates(location);
-                console.log(address)
+                
                 if (address) {
                     onChangeInput(location, address);
                 }
@@ -107,8 +107,8 @@ const AutoLocInput = ({ onChange, language, address_text, forceUpdate, left_icon
                 let country = '';
                 let building = '';
                 for (let i = 0; i < details.address_components.length; i++) {
-                    // console.log(details.address_components[i].types, details.address_components[i].long_name)
-                    // console.log('details.geometry.location', details.geometry.location)
+                    // 
+                    // 
                     if (
                         details.address_components[i].types.includes('neighborhood') ||
                         details.address_components[i].types.includes('route')

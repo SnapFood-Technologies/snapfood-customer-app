@@ -56,10 +56,8 @@ import { setVendorCart, updateCartItems, getDiscount, setDeliveryInfoCart } from
 import PromoInfoModal from '../../../common/components/modals/PromoInfoModal';
 import AppTooltip from '../../../common/components/AppTooltip';
 import { mixpanel } from '../../../AppRoot';
-import MicrophoneIcon from '../../../common/assets/svgs/msg/microphone.svg';
 
 function getSwiperHeight(cur_tab, vendor_data, latest_offers, all_offers, scrollChanged) {
-	console.log('getSwiperHeight called!');
 	const FoodCatHeight = 42;
 	const FoodItemHeight = 144;
 	const GroceryItemHeight = 192;
@@ -232,7 +230,6 @@ const VendorScreen = (props) => {
 		}, 60000);
 
 		return () => {
-			console.log('vendor screen unmount');
 			props.goActiveScreenFromPush({
 				isVendorVisible: false,
 			});
@@ -253,7 +250,7 @@ const VendorScreen = (props) => {
 			let banners = [];
 			let titles = [];
 			let descs = [];
-			// console.log('banners', props.vendorData.banners)
+			//
 			props.vendorData.banners.map((banner) => {
 				banners.push({ source: { uri: Config.IMG_BASE_URL + banner.image_path } });
 				titles.push(banner.title);
@@ -267,7 +264,6 @@ const VendorScreen = (props) => {
 		loadOffer(props.vendorData.id);
 		loadPastOrders(props.vendorData.id);
 
-		console.log('props.vendorData.order_method ', props.vendorData.order_method);
 		if (props.vendorData.order_method != null) {
 			let supported_order_methods = props.vendorData.order_method.split('-');
 			if (supported_order_methods.length > 0) {
@@ -285,15 +281,19 @@ const VendorScreen = (props) => {
 	};
 
 	useEffect(() => {
-		console.log('================================props.cartItems================================');
 		let items = props.cartItems.filter((i) => i.vendor_id == props.vendorData.id && i.quantity > 0);
 		setVendorCartItems(items);
 	}, [props.cartItems]);
 
 	useEffect(() => {
-		console.log('tmpFoodData.isFav');
 		onProductFavChange(props.tmpFoodData);
 	}, [props.tmpFoodData.isFav]);
+
+	useEffect(() => {
+		return () => {
+			Toast.hide();
+		};
+	}, []);
 
 	const loadVendorDetails = async (id, order_method, showClosedModal) => {
 		if (id == null) {
@@ -327,8 +327,9 @@ const VendorScreen = (props) => {
 
 								Toast.show({
 									type: 'vendorCloseToast',
-									visibilityTime: 20000,
+									visibilityTime: 15000,
 									position: 'top',
+									autoHide: true,
 									topOffset: 42,
 									text1: toast_message.replace('{mins}', data.minutes_before_close),
 								});
@@ -362,7 +363,6 @@ const VendorScreen = (props) => {
 			})
 			.catch((error) => {
 				showLoading(false);
-				console.log('get Vendor Detail', error);
 				alerts.error(translate('restaurant_details.we_are_sorry'), extractErrorMessage(error));
 			});
 	};
@@ -375,9 +375,7 @@ const VendorScreen = (props) => {
 				}
 				setPastOrders(data);
 			})
-			.catch((error) => {
-				console.log('getPastOrders err', error);
-			});
+			.catch((error) => {});
 	};
 
 	const loadOffer = (vendor_id) => {
@@ -389,9 +387,7 @@ const VendorScreen = (props) => {
 					setLatestOffers([].concat(latest_discounts.current, latest_coupons.current));
 				}
 			})
-			.catch((err) => {
-				console.log('load latest Offer', err);
-			});
+			.catch((err) => {});
 
 		props
 			.getDiscount(vendor_id)
@@ -401,9 +397,7 @@ const VendorScreen = (props) => {
 					setAllOffers([].concat(all_discounts.current, all_coupons.current));
 				}
 			})
-			.catch((err) => {
-				console.log('load all Offer', err);
-			});
+			.catch((err) => {});
 
 		apiFactory.get(`/coupons?&vendor_id=${vendor_id}&order_by=time`).then(
 			async ({ data }) => {
@@ -412,9 +406,7 @@ const VendorScreen = (props) => {
 					setLatestOffers([].concat(latest_discounts.current, latest_coupons.current));
 				}
 			},
-			async (error) => {
-				console.log('load latest coupons ', error);
-			}
+			async (error) => {}
 		);
 
 		apiFactory.get(`/coupons?&vendor_id=${vendor_id}`).then(
@@ -424,9 +416,7 @@ const VendorScreen = (props) => {
 					setAllOffers([].concat(all_discounts.current, all_coupons.current));
 				}
 			},
-			async (error) => {
-				console.log('load all coupons ', error);
-			}
+			async (error) => {}
 		);
 	};
 
@@ -440,9 +430,7 @@ const VendorScreen = (props) => {
 				}
 				props.setVendorCart({ ...props.vendorData, isFav: props.vendorData.isFav == 1 ? 0 : 1 });
 			})
-			.catch((error) => {
-				console.log('onPressFav', error);
-			});
+			.catch((error) => {});
 	};
 
 	const goPastOrder = () => {
@@ -502,7 +490,7 @@ const VendorScreen = (props) => {
 					})
 					.catch((error) => {
 						showGoCartLoading(false);
-						console.log('get Vendor Detail', error);
+
 						alerts.error(translate('restaurant_details.we_are_sorry'), extractErrorMessage(error));
 					});
 			}
@@ -665,8 +653,6 @@ const VendorScreen = (props) => {
 		);
 	};
 
-	console.log('order_methods ', order_methods);
-
 	const _renderHandover = () => {
 		return (
 			<View style={[Theme.styles.col_center, styles.handoverView]}>
@@ -787,6 +773,7 @@ const VendorScreen = (props) => {
 			</View>
 		);
 	};
+
 	return (
 		<React.Fragment>
 			<Spinner visible={goCartLoading} />
@@ -835,7 +822,7 @@ const VendorScreen = (props) => {
 						useNativeDriver: true,
 						listener: (event) => {
 							const scrollY = event.nativeEvent.contentOffset.y;
-							// console.log('Scroll y', scrollY)
+							//
 							// setScrollY(scrollY)
 							if (scrollY > 130) {
 								if (isShowHeaderTitle == false) {
@@ -1006,21 +993,13 @@ const VendorScreen = (props) => {
 					</Swiper>
 				)}
 				{(isLoading ||
-						(productsListDimensions.current &&
-							props.vendorData.categories &&
-							productsListDimensions.current.length < props.vendorData.categories.length)) &&
+					(productsListDimensions.current &&
+						props.vendorData.categories &&
+						productsListDimensions.current.length < props.vendorData.categories.length)) &&
 					curTab == 'Menu' && <BlockSpinner style={{ minHeight: 120 }} />}
 
 				{vendorCartItems.length > 0 && <View style={{ height: 100 }} />}
 			</Animated.ScrollView>
-			<TouchableOpacity
-				style={styles.floatBtnContainer}
-				onPress={() => {
-					props.navigation.navigate(RouteNames.VendorVoiceOrderScreen, { vendorData: props.vendorData });
-				}}
-			>
-				<MicrophoneIcon width={32} height={32} />
-			</TouchableOpacity>
 			{vendorCartItems.length > 0 && (
 				<CartViewButton
 					onPress={() => {
@@ -1072,17 +1051,6 @@ const styles = StyleSheet.create({
 		paddingBottom: 0,
 		paddingHorizontal: 20,
 		alignItems: 'flex-end',
-	},
-	floatBtnContainer: {
-		width: 60,
-		height: 60,
-		borderRadius: 100,
-		position: 'absolute',
-		right: 20,
-		bottom: 40,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: Theme.colors.primary,
 	},
 	headerBtn: { width: 33, height: 33, borderRadius: 8, backgroundColor: Theme.colors.white },
 	operationTab: { height: 62, width: '100%', borderTopWidth: 1, borderBottomWidth: 1, borderColor: '#F6F6F9' },

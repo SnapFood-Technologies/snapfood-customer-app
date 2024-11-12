@@ -85,7 +85,7 @@ class SnapfoodMapScreen extends React.Component {
 		this.getBadgeCount();
 		this.getMyLocation();
 		this._Timer = setInterval(() => {
-			console.log('================= refresh data by timer');
+			
 			this.getMapDataByDistance(this.region, this.state.distance_range);
 		}, 50000)
 	}
@@ -104,7 +104,7 @@ class SnapfoodMapScreen extends React.Component {
 		try {
 			await setStorageKey(KEYS.SNAPMAP_DISTANCE, distance);
 		} catch (e) {
-			console.log(e);
+			
 		}
 	};
 
@@ -128,10 +128,10 @@ class SnapfoodMapScreen extends React.Component {
 				latitude = location.latitude;
 				longitude = location.longitude;
 			} else {
-				console.log('checkLocationPermission : False');
+				
 			}
 		} catch (error) {
-			console.log('getCurrentPosition error : ', error);
+			
 		}
 
 		let distance_range = this.state.distance_range;
@@ -139,7 +139,7 @@ class SnapfoodMapScreen extends React.Component {
 			let distance = await getStorageKey(KEYS.SNAPMAP_DISTANCE);
 			distance_range = distance || 5000;
 		} catch (e) {
-			console.log(e);
+			
 		}
 
 		if (latitude && longitude) {
@@ -152,7 +152,7 @@ class SnapfoodMapScreen extends React.Component {
 					map_longitude: this._myLongitude
 				});
 			} catch (error) {
-				console.log('update location error : ', error);
+				
 			}
 
 			const region = { latitude, longitude, latitudeDelta: latDelta5000, longitudeDelta: latDelta5000 };
@@ -191,7 +191,7 @@ class SnapfoodMapScreen extends React.Component {
 	};
 
 	onPanDrag = (event) => {
-		console.log('onPanDrag', event.nativeEvent.coordinate);
+		
 	};
 
 	getZoom = (region) => Math.log2(360 * (width(100) / 256 / region.longitudeDelta)) + 1;
@@ -251,25 +251,25 @@ class SnapfoodMapScreen extends React.Component {
 				Math.abs(latitude - this.state.region.latitude) <= latitudeDelta / 4 &&
 				Math.abs(longitude - this.state.region.longitude) <= longitudeDelta / 4
 			) {
-				console.log('ignored');
+				
 				return;
 			}
 		} else {
 			if (groupSize == this.state.groupSize) {
-				console.log('ignored by same group');
+				
 				return;
 			}
 		}
 
 		if (this.state.loading) {
-			console.log('ignored by loaading');
+			
 			return;
 		}
 		this.state.groupSize = groupSize;
-		console.log('zoom ', zoom);
-		console.log('state zoom', this.state.zoom);
-		console.log('group', groupSize);
-		console.log('state group', this.state.groupSize);
+		
+		
+		
+		
 		this.getMapDataByDistance(region, this.state.distance_range);
 	};
 
@@ -300,7 +300,7 @@ class SnapfoodMapScreen extends React.Component {
 			},
 			(error) => {
 				this.setState({ selected_snapfooders: users, region: this.region });
-				console.log('openGroup ', error);
+				
 			}
 		);
 	};
@@ -346,7 +346,7 @@ class SnapfoodMapScreen extends React.Component {
 	}
 
 	onRegionChangeComplete = (region) => {
-		console.log('region changed ', region.latitudeDelta, region.longitudeDelta);
+		
 		this.region = region;
 		this.onRegionChangeComplete2(region, true);
 	};

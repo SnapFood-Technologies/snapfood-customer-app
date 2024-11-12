@@ -193,7 +193,7 @@ const MembershipScreen = (props) => {
 				},
 				(error) => {
 					setLoading(false);
-					console.log('onCancel error', error);
+					
 					const message = error.message || translate('generic_error');
 					alerts.error(translate('alerts.error'), message);
 				}

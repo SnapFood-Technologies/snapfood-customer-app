@@ -99,7 +99,7 @@ class NewCallScreen extends React.Component {
 			},
 			(error) => {
 				const message = error.message || translate('generic_error');
-				console.log(message);
+				
 			}
 		);
 	};
@@ -113,7 +113,7 @@ class NewCallScreen extends React.Component {
 			})
 			.then(
 				(res) => {
-					console.log('on SendInvitation', res.data);
+					
 					if (callback) {
 						callback(true);
 					} else {
@@ -227,7 +227,7 @@ class NewCallScreen extends React.Component {
 			})
 			.catch((err) => {
 				this.setState({ friend_loaded: true });
-				console.log('getFriends', err);
+				
 			});
 	};
 

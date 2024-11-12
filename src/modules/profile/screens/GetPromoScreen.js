@@ -30,7 +30,7 @@ const GetPromoScreen = (props) => {
 
 	useEffect(() => {
 		if (!isEmpty(props.route?.params?.promo_code)) {
-			console.log('props.route?.params?.promo_code ', props.route?.params?.promo_code)
+			
 			onConfirm(props.route?.params?.promo_code);
 		}
 	}, [props.route?.params?.promo_code])
@@ -50,7 +50,7 @@ const GetPromoScreen = (props) => {
 					setPromos(data?.shared_promotions || [])
 				},
 				(error) => {
-					console.log('onLoadEarnedItems error', error);
+					
 				}
 			);
 	};
@@ -69,7 +69,7 @@ const GetPromoScreen = (props) => {
 				},
 				(error) => {
 					setLoading(false);
-					console.log('onConfirm error', error);
+					
 					const message = error.message || translate('generic_error');
 					alerts.error(translate('alerts.error'), message);
 				}

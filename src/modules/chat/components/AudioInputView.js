@@ -64,7 +64,7 @@ export default AudioInputView = ({ onRemove, onSend }) => {
   const _finishRecording = (didSucceed, filePath, fileSize, base64) => {
     setFinished(didSucceed); 
     if(statusRef.current != 'cancel' && didSucceed == true) {
-      console.log(`Finished recording of duration ${curTimeRef.current} seconds at path: ${filePath} and size of ${fileSize || 0} bytes`);
+      
       onSend(curTimeRef.current, fileSize, base64)
     }
     if(statusRef.current == 'cancel') {

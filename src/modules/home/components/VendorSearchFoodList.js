@@ -117,7 +117,7 @@ const VendorSearchFoodList = (props) => {
 			}
 		})
 			.catch(err => {
-				console.log('Add Product Vendor Check err ', err)
+				
 			});
 	};
 
@@ -153,7 +153,7 @@ const VendorSearchFoodList = (props) => {
 		try {
 			await props.removeProductFromCart(product);
 		} catch (error) {
-			console.log('onRemoveItem', error);
+			
 		}
 	};
 

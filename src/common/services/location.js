@@ -44,10 +44,10 @@ export const getCurrentLocationPermission = async () => {
 			else {
 				resolve('');
 			}
-			console.log('getCurrentPermission ', res)
+			
 		})
 			.catch(err => {
-				console.log(err);
+				
 				resolve('');
 			});
 	});
@@ -66,7 +66,7 @@ export const setupLocationUpdates = async () => {
 		return;
 	}
 
-	console.log('GLOBAL.watchID ', GLOBAL.watchID)
+	
 	if (GLOBAL.watchID) {
 		Geolocation.clearWatch(GLOBAL.watchID);
 		GLOBAL.watchID = null;
@@ -74,7 +74,7 @@ export const setupLocationUpdates = async () => {
 
 	GLOBAL.watchID = Geolocation.watchPosition(
 		(position) => {
-			console.log('location Update ', position);
+			
  
 			apiFactory.put('users/update_location', {
 				map_latitude: position.coords.latitude,
@@ -84,7 +84,7 @@ export const setupLocationUpdates = async () => {
 			.catch((err) =>{});
 		},
 		(error) => {
-			console.log(error);
+			
 		},
 		{
 			accuracy: {
@@ -218,7 +218,7 @@ export const getAddressByCoordinates = ({ latitude, longitude }) => {
 				details.forEach(detail => {
 					if (detail.types.includes('route')) {
 						for (let i = 0; i < detail.address_components.length; i++) {
-							// console.log(details.address_components[i].types, details.address_components[i].long_name) 
+							// 
 							//street
 							if (
 								detail.address_components[i].types.includes('neighborhood') ||
@@ -281,7 +281,7 @@ export const getAddressByCoordinates = ({ latitude, longitude }) => {
 // 					`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${Config.API_KEY_OPEN_CAGE}`
 // 				).then(({ data }) => {
 // 					let addressComponents = data.results[0].components;
-// 					console.log('addressComponents', addressComponents)
+// 					
 // 					let addressComponentStreet = addressComponents.road;
 
 // 					if (!addressComponentStreet) {

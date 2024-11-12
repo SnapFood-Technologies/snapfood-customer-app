@@ -35,7 +35,7 @@ const ProfileScreen = (props) => {
 	const [isLogoutModal, showLogoutModal] = useState(false);
 	useEffect(() => {
 		const focusListener = props.navigation.addListener('focus', () => {
-			console.log('profile focus');
+			
 			getRewardsSetting();
 			props.getSystemSettings();
 			props.getStudentVerifySettings();
@@ -102,7 +102,7 @@ const ProfileScreen = (props) => {
 				}
 			})
 			.catch(err => {
-				console.log('getRewardsSetting err ', err);
+				
 			});
 	}
 
@@ -125,12 +125,12 @@ const ProfileScreen = (props) => {
 		try {
 			LoginManager.logOut();
 		} catch (e) {
-			console.log('LoginManager.logOut', e)
+			
 		}
 		try {
 			await props.logout();
 		} catch (e) {
-			console.log('logout', e)
+			
 		}
 		if (props.hometab_navigation != null) {
 			props.hometab_navigation.jumpTo(RouteNames.HomeStack)

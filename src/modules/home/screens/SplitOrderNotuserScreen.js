@@ -37,7 +37,7 @@ const SplitOrderNotuserScreen = (props) => {
 	const getManualPriceForaUser = (user) => {
 		if (manualPrices[user.id] == null) {
 			let price = calculateOrderTotal() / users.length;
-			console.log(price);
+			
 			return parseInt(price);
 		} else {
 			return manualPrices[user.id];

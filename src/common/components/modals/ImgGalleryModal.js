@@ -18,7 +18,7 @@ const ImgGalleryModal = ({ showModal, images, index, onClose, description }) => 
 	}, [showModal]);
 
 	const onSwipeStart = (s) => {
-		console.log(s.vy, s.dy);
+		
 		if (s.vy > 4 && s.dy > 90) {
 			onClose();
 		}
@@ -179,11 +179,11 @@ const styles = StyleSheet.create({
 
 function arePropsEqual(prevProps, nextProps) {
 	if (prevProps.showModal != nextProps.showModal) {
-		console.log('ImgGalleryModal item equal 1: ', false)
+		
 		return false;
 	}
 	if (prevProps.images.length != nextProps.images.length || nextProps.images.filter((x) => prevProps.images.indexOf(x) === -1).length > 0) {
-		console.log('ImgGalleryModal item equal 2: ', false)
+		
 		return false;
 	}
 	return true;

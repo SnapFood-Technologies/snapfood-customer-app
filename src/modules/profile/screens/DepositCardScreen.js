@@ -36,7 +36,7 @@ const DepositCardScreen = (props) => {
 				setCards(data || []);
 			},
 				(error) => {
-					console.log('load Payment Methods error', error)
+					
 				});
 	}
 
@@ -47,7 +47,7 @@ const DepositCardScreen = (props) => {
 			})
 		}
 		catch (error) {
-			console.log('on changePrimary', error)
+			
 			alerts.error(translate('alerts.error'), translate('checkout.something_is_wrong'));
 		}
 	}
@@ -73,7 +73,7 @@ const DepositCardScreen = (props) => {
 			})
 			.catch((error) => {
 				setLoading(false);
-				console.log('onDeposit error', error);
+				
 				const message = error.message || translate('generic_error');
 				alerts.error(translate('alerts.error'), message);
 			})
@@ -104,7 +104,7 @@ const DepositCardScreen = (props) => {
 						delimiter=','
 						precision={0}
 						onChangeText={(formattedValue) => {
-							console.log(formattedValue); // $2,310.46
+							
 						}}
 					/>
 				</View>

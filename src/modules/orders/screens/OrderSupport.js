@@ -1,5 +1,16 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Image, Text, TouchableOpacity, PermissionsAndroid, Linking, Keyboard, ActivityIndicator, View, StyleSheet, Platform } from 'react-native';
+import {
+	Image,
+	Text,
+	TouchableOpacity,
+	PermissionsAndroid,
+	Linking,
+	Keyboard,
+	ActivityIndicator,
+	View,
+	StyleSheet,
+	Platform,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { GiftedChat } from 'react-native-gifted-chat';
 import FastImage from 'react-native-fast-image';
@@ -14,7 +25,7 @@ import RouteNames from '../../../routes/names';
 import AndroidOpenSettings from 'react-native-android-open-settings';
 import { useSafeArea } from 'react-native-safe-area-context';
 import ImagePicker from 'react-native-image-crop-picker';
-import GetLocation from 'react-native-get-location'
+import GetLocation from 'react-native-get-location';
 import { convertTimestamp2Date, getImageFullURL } from '../../../common/services/utility';
 import {
 	order_support_collection,
@@ -24,7 +35,7 @@ import {
 	uploadImage,
 	seenUnreadCntChannel,
 	setLike,
-	getMessageID
+	getMessageID,
 } from '../../../common/services/order_support';
 import { goActiveScreenFromPush, setTmpFood } from '../../../store/actions/app';
 import alerts from '../../../common/services/alerts';
@@ -38,19 +49,18 @@ import AudioInputView from '../../chat/components/AudioInputView';
 import MessagesHeader from '../../chat/components/MessagesHeader';
 import { renderInputToolbar, renderComposer, renderSend } from '../../chat/components/InputToolbar';
 import { renderBubble, renderMessage, renderAvatar, renderSystemMessage } from '../../chat/components/MessageContainer';
-import {
-	checkLocationPermission,
-	requestLocationPermission,
-} from '../../../common/services/location';
+import { checkLocationPermission, requestLocationPermission } from '../../../common/services/location';
 import { ROLE_ADMIN, ROLE_RESTAURANT, ROLE_RIDER, ROLE_CUSTOMER } from '../../../config/constants';
-import SnackBar from 'react-native-snackbar-component'
+import SnackBar from 'react-native-snackbar-component';
 import { confirmOrderDelivery } from '../../../store/actions/orders';
 import { isEmpty } from '../../../common/services/utility';
 
 const PerPage = 12;
 const OrderSupport = (props) => {
 	const order = props.order;
-	if (order == null) { return null; }
+	if (order == null) {
+		return null;
+	}
 	const [imageUploading, setImageUploading] = useState(false);
 
 	const [prevLoading, setPrevLoading] = useState(false);
@@ -88,29 +98,27 @@ const OrderSupport = (props) => {
 		text: '',
 		createdAt: new Date(),
 		system: true,
-	}
+	};
 
 	const confirmOrderMessage = useMemo(() => {
 		try {
 			let chat_btn = props.systemSettings.order_delivery_confirm_chat_btn;
 			if (props.language == 'en') {
 				chat_btn = props.systemSettings.order_delivery_confirm_chat_btn_en;
-			}
-			else if (props.language == 'it') {
+			} else if (props.language == 'it') {
 				chat_btn = props.systemSettings.order_delivery_confirm_chat_btn_it;
 			}
 
 			let chat_message = props.systemSettings.order_delivery_confirm_chat_message;
 			if (props.language == 'en') {
 				chat_message = props.systemSettings.order_delivery_confirm_chat_message_en;
-			}
-			else if (props.language == 'it') {
+			} else if (props.language == 'it') {
 				chat_message = props.systemSettings.order_delivery_confirm_chat_message_it;
 			}
 
 			if (
 				order.id != null &&
-				(props.unconfirmedDeliveryOrders.findIndex(o => o.id == order.id) != -1) &&
+				props.unconfirmedDeliveryOrders.findIndex((o) => o.id == order.id) != -1 &&
 				!isEmpty(chat_btn) &&
 				!isEmpty(chat_message)
 			) {
@@ -121,38 +129,38 @@ const OrderSupport = (props) => {
 					createdAt: new Date(),
 					confirm_order_msg: true,
 					system: true,
-				}
+				};
 				return msg;
 			}
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 		return null;
 	}, [
-		order.id, props.unconfirmedDeliveryOrders, props.route.params.channelId,
-		props.systemSettings.order_delivery_confirm_chat_btn, 
-		props.systemSettings.order_delivery_confirm_chat_btn_en, 
-		props.systemSettings.order_delivery_confirm_chat_btn_it, 
+		order.id,
+		props.unconfirmedDeliveryOrders,
+		props.route.params.channelId,
+		props.systemSettings.order_delivery_confirm_chat_btn,
+		props.systemSettings.order_delivery_confirm_chat_btn_en,
+		props.systemSettings.order_delivery_confirm_chat_btn_it,
 		props.systemSettings.order_delivery_confirm_chat_message,
 		props.systemSettings.order_delivery_confirm_chat_message_en,
 		props.systemSettings.order_delivery_confirm_chat_message_it,
-		props.language
-	])
+		props.language,
+	]);
 
 	const orderHelpBlockedMessage = useMemo(() => {
 		try {
 			let chat_message = props.systemSettings.order_help_block_chat_message;
 			if (props.language == 'en') {
 				chat_message = props.systemSettings.order_help_block_chat_message_en;
-			}
-			else if (props.language == 'it') {
+			} else if (props.language == 'it') {
 				chat_message = props.systemSettings.order_help_block_chat_message_it;
 			}
 
 			if (
 				order.created_at != null &&
 				props.systemSettings.order_help_block_days != null &&
-				(moment(new Date()).diff(moment(order.created_at), 'days') >= props.systemSettings.order_help_block_days) &&
+				moment(new Date()).diff(moment(order.created_at), 'days') >=
+					props.systemSettings.order_help_block_days &&
 				!isEmpty(chat_message)
 			) {
 				let msg = {
@@ -161,27 +169,23 @@ const OrderSupport = (props) => {
 					createdAt: new Date(),
 					order_help_blocked_msg: true,
 					system: true,
-				}
+				};
 				return msg;
 			}
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 		return null;
 	}, [
-		order.created_at, props.route.params.channelId,
-		props.systemSettings.order_help_block_days, 
+		order.created_at,
+		props.route.params.channelId,
+		props.systemSettings.order_help_block_days,
 		props.systemSettings.order_help_block_chat_message,
 		props.systemSettings.order_help_block_chat_message_en,
 		props.systemSettings.order_help_block_chat_message_it,
-		props.language
-	])
-	console.log('orderHelpBlockedMessage ', orderHelpBlockedMessage)
+		props.language,
+	]);
 
 	React.useEffect(() => {
-		console.log('props.route.params.channelId ', props.route.params.channelId)
 		if (msgs_unlistener.current != null) {
-			console.log('unsubscribe old messages listener');
 			msgs_unlistener.current();
 		}
 		loadSupportTags();
@@ -195,7 +199,11 @@ const OrderSupport = (props) => {
 			let msgs = [];
 			querySnapshot.docs.forEach((doc) => {
 				if (doc.exists) {
-					msgs.push({ ...doc.data(), createdAt: convertTimestamp2Date(doc.data().createdAt), fbDate: doc.data().createdAt });
+					msgs.push({
+						...doc.data(),
+						createdAt: convertTimestamp2Date(doc.data().createdAt),
+						fbDate: doc.data().createdAt,
+					});
 				}
 			});
 			setMessages(msgs);
@@ -207,7 +215,6 @@ const OrderSupport = (props) => {
 		});
 
 		return () => {
-			console.log('messages screen unmount');
 			if (msgs_unlistener.current != null) {
 				msgs_unlistener.current();
 			}
@@ -217,35 +224,36 @@ const OrderSupport = (props) => {
 		};
 	}, [props.route.params.channelId, isFromPush]);
 
-
 	const loadSupportTags = () => {
-		apiFactory.get(`orders/get-support-tags`)
-			.then(({ data }) => {
+		apiFactory.get(`orders/get-support-tags`).then(
+			({ data }) => {
 				let tags = data.tags || [];
 				if (props.language == 'en') {
-					tags = tags.map(t => ({ id: t.id, title: t.title_en }));
-				}
-				else if (props.language == 'it') {
-					tags = tags.map(t => ({ id: t.id, title: t.title_it }));
-				}
-				else {
-					tags = tags.map(t => ({ id: t.id, title: t.title_sq }));
+					tags = tags.map((t) => ({ id: t.id, title: t.title_en }));
+				} else if (props.language == 'it') {
+					tags = tags.map((t) => ({ id: t.id, title: t.title_it }));
+				} else {
+					tags = tags.map((t) => ({ id: t.id, title: t.title_sq }));
 				}
 				setMsgTags(tags);
 			},
-				(error) => {
-					console.log('loadSupportTags error ', error)
-					const message = error.message || translate('generic_error');
-					// alerts.error(translate('alerts.error'), message);
-				});
-	}
+			(error) => {
+				const message = error.message || translate('generic_error');
+				// alerts.error(translate('alerts.error'), message);
+			}
+		);
+	};
 
 	const increaseTagCount = (tag_id) => {
-		apiFactory.post(`orders/increase-clicks-tags`, {
-			tag_id: tag_id
-		})
-			.then((res) => { }, (error) => { });
-	}
+		apiFactory
+			.post(`orders/increase-clicks-tags`, {
+				tag_id: tag_id,
+			})
+			.then(
+				(res) => {},
+				(error) => {}
+			);
+	};
 
 	const loadChannelData = async () => {
 		let channel = await getChannelData(props.route.params.channelId);
@@ -261,7 +269,7 @@ const OrderSupport = (props) => {
 		if (start == null) {
 			return;
 		}
-		console.log('loadPrevMessage');
+
 		const messages_coll = order_support_collection
 			.doc(props.route.params.channelId)
 			.collection('messages')
@@ -276,7 +284,11 @@ const OrderSupport = (props) => {
 				let msgs = [];
 				snaps.docs.forEach((doc) => {
 					if (doc.exists) {
-						msgs.push({ ...doc.data(), createdAt: convertTimestamp2Date(doc.data().createdAt), fbDate: doc.data().createdAt });
+						msgs.push({
+							...doc.data(),
+							createdAt: convertTimestamp2Date(doc.data().createdAt),
+							fbDate: doc.data().createdAt,
+						});
 					}
 				});
 				if (msgs.length > 0) {
@@ -296,12 +308,10 @@ const OrderSupport = (props) => {
 			.catch((error) => {
 				setPrevLoading(false);
 				setHasMore(false);
-				console.log('loadMessage', error);
 			});
 	};
 
 	const onSend = async (newMessages = []) => {
-
 		let isQuoted = false;
 		let isImage = false;
 		if (quote_msg != null) {
@@ -313,7 +323,7 @@ const OrderSupport = (props) => {
 		}
 		if (images != null && images.length > 0) {
 			setImageUploading(true);
-			console.log('upload started ', images.length)
+
 			let imageUrls = [];
 			for (var i = 0; i < images.length; i++) {
 				if (images[i] != null && images[i].data != null) {
@@ -322,9 +332,7 @@ const OrderSupport = (props) => {
 						if (res != null && res.data != null && res.data.success == true) {
 							imageUrls.push(res.data.url);
 						}
-					} catch (error) {
-						console.log('uploadImage ', error)
-					}
+					} catch (error) {}
 				}
 			}
 			setImages(null);
@@ -337,7 +345,6 @@ const OrderSupport = (props) => {
 				});
 			}
 
-			console.log('upload done ', newMessages.length)
 			isImage = true;
 		}
 
@@ -348,11 +355,10 @@ const OrderSupport = (props) => {
 			emojiData.current = null;
 		}
 
-		console.log('sendMessage start ', newMessages.length)
 		for (var i = 0; i < newMessages.length; i++) {
 			await sendMessage(channelData.id, props.user.id, newMessages[i]);
 		}
-		console.log('sendMessage done ', newMessages.length)
+
 		setImageUploading(false);
 	};
 
@@ -361,25 +367,20 @@ const OrderSupport = (props) => {
 		try {
 			let hasPermission = await checkLocationPermission();
 			if (hasPermission) {
-				sendCurrentPosition()
+				sendCurrentPosition();
+			} else {
+				requestLocationPermission().catch(() => {
+					alerts.error(translate('attention'), translate('locationUnavailable'));
+				});
 			}
-			else {
-				requestLocationPermission()
-					.catch(() => {
-						alerts.error(translate('attention'), translate('locationUnavailable'));
-					});
-			}
-		}
-		catch (error) {
-			console.log('checkLocationPermission : ', error)
+		} catch (error) {
 			alerts.error(translate('attention'), translate('locationUnavailable'));
 		}
-
 	};
 
 	const sendCurrentPosition = async () => {
 		try {
-			const location = await GetLocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 15000, });
+			const location = await GetLocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 15000 });
 			if (location) {
 				let newMsg = {
 					user: {
@@ -390,12 +391,12 @@ const OrderSupport = (props) => {
 						avatar: getImageFullURL(props.user.photo),
 						phone: props.user.phone,
 						email: props.user.email,
-						role: ROLE_CUSTOMER
+						role: ROLE_CUSTOMER,
 					},
 					map: {
 						coords: {
 							latitude: location.latitude,
-							longitude: location.longitude
+							longitude: location.longitude,
 						},
 						type: 0, // 0 : my location, 1 : a location
 					},
@@ -407,7 +408,7 @@ const OrderSupport = (props) => {
 			console.warn('onLater', code, message);
 			alerts.error(translate('attention'), translate('locationUnavailable'));
 		}
-	}
+	};
 
 	const goFindLocation = () => {
 		ShowShareModal(false);
@@ -419,7 +420,7 @@ const OrderSupport = (props) => {
 
 	const onSelectEmoji = (emoji) => {
 		setShowEMoji(false);
-		setText(text => text.concat(emoji.code));
+		setText((text) => text.concat(emoji.code));
 		emojiData.current = emoji;
 	};
 
@@ -436,27 +437,26 @@ const OrderSupport = (props) => {
 			multiple: true,
 			cropping: false,
 			includeBase64: true,
-		}).then((images) => {
-			setImages(images);
 		})
-			.catch(error => {
-				console.log('image picker ', error);
-			});
+			.then((images) => {
+				setImages(images);
+			})
+			.catch((error) => {});
 	};
 	const onCapture = () => {
 		ImagePicker.openCamera({
 			cropping: false,
 			includeBase64: true,
-		}).then((image) => {
-			setImages([image]);
 		})
-			.catch(error => {
-				console.log('image picker ', error);
-			});
+			.then((image) => {
+				setImages([image]);
+			})
+			.catch((error) => {});
 	};
 
 	const goApplicationSetting = () => {
-		alerts.confirmation(translate('attention'), translate('audioUnavailable'), 'Settings', translate('cancel'))
+		alerts
+			.confirmation(translate('attention'), translate('audioUnavailable'), 'Settings', translate('cancel'))
 			.then(
 				() => {
 					if (Platform.OS === 'android') {
@@ -469,33 +469,29 @@ const OrderSupport = (props) => {
 					alerts.error(translate('attention'), translate('audioUnavailable'));
 				}
 			);
-	}
+	};
 	const onRecord = () => {
-		console.log('onRecord');
 		if (Platform.OS === 'android') {
-			PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO).then(res => {
-				console.log('check ', res)
-				if (res != true) {
-					PermissionsAndroid.requestMultiple([PermissionsAndroid.PERMISSIONS.RECORD_AUDIO]).then((result) => {
-						console.log('requestMultiple ', result);
-						if (result['android.permission.RECORD_AUDIO'] == 'granted') {
-							setRecording(true);
-						}
-						else {
-							goApplicationSetting()
-						}
-					});
-				}
-				else {
-					setRecording(true);
-				}
-			})
-				.catch((error) => {
-					console.log('RECORD_AUDIO PERMISSION CHECK ', error)
-					goApplicationSetting()
+			PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO)
+				.then((res) => {
+					if (res != true) {
+						PermissionsAndroid.requestMultiple([PermissionsAndroid.PERMISSIONS.RECORD_AUDIO]).then(
+							(result) => {
+								if (result['android.permission.RECORD_AUDIO'] == 'granted') {
+									setRecording(true);
+								} else {
+									goApplicationSetting();
+								}
+							}
+						);
+					} else {
+						setRecording(true);
+					}
 				})
-		}
-		else {
+				.catch((error) => {
+					goApplicationSetting();
+				});
+		} else {
 			setRecording(true);
 		}
 	};
@@ -504,7 +500,6 @@ const OrderSupport = (props) => {
 		try {
 			let res = await uploadImage(base64);
 			if (res != null && res.data != null && res.data.success == true) {
-				console.log('audio url ', res.data.url);
 				let newMsg = {
 					user: {
 						_id: props.user.id,
@@ -514,7 +509,7 @@ const OrderSupport = (props) => {
 						avatar: getImageFullURL(props.user.photo),
 						phone: props.user.phone,
 						email: props.user.email,
-						role: ROLE_CUSTOMER
+						role: ROLE_CUSTOMER,
 					},
 					audio: {
 						url: res.data.url,
@@ -526,13 +521,11 @@ const OrderSupport = (props) => {
 				};
 				onSend([newMsg]);
 			}
-		} catch (error) {
-			console.log('onSendAudio error', error);
-		}
+		} catch (error) {}
 		setRecording(false);
 	};
 
-	const onSendData = () => { };
+	const onSendData = () => {};
 
 	const onCancelQuote = () => {
 		setQuoteMsg(null);
@@ -568,33 +561,25 @@ const OrderSupport = (props) => {
 			return;
 		}
 
-		if (
-			currentMessage &&
-			currentMessage.product
-		) {
+		if (currentMessage && currentMessage.product) {
 			props.setTmpFood(currentMessage.product);
 			props.navigation.navigate(RouteNames.FoodScreen);
 			return;
 		}
 
-		if (
-			currentMessage &&
-			currentMessage.text &&
-			currentMessage.likes &&
-			currentMessage.likes.length > 0
-		) {
-			setMsgInfo(currentMessage)
+		if (currentMessage && currentMessage.text && currentMessage.likes && currentMessage.likes.length > 0) {
+			setMsgInfo(currentMessage);
 			setShowMsgInfo(true);
 		}
 	};
 
 	const onDoublePress = (currentMessage) => {
 		let likes = currentMessage.likes || [];
-		const foundIndex = likes.findIndex(i => i == props.user.id);
+		const foundIndex = likes.findIndex((i) => i == props.user.id);
 		if (foundIndex == -1) {
 			setLike(channelData, props.user.id, currentMessage, onLikeSuccess);
 		}
-	}
+	};
 
 	const onPopupPress = (message, type) => {
 		if (message && message.text && type == 'reply') {
@@ -605,14 +590,13 @@ const OrderSupport = (props) => {
 		// 	props.navigation.navigate(RouteNames.ForwardScreen, { channelData: channelData, message: message });
 		// }
 		else if (type == 'unsend') {
-			deleteMessage(channelData.id, message._id)
+			deleteMessage(channelData.id, message._id);
 		}
-	}
+	};
 
 	const onCopyPress = (onCopyChanged) => {
-		console.log("on Copy changed", onCopyChanged);
 		setShowSnackBar(onCopyChanged);
-	}
+	};
 
 	const onShowGalleryMsgs = (images) => {
 		if (images.length > 0) {
@@ -629,47 +613,52 @@ const OrderSupport = (props) => {
 
 	const onLikeChange = (message, flag) => {
 		setLike(channelData, props.user.id, message, onLikeSuccess);
-	}
+	};
 
 	const onLikeSuccess = (msgId, likes) => {
 		let msgs = messages.slice(0);
-		const index = msgs.findIndex(i => i._id == msgId);
+		const index = msgs.findIndex((i) => i._id == msgId);
 		if (index != -1) {
 			msgs[index] = {
 				...msgs[index],
 				createdAt: convertTimestamp2Date(msgs[index].fbDate),
-				likes: likes
+				likes: likes,
 			};
 			setMessages(msgs);
 		}
-	}
+	};
 
 	const onConfirmDelivery = () => {
-		props.confirmOrderDelivery(order.id)
+		props
+			.confirmOrderDelivery(order.id)
 			.then((res) => {
 				let message = translate('order_summary.confirm_order_delivery_success');
-				if (props.language == 'en' && !isEmpty(props.systemSettings.order_delivery_confirm_order_success_msg_en)) {
+				if (
+					props.language == 'en' &&
+					!isEmpty(props.systemSettings.order_delivery_confirm_order_success_msg_en)
+				) {
 					message = props.systemSettings.order_delivery_confirm_order_success_msg_en;
-				}
-				else if (props.language == 'it' && !isEmpty(props.systemSettings.order_delivery_confirm_order_success_msg_it)) {
+				} else if (
+					props.language == 'it' &&
+					!isEmpty(props.systemSettings.order_delivery_confirm_order_success_msg_it)
+				) {
 					message = props.systemSettings.order_delivery_confirm_order_success_msg_it;
-				}
-				else if (!isEmpty(props.systemSettings.order_delivery_confirm_order_success_msg)) {
+				} else if (!isEmpty(props.systemSettings.order_delivery_confirm_order_success_msg)) {
 					message = props.systemSettings.order_delivery_confirm_order_success_msg;
-				} 
-				alerts.info('', message).then((res) => { });
+				}
+				alerts.info('', message).then((res) => {});
 			})
 			.catch((err) => {
 				alerts.error(translate('restaurant_details.we_are_sorry'), extractErrorMessage(err));
-			})
-	}
+			});
+	};
 
 	const onGoBack = async () => {
 		if (channelData != null) {
 			seenUnreadCntChannel(channelData, props.user.id);
 		}
 		props.navigation.goBack();
-	}
+	};
 
 	const renderEmptyInputToolbar = () => (
 		<Text style={styles.noMemberTxt}>{translate('social.chat.no_longer_member')}</Text>
@@ -691,23 +680,31 @@ const OrderSupport = (props) => {
 			return recordingInputToolbar();
 		}
 
-		return renderInputToolbar(giftchat_props, quote_msg, images, (orderHelpBlockedMessage != null ? [] : msg_tags), onCancelQuote, onRemoveImage, (msg) => {
-			let newMsg = {
-				user: {
-					_id: props.user.id,
-					username: props.user.username,
-					full_name: props.user.full_name,
-					photo: props.user.photo,
-					avatar: getImageFullURL(props.user.photo),
-					phone: props.user.phone,
-					email: props.user.email,
-					role: ROLE_CUSTOMER
-				},
-				text: msg.title,
-			};
-			onSend([newMsg]);
-			increaseTagCount(msg.id);
-		});
+		return renderInputToolbar(
+			giftchat_props,
+			quote_msg,
+			images,
+			orderHelpBlockedMessage != null ? [] : msg_tags,
+			onCancelQuote,
+			onRemoveImage,
+			(msg) => {
+				let newMsg = {
+					user: {
+						_id: props.user.id,
+						username: props.user.username,
+						full_name: props.user.full_name,
+						photo: props.user.photo,
+						avatar: getImageFullURL(props.user.photo),
+						phone: props.user.phone,
+						email: props.user.email,
+						role: ROLE_CUSTOMER,
+					},
+					text: msg.title,
+				};
+				onSend([newMsg]);
+				increaseTagCount(msg.id);
+			}
+		);
 	};
 
 	const isCloseToTop = ({ layoutMeasurement, contentOffset, contentSize }) => {
@@ -721,7 +718,7 @@ const OrderSupport = (props) => {
 		if (messages.length == 0) {
 			return [systemMsg];
 		}
-		
+
 		let tmpMsgs = [];
 		if (orderHelpBlockedMessage != null) {
 			tmpMsgs.push(orderHelpBlockedMessage);
@@ -729,9 +726,9 @@ const OrderSupport = (props) => {
 		if (confirmOrderMessage != null) {
 			tmpMsgs.push(confirmOrderMessage);
 		}
-		tmpMsgs = [...tmpMsgs, ...messages]
+		tmpMsgs = [...tmpMsgs, ...messages];
 		return tmpMsgs;
-	}
+	};
 
 	return (
 		<View style={styles.container}>
@@ -751,7 +748,7 @@ const OrderSupport = (props) => {
 					avatar: getImageFullURL(props.user.photo),
 					phone: props.user.phone,
 					email: props.user.email,
-					role: ROLE_CUSTOMER
+					role: ROLE_CUSTOMER,
 				}}
 				minInputToolbarHeight={100}
 				alwaysShowSend={true}
@@ -781,13 +778,12 @@ const OrderSupport = (props) => {
 					),
 					onScroll: ({ nativeEvent }) => {
 						if (isCloseToTop(nativeEvent)) {
-							console.log('is close to top');
 						}
 						if (isCloseToBottom(nativeEvent)) {
 							loadPrevMessage();
 						}
 					},
-					keyboardShouldPersistTaps: 'handled'
+					keyboardShouldPersistTaps: 'handled',
 				}}
 				renderInputToolbar={renderBottomInputbar}
 				renderSend={(props) =>
@@ -799,7 +795,14 @@ const OrderSupport = (props) => {
 					)
 				}
 				renderComposer={(props) =>
-					renderComposer(props, orderHelpBlockedMessage == null, onPressEmoji, onPressLocation, onImageUpload, onCapture)
+					renderComposer(
+						props,
+						orderHelpBlockedMessage == null,
+						onPressEmoji,
+						onPressLocation,
+						onImageUpload,
+						onCapture
+					)
 				}
 				renderMessage={renderMessage}
 				renderBubble={(props) =>
@@ -812,7 +815,7 @@ const OrderSupport = (props) => {
 						onShowGalleryMsgs,
 						onLikeChange,
 						onPopupPress,
-						onCopyPress,
+						onCopyPress
 					)
 				}
 				// renderAvatar={renderAvatar}
@@ -821,14 +824,15 @@ const OrderSupport = (props) => {
 				alignTop={true}
 				// scrollToBottom={260}
 				bottomOffset={useSafeArea().bottom}
-
-				renderSystemMessage={props => renderSystemMessage(props, onConfirmDelivery)}
+				renderSystemMessage={(props) => renderSystemMessage(props, onConfirmDelivery)}
 				// renderAvatarOnTop
 				// renderActions={renderActions}
 				// renderMessageImage
 				// renderCustomView={renderCustomView}
 				// isCustomViewBottom
-				messagesContainerStyle={{ paddingBottom: (orderHelpBlockedMessage == null && msg_tags.length > 0) ? 40 : 0 }}
+				messagesContainerStyle={{
+					paddingBottom: orderHelpBlockedMessage == null && msg_tags.length > 0 ? 40 : 0,
+				}}
 				renderFooter={() => (
 					<View>
 						<Text></Text>
@@ -838,11 +842,16 @@ const OrderSupport = (props) => {
 					{
 						pattern: /#(\w+)/,
 						style: linkStyle,
-						onPress: (tag) => console.log(`Pressed on hashtag: ${tag}`),
+						onPress: (tag) => {},
 					},
 				]}
 			/>
-			<SnackBar visible={showSnackBar} textMessage={translate('social.chat.copied_successfully')} backgroundColor={Theme.colors.btnPrimary} messageColor={Theme.colors.white} />
+			<SnackBar
+				visible={showSnackBar}
+				textMessage={translate('social.chat.copied_successfully')}
+				backgroundColor={Theme.colors.btnPrimary}
+				messageColor={Theme.colors.white}
+			/>
 			<MessagesHeader
 				style={{ position: 'absolute', top: 0, left: 0 }}
 				isMuted={false}
@@ -853,18 +862,12 @@ const OrderSupport = (props) => {
 				onBack={() => {
 					onGoBack();
 				}}
-				onCall={() => {
-				}}
-				onDelete={() => {
-				}}
-				onExit={() => {
-				}}
-				onGroupDetails={() => {
-				}}
-				onGallery={() => {
-				}}
-				onPressName={() => {
-				}}
+				onCall={() => {}}
+				onDelete={() => {}}
+				onExit={() => {}}
+				onGroupDetails={() => {}}
+				onGallery={() => {}}
+				onPressName={() => {}}
 			/>
 			<EmojiBoard
 				showBoard={showEmoji}
@@ -895,7 +898,7 @@ const OrderSupport = (props) => {
 			/>
 		</View>
 	);
-}
+};
 
 const styles = StyleSheet.create({
 	container: {
@@ -903,17 +906,40 @@ const styles = StyleSheet.create({
 		width: '100%',
 		backgroundColor: '#ffffff',
 	},
-	title: { marginVertical: 20, width: '100%', paddingHorizontal: 20, textAlign: 'center', fontSize: 16, lineHeight: 20, fontFamily: Theme.fonts.bold, color: Theme.colors.text },
-	itemView: { marginBottom: 15, width: '100%', padding: 18, backgroundColor: Theme.colors.gray8, borderRadius: 15, },
+	title: {
+		marginVertical: 20,
+		width: '100%',
+		paddingHorizontal: 20,
+		textAlign: 'center',
+		fontSize: 16,
+		lineHeight: 20,
+		fontFamily: Theme.fonts.bold,
+		color: Theme.colors.text,
+	},
+	itemView: { marginBottom: 15, width: '100%', padding: 18, backgroundColor: Theme.colors.gray8, borderRadius: 15 },
 	itemTxt: { fontSize: 16, fontFamily: Theme.fonts.semiBold, color: Theme.colors.text },
 	divider: { marginVertical: 20, width: '100%', height: 1, backgroundColor: Theme.colors.gray8 },
-	subtitle: { marginBottom: 15, fontSize: 18, lineHeight: 22, fontFamily: Theme.fonts.bold, color: Theme.colors.text },
+	subtitle: {
+		marginBottom: 15,
+		fontSize: 18,
+		lineHeight: 22,
+		fontFamily: Theme.fonts.bold,
+		color: Theme.colors.text,
+	},
 	badge: { marginLeft: 4, width: 7, height: 7, borderRadius: 4, backgroundColor: Theme.colors.red1 },
 	avatarView: { marginTop: -60, justifyContent: 'flex-start', width: '100%', paddingHorizontal: 20 },
-	avatar: { width: 48, height: 48, marginRight: 5, borderWidth: 1, borderColor: Theme.colors.gray6, borderRadius: 12, backgroundColor: Theme.colors.white, },
+	avatar: {
+		width: 48,
+		height: 48,
+		marginRight: 5,
+		borderWidth: 1,
+		borderColor: Theme.colors.gray6,
+		borderRadius: 12,
+		backgroundColor: Theme.colors.white,
+	},
 	name_desc: { fontSize: 11, lineHeight: 14, fontFamily: Theme.fonts.medium, color: Theme.colors.white },
 	name: { fontSize: 18, lineHeight: 22, fontFamily: Theme.fonts.bold, color: Theme.colors.white },
-})
+});
 
 function mapStateToProps({ app }) {
 	return {
@@ -922,10 +948,12 @@ function mapStateToProps({ app }) {
 		order: app.tmp_order,
 		coordinates: app.coordinates,
 		systemSettings: app.systemSettings || {},
-		unconfirmedDeliveryOrders: app.unconfirmedDeliveryOrders || []
+		unconfirmedDeliveryOrders: app.unconfirmedDeliveryOrders || [],
 	};
 }
 
 export default connect(mapStateToProps, {
-	goActiveScreenFromPush, setTmpFood, confirmOrderDelivery
+	goActiveScreenFromPush,
+	setTmpFood,
+	confirmOrderDelivery,
 })(OrderSupport);

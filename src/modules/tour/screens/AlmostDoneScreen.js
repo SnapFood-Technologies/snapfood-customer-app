@@ -33,11 +33,11 @@ class AlmostDoneScreen extends React.PureComponent {
     goSetupLocation = async () => {
         requestLocationPermission(Config.isAndroid)
             .then(() => {
-                console.log('request Location Permission allowed')
+                
                 this.goSetupLocation_With_CurrentLocation()
             })
             .catch(() => {
-                console.log('request Location Permission denied')
+                
                 this.goSetupLocation_With_DefaultLocation()
                 // alerts.error(translate('attention'), translate('locationUnavailable'));
             });
@@ -53,7 +53,7 @@ class AlmostDoneScreen extends React.PureComponent {
             this.setState({ loading: true })
             const location = await GetLocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 15000, });
             this.setState({ loading: false });
-            console.log('Got current location : ', location);
+            
             this.props.navigation.navigate(RouteNames.LocationSetupScreen, { from_home: false, coords: { latitude: location.latitude, longitude: location.longitude } });
         }
         catch (error) {

@@ -74,11 +74,11 @@ export default class AudioMsgItem extends React.Component {
             if (this.props.dirpath) {
                 dirpath = this.props.dirpath;
             }
-            console.log('[Play]', filepath);
+            
             Sound.setCategory('Playback');
             this.sound = new Sound(filepath, null, (error) => {
                 if (error) {
-                    console.log('failed to load the sound', error);
+                    
                     // Alert.alert('Notice', 'audio file error. (Error code : 1)');
                     this.setState({ playState: 'paused' });
                 } else {
@@ -91,9 +91,9 @@ export default class AudioMsgItem extends React.Component {
     playComplete = (success) => {
         if (this.sound) {
             if (success) {
-                console.log('successfully finished playing');
+                
             } else {
-                console.log('playback failed due to audio decoding errors');
+                
                 // Alert.alert('Notice', 'audio file error. (Error code : 2)');
             }
             this.setState({ playState: 'paused', playSeconds: 0 });

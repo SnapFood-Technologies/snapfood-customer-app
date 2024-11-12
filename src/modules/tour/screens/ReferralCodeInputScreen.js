@@ -42,7 +42,7 @@ class ReferralCodeInputScreen extends React.Component {
             this.setState({ loading: false });
             this.props.setSkipReferralCodeInputView(true);
         } catch (error) {
-            console.log('update error', error)
+            
             this.setState({ loading: false });
             const message = error.message || translate('checkout.something_is_wrong');
             return alerts.error(translate('attention'), translate(message));

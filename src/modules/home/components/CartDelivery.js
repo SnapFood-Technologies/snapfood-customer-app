@@ -89,7 +89,7 @@ const CartDelivery = (props) => {
 				}
 				else if (supported_order_methods[i] == OrderType_Reserve) {
 					let days = [];
-					for (let j = 0; j < props.vendorData.reservation_hours.length; j++) {
+					for (let j = 0; j < props.vendorData.reservation_hours?.length; j++) {
 						const reserveDay = props.vendorData.reservation_hours[j];
 						const _index = days.findIndex(d => d.week_day == reserveDay.week_day);
 						let _times = [];
@@ -191,7 +191,7 @@ const CartDelivery = (props) => {
 
 	useEffect(() => {
 		if (order_methods.length > 0) {
-			console.log('order_methods ', order_methods, props.delivery_info.handover_method)
+			
 			if (order_methods.findIndex(i => i == props.delivery_info.handover_method) == -1) {
 				props.setDeliveryInfoCart({
 					handover_method: order_methods[0],

@@ -34,7 +34,7 @@ const MembershipFaqs = (props) => {
                 setFaqs(faqs);
             },
                 (error) => {
-                    console.log('loadFaqs error ', error)
+                    
                     const message = error.message || translate('generic_error');
                     // alerts.error(translate('alerts.error'), message);
                 });
