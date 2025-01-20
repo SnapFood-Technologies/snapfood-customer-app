@@ -448,3 +448,6 @@ export const MEMBERSHIP_PLANS = {
     monthly: 'monthly',
     yearly : 'yearly'
 };
+
+
+export const Pay_BKT = 'payment_method.pay_with_bkt';
