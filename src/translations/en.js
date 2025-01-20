@@ -940,6 +940,7 @@ export default {
 		gift_nonuser_referral_desc:
 			'In addition to the gift order, invite the recipient to download SnapFood and earn XXX Lek each',
 		gift_confirm_recipient_address: 'Please confirm recipient address',
+		bkt_payment_not_available: 'BKT payment is only available in Albania'
 	},
 	split: {
 		bill_total: 'Bill Total',
@@ -948,6 +949,7 @@ export default {
 		num_people: 'Number of people',
 		include_yourself: 'Including yourself',
 		bill_split_among: 'Bill split among',
+		
 	},
 	chat: {
 		welcomeMessage:
@@ -1321,6 +1323,7 @@ export default {
 		confirm_del_card_yes: 'Remove',
 		confirm_del_card_no: 'Cancel',
 		empty_desc: "You currently don't have any payment methods added.",
+		pay_with_bkt: 'Pay With BKT'
 	},
 	card: {
 		number: 'Card Number',
