@@ -1,0 +1,32 @@
+default_platform(:android)
+
+platform :android do
+  desc "Push a new beta build to Play Store"
+  lane :beta do
+    # Increment version code
+    increment_version_code(
+      gradle_file_path: "app/build.gradle"
+    )
+
+    # Build release
+    gradle(
+      task: "clean assembleRelease",
+      properties: {
+        "android.injected.signing.store.file" => "upload-keystore.jks",
+        "android.injected.signing.store.password" => ENV['ANDROID_KEYSTORE_PASSWORD'],
+        "android.injected.signing.key.alias" => ENV['ANDROID_KEY_ALIAS'],
+        "android.injected.signing.key.password" => ENV['ANDROID_KEY_PASSWORD'],
+      }
+    )
+
+    # Upload to Play Store
+    upload_to_play_store(
+      track: 'internal',
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      release_status: "completed",
+      aab: "app/build/outputs/bundle/release/app-release.aab"
+    )
+  end
+end

@@ -1,0 +1,109 @@
+name: Code Quality
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: write
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "yarn"
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache yarn dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run ESLint
+        run: yarn lint || true
+
+      - name: Check Types
+        run: yarn type-check || true
+
+      - name: Upload ESLint Report
+        if: failure()
+        uses: actions/upload-artifact@v4 # Changed from v5 to v4
+        with:
+          name: eslint-report
+          path: eslint-report.json
+
+  pr-checks:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check PR Title
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            perf
+            test
+            build
+            ci
+            chore
+            revert
+
+      - name: Check File Sizes
+        run: |
+          #!/bin/bash
+          MAX_SIZE_BYTES=10485760  # 10MB
+
+          # Find all files excluding .git directory
+          find . -type f -not -path "./.git/*" -exec ls -la {} \; | while read -r line; do
+            # Extract file size and name
+            size=$(echo "$line" | awk '{print $5}')
+            file=$(echo "$line" | awk '{$1=$2=$3=$4=$5=""; print substr($0,6)}')
+            
+            if [ "$size" -gt "$MAX_SIZE_BYTES" ]; then
+              echo "::warning::Large file detected: $file ($(numfmt --to=iec-i --suffix=B $size))"
+              echo "File exceeds size limit of $(numfmt --to=iec-i --suffix=B $MAX_SIZE_BYTES)"
+              exit 1
+            fi
+          done
+
+  dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Audit Dependencies
+        run: yarn audit || true
