@@ -1,0 +1,57 @@
+name: Android Release
+
+on:
+  push:
+    branches:
+      - main  # Only trigger on main branch pushes
+  workflow_dispatch:  # Allow manual triggers
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'  # Double-check we're on main
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Important for versioning
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Setup Android keystore
+        run: |
+          echo "${{ secrets.UPLOAD_KEYSTORE }}" > upload-keystore.jks.base64
+          base64 -d upload-keystore.jks.base64 > upload-keystore.jks
+
+      - name: Install Fastlane
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Deploy to Play Store
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          SUPPLY_JSON_KEY: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
+        run: bundle exec fastlane android beta
