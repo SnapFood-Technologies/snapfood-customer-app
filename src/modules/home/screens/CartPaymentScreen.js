@@ -51,6 +51,9 @@ const CartPaymentScreen = (props) => {
 	const [isAllSplitResponded, setIsAllSplitResponded] = useState(false);
 	const [cartSplit, setCartSplit] = useState(null);
 
+	const ALBANIA_COUNTRY_CODE = 'AL';
+
+
 	useEffect(() => {
 		getCartSplit();
 		monitorVendorOpen();
@@ -203,80 +206,127 @@ const CartPaymentScreen = (props) => {
 		return total;
 	};
 
-	const _renderPaymentMethod = () => {
-		return (
-			<View style={[Theme.styles.col_center_start, styles.sectionView]}>
-				<View style={[Theme.styles.row_center, { width: '100%', marginBottom: 16 }]}>
-					<Text style={[Theme.styles.flex_1, styles.subjectTitle]}>{translate('cart.payment_method')}</Text>
-				</View>
-				{
-					(
-						props.delivery_info.is_gift != true ||
-						(props.delivery_info.is_gift == true && props.systemSettings.enable_cash_on_gift_order == 1)
-					)
-					&&
-					<PayMethodItem
-						data={props.delivery_info.handover_method != OrderType_Reserve ? translate(Pay_COD) : translate('pay_at_restaurant')}
-						checked={props.payment_info.method == 'cash'}
-						onPress={() => {
-							props.setPaymentInfoCart({
-								...props.payment_info,
-								method: 'cash',
-							});
-						}}
-					/>
-				}
-				{props.order_data.vendorData != null && props.order_data.vendorData.online_payment == 1 && (
-					<React.Fragment>
-						<CardPayMethodItem
-							checked={props.payment_info.method == 'stripe'}
-							cards={cards}
-							curCard={props.payment_info.selected_card}
-							onPress={() => {
-								props.setPaymentInfoCart({
-									...props.payment_info,
-									method: 'stripe',
-								});
-							}}
-							onPressCard={(card) => {
-								props.setPaymentInfoCart({
-									...props.payment_info,
-									selected_card: card,
-								});
-							}}
-							onAddCard={() => {
-								props.navigation.navigate(RouteNames.NewCardScreen);
-							}}
-						/>
-						{/* {paypal_client_token != null && paypal_client_token != '' && (
-							<PayMethodItem
-								data={translate(Pay_Paypal)}
-								checked={props.payment_info.method == 'paypal'}
-								onPress={() => {
-									props.setPaymentInfoCart({
-										...props.payment_info,
-										method: 'paypal',
-									});
-								}}
-							/>
-						)} */}
-						{/* {Config.isAndroid == false && isApplePaySupported && (
-							<PayMethodItem
-								data={translate(Pay_Apple)}
-								checked={props.payment_info.method == 'apple'}
-								onPress={() => {
-									props.setPaymentInfoCart({
-										...props.payment_info,
-										method: 'apple',
-									});
-								}}
-							/>
-						)} */}
-					</React.Fragment>
-				)}
-			</View>
+	// Update handleBKTPayment to include country check
+	const handleBKTPayment = async () => {
+		if (loading) return;
+		
+		// Check if user is from Albania
+		if (props.user?.country_code !== ALBANIA_COUNTRY_CODE) {
+		alerts.error(
+			translate('warning'), 
+			translate('cart.bkt_payment_not_available')
 		);
+		return;
+		}
+		
+		setLoading(true);
+		try {
+		const orderProducts = props.order_data.items;
+		const values = {
+			first_name: props.user.full_name,
+			last_name: props.user.full_name,
+			email: props.user.email,
+			phone: props.user.phone,
+			company: '',
+			nipt: '',
+			address: '',
+			country: props.user.country,
+			city: '',
+			zip: ''
+		};
+	
+		const payload = {
+			...values,
+			payment_method: 'card',
+			order_products: orderProducts,
+			app_key: Config.APP_KEY
+		};
+	
+		const response = await apiFactory.post('v2-checkout', payload);
+		
+		if (response.data) {
+			props.setPaymentInfoCart({
+			...props.payment_info,
+			method: 'bkt',
+			bkt_payment_info: response.data
+			});
+			
+			finalizeCheckout();
+		}
+		} catch (error) {
+		onOrderFailed(error);
+		} finally {
+		setLoading(false);
+		}
 	};
+
+	const _renderPaymentMethod = () => {
+		const isAlbanianUser = props.user?.country_code === ALBANIA_COUNTRY_CODE;
+	  
+		return (
+		  <View style={[Theme.styles.col_center_start, styles.sectionView]}>
+			<View style={[Theme.styles.row_center, { width: '100%', marginBottom: 16 }]}>
+			  <Text style={[Theme.styles.flex_1, styles.subjectTitle]}>
+				{translate('cart.payment_method')}
+			  </Text>
+			</View>
+			
+			{/* Cash on Delivery option */}
+			{(props.delivery_info.is_gift != true ||
+			  (props.delivery_info.is_gift == true && props.systemSettings.enable_cash_on_gift_order == 1)) && (
+			  <PayMethodItem
+				data={props.delivery_info.handover_method != OrderType_Reserve 
+				  ? translate(Pay_COD) 
+				  : translate('pay_at_restaurant')}
+				checked={props.payment_info.method == 'cash'}
+				onPress={() => {
+				  props.setPaymentInfoCart({
+					...props.payment_info,
+					method: 'cash',
+				  });
+				}}
+			  />
+			)}
+	  
+			{props.order_data.vendorData != null && props.order_data.vendorData.online_payment == 1 && (
+			  <React.Fragment>
+				{/* Show Stripe for non-Albanian users */}
+				{!isAlbanianUser && (
+				  <CardPayMethodItem
+					checked={props.payment_info.method == 'stripe'}
+					cards={cards}
+					curCard={props.payment_info.selected_card}
+					onPress={() => {
+					  props.setPaymentInfoCart({
+						...props.payment_info,
+						method: 'stripe',
+					  });
+					}}
+					onPressCard={(card) => {
+					  props.setPaymentInfoCart({
+						...props.payment_info,
+						selected_card: card,
+					  });
+					}}
+					onAddCard={() => {
+					  props.navigation.navigate(RouteNames.NewCardScreen);
+					}}
+				  />
+				)}
+				
+				{/* Show BKT Payment Option only for Albanian users */}
+				{isAlbanianUser && (
+				  <PayMethodItem 
+					data={translate(Pay_BKT)}
+					checked={props.payment_info.method == 'bkt'}
+					onPress={handleBKTPayment}
+				  />
+				)}
+			  </React.Fragment>
+			)}
+		  </View>
+		);
+	  };
 
 	const renderLeaveTip = () => {
 		return (
@@ -642,46 +692,50 @@ const CartPaymentScreen = (props) => {
 
 	const finalizeCheckout = async (paypal_nonce) => {
 		const { items, vendorData, cutlery, coupon, comments } = props.order_data;
-
+		
 		try {
 			await setStorageKey(KEYS.CART_CASHBACK_INPUT, null);
-		} catch (e) {
-			
-		}
-
-		try {
 			await setStorageKey(KEYS.COUPON_CODE, null);
-		} catch (e) {
-			
-		}
-
-		let orderData = getOrderData(paypal_nonce);
-		if (orderData == null) {
-			return;
-		}
 		
-		setLoading(true);
-		props.sendOrder(orderData).then(
+			let orderData = getOrderData(paypal_nonce);
+			if (orderData == null) {
+			return;
+			}
+		
+			// Handle BKT specific payment flow
+			if (props.payment_info.method === 'bkt') {
+			orderData.payment_method = 'bkt';
+			orderData.bkt_payment_info = props.payment_info.bkt_payment_info;
+			}
+			
+			setLoading(true);
+			props.sendOrder(orderData).then(
 			(order) => {
-				
 				let cartItems = items.filter((i) => i.vendor_id != vendorData.id);
 				props.setTmpOrder({});
 				props.clearCart(cartItems);
 				setLoading(false);
+				
 				if (props.hometab_navigation != null) {
-					props.setDefaultOrdersTab('current');
-					props.hometab_navigation.jumpTo(RouteNames.OrdersStack);
+				props.setDefaultOrdersTab('current');
+				props.hometab_navigation.jumpTo(RouteNames.OrdersStack);
 				}
+				
 				props.navigation.navigate(RouteNames.BottomTabs);
-				props.navigation.navigate(RouteNames.OrderSummScreen, { order_id: order.id, isnew: true });
+				props.navigation.navigate(RouteNames.OrderSummScreen, { 
+				order_id: order.id, 
+				isnew: true 
+				});
 			},
 			(error) => {
-				
 				setLoading(false);
-
 				onOrderFailed(error);
 			}
-		);
+			);
+		} catch (e) {
+			setLoading(false);
+			onOrderFailed(e);
+		}
 	};
 
 	// const doApplepay = async () => {
