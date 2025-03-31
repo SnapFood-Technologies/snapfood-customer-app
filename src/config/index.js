@@ -12,6 +12,9 @@ const local = {
 	STRIPE_PUB_KEY : 'pk_test_51HW5IXCu9YeioLarfAExO0hfGZvIXq3qxW5dWE2KzMYqqCCn0KlzPFupkbib2tCQzkGQxHr4AWFLU2F0fz1qmZVh00OhQ6LLVB',
 	APPlE_MERCHANT_ID : 'merchant.com.snapfood.al',
 	AGORA_APP_ID : '3337d08760474de38097a1d4df9c0b92',
+	OMNI_GATEWAY_URL : 'https://apigtw.omnistackhub.xyz/',
+	OMNI_GATEWAY_API_KEY : 'gwy_3kjg9KdJ37sdL4hF8Tk2sXnY5LzW8Rv',
+	OMNI_GATEWAY_CLIENT_API_KEY : 'sk_f37b183bf20e3bdf9c5ed0a7cc96428d57915bf132caaf96296a0be008cc2994',
 };
 
 
@@ -27,6 +30,9 @@ const beta = {
 	STRIPE_PUB_KEY : 'pk_test_51HW5IXCu9YeioLarfAExO0hfGZvIXq3qxW5dWE2KzMYqqCCn0KlzPFupkbib2tCQzkGQxHr4AWFLU2F0fz1qmZVh00OhQ6LLVB',
 	APPlE_MERCHANT_ID : 'merchant.com.snapfood.al',
 	AGORA_APP_ID : '3337d08760474de38097a1d4df9c0b92',
+	OMNI_GATEWAY_URL : 'https://apigtw.omnistackhub.xyz/',
+	OMNI_GATEWAY_API_KEY : 'gwy_3kjg9KdJ37sdL4hF8Tk2sXnY5LzW8Rv',
+	OMNI_GATEWAY_CLIENT_API_KEY : 'sk_f37b183bf20e3bdf9c5ed0a7cc96428d57915bf132caaf96296a0be008cc2994',
 };
 
 const live = {
@@ -41,6 +47,9 @@ const live = {
 	STRIPE_PUB_KEY : 'pk_live_51MdheqBHV3SbtovKixMcb5SrbLkEKDnVtYoyd1AGAmnQHICr5udM16z3gnl2kCb09g7ZVJg7699WmmeTszC0bbMj00CNkWsbqt',
 	APPlE_MERCHANT_ID : 'merchant.com.snapfood.al',
 	AGORA_APP_ID : '3337d08760474de38097a1d4df9c0b92',
+	OMNI_GATEWAY_URL : 'https://apigtw.omnistackhub.xyz/',
+	OMNI_GATEWAY_API_KEY : 'gwy_3kjg9KdJ37sdL4hF8Tk2sXnY5LzW8Rv',
+	OMNI_GATEWAY_CLIENT_API_KEY : 'sk_f37b183bf20e3bdf9c5ed0a7cc96428d57915bf132caaf96296a0be008cc2994',
 };
 
 export default live;
