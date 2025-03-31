@@ -16,6 +16,7 @@ import Svg_image from '../../../common/assets/svgs/msg/image.svg';
 import Svg_camera from '../../../common/assets/svgs/msg/camera.svg';
 import Svg_send from '../../../common/assets/svgs/msg/send.svg';
 import { translate } from '../../../common/services/translate';
+import { useKeyboard } from '@react-native-community/hooks';
 
 export const renderInputToolbar = (
 	props,
@@ -31,7 +32,7 @@ export const renderInputToolbar = (
 		containerStyle={{
 			backgroundColor: Theme.colors.gray8,
 			width: '100%',
-			paddingHorizontal: 20,
+			paddingHorizontal: 15,
 			paddingVertical: 18,
 			borderTopWidth: 0,
 		}}
@@ -45,42 +46,13 @@ export const renderInputToolbar = (
 	></MessageInputToolbar>
 );
 
-export const renderActions = (props) => (
-	<Actions
-		{...props}
-		containerStyle={{
-			width: 44,
-			height: 44,
-			alignItems: 'center',
-			justifyContent: 'center',
-			marginLeft: 4,
-			marginRight: 4,
-			marginBottom: 0,
-		}}
-		icon={() => (
-			<Image
-				style={{ width: 32, height: 32 }}
-				source={{
-					uri: 'https://placeimg.com/32/32/any',
-				}}
-			/>
-		)}
-		options={{
-			'Choose From Library': () => {
-				
-			},
-			Cancel: () => {
-				
-			},
-		}}
-		optionTintColor='#222B45'
-	/>
-);
+export const renderActions = (props) => <></>;
 
 const MIN_HEIGHT = 40;
 const CustomComposer = ({ props, editable = true, onPressEmoji, onPressLocation, onImageUpload, onCapture }) => {
 	const [textInput, setTextInput] = useState(true);
 	const [minHeight, setMinHeight] = useState(MIN_HEIGHT);
+	const keyboard = useKeyboard();
 
 	useEffect(() => {
 		if (props.text == '' || props.text == null) {
@@ -96,8 +68,10 @@ const CustomComposer = ({ props, editable = true, onPressEmoji, onPressLocation,
 					backgroundColor: Theme.colors.white,
 					borderRadius: 60,
 					paddingVertical: 8,
-					paddingHorizontal: 20,
+					paddingHorizontal: 10,
+					marginLeft: 5,
 					flex: 1,
+					marginBottom: keyboard.keyboardShown ? 25 : 0,
 				},
 			]}
 		>
@@ -107,7 +81,7 @@ const CustomComposer = ({ props, editable = true, onPressEmoji, onPressLocation,
 				</TouchableOpacity>
 			)}
 			{/* <TextInput
-                style={{ 
+                style={{
                     flex:1,
                     color: Theme.colors.text,
                     fontSize: 14,
@@ -135,6 +109,7 @@ const CustomComposer = ({ props, editable = true, onPressEmoji, onPressLocation,
 						backgroundColor: Theme.colors.white,
 						paddingHorizontal: 8,
 						marginLeft: 0,
+
 						borderLeftWidth: 1,
 						borderLeftColor: Theme.colors.gray6,
 						minHeight: minHeight,
@@ -142,7 +117,6 @@ const CustomComposer = ({ props, editable = true, onPressEmoji, onPressLocation,
 					textInputProps={{
 						editable: editable,
 						onContentSizeChange: (event) => {
-							
 							setMinHeight(event.nativeEvent.contentSize.height);
 						},
 					}}
@@ -198,20 +172,35 @@ export const renderComposer = (props, editable = true, onPressEmoji, onPressLoca
 	/>
 );
 
-export const renderSend = (props,  active, onRecord, onSend) =>
-	active == false ? (
-		<TouchableOpacity disabled={props.disabled == true} style={{ marginLeft: 15 }} onPress={() => onRecord()}>
-			<Svg_voicenote width={40} height={40} />
-		</TouchableOpacity>
-	) : (
-		<MessageSend
-			{...props}
-			containerStyle={{
-				alignItems: 'center',
-				justifyContent: 'center',
-				marginLeft: 15,
-			}}
-		>
-			<Svg_send width={40} height={40} />
-		</MessageSend>
-	);
+export const renderSend = (props, active, onRecord, onSend, keyboard) => {
+	if (active == false) {
+		return (
+			<TouchableOpacity
+				style={{
+					alignItems: 'center',
+					justifyContent: 'center',
+					marginLeft: 15,
+					marginBottom: keyboard?.keyboardShown ? 20 : 0,
+				}}
+				disabled={props.disabled == true}
+				onPress={() => onRecord()}
+			>
+				<Svg_voicenote width={40} height={40} />
+			</TouchableOpacity>
+		);
+	} else {
+		return (
+			<MessageSend
+				{...props}
+				containerStyle={{
+					alignItems: 'center',
+					justifyContent: 'center',
+					marginLeft: 15,
+					marginBottom: keyboard?.keyboardShown ? 20 : 0,
+				}}
+			>
+				<Svg_send width={40} height={40} />
+			</MessageSend>
+		);
+	}
+};
