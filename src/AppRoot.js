@@ -44,6 +44,8 @@ import {
 	PUSH_NOTIFICATION_OPENED_EVENT,
 	PUSH_NOTIFICATION_RECEIVED_EVENT,
 	setupPushNotifications,
+	setExternalUserId,
+	removeExternalUserId,
 } from './common/services/pushNotifications';
 import { MenuProvider } from 'react-native-popup-menu';
 
@@ -54,7 +56,7 @@ import { addLog } from './common/services/debug_log';
 import branch from 'react-native-branch';
 import RouteNames from './routes/names';
 import { Mixpanel } from 'mixpanel-react-native';
-import { initialize, LogLevel } from 'react-native-clarity';
+import { initialize, LogLevel, OneSignal } from 'react-native-onesignal';
 
 const trackAutomaticEvents = false;
 export const mixpanel = new Mixpanel('12dfedc3c52bab4bc3fbae7a51c3da08', trackAutomaticEvents);
@@ -131,34 +133,57 @@ class AppRoot extends React.Component {
 
 		initialize('ololehow3z', clarityConfig);
 		this.setIOSBadge();
-		messaging().onMessage((message) => {
-			if (message && message.data && message.data.type != 'chat_notification') {
-				this.onNotificationOpened(message);
+
+		// Initialize OneSignal
+		await setupPushNotifications();
+
+		// Set up OneSignal notification handlers
+		OneSignal.Notifications.addEventListener('click', (event) => {
+			console.log('OneSignal: notification clicked:', event);
+			this.onNotificationOpened(event.notification);
+		});
+
+		// Handle notification received while app in foreground
+		OneSignal.Notifications.addEventListener('foregroundWillDisplay', (event) => {
+			console.log('OneSignal: notification received in foreground:', event);
+			// Complete with null means don't show a notification
+			event.preventDefault();
+			// Handle the notification data
+			if (event.notification.additionalData) {
+				this.handleForegroundNotification(event.notification);
 			}
 		});
-		messaging().setBackgroundMessageHandler(async (remoteMessage) => {
-			this.onNotificationOpened(remoteMessage);
-		});
 
-		messaging().onNotificationOpenedApp((remoteMessage) => {
-			this.onNotificationOpened(remoteMessage);
-		});
+		// Set external user ID if logged in
+		if (this.props.isLoggedIn && this.props.user?.id) {
+			await setExternalUserId(this.props.user.id);
+		}
 
-		// Check whether an initial notification is available
-		messaging()
-			.getInitialNotification()
-			.then((remoteMessage) => {
-				this.onNotificationOpened(remoteMessage);
-			});
 		await this.clearIOSBadge();
 		await this.loadLoginInfo();
-		// this.localizationListener = RNLocalize.addEventListener('change', this.handleLocalizationChange);
 		this.appStateListener = AppState.addEventListener('change', this._handleAppStateChange);
 		AppState.addEventListener('change', this.getBrachIOHandler);
 
 		this.getBrachIOHandler();
 		dynamicLinks().onLink(this.handleDynamicLink);
 	}
+
+	componentDidUpdate(prevProps) {
+		// Handle user login/logout for OneSignal
+		if (!prevProps.isLoggedIn && this.props.isLoggedIn && this.props.user?.id) {
+			setExternalUserId(this.props.user.id);
+		}
+		if (prevProps.isLoggedIn && !this.props.isLoggedIn) {
+			removeExternalUserId();
+		}
+	}
+
+	handleForegroundNotification = (notification) => {
+		const data = notification.additionalData;
+		if (data && data.type) {
+			this.onNotificationOpened({ data });
+		}
+	};
 
 	setIOSBadge(isClear = false) {
 		if (Platform.OS === 'ios') {
@@ -188,6 +213,9 @@ class AppRoot extends React.Component {
 		if (this.appStateListener) {
 			this.appStateListener.remove();
 		}
+
+		// Remove OneSignal listeners
+		OneSignal.Notifications.clearAll();
 	}
 
 	getRewardSettings = async () => {
@@ -577,11 +605,12 @@ class AppRoot extends React.Component {
 	}
 }
 
-const mapStateToProps = ({ app }) => ({
+const mapStateToProps = ({ app, auth }) => ({
 	isReviewModalVisible: app.isReviewModalVisible,
 	reviewModalData: app.reviewModalData,
 	coordinates: app.coordinates,
 	isLoggedIn: app.isLoggedIn,
+	user: app.user,
 });
 
 export default connect(mapStateToProps, {
