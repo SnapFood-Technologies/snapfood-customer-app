@@ -4,14 +4,13 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import BottomTabs from './routes/stack';
 import { setStorageKey, getStorageKey, KEYS } from './common/services/storage';
 import SplashScreen from 'react-native-splash-screen';
-import messaging from '@react-native-firebase/messaging';
-import dynamicLinks from '@react-native-firebase/dynamic-links';
 import { connect } from 'react-redux';
 import RNContacts from 'react-native-contacts';
 import ReceiveSharingIntent from 'react-native-receive-sharing-intent';
 import { getLoggedInUser, legacyLogin, setAsLoggedIn, setAsSeenOnboard, setUserNeedLogin } from './store/actions/auth';
 import * as RNLocalize from 'react-native-localize';
 import { getSearchParamFromURL, isEmpty } from '../src/common/services/utility';
+import dynamicLinks from '@react-native-firebase/dynamic-links';
 import {
 	closeRatingModal,
 	getAddresses,
@@ -44,10 +43,10 @@ import {
 	PUSH_NOTIFICATION_OPENED_EVENT,
 	PUSH_NOTIFICATION_RECEIVED_EVENT,
 	setupPushNotifications,
-	setExternalUserId,
 	removeExternalUserId,
 } from './common/services/pushNotifications';
 import { MenuProvider } from 'react-native-popup-menu';
+import { OneSignal } from 'react-native-onesignal';
 
 import { EventRegister } from 'react-native-event-listeners';
 import apiFactory from './common/services/apiFactory';
@@ -56,7 +55,7 @@ import { addLog } from './common/services/debug_log';
 import branch from 'react-native-branch';
 import RouteNames from './routes/names';
 import { Mixpanel } from 'mixpanel-react-native';
-import { initialize, LogLevel, OneSignal } from 'react-native-onesignal';
+import { initialize, LogLevel } from 'react-native-clarity';
 
 const trackAutomaticEvents = false;
 export const mixpanel = new Mixpanel('12dfedc3c52bab4bc3fbae7a51c3da08', trackAutomaticEvents);
@@ -134,30 +133,9 @@ class AppRoot extends React.Component {
 		initialize('ololehow3z', clarityConfig);
 		this.setIOSBadge();
 
-		// Initialize OneSignal
-		await setupPushNotifications();
-
 		// Set up OneSignal notification handlers
-		OneSignal.Notifications.addEventListener('click', (event) => {
-			console.log('OneSignal: notification clicked:', event);
-			this.onNotificationOpened(event.notification);
-		});
-
-		// Handle notification received while app in foreground
-		OneSignal.Notifications.addEventListener('foregroundWillDisplay', (event) => {
-			console.log('OneSignal: notification received in foreground:', event);
-			// Complete with null means don't show a notification
-			event.preventDefault();
-			// Handle the notification data
-			if (event.notification.additionalData) {
-				this.handleForegroundNotification(event.notification);
-			}
-		});
-
-		// Set external user ID if logged in
-		if (this.props.isLoggedIn && this.props.user?.id) {
-			await setExternalUserId(this.props.user.id);
-		}
+		OneSignal.Notifications.addEventListener('click', this.onNotificationOpened);
+		OneSignal.Notifications.addEventListener('foregroundWillDisplay', this.onNotificationReceived);
 
 		await this.clearIOSBadge();
 		await this.loadLoginInfo();
@@ -167,23 +145,6 @@ class AppRoot extends React.Component {
 		this.getBrachIOHandler();
 		dynamicLinks().onLink(this.handleDynamicLink);
 	}
-
-	componentDidUpdate(prevProps) {
-		// Handle user login/logout for OneSignal
-		if (!prevProps.isLoggedIn && this.props.isLoggedIn && this.props.user?.id) {
-			setExternalUserId(this.props.user.id);
-		}
-		if (prevProps.isLoggedIn && !this.props.isLoggedIn) {
-			removeExternalUserId();
-		}
-	}
-
-	handleForegroundNotification = (notification) => {
-		const data = notification.additionalData;
-		if (data && data.type) {
-			this.onNotificationOpened({ data });
-		}
-	};
 
 	setIOSBadge(isClear = false) {
 		if (Platform.OS === 'ios') {
@@ -213,9 +174,6 @@ class AppRoot extends React.Component {
 		if (this.appStateListener) {
 			this.appStateListener.remove();
 		}
-
-		// Remove OneSignal listeners
-		OneSignal.Notifications.clearAll();
 	}
 
 	getRewardSettings = async () => {
@@ -250,9 +208,17 @@ class AppRoot extends React.Component {
 			.catch((error) => {});
 	};
 
+	onNotificationReceived = (notification) => {
+		console.log('onNotificationReceived', notification);
+		const data = notification.notification.additionalData;
+		if (data && data.type !== 'chat_notification') {
+			this.onNotificationOpened({ data });
+		}
+	};
+
 	onNotificationOpened = async (notification) => {
 		this.setIOSBadge();
-		const data = notification?.data;
+		const data = notification?.data || notification?.notification?.additionalData;
 		console.log('data', notification);
 
 		const { goActiveScreenFromPush, coordinates, setVendorCart } = this.props || {};
@@ -554,6 +520,13 @@ class AppRoot extends React.Component {
 					token = `Bearer ${token}`;
 				}
 				logged_user_data = await this.props.legacyLogin(token);
+				// Set up OneSignal with user ID if logged in
+				if (logged_user_data?.id) {
+					await setupPushNotifications(logged_user_data.id);
+				}
+			} else {
+				// Remove OneSignal user ID if logged out
+				await removeExternalUserId();
 			}
 		} catch (e) {}
 
@@ -605,12 +578,11 @@ class AppRoot extends React.Component {
 	}
 }
 
-const mapStateToProps = ({ app, auth }) => ({
+const mapStateToProps = ({ app }) => ({
 	isReviewModalVisible: app.isReviewModalVisible,
 	reviewModalData: app.reviewModalData,
 	coordinates: app.coordinates,
 	isLoggedIn: app.isLoggedIn,
-	user: app.user,
 });
 
 export default connect(mapStateToProps, {

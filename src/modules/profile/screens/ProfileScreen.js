@@ -46,15 +46,12 @@ const ProfileScreen = (props) => {
 	}, [props.navigation])
 
 	const getBtns = () => {
-		const ALBANIA_COUNTRY_CODE = 'AL';
-		const isAlbanianUser = props.user?.country_code === ALBANIA_COUNTRY_CODE;
-		
 		const tmp_btns = [
 			{ name: 'wallet', link: RouteNames.WalletScreen, icon: <Svg_wallet /> },
 			{ name: 'invite_reward', link: RouteNames.InviteScreen, icon: <Svg_userplus /> },
 			{ name: 'earn_reward', link: RouteNames.EarnScreen, icon: <Svg_userplus /> },
 			{ name: 'addresses', link: RouteNames.AddressesScreen, icon: <Svg_address /> },
-			...(!isAlbanianUser ? [{ name: 'payment_method', link: RouteNames.PaymentMethodsScreen, icon: <Svg_card /> }] : []),
+			{ name: 'payment_method', link: RouteNames.PaymentMethodsScreen, icon: <Svg_card /> },
 			{ name: 'transactions', link: RouteNames.DepositTransferHistScreen, icon: <Svg_transaction width={25} height={25} /> },
 			{ name: 'promotions_menu', link: RouteNames.PromotionsScreen, icon: <Svg_promotion /> },
 			{ name: 'preferred', link: RouteNames.FavouritesScreen, icon: <Svg_heart /> },
@@ -66,7 +63,7 @@ const ProfileScreen = (props) => {
 			{ name: 'about', icon: <Svg_snapfood /> },
 			{ name: 'logout', icon: <Svg_logout /> },
 		];
-	
+
 		let btns = [];
 		tmp_btns.forEach(btn => {
 			if (btn.name == 'invite_reward') {
@@ -93,7 +90,7 @@ const ProfileScreen = (props) => {
 				btns.push(btn);
 			}
 		});
-	
+
 		return btns;
 	}
 

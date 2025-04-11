@@ -8,6 +8,7 @@
 #import <Firebase.h>
 #import "RNSplashScreen.h"
 #import <GoogleMaps/GoogleMaps.h>
+
 //#import "RNBraintreeDropin.h"
 
 @implementation AppDelegate
@@ -20,6 +21,7 @@
   self.initialProps = @{};
 
   [RNBranch initSessionWithLaunchOptions:launchOptions isReferrable:YES];
+  [super application:application didFinishLaunchingWithOptions:launchOptions];
   if (@available(iOS 15.0, *)) {
     [[Branch getInstance] checkPasteboardOnInstall];
   }
@@ -33,17 +35,18 @@
 
 //  [BTAppContextSwitcher setReturnURLScheme:@"com.snapfood.al.payments"];
 
-  BOOL success = [super application:application didFinishLaunchingWithOptions:launchOptions];
-  if (success) {
+  
+  
     [RNSplashScreen show];
-  }
-  return success;
+  
+  return YES;
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
 #if DEBUG
-  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
+  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" ];
+  
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
