@@ -593,7 +593,6 @@ class AppRoot extends React.Component {
 	};
 
 	render() {
-		console.log('render', this.props.user.id);
 		return (
 			<View style={{ flex: 1 }}>
 				<MenuProvider>
