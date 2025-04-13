@@ -56,8 +56,8 @@ import { addLog } from './common/services/debug_log';
 import branch from 'react-native-branch';
 import RouteNames from './routes/names';
 import { Mixpanel } from 'mixpanel-react-native';
-import { initialize, LogLevel, OneSignal } from 'react-native-onesignal';
-
+import { LogLevel, OneSignal } from 'react-native-onesignal';
+import { initialize } from 'react-native-clarity';
 const trackAutomaticEvents = false;
 export const mixpanel = new Mixpanel('12dfedc3c52bab4bc3fbae7a51c3da08', trackAutomaticEvents);
 mixpanel.init();
@@ -593,6 +593,7 @@ class AppRoot extends React.Component {
 	};
 
 	render() {
+		console.log('render', this.props.user.id);
 		return (
 			<View style={{ flex: 1 }}>
 				<MenuProvider>
