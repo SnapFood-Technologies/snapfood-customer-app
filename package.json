@@ -91,6 +91,7 @@
 		"react-native-modal": "13.0.1",
 		"react-native-modal-datetime-picker": "^18.0.0",
 		"react-native-modal-dropdown": "https://github.com/siemiatj/react-native-modal-dropdown",
+		"react-native-onesignal": "^5.2.9",
 		"react-native-parallax-scroll-view": "^0.21.3",
 		"react-native-parsed-text": "^0.0.22",
 		"react-native-popover-view": "^5.1.8",

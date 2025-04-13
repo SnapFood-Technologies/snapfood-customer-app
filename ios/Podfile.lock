@@ -130,64 +130,6 @@ PODS:
     - GoogleUtilities/Reachability (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30911.0, >= 2.30908.0)
-  - Flipper (0.182.0):
-    - Flipper-Folly (~> 2.6)
-  - Flipper-Boost-iOSX (1.76.0.1.11)
-  - Flipper-DoubleConversion (3.2.0.1)
-  - Flipper-Fmt (7.1.7)
-  - Flipper-Folly (2.6.10):
-    - Flipper-Boost-iOSX
-    - Flipper-DoubleConversion
-    - Flipper-Fmt (= 7.1.7)
-    - Flipper-Glog
-    - libevent (~> 2.1.12)
-    - OpenSSL-Universal (= 1.1.1100)
-  - Flipper-Glog (0.5.0.5)
-  - Flipper-PeerTalk (0.0.4)
-  - FlipperKit (0.182.0):
-    - FlipperKit/Core (= 0.182.0)
-  - FlipperKit/Core (0.182.0):
-    - Flipper (~> 0.182.0)
-    - FlipperKit/CppBridge
-    - FlipperKit/FBCxxFollyDynamicConvert
-    - FlipperKit/FBDefines
-    - FlipperKit/FKPortForwarding
-    - SocketRocket (~> 0.6.0)
-  - FlipperKit/CppBridge (0.182.0):
-    - Flipper (~> 0.182.0)
-  - FlipperKit/FBCxxFollyDynamicConvert (0.182.0):
-    - Flipper-Folly (~> 2.6)
-  - FlipperKit/FBDefines (0.182.0)
-  - FlipperKit/FKPortForwarding (0.182.0):
-    - CocoaAsyncSocket (~> 7.6)
-    - Flipper-PeerTalk (~> 0.0.4)
-  - FlipperKit/FlipperKitHighlightOverlay (0.182.0)
-  - FlipperKit/FlipperKitLayoutHelpers (0.182.0):
-    - FlipperKit/Core
-    - FlipperKit/FlipperKitHighlightOverlay
-    - FlipperKit/FlipperKitLayoutTextSearchable
-  - FlipperKit/FlipperKitLayoutIOSDescriptors (0.182.0):
-    - FlipperKit/Core
-    - FlipperKit/FlipperKitHighlightOverlay
-    - FlipperKit/FlipperKitLayoutHelpers
-    - YogaKit (~> 1.18)
-  - FlipperKit/FlipperKitLayoutPlugin (0.182.0):
-    - FlipperKit/Core
-    - FlipperKit/FlipperKitHighlightOverlay
-    - FlipperKit/FlipperKitLayoutHelpers
-    - FlipperKit/FlipperKitLayoutIOSDescriptors
-    - FlipperKit/FlipperKitLayoutTextSearchable
-    - YogaKit (~> 1.18)
-  - FlipperKit/FlipperKitLayoutTextSearchable (0.182.0)
-  - FlipperKit/FlipperKitNetworkPlugin (0.182.0):
-    - FlipperKit/Core
-  - FlipperKit/FlipperKitReactPlugin (0.182.0):
-    - FlipperKit/Core
-  - FlipperKit/FlipperKitUserDefaultsPlugin (0.182.0):
-    - FlipperKit/Core
-  - FlipperKit/SKIOSNetworkPlugin (0.182.0):
-    - FlipperKit/Core
-    - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
   - Google-Maps-iOS-Utils (3.2.0):
@@ -320,7 +262,52 @@ PODS:
     - nanopb/encode (= 2.30910.0)
   - nanopb/decode (2.30910.0)
   - nanopb/encode (2.30910.0)
-  - OpenSSL-Universal (1.1.1100)
+  - OneSignalXCFramework (5.2.10):
+    - OneSignalXCFramework/OneSignalComplete (= 5.2.10)
+  - OneSignalXCFramework/OneSignal (5.2.10):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalExtension
+    - OneSignalXCFramework/OneSignalLiveActivities
+    - OneSignalXCFramework/OneSignalNotifications
+    - OneSignalXCFramework/OneSignalOSCore
+    - OneSignalXCFramework/OneSignalOutcomes
+    - OneSignalXCFramework/OneSignalUser
+  - OneSignalXCFramework/OneSignalComplete (5.2.10):
+    - OneSignalXCFramework/OneSignal
+    - OneSignalXCFramework/OneSignalInAppMessages
+    - OneSignalXCFramework/OneSignalLocation
+  - OneSignalXCFramework/OneSignalCore (5.2.10)
+  - OneSignalXCFramework/OneSignalExtension (5.2.10):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalOutcomes
+  - OneSignalXCFramework/OneSignalInAppMessages (5.2.10):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalNotifications
+    - OneSignalXCFramework/OneSignalOSCore
+    - OneSignalXCFramework/OneSignalOutcomes
+    - OneSignalXCFramework/OneSignalUser
+  - OneSignalXCFramework/OneSignalLiveActivities (5.2.10):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalOSCore
+    - OneSignalXCFramework/OneSignalUser
+  - OneSignalXCFramework/OneSignalLocation (5.2.10):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalNotifications
+    - OneSignalXCFramework/OneSignalOSCore
+    - OneSignalXCFramework/OneSignalUser
+  - OneSignalXCFramework/OneSignalNotifications (5.2.10):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalExtension
+    - OneSignalXCFramework/OneSignalOutcomes
+  - OneSignalXCFramework/OneSignalOSCore (5.2.10):
+    - OneSignalXCFramework/OneSignalCore
+  - OneSignalXCFramework/OneSignalOutcomes (5.2.10):
+    - OneSignalXCFramework/OneSignalCore
+  - OneSignalXCFramework/OneSignalUser (5.2.10):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalNotifications
+    - OneSignalXCFramework/OneSignalOSCore
+    - OneSignalXCFramework/OneSignalOutcomes
   - PromisesObjC (2.4.0)
   - RCT-Folly (2021.07.22.00):
     - boost
@@ -682,6 +669,9 @@ PODS:
     - React
   - react-native-maps (0.26.1):
     - React
+  - react-native-onesignal (5.2.9):
+    - OneSignalXCFramework (= 5.2.10)
+    - React (< 1.0.0, >= 0.13.0)
   - react-native-receive-sharing-intent (2.0.0):
     - React-Core
   - react-native-render-html (6.3.4):
@@ -954,8 +944,6 @@ PODS:
   - toolbar-android (0.2.1):
     - React
   - Yoga (1.14.0)
-  - YogaKit (1.18.1):
-    - Yoga (~> 1.14)
 
 DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
@@ -967,32 +955,12 @@ DEPENDENCIES:
   - Firebase
   - FirebaseCore
   - FirebaseCoreInternal
-  - Flipper (= 0.182.0)
-  - Flipper-Boost-iOSX (= 1.76.0.1.11)
-  - Flipper-DoubleConversion (= 3.2.0.1)
-  - Flipper-Fmt (= 7.1.7)
-  - Flipper-Folly (= 2.6.10)
-  - Flipper-Glog (= 0.5.0.5)
-  - Flipper-PeerTalk (= 0.0.4)
-  - FlipperKit (= 0.182.0)
-  - FlipperKit/Core (= 0.182.0)
-  - FlipperKit/CppBridge (= 0.182.0)
-  - FlipperKit/FBCxxFollyDynamicConvert (= 0.182.0)
-  - FlipperKit/FBDefines (= 0.182.0)
-  - FlipperKit/FKPortForwarding (= 0.182.0)
-  - FlipperKit/FlipperKitHighlightOverlay (= 0.182.0)
-  - FlipperKit/FlipperKitLayoutPlugin (= 0.182.0)
-  - FlipperKit/FlipperKitLayoutTextSearchable (= 0.182.0)
-  - FlipperKit/FlipperKitNetworkPlugin (= 0.182.0)
-  - FlipperKit/FlipperKitReactPlugin (= 0.182.0)
-  - FlipperKit/FlipperKitUserDefaultsPlugin (= 0.182.0)
-  - FlipperKit/SKIOSNetworkPlugin (= 0.182.0)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - GoogleUtilities
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - libevent (~> 2.1.12)
   - MixpanelReactNative (from `../node_modules/mixpanel-react-native`)
-  - OpenSSL-Universal (= 1.1.1100)
+  - OneSignalXCFramework (< 6.0, >= 5.0.0)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -1000,7 +968,6 @@ DEPENDENCIES:
   - React-callinvoker (from `../node_modules/react-native/ReactCommon/callinvoker`)
   - React-Codegen (from `build/generated/ios`)
   - React-Core (from `../node_modules/react-native/`)
-  - React-Core/DevSupport (from `../node_modules/react-native/`)
   - React-Core/RCTWebSocket (from `../node_modules/react-native/`)
   - React-CoreModules (from `../node_modules/react-native/React/CoreModules`)
   - React-cxxreact (from `../node_modules/react-native/ReactCommon/cxxreact`)
@@ -1026,6 +993,7 @@ DEPENDENCIES:
   - react-native-insta-story (from `../node_modules/react-native-insta-story`)
   - react-native-location (from `../node_modules/react-native-location`)
   - react-native-maps (from `../node_modules/react-native-maps`)
+  - react-native-onesignal (from `../node_modules/react-native-onesignal`)
   - react-native-receive-sharing-intent (from `../node_modules/react-native-receive-sharing-intent`)
   - react-native-render-html (from `../node_modules/react-native-render-html`)
   - react-native-safe-area (from `../node_modules/react-native-safe-area`)
@@ -1103,14 +1071,6 @@ SPEC REPOS:
     - FirebaseDynamicLinks
     - FirebaseInstallations
     - FirebaseMessaging
-    - Flipper
-    - Flipper-Boost-iOSX
-    - Flipper-DoubleConversion
-    - Flipper-Fmt
-    - Flipper-Folly
-    - Flipper-Glog
-    - Flipper-PeerTalk
-    - FlipperKit
     - fmt
     - Google-Maps-iOS-Utils
     - GoogleAppMeasurement
@@ -1127,7 +1087,7 @@ SPEC REPOS:
     - libwebp
     - Mixpanel-swift
     - nanopb
-    - OpenSSL-Universal
+    - OneSignalXCFramework
     - PromisesObjC
     - SDWebImage
     - SDWebImageWebPCoder
@@ -1141,7 +1101,6 @@ SPEC REPOS:
     - StripePaymentsUI
     - StripeUICore
     - TOCropViewController
-    - YogaKit
 
 EXTERNAL SOURCES:
   boost:
@@ -1223,6 +1182,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-location"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
+  react-native-onesignal:
+    :path: "../node_modules/react-native-onesignal"
   react-native-receive-sharing-intent:
     :path: "../node_modules/react-native-receive-sharing-intent"
   react-native-render-html:
@@ -1340,7 +1301,7 @@ SPEC CHECKSUMS:
   AgoraIrisRTC_iOS: f8756246f576b7fd4ac4cc405451f5203d7808ab
   AgoraRtcEngine_iOS: 8f579495aafaf383346241a419718e9775723493
   AppAuth: d4f13a8fe0baf391b2108511793e4b479691fb73
-  boost: 7dcd2de282d72e344012f7d6564d024930a6a440
+  boost: 9af0c7125f20c5c5cb032eadbf66744693241dd8
   BranchSDK: 28bec34fb99c53ab8e86b7bf69cc55a4505fe0b3
   BVLinearGradient: cb006ba232a1f3e4f341bb62c42d1098c284da70
   CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
@@ -1360,14 +1321,6 @@ SPEC CHECKSUMS:
   FirebaseDynamicLinks: 83c278fcae48ac2cf8c3fb10f64f3d469dadcf9b
   FirebaseInstallations: 913cf60d0400ebd5d6b63a28b290372ab44590dd
   FirebaseMessaging: 7b5d8033e183ab59eb5b852a53201559e976d366
-  Flipper: 6edb735e6c3e332975d1b17956bcc584eccf5818
-  Flipper-Boost-iOSX: fd1e2b8cbef7e662a122412d7ac5f5bea715403c
-  Flipper-DoubleConversion: 2dc99b02f658daf147069aad9dbd29d8feb06d30
-  Flipper-Fmt: 60cbdd92fc254826e61d669a5d87ef7015396a9b
-  Flipper-Folly: 584845625005ff068a6ebf41f857f468decd26b3
-  Flipper-Glog: 70c50ce58ddaf67dc35180db05f191692570f446
-  Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
-  FlipperKit: 2efad7007d6745a3f95e4034d547be637f89d3f6
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   Google-Maps-iOS-Utils: 81dd3e1e543773b2145db06c778d9206db25dea6
@@ -1387,7 +1340,7 @@ SPEC CHECKSUMS:
   Mixpanel-swift: 7f5b749dbda2708033d67ff3d7a91710468d4a38
   MixpanelReactNative: d3c2a718e1d2ce0d9909919f4983066f94e85d65
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
-  OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
+  OneSignalXCFramework: 1a3b28dfbff23aabce585796d23c1bef37772774
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RCT-Folly: 8dc08ca5a393b48b1c523ab6220dfdcc0fe000ad
   RCTRequired: c0569ecc035894e4a68baecb30fe6a7ea6e399f9
@@ -1420,6 +1373,7 @@ SPEC CHECKSUMS:
   react-native-insta-story: 2f1028459065547b4b4cd81dd0a3f5a08fa25eb1
   react-native-location: 70e6bdfe4a98a80ebda57fd5b30994e48d082e99
   react-native-maps: 0a13ebd851edb4955b091572874adf0a69c1c56b
+  react-native-onesignal: 33ade92bd91578374c31c5a5a91f45f49c2d6614
   react-native-receive-sharing-intent: cbd6daac89f5e84c231fe0d8e5453490cc431193
   react-native-render-html: 5afc4751f1a98621b3009432ef84c47019dcb2bd
   react-native-safe-area: ef18e77a00dc8ff473724853508264599cf215b8
@@ -1488,8 +1442,7 @@ SPEC CHECKSUMS:
   TOCropViewController: 80b8985ad794298fb69d3341de183f33d1853654
   toolbar-android: c426ed5bd3dcccfed20fd79533efc0d1ae0ef018
   Yoga: 3efc43e0d48686ce2e8c60f99d4e6bd349aff981
-  YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: db10e594f5deacdc4c87f11ab22335045b7bf802
+PODFILE CHECKSUM: ac6e3a6a1d62fe5440bb5632c30c2e8723a56c27
 
 COCOAPODS: 1.16.2
