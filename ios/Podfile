@@ -76,8 +76,12 @@ target 'Snapfood' do
 
   pod 'RNAudio', :path => '../node_modules/react-native-audio'
 
-  # comment the next line to disable credit card scanning
-  pod 'CardIO'
+  # Alternative CardIO configuration
+  pod 'CardIO', :inhibit_warnings => true do |cardio|
+    cardio.xcconfig = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+    }
+  end
 
   target 'SnapfoodTests' do
     inherit! :complete
