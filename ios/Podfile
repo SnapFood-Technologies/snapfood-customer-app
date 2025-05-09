@@ -1,3 +1,25 @@
+def find_and_replace_boost_url
+  pod_spec = "../node_modules/react-native/third-party-podspecs/boost.podspec"
+  puts "Debug: Starting boost URL replacement"
+  if File.exist?(pod_spec)
+    puts "Debug: Found boost.podspec"
+    spec_content = File.read(pod_spec)
+    
+    # Replace the URL
+    spec_content.gsub!(
+      'https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2',
+      'https://archives.boost.io/release/1.76.0/source/boost_1_76_0.tar.bz2'
+    )
+    
+    # Write the updated content back to the file
+    File.write(pod_spec, spec_content)
+    puts "Debug: Updated boost.podspec"
+  end
+end
+
+# Call the function to execute the replacement
+find_and_replace_boost_url
+
 ENV['SWIFT_VERSION'] = '5'
 
 require_relative '../node_modules/react-native/scripts/react_native_pods'
@@ -43,7 +65,7 @@ target 'Snapfood' do
     # Enables Flipper.
     # Note that if you have use_frameworks! enabled, Flipper will not work and
     # you should disable the next line.
-    :flipper_configuration => flipper_config,
+    # :flipper_configuration => flipper_config,
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
@@ -54,8 +76,12 @@ target 'Snapfood' do
 
   pod 'RNAudio', :path => '../node_modules/react-native-audio'
 
-  # comment the next line to disable credit card scanning
-  pod 'CardIO'
+  # Alternative CardIO configuration
+  pod 'CardIO', :inhibit_warnings => true do |cardio|
+    cardio.xcconfig = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+    }
+  end
 
   target 'SnapfoodTests' do
     inherit! :complete
@@ -92,4 +118,8 @@ target 'Snapfood' do
       end
     end
   end # **Fixed incorrect indentation**
+end
+
+target 'OneSignalNotificationServiceExtension' do
+  pod 'OneSignalXCFramework', '>= 5.0.0', '< 6.0'
 end
